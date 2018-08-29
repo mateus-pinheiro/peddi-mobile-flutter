@@ -1,0 +1,83 @@
+name: peddi_tont_app
+description: A peddi application for the tablets on casual dining restaurant tables.
+
+dependencies:
+  redux: ^3.0.0
+  flutter_redux: ^0.5.0
+  flutter_redux_dev_tools: "^0.3.0"
+  shared_preferences: "^0.4.1"
+  flutter:
+    sdk: flutter
+
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons: ^0.1.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+
+# For information on the generic Dart part of this file, see the
+# following page: https://www.dartlang.org/tools/pub/pubspec
+
+# The following section is specific to Flutter.
+flutter:
+
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  # assets:
+  #  - images/a_dot_burr.jpeg
+  #  - images/a_dot_ham.jpeg
+  assets:
+      - resources/images/help.png
+      - resources/images/food.png
+      - resources/images/waves.png
+      - resources/images/peddi_logo.png
+      - resources/images/logo1.png
+      - resources/images/logo_peddi_preto.png
+      - resources/images/waves_green.png
+      - resources/images/environment.png
+      - resources/images/product.png
+      - resources/images/featured_image.png
+      - resources/images/action_image.png
+      - resources/images/logo_lm_title.jpg
+      - resources/images/logo_lm09.png
+
+  # An image asset can refer to one or more resolution-specific "variants", see
+  # https://flutter.io/assets-and-images/#resolution-aware.
+
+  # For details regarding adding assets from package dependencies, see
+  # https://flutter.io/assets-and-images/#from-packages
+
+  # To add custom fonts to your application, add a fonts section here,
+  # in this "flutter" section. Each entry in this list should have a
+  # "family" key with the font family name, and a "fonts" key with a
+  # list giving the asset and other descriptors for the font. For
+  # example:
+  # fonts:
+  #   - family: Schyler
+  #     fonts:
+  #       - asset: fonts/Schyler-Regular.ttf
+  #       - asset: fonts/Schyler-Italic.ttf
+  #         style: italic
+  #   - family: Trajan Pro
+  #     fonts:
+  #       - asset: fonts/TrajanPro.ttf
+  #       - asset: fonts/TrajanPro_Bold.ttf
+  #         weight: 700
+  #
+  fonts:
+            - family: CircularStd
+              fonts:
+                - asset: resources/fonts/CircularStd-Book.otf
+                - asset: resources/fonts/CircularStd-Black.otf
+                - asset: resources/fonts/CircularStd-Bold.otf
+                - asset: resources/fonts/CircularStd-Medium.otf
+
+  # For details regarding fonts from package dependencies,
+  # see https://flutter.io/custom-fonts/#from-packages

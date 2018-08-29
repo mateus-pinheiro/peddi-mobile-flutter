@@ -1,0 +1,19 @@
+{
+  "app_name": "Peddi",
+  "welcome_h1": "Olá! Seja bem-vindo(a)!",
+  "welcome_h2": "Vamos começar!",
+  "label_table_number": "Número da Mesa",
+  "error_table_number_missing": "Informe o número da mesa",
+  "label_people_quantity": "Quantidade de Pessoas",
+  "error_people_quantity_missing": "Informe a quantidade de pessoas",
+  "button_open_table": "Abrir Mesa",
+  "button_help": "Ajuda",
+  "button_support": "Suporte",
+  "button_restart": "Reiniciar",
+  "heading_featured": "Destaques",
+  "heading_menu": "Cardápio",
+  "money_symbol": "R$",
+  "money_name": "Real",
+  "money_name_plural": "Reais",
+  "button_buy": "Adicionar ao Pedido"
+}

@@ -1,0 +1,19 @@
+{
+  "app_name": "Peddi",
+  "welcome_h1": "Hello! Welcome!",
+  "welcome_h2": "Let's Start",
+  "label_table_number": "Table Number",
+  "error_table_number_missing": "Table number missing",
+  "label_people_quantity": "How many People?",
+  "error_people_quantity_missing": "How many people?",
+  "button_open_table": "Open Table",
+  "button_help": "Help",
+  "button_support": "Support",
+  "button_restart": "Restart",
+  "heading_fetured": "Featured",
+  "heading_menu": "Menu",
+  "money_symbol": "$",
+  "money_name": "Dollar",
+  "money_name_plural": "Dollars",
+  "button_buy": "Add To Order"
+}
