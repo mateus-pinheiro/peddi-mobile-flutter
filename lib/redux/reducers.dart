@@ -15,7 +15,7 @@ AppState appStateReducers(AppState state, dynamic action) {
     return addTableNumberOrder(action, state);
   }
   else if (action is AddItemIngredients){
-    return ();
+    return addItemIngredients(action, state);
   }
 //  else if (action is LoadRestaurantFromPrefs) {
 //    return loadRestaurantFromPrefs(action);
