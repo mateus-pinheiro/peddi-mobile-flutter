@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:peddi_tont_app/models/ingredient.dart';
+import 'package:peddi_tont_app/models/item.dart';
 import 'package:peddi_tont_app/models/product.dart';
 import 'package:peddi_tont_app/screens/product/widgets/product_additional.dart';
 import 'package:peddi_tont_app/screens/product/widgets/product_ingredient.dart';
@@ -7,10 +9,36 @@ import 'package:peddi_tont_app/screens/product/widgets/product_recipe.dart';
 class ProductRoute extends StatelessWidget {
   ProductRoute(this.product);
 
+  Item item = new Item();
   final Product product;
+
+  List<Ingredient> additionalList;
+  List<Ingredient> ingredientList;
+  List<Ingredient> optionList;
+
+  setIngredientList(List<Ingredient> ingredients) {
+    ingredients.forEach(validateIngredient);
+  }
+
+  void validateIngredient(Ingredient element) {
+    ingredientList = new List<Ingredient>();
+    additionalList = new List<Ingredient>();
+    optionList = new List<Ingredient>();
+
+    if (element != null) {
+      if (element.type == 'DEFAULT')
+        ingredientList.add(element);
+      else if (element.type == 'ADDITIONAL')
+        additionalList.add(element);
+      else
+        optionList.add(element);
+    }
+  }
 
   //Condicional para verificar abertura de tela de produto/ingredients;
   Widget showProduct(Product product) {
+    setIngredientList(product.ingredient);
+
     if (product.ingredient.isNotEmpty) {
       return new Material(
         type: MaterialType.transparency,
@@ -19,43 +47,29 @@ class ProductRoute extends StatelessWidget {
             new Positioned(
               left: 80.0,
               top: 40.0,
-
-                child: new Container(
-                  width: 620.0,
-                  height: 670.0,
-                  decoration: new BoxDecoration(
-                    boxShadow: [
-                      new BoxShadow(
-                        color: Colors.black,
-                        blurRadius: 10.0,
-                      )
-                    ],
-                    borderRadius: BorderRadius.circular(15.0),
-                    color: Colors.white,
-                  ),
-                  child: new Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      new Expanded(
-                        child: new IngredientWidget(product.ingredient)),
-//                  new Container(
-//                    child:
-////                    color: Colors.red,
-//                    height: 200.0,
-////                        child:
-//                  ),
-                      new Divider(
-                        color: Colors.black12,
-                      ),
-                      new Container(
-                        height: 200.0,
-                        child: Additional(),
-                      ),
-                    ],
-                  ),
+              child: new Container(
+                width: 620.0,
+                height: 670.0,
+                decoration: new BoxDecoration(
+                  boxShadow: [
+                    new BoxShadow(
+                      color: Colors.black,
+                      blurRadius: 10.0,
+                    )
+                  ],
+                  borderRadius: BorderRadius.circular(15.0),
+                  color: Colors.white,
                 ),
-
+                child: new Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    new Expanded(child: new IngredientWidget(ingredientList)),
+                    new Divider(color: Colors.black12,),
+                    new Expanded(child: new Additional(additionalList)),
+                  ],
+                ),
+              ),
             ),
             new Positioned(
 //          decoration: new BoxDecoration(gradient: backgroundGradient),

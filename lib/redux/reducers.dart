@@ -8,31 +8,39 @@ import 'package:peddi_tont_app/redux/actions.dart';
 
 
 AppState appStateReducers(AppState state, dynamic action) {
-  if (action is LoadRestaurant) {
-    return loadRestaurant(state.restaurant, action);
+  if (action is LoadRestaurantAction) {
+    return loadRestaurant(action, state.restaurant);
   }
-  else if (action is AddTableNumberOrder){
+  else if (action is AddTableNumberOrderAction){
     return addTableNumberOrder(action, state);
+  }
+  else if (action is AddItemIngredients){
+    return ();
   }
 //  else if (action is LoadRestaurantFromPrefs) {
 //    return loadRestaurantFromPrefs(action);
 //  }
-  else if (action is SaveRestaurant) {
+  else if (action is SaveRestaurantAction) {
     return saveRestaurant(action);
   }
   return state;
 }
 
-AppState loadRestaurant(Restaurant restaurant, LoadRestaurant action) {
+AppState loadRestaurant(LoadRestaurantAction action, Restaurant restaurant) {
   return new AppState(restaurant, new Order());
 }
 
-AppState saveRestaurant(SaveRestaurant action) {
+AppState saveRestaurant(SaveRestaurantAction action) {
   return new AppState(action.restaurant, new Order());
 }
 
-AppState addTableNumberOrder(AddTableNumberOrder action, AppState state) {
+AppState addTableNumberOrder(AddTableNumberOrderAction action, AppState state) {
   return new AppState(state.restaurant, new Order(table: action.table, customers: action.customers, createdAt: DateTime.now()));
+}
+
+AppState addItemIngredients(AddItemIngredients action, AppState state) {
+  state.order.products;
+  return new AppState(state.restaurant, state.order);
 }
 
 

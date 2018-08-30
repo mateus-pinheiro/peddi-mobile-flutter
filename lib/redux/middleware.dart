@@ -20,13 +20,13 @@ const String APP_STATE_KEY = "APP_STATE";
 void appMiddleware(Store<AppState> store, action, NextDispatcher next) {
   next(action);
 
-  if (action is LoadRestaurant) {
+  if (action is LoadRestaurantAction) {
     API().getRestaurant().then((restaurant) {
-      store.dispatch(new SaveRestaurant(restaurant));
+      store.dispatch(new SaveRestaurantAction(restaurant));
     });
   }
 
-  if (action is SaveRestaurant) {
+  if (action is SaveRestaurantAction) {
     saveStateToPrefs(store.state);
     saveCategoriesToPrefs(store.state.restaurant.categories);
   }

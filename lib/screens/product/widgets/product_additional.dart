@@ -1,44 +1,62 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter/material.dart';
+import 'package:peddi_tont_app/models/ingredient.dart';
 import 'package:peddi_tont_app/themes/font_styles.dart';
 
 class Additional extends StatelessWidget {
-  final String ingredientName = '+1 Hamburguer 180g de costela';
-  final String ingredientPrice = '2,00';
+  Additional(this.additionalList);
+
+  final List<Ingredient> additionalList;
+
+  Widget buildIngredientList(List<Ingredient> additionalList) {
+    return new ListView.builder(
+      itemBuilder: (BuildContext context, int index) =>
+          additionalItem(additionalList[index]),
+      scrollDirection: Axis.vertical,
+      itemCount: additionalList.length,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Material(
+      type: MaterialType.transparency,
       child: new Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.only(top: 30.0),
+            padding: const EdgeInsets.only(top: 30.0, left: 20.0),
             child: new Text(
               'Deixe seu pedido ainda mais completo!',
               style: FontStyles.h5,
             ),
           ),
-        Padding(
-
-          padding: const EdgeInsets.only(right: 40.0),
-            child: new CheckboxListTile(
-              controlAffinity: ListTileControlAffinity.leading,
-              value: true,
-              onChanged: null,
-              title: new Text(
-                ingredientName,
-                style: FontStyles.body,
-              ),
-              activeColor: Colors.black,
-              selected: true,
-              secondary: Text(
-                'RS $ingredientPrice',
-                style: FontStyles.body,
-              ),
-            ),
-        )
+          new Expanded(
+              child: new Container(
+            child: buildIngredientList(additionalList),
+          ))
         ],
+      ),
+    );
+  }
+
+  additionalItem(Ingredient additional) {
+    var additionalPrice = additional.price;
+
+    return new CheckboxListTile(
+      controlAffinity: ListTileControlAffinity.leading,
+      value: true,
+      onChanged: null,
+      title: new Text(
+        additional.name,
+        style: FontStyles.body,
+      ),
+      activeColor: Colors.black,
+      selected: true,
+      secondary: Text(
+        'RS $additionalPrice',
+        style: FontStyles.body,
       ),
     );
   }

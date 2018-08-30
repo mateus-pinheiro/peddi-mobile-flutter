@@ -1,5 +1,6 @@
 import 'package:meta/meta.dart';
-import 'package:peddi_tont_app/models/product.dart';
+import 'package:peddi_tont_app/models/item.dart';
+import 'package:peddi_tont_app/models/restaurant_order.dart';
 
 @immutable
 class Order {
@@ -11,7 +12,7 @@ class Order {
   final DateTime createdAt;
   final String updatedAt;
   final RestaurantOrder restaurant;
-  final List<Product> products;
+  final List<Item> products;
 
   Order({this.id, this.table, this.customers, this.amount, this.status,
       this.createdAt, this.updatedAt, this.restaurant, this.products});
@@ -28,12 +29,6 @@ class Order {
       };
 }
 
-class RestaurantOrder {
-  String name;
-  int cnpj;
 
-  RestaurantOrder(this.name, this.cnpj);
 
-  Map<String, dynamic> toJson() => {'name': name, 'cnpj': cnpj};
 
-}

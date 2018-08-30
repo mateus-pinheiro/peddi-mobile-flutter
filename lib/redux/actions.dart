@@ -1,19 +1,28 @@
 import 'package:peddi_tont_app/models/category.dart';
+import 'package:peddi_tont_app/models/ingredient.dart';
+import 'package:peddi_tont_app/models/item.dart';
 import 'package:peddi_tont_app/models/restaurant.dart';
 
-class LoadRestaurant {}
+class LoadRestaurantAction {}
 
-class SaveRestaurant {
+class SaveRestaurantAction {
   final Restaurant restaurant;
 
-  SaveRestaurant(this.restaurant);
+  SaveRestaurantAction(this.restaurant);
 }
 
-class AddTableNumberOrder {
+class AddTableNumberOrderAction {
   final String table;
   final String customers;
 
-  AddTableNumberOrder(this.table, this.customers);
+  AddTableNumberOrderAction(this.table, this.customers);
+}
+
+class AddItemIngredients {
+  final Item item;
+  final Ingredient ingredient;
+
+  AddItemIngredients(this.ingredient, this.item);
 }
 
 //class LoadRestaurantFromPrefs {

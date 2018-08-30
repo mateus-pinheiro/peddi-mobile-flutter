@@ -2,24 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:peddi_tont_app/models/ingredient.dart';
 import 'package:peddi_tont_app/themes/font_styles.dart';
 
-class IngredientWidget extends StatelessWidget {
+class IngredientWidget extends StatefulWidget {
   IngredientWidget(this.ingredient);
 
   final List<Ingredient> ingredient;
 
-
-  additionalList (List<Ingredient> list){
-
+  @override
+  IngredientWidgetState createState() {
+    return new IngredientWidgetState(ingredient);
   }
+}
 
-  Widget buildIngredientList(List<Ingredient> ingredientList) {
-    return new ListView.builder(
-      itemBuilder: (BuildContext context, int index) =>
-          ingredientItem(ingredientList[index]),
-      scrollDirection: Axis.vertical,
-      itemCount: ingredientList.length,
-    );
-  }
+class IngredientWidgetState extends State<IngredientWidget> {
+  IngredientWidgetState(this.ingredient);
+
+  final List<Ingredient> ingredient;
 
   @override
   Widget build(BuildContext context) {
@@ -34,33 +31,8 @@ class IngredientWidget extends StatelessWidget {
             style: FontStyles.h5,
           ),
         ),
-        Expanded(
-            child: new Container(
-                child: buildIngredientList(ingredient)
-            )
-        )
+        Expanded(child: new Container(child: buildIngredientList(ingredient)))
       ],
-
-// ,
-//      child: new
-//      Stack(children: <Widget>[
-//        Material(
-//          child: new Column(
-//            mainAxisAlignment: MainAxisAlignment.start,
-//            crossAxisAlignment: CrossAxisAlignment.start,
-//            children: <Widget>[
-//              new Padding(
-//                padding: const EdgeInsets.only(top: 30.0, left: 20.0),
-//                child: new Text(
-//                  'Ingrediente',
-//                  style: FontStyles.h5,
-//                ),
-//              ),
-//              new Container(width: 250.0, child: buildIngredientList(ingredient))
-//            ],
-//          ),
-//        ),
-//      ]),
     );
   }
 
@@ -75,6 +47,15 @@ class IngredientWidget extends StatelessWidget {
       ),
       activeColor: Colors.black,
       selected: true,
+    );
+  }
+
+  Widget buildIngredientList(List<Ingredient> ingredientList) {
+    return new ListView.builder(
+      itemBuilder: (BuildContext context, int index) =>
+          ingredientItem(ingredientList[index]),
+      scrollDirection: Axis.vertical,
+      itemCount: ingredientList.length,
     );
   }
 }
