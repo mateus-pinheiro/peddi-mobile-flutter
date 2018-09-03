@@ -5,6 +5,7 @@ import 'package:peddi_tont_app/themes/font_styles.dart';
 
 class ProductRecipe extends StatefulWidget {
   ProductRecipe(this.product, this.item);
+
   final Item item;
   final Product product;
 
@@ -17,6 +18,7 @@ class _ProductRecipeState extends State<ProductRecipe> {
 
   Item item;
   Product product;
+  int _quantityItem;
 
   @override
   Widget build(BuildContext context) {
@@ -56,8 +58,8 @@ class _ProductRecipeState extends State<ProductRecipe> {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 40.0, top: 20.0),
-                        child: Text(item.price.toString(),
-                            style: FontStyles.h6),
+                        child:
+                            Text(item.price.toString(), style: FontStyles.h6),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 40.0, top: 20.0),
@@ -73,65 +75,55 @@ class _ProductRecipeState extends State<ProductRecipe> {
                             ),
                             child: Column(
                               children: <Widget>[
-                                Row(
-                                  children: <Widget>[
-                                    Expanded(
-                                      child: Container(
-                                        color: Colors.black12,
-                                        height: 2.0,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 30.0),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
+                                new Divider(color: Colors.black12),
+                                new Padding(
+                                  padding: const EdgeInsets.only(top: 10.0),
+                                  child: new Column(
                                     crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                        CrossAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.start,
                                     children: <Widget>[
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
+                                      new Text('Quantidade:',
+                                          style: FontStyles.a1),
+                                      new Row(
                                         children: <Widget>[
-                                          Text('Quantidade:',
-                                              style: FontStyles.a1),
-                                        ],
-                                      ),
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        children: <Widget>[
-                                          Text('Valor total:',
-                                              style: FontStyles.a1),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                top: 10.0),
-                                            child: Text(item.amount.toString(),
-                                                style: FontStyles.a1),
+                                          new MaterialButton(
+                                            onPressed: () {
+                                              print(item.amount);
+                                            },
+                                            height: 60.0,
+                                            textTheme: ButtonTextTheme.accent,
+                                            child: new Icon(Icons.add_circle),
+                                          ),
+                                          new Text(_quantityItem.toString()),
+                                          new MaterialButton(
+                                            onPressed: () {
+                                              print(item.amount);
+                                            },
+                                            height: 60.0,
+                                            textTheme: ButtonTextTheme.accent,
+                                            child:
+                                                new Icon(Icons.remove_circle),
                                           ),
                                         ],
                                       ),
                                     ],
                                   ),
                                 ),
-                                Expanded(
-                                  child: Padding(
+                                new Expanded(
+                                  child: new Padding(
                                     padding: const EdgeInsets.only(top: 20.0),
-                                    child: Container(
+                                    child: new Container(
                                       decoration: BoxDecoration(
                                         color: Colors.green,
                                         borderRadius:
                                             BorderRadius.circular(10.0),
                                       ),
                                       width: 470.0,
-                                      child: MaterialButton(
-                                        onPressed: () {},
+                                      child: new MaterialButton(
+                                        onPressed: () {
+                                          print(item.amount);
+                                        },
                                         height: 60.0,
                                         textTheme: ButtonTextTheme.accent,
                                         child: new Text('ADICIONAR AO PEDIDO',

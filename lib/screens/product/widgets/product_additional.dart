@@ -45,8 +45,14 @@ class AdditionalState extends State<Additional> {
           if (item.ingredients == null)
             item.ingredients = new List<Ingredient>();
           item.ingredients.add(additional);
-          if (additional.price != null)
-            item.amount += additional.price.toDouble();
+
+          if (isSelected == true) {
+            if (additional.price != null)
+              item.amount += additional.price.toDouble();
+          } else {
+            if (additional.price != null)
+              item.amount -= additional.price.toDouble();
+          }
         });
       },
       title: new Text(
