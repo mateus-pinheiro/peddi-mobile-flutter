@@ -1,24 +1,75 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:peddi_tont_app/models/app_state.dart';
 import 'package:peddi_tont_app/models/item.dart';
 import 'package:peddi_tont_app/models/product.dart';
+import 'package:peddi_tont_app/redux/actions.dart';
 import 'package:peddi_tont_app/themes/font_styles.dart';
 
-class ProductRecipe extends StatefulWidget {
-  ProductRecipe(this.product, this.item);
+class ProductRecipe extends StatelessWidget {
+  ProductRecipe(this.item, this.product);
 
   final Item item;
   final Product product;
 
   @override
-  _ProductRecipeState createState() => _ProductRecipeState(product, item);
+  Widget build(BuildContext context) {
+    return new StoreConnector<AppState, OnAddCallback>(converter: (store) {
+      return (item) => store.dispatch(AddItemAction(item));
+    }, builder: (context, callback) {
+      return new ProductRecipeWidget(product, item, callback);
+    });
+  }
 }
 
-class _ProductRecipeState extends State<ProductRecipe> {
-  _ProductRecipeState(this.product, this.item);
+class ProductRecipeWidget extends StatefulWidget {
+  ProductRecipeWidget(this.product, this.item, this.callback);
+
+  final OnAddCallback callback;
+  final Item item;
+  final Product product;
+
+  @override
+  _ProductRecipeWidgetState createState() =>
+      _ProductRecipeWidgetState(product, item, callback);
+}
+
+class _ProductRecipeWidgetState extends State<ProductRecipeWidget> {
+  _ProductRecipeWidgetState(this.product, this.item, this.callback);
+
+  final OnAddCallback callback;
 
   Item item;
   Product product;
   int _quantityItem;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _quantityItem = 1;
+    item.qtyItem = _quantityItem;
+  }
+
+  void _addQtyItem() {
+    setState(() {
+      _quantityItem += 1;
+      item.qtyItem = _quantityItem;
+    });
+  }
+
+  void _removeQtyItem() {
+    setState(() {
+      _quantityItem > 0 ? _quantityItem -= 1 : _quantityItem;
+      item.qtyItem = _quantityItem;
+    });
+  }
+
+  void _sumAmount(Item item) {
+    setState(() {
+      item.amount = item.amount * _quantityItem;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -85,27 +136,31 @@ class _ProductRecipeState extends State<ProductRecipe> {
                                     children: <Widget>[
                                       new Text('Quantidade:',
                                           style: FontStyles.a1),
-                                      new Row(
-                                        children: <Widget>[
-                                          new MaterialButton(
-                                            onPressed: () {
-                                              print(item.amount);
-                                            },
-                                            height: 60.0,
-                                            textTheme: ButtonTextTheme.accent,
-                                            child: new Icon(Icons.add_circle),
-                                          ),
-                                          new Text(_quantityItem.toString()),
-                                          new MaterialButton(
-                                            onPressed: () {
-                                              print(item.amount);
-                                            },
-                                            height: 60.0,
-                                            textTheme: ButtonTextTheme.accent,
-                                            child:
-                                                new Icon(Icons.remove_circle),
-                                          ),
-                                        ],
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(top: 8.0),
+                                        child: new Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: <Widget>[
+                                            new MaterialButton(
+                                              onPressed: () {
+                                                _removeQtyItem();
+                                              },
+                                              textTheme: ButtonTextTheme.accent,
+                                              child:
+                                                  new Icon(Icons.remove_circle),
+                                            ),
+                                            new Text(_quantityItem.toString()),
+                                            new MaterialButton(
+                                              onPressed: () {
+                                                _addQtyItem();
+                                              },
+                                              textTheme: ButtonTextTheme.accent,
+                                              child: new Icon(Icons.add_circle),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -123,6 +178,10 @@ class _ProductRecipeState extends State<ProductRecipe> {
                                       child: new MaterialButton(
                                         onPressed: () {
                                           print(item.amount);
+                                          _sumAmount(item);
+                                          print(item.amount);
+                                          Navigator.pop(context);
+                                          callback(item);
                                         },
                                         height: 60.0,
                                         textTheme: ButtonTextTheme.accent,
@@ -148,3 +207,5 @@ class _ProductRecipeState extends State<ProductRecipe> {
     );
   }
 }
+
+typedef OnAddCallback = Function(Item item);

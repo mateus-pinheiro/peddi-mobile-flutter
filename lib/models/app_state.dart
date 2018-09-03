@@ -42,33 +42,33 @@ class AppState {
   };
 }
 
-class RestaurantToScreens {
-
-
-  RestaurantToScreens({
-    this.categories,
-    this.subCategories,
-    this.products,
-    this.ingredients,
-  });
-
-  List<Category> categories;
-  List<SubCategory> subCategories;
-  List<Product> products;
-  List<Ingredient> ingredients;
-
-  RestaurantToScreens.fromMap(Map<String, dynamic> data)
-      : categories = (data['categories'] == null ? [] : data['categories']  as List).map((i) => new Category.fromMap(i)).toList(),
-        subCategories = (data['subCategory'] == null ? [] : data['subCategory']  as List).map((i) => new SubCategory.fromMap(i)).toList(),
-        products = (data['products'] == null ? [] : data['products']  as List).map((i) => new Product.fromMap(i)).toList(),
-        ingredients = (data['ingredients'] == null ? [] : data['ingredients']  as List).map((i) => new Ingredient.fromMap(i)).toList();
-
-
-  Map<String, dynamic> toJson() => {
-    'categories': categories,
-    'subCategories': subCategories,
-    'products': products,
-    'ingredients': ingredients
-  };
-
-}
+//class RestaurantToScreens {
+//
+//
+//  RestaurantToScreens({
+//    this.categories,
+//    this.subCategories,
+//    this.products,
+//    this.ingredients,
+//  });
+//
+//  List<Category> categories;
+//  List<SubCategory> subCategories;
+//  List<Product> products;
+//  List<Ingredient> ingredients;
+//
+//  RestaurantToScreens.fromMap(Map<String, dynamic> data)
+//      : categories = (data['categories'] == null ? [] : data['categories']  as List).map((i) => new Category.fromMap(i)).toList(),
+//        subCategories = (data['subCategory'] == null ? [] : data['subCategory']  as List).map((i) => new SubCategory.fromMap(i)).toList(),
+//        products = (data['products'] == null ? [] : data['products']  as List).map((i) => new Product.fromMap(i)).toList(),
+//        ingredients = (data['ingredients'] == null ? [] : data['ingredients']  as List).map((i) => new Ingredient.fromMap(i)).toList();
+//
+//
+//  Map<String, dynamic> toJson() => {
+//    'categories': categories,
+//    'subCategories': subCategories,
+//    'products': products,
+//    'ingredients': ingredients
+//  };
+//
+//}

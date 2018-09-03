@@ -65,18 +65,18 @@ class MainCategoryRoute extends StatelessWidget {
 
 //  Future<List<Category>> list = loadCategoriesFromPrefs().then((categories) {listCategories = categories;});
 
-  List<Category> teste(AppState store){
-    print(store.order.table);
-    print(store.order.customers);
-    print(store.order.createdAt);
-    return store.restaurant.categories;
-  }
+//  List<Category> teste(AppState store){
+//    print(store.order.table);
+//    print(store.order.customers);
+//    print(store.order.createdAt);
+//    return store.restaurant.categories;
+//  }
 
   @override
   Widget build(BuildContext context) {
     return new StoreConnector<AppState, List<Category>>(
-//        converter: (store) => store.state.restaurant.categories,
-    converter: (store) => teste(store.state),
+        converter: (store) => store.state.restaurant.categories,
+//    converter: (store) => teste(store.state),
         builder: (context, list) {
           return new Container(
             child: new GridView.builder(

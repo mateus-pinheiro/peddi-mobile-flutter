@@ -14,7 +14,7 @@ class OpeningFormRoute extends StatelessWidget {
         converter: (store) {
           return (tableNumber, qtyConsumer) {
             store.dispatch(new LoadRestaurantAction());
-            store.dispatch(AddTableNumberOrderAction(tableNumber, qtyConsumer));
+            store.dispatch(new AddTableNumberOrderAction(tableNumber, qtyConsumer));
           };
         }, builder: (context, callback) {
       return new OpeningForm(callback);

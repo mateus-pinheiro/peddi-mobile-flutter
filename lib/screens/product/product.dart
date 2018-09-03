@@ -6,7 +6,6 @@ import 'package:peddi_tont_app/screens/product/widgets/product_additional.dart';
 import 'package:peddi_tont_app/screens/product/widgets/product_ingredient.dart';
 import 'package:peddi_tont_app/screens/product/widgets/product_recipe.dart';
 
-
 class ProductRoute extends StatelessWidget {
   ProductRoute(this.product);
 
@@ -73,8 +72,11 @@ class ProductRoute extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    new Expanded(child: new IngredientWidget(ingredientList, item)),
-                    new Divider(color: Colors.black12,),
+                    new Expanded(
+                        child: new IngredientWidget(ingredientList, item)),
+                    new Divider(
+                      color: Colors.black12,
+                    ),
                     new Expanded(child: new Additional(additionalList, item)),
                   ],
                 ),
@@ -82,7 +84,7 @@ class ProductRoute extends StatelessWidget {
             ),
             new Positioned(
 //          decoration: new BoxDecoration(gradient: backgroundGradient),
-                child: new ProductRecipe(product, item),
+                child: new ProductRecipe(item, product),
                 left: 290.0,
                 bottom: 1.0),
             new Positioned(
@@ -104,7 +106,7 @@ class ProductRoute extends StatelessWidget {
           children: <Widget>[
             new Positioned(
 //              decoration: new BoxDecoration(gradient: backgroundGradient),
-                child: new ProductRecipe(product, item),
+                child: new ProductRecipe(item, product),
 //          left: 240.0,
                 bottom: 3.0),
             new Positioned(
@@ -126,6 +128,4 @@ class ProductRoute extends StatelessWidget {
   Widget build(BuildContext context) {
     return showProduct(product);
   }
-
-
 }

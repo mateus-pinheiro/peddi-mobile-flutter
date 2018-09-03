@@ -18,6 +18,12 @@ class AddTableNumberOrderAction {
   AddTableNumberOrderAction(this.table, this.customers);
 }
 
+class AddItemAction {
+  final Item item;
+
+  AddItemAction(this.item);
+}
+
 class AddItemIngredients {
   final Item item;
 //  final Ingredient ingredient;

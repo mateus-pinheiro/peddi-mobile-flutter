@@ -32,10 +32,9 @@ class TontApp extends StatelessWidget {
 //        primarySwatch: Colors.blue,
             ),
         routes: Router.getRoutes(),
-        home: new Opening()
-//        StoreBuilder<AppState>(
-//            builder: (context, store) => new Opening()
-//        ),
+        home: StoreBuilder<AppState>(
+            builder: (context, store) => new Opening()
+        ),
       ),
     );
   }
