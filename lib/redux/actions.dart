@@ -20,9 +20,12 @@ class AddTableNumberOrderAction {
 
 class AddItemIngredients {
   final Item item;
-  final Ingredient ingredient;
+//  final Ingredient ingredient;
 
-  AddItemIngredients(this.ingredient, this.item);
+  AddItemIngredients(
+//      this.ingredient,
+      this.item
+      );
 }
 
 //class LoadRestaurantFromPrefs {

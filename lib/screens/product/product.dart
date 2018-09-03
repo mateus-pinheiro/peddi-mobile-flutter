@@ -6,15 +6,23 @@ import 'package:peddi_tont_app/screens/product/widgets/product_additional.dart';
 import 'package:peddi_tont_app/screens/product/widgets/product_ingredient.dart';
 import 'package:peddi_tont_app/screens/product/widgets/product_recipe.dart';
 
+
 class ProductRoute extends StatelessWidget {
   ProductRoute(this.product);
 
-  Item item = new Item();
-  final Product product;
+  Product product;
+  final Item item = new Item();
 
   List<Ingredient> additionalList;
   List<Ingredient> ingredientList;
   List<Ingredient> optionList;
+
+  void setItem() {
+    this.item.name = this.product.name;
+    this.item.price = this.product.price.toDouble();
+    this.item.amount = this.product.price.toDouble();
+//    item.idEpoc = product.idEpoc;
+  }
 
   setIngredientList(List<Ingredient> ingredients) {
     ingredients.forEach(validateIngredient);
@@ -37,6 +45,7 @@ class ProductRoute extends StatelessWidget {
 
   //Condicional para verificar abertura de tela de produto/ingredients;
   Widget showProduct(Product product) {
+    setItem();
     setIngredientList(product.ingredient);
 
     if (product.ingredient.isNotEmpty) {
@@ -64,16 +73,16 @@ class ProductRoute extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    new Expanded(child: new IngredientWidget(ingredientList)),
+                    new Expanded(child: new IngredientWidget(ingredientList, item)),
                     new Divider(color: Colors.black12,),
-                    new Expanded(child: new Additional(additionalList)),
+                    new Expanded(child: new Additional(additionalList, item)),
                   ],
                 ),
               ),
             ),
             new Positioned(
 //          decoration: new BoxDecoration(gradient: backgroundGradient),
-                child: new ProductRecipe(product),
+                child: new ProductRecipe(product, item),
                 left: 290.0,
                 bottom: 1.0),
             new Positioned(
@@ -95,7 +104,7 @@ class ProductRoute extends StatelessWidget {
           children: <Widget>[
             new Positioned(
 //              decoration: new BoxDecoration(gradient: backgroundGradient),
-                child: new ProductRecipe(product),
+                child: new ProductRecipe(product, item),
 //          left: 240.0,
                 bottom: 3.0),
             new Positioned(
@@ -117,4 +126,6 @@ class ProductRoute extends StatelessWidget {
   Widget build(BuildContext context) {
     return showProduct(product);
   }
+
+
 }

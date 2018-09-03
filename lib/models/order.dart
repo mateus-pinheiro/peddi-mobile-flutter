@@ -12,10 +12,10 @@ class Order {
   final DateTime createdAt;
   final String updatedAt;
   final RestaurantOrder restaurant;
-  final List<Item> products;
+  final List<Item> items;
 
   Order({this.id, this.table, this.customers, this.amount, this.status,
-      this.createdAt, this.updatedAt, this.restaurant, this.products});
+      this.createdAt, this.updatedAt, this.restaurant, this.items});
 
   Map<String, dynamic> toJson() => {
         'table': table,
@@ -25,7 +25,7 @@ class Order {
         'created_at': createdAt,
         'updated_at': updatedAt,
         'restaurant': restaurant,
-        'products': products
+        'items': items
       };
 }
 

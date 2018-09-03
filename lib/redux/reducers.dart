@@ -1,20 +1,15 @@
 import 'package:peddi_tont_app/models/app_state.dart';
-import 'package:peddi_tont_app/models/category.dart';
+import 'package:peddi_tont_app/models/item.dart';
 import 'package:peddi_tont_app/models/order.dart';
 import 'package:peddi_tont_app/models/restaurant.dart';
 import 'package:peddi_tont_app/redux/actions.dart';
 
-
-
-
 AppState appStateReducers(AppState state, dynamic action) {
   if (action is LoadRestaurantAction) {
     return loadRestaurant(action, state.restaurant);
-  }
-  else if (action is AddTableNumberOrderAction){
+  } else if (action is AddTableNumberOrderAction) {
     return addTableNumberOrder(action, state);
-  }
-  else if (action is AddItemIngredients){
+  } else if (action is AddItemIngredients) {
     return addItemIngredients(action, state);
   }
 //  else if (action is LoadRestaurantFromPrefs) {
@@ -35,16 +30,30 @@ AppState saveRestaurant(SaveRestaurantAction action) {
 }
 
 AppState addTableNumberOrder(AddTableNumberOrderAction action, AppState state) {
-  return new AppState(state.restaurant, new Order(table: action.table, customers: action.customers, createdAt: DateTime.now()));
+  return new AppState(
+      state.restaurant,
+      new Order(
+          table: action.table,
+          customers: action.customers,
+          createdAt: DateTime.now()));
 }
 
 AppState addItemIngredients(AddItemIngredients action, AppState state) {
-  state.order.products;
-  return new AppState(state.restaurant, state.order);
+
+  Order addItemIng(Item item, AppState state) {
+//    item.ingredients.add(action.ingredient);
+
+    if (state.order.items.isEmpty) {
+      state.order.items.add(item);
+    } else {
+      state.order.items.map((item) => item == action.item ? action.item : item);
+    }
+
+    return state.order;
+  }
+
+  return new AppState(state.restaurant, addItemIng(action.item, state));
 }
-
-
-
 
 //AppState loadRestaurantFromPrefs(LoadRestaurantFromPrefs action) {
 //  return new AppState(action.restaurant);

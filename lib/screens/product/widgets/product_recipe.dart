@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:peddi_tont_app/models/item.dart';
 import 'package:peddi_tont_app/models/product.dart';
 import 'package:peddi_tont_app/themes/font_styles.dart';
 
 class ProductRecipe extends StatefulWidget {
-  ProductRecipe(this.product);
-
+  ProductRecipe(this.product, this.item);
+  final Item item;
   final Product product;
 
   @override
-  _ProductRecipeState createState() => _ProductRecipeState(product);
+  _ProductRecipeState createState() => _ProductRecipeState(product, item);
 }
 
 class _ProductRecipeState extends State<ProductRecipe> {
-  _ProductRecipeState(this.product);
+  _ProductRecipeState(this.product, this.item);
 
+  Item item;
   Product product;
 
   @override
@@ -50,11 +52,11 @@ class _ProductRecipeState extends State<ProductRecipe> {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 40.0),
-                        child: Text(product.name, style: FontStyles.h6),
+                        child: Text(item.name, style: FontStyles.h6),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 40.0, top: 20.0),
-                        child: Text(product.price.toString(),
+                        child: Text(item.price.toString(),
                             style: FontStyles.h6),
                       ),
                       Padding(
@@ -110,7 +112,7 @@ class _ProductRecipeState extends State<ProductRecipe> {
                                           Padding(
                                             padding: const EdgeInsets.only(
                                                 top: 10.0),
-                                            child: Text('RS 50,00',
+                                            child: Text(item.amount.toString(),
                                                 style: FontStyles.a1),
                                           ),
                                         ],

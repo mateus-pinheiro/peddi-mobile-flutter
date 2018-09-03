@@ -8,6 +8,7 @@ import 'package:peddi_tont_app/models/restaurant.dart';
 
 class API {
   static const String _apiUrl = 'http://192.168.15.27:3001/api';
+//  static const String _apiUrl = 'http://192.168.0.14:3000/api';
   final http.Client _client = http.Client();
 
 //  Future<Restaurant> getRestaurant() async {
