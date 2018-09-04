@@ -19,9 +19,9 @@ AppState appStateReducers(AppState state, dynamic action) {
 //  else if (action is LoadRestaurantFromPrefs) {
 //    return loadRestaurantFromPrefs(action);
 //  }
-//  else if (action is SaveRestaurantAction) {
-//    return saveRestaurant(action, state);
-//  }
+  else if (action is SaveRestaurantAction) {
+    return saveRestaurant(action, state);
+  }
   return state;
 }
 
