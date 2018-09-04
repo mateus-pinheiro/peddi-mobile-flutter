@@ -35,7 +35,7 @@ class MenuApp extends StatelessWidget {
 //              width: MediaQuery.of(context).size.width,
                   child: MenuCategoryTeste(selectedCategory,storeCategories),
                   height: 300.0,
-                  color: Colors.green),
+                  color: Colors.white),
             ),
 //            Expanded(
 //              child: Container(

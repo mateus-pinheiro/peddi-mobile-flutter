@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:peddi_tont_app/themes/app_colors.dart';
+import 'package:peddi_tont_app/themes/font_styles.dart';
 
 class MainFeatured extends StatelessWidget {
   static final _rowHeight = 50.0;
@@ -31,7 +33,7 @@ class MainFeatured extends StatelessWidget {
               width: 390.0,
               height: 130.0,
               decoration: BoxDecoration(
-                color: Colors.red,
+                color: AppColors.yellow1,
                 borderRadius: BorderRadius.circular(8.0),
               ),
               child: Column(

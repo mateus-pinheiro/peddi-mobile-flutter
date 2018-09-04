@@ -57,13 +57,13 @@ class AdditionalState extends State<Additional> {
       },
       title: new Text(
         additional.name,
-        style: FontStyles.body,
+        style: FontStyles.style7,
       ),
-      activeColor: Colors.black,
+      activeColor: Colors.green,
       selected: true,
       secondary: Text(
         'RS $additionalPrice',
-        style: FontStyles.body,
+        style: FontStyles.style7,
       ),
     );
   }
@@ -90,7 +90,7 @@ class AdditionalState extends State<Additional> {
             padding: const EdgeInsets.only(top: 30.0, left: 20.0),
             child: new Text(
               'Deixe seu pedido ainda mais completo!',
-              style: FontStyles.h5,
+              style: FontStyles.style9,
             ),
           ),
           new Expanded(

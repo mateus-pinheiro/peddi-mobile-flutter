@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:peddi_tont_app/models/category.dart';
 import 'package:peddi_tont_app/models/sub_category.dart';
 import 'package:peddi_tont_app/screens/menu/widgets/menu_product.dart';
+import 'package:peddi_tont_app/themes/app_colors.dart';
+import 'package:peddi_tont_app/themes/font_styles.dart';
 
 class MenuCategoryTeste extends StatefulWidget {
   MenuCategoryTeste(this._selectedCategory, this.storeCategories);
@@ -52,10 +54,12 @@ class _MenuCategoryState extends State<MenuCategoryTeste> {
       children: <Widget>[
         new Container(
           height: 75.0,
+          color: AppColors.yellow1,
           child: buildCategoryList(storeCategories),
         ),
         new Container(
-          height: 75.0,
+          height: 65.0,
+          color: AppColors.gray2,
           child: buildSubCategoryList(_selectedCategory.subCategory),
         ),
         new Expanded(
@@ -92,11 +96,11 @@ class _MenuCategoryState extends State<MenuCategoryTeste> {
         child: Center(
             child: Text(
           category.name,
-          style: TextStyle(color: Colors.white, fontSize: 22.0),
+         style: FontStyles.style6,
         )),
-        height: 200.0,
+        height: 70.0,
         width: 180.0,
-        color: Colors.green,
+        color: AppColors.yellow1,
       ),
     );
   }
@@ -110,11 +114,12 @@ class _MenuCategoryState extends State<MenuCategoryTeste> {
         child: Center(
             child: Text(
           subCategory.name,
-          style: TextStyle(color: Colors.white, fontSize: 20.0),
+              style: FontStyles.style7,
         )),
 //        color: Colors.green,
-        height: 40.0,
-        width: 200.0,
+        height: 60.0,
+        width: 180.0,
+        color: AppColors.gray2,
       ),
     );
   }

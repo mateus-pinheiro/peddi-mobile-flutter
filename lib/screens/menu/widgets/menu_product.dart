@@ -31,7 +31,10 @@ class MenuProduct extends StatelessWidget {
                     width: 2.0, color: Colors.black12, style: BorderStyle.solid),
                 borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(10.0),
-                    bottomRight: Radius.circular(10.0)),
+                    bottomRight: Radius.circular(10.0),
+                  topRight: Radius.circular(10.0),
+                  topLeft: Radius.circular(10.0),
+                ),
                 color: Colors.white,
               ),
               constraints: BoxConstraints.expand(
@@ -50,15 +53,15 @@ class MenuProduct extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 16.0, top: 15.0),
-                    child: Text(product.name, style: FontStyles.h4),
+                    child: Text(product.name, style: FontStyles. style6),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 16.0, top: 15.0),
-                    child: Text(product.price.toString(), style: FontStyles.h5),
+                    child: Text(product.price.toString(), style: FontStyles.style7),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 16.0, top: 10.0),
-                    child: Text(product.description, style: FontStyles.body),
+                    child: Text(product.description, style: FontStyles.style8),
                   )
                 ],
               ),

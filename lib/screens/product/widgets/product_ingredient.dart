@@ -42,7 +42,7 @@ class IngredientWidgetState extends State<IngredientWidget> {
           padding: const EdgeInsets.only(top: 30.0, left: 20.0),
           child: new Text(
             'Ingredientes',
-            style: FontStyles.h5,
+            style: FontStyles.style9,
           ),
         ),
         Expanded(child: new Container(child: buildIngredientList(ingredient)))
@@ -67,9 +67,9 @@ class IngredientWidgetState extends State<IngredientWidget> {
 //        onChanged: _selectIngredient,
             title: new Text(
               ingredient.name,
-              style: FontStyles.body,
+              style: FontStyles.style7,
             ),
-            activeColor: Colors.black,
+            activeColor: Colors.green,
             selected: true,
           );
   }
