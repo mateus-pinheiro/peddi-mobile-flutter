@@ -2,13 +2,12 @@ import 'package:meta/meta.dart';
 import 'package:peddi_tont_app/models/item.dart';
 import 'package:peddi_tont_app/models/restaurant_order.dart';
 
-@immutable
 class Order {
   final int id;
   final String table;
   final String customers;
-  final String amount;
-  final bool status;
+  double amount;
+  bool status;
   final DateTime createdAt;
   final String updatedAt;
   final RestaurantOrder restaurant;

@@ -30,34 +30,6 @@ void appMiddleware(Store<AppState> store, action, NextDispatcher next) {
     saveStateToPrefs(store.state);
     saveCategoriesToPrefs(store.state.restaurant.categories);
   }
-
-//  if (action is AddTableNumberOrder) {
-//
-//  }
-
-//  if (action is LoadRestaurantFromPrefs) {
-//    loadStateFromPrefs().then((store) {
-//      return (store.restaurant);
-//    });
-//  }
-//
-//  if (action is SaveCategories) {
-//    saveCategoriesToPrefs(store.state.restaurant.categories);
-//  }
-
-
-
-//  if (action is AddItemAction ||
-//      action is ToggleItemStateAction ||
-//      action is RemoveItemAction) {
-//    saveStateToPrefs(store.state);
-//  }
-//
-//  if (action is FetchItemsAction) {
-//    loadStateFromPrefs().then((state) {
-//      store.dispatch(new ItemLoadedAction(state.cartItems));
-//    });
-//  }
 }
 
 void saveCategoriesToPrefs(List<Category> categories) async {
@@ -72,6 +44,7 @@ void saveStateToPrefs(AppState state) async {
   var stateString = json.encode(state.toJson());
   await preferences.setString(APP_STATE_KEY, stateString);
 }
+
 //
 Future<AppState> loadStateFromPrefs() async {
   SharedPreferences preferences = await SharedPreferences.getInstance();

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:peddi_tont_app/models/app_state.dart';
 import 'package:peddi_tont_app/models/item.dart';
+import 'package:peddi_tont_app/models/order.dart';
 import 'package:peddi_tont_app/models/product.dart';
 import 'package:peddi_tont_app/redux/actions.dart';
 import 'package:peddi_tont_app/themes/font_styles.dart';
@@ -16,7 +17,9 @@ class ProductRecipe extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new StoreConnector<AppState, OnAddCallback>(converter: (store) {
-      return (item) => store.dispatch(AddItemAction(item));
+      return (item) {
+        store.dispatch(AddItemAction(item));
+      };
     }, builder: (context, callback) {
       return new ProductRecipeWidget(product, item, callback);
     });

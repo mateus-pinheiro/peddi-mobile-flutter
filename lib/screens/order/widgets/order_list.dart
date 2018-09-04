@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:peddi_tont_app/models/item.dart';
 import 'package:peddi_tont_app/themes/font_styles.dart';
 
+
 class OrderList extends StatefulWidget {
-
-
 
 
   @override
@@ -27,7 +27,7 @@ class OrderListState extends State<OrderList> {
                 child: Row(
                   children: <Widget>[
                     new Icon(
-                      Icons.delete_forever,
+                      Icons.delete,
                       color: Colors.redAccent,
                       size: 55.0,
                     ),
