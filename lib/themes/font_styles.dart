@@ -125,5 +125,27 @@ class FontStyles {
       fontWeight: FontWeight.bold,
       fontSize: 24.0,
       color: AppColors.peddi_white);
+  static const style = TextStyle(
+    //fontWeight: FontWeight.w900,
+      fontFamily: "CircularStd",
+      fontStyle: FontStyle.normal,
+      fontWeight: FontWeight.bold,
+      fontSize: 38.0,
+      color: Colors.black);
+  static const style1 = TextStyle(
+    //fontWeight: FontWeight.w900,
+      fontFamily: "CircularStd",
+      fontStyle: FontStyle.normal,
+      fontWeight: FontWeight.bold,
+      fontSize: 18.0,
+      color: Colors.black);
+  static const style2 = TextStyle(
+    //fontWeight: FontWeight.w900,
+      fontFamily: "CircularStd",
+      fontStyle: FontStyle.normal,
+      fontWeight: FontWeight.bold,
+      fontSize: 18.0,
+      color: Colors.white);
+
 
 }

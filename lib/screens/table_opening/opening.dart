@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:peddi_tont_app/screens/table_opening/widgets/opening_form.dart';
+import 'package:peddi_tont_app/themes/app_colors.dart';
+import 'package:peddi_tont_app/themes/font_styles.dart';
 
 class Opening extends StatelessWidget {
   @override
@@ -10,7 +12,8 @@ class Opening extends StatelessWidget {
         child: Container(
           foregroundDecoration: BoxDecoration(
             image: DecorationImage(
-                image: AssetImage('resources/images/waves.png'),
+                colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.05), BlendMode.dstATop),
+                image: AssetImage('resources/images/tabletimage.png'),
                 fit: BoxFit.fill),
           ),
           color: Color(0xffFFCC00),
@@ -85,35 +88,21 @@ class Opening extends StatelessWidget {
                           padding: const EdgeInsets.only(top: 5.0, right: 50.0),
                           child: Text(
                             'Ajuda',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: 'CircularStd',
-                              fontSize: 20.0,
-                              fontWeight: FontWeight.bold,
-                            ),
+                           style: FontStyles.style1,
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 5.0, right: 50.0),
                           child: Text(
                             'Suporte',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: 'CircularStd',
-                              fontSize: 20.0,
-                              fontWeight: FontWeight.bold,
-                            ),
+                            style: FontStyles.style1,
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 5.0, right: 40.0),
                           child: Text('Reiniciar',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontFamily: 'CircularStd',
-                                fontSize: 20.0,
-                                fontWeight: FontWeight.bold,
-                              )),
+                            style: FontStyles.style1,
+                          ),
                         ),
                       ],
                     ),
