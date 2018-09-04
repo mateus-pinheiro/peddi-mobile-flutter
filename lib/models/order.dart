@@ -14,8 +14,29 @@ class Order {
   final RestaurantOrder restaurant;
   final List<Item> items;
 
-  Order({this.id, this.table, this.customers, this.amount, this.status,
-      this.createdAt, this.updatedAt, this.restaurant, this.items});
+  Order(
+      {this.id,
+      this.table,
+      this.customers,
+      this.amount,
+      this.status,
+      this.createdAt,
+      this.updatedAt,
+      this.restaurant,
+      this.items});
+
+  Order.fromMap(Map<String, dynamic> data)
+      : id = data['id'],
+        table = data['table'],
+        customers = data['customers'],
+        amount = data['amount'],
+        status = data['status'],
+        createdAt = data['createdAt'],
+        updatedAt = data['updatedAt'],
+        restaurant = data['restaurant'],
+        items = (data['items'] == null ? [] : data['items'] as List)
+            .map((item) => new Item.fromMap(item))
+            .toList();
 
   Map<String, dynamic> toJson() => {
         'table': table,
@@ -28,7 +49,3 @@ class Order {
         'items': items
       };
 }
-
-
-
-
