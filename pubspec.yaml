@@ -47,6 +47,7 @@ flutter:
       - resources/images/action_image.png
       - resources/images/logo_lm_title.jpg
       - resources/images/logo_lm09.png
+      - resources/images/tabletimage.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.

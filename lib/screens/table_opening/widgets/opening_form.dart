@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:peddi_tont_app/models/app_state.dart';
 import 'package:peddi_tont_app/redux/actions.dart';
+import 'package:peddi_tont_app/themes/app_colors.dart';
+import 'package:peddi_tont_app/themes/font_styles.dart';
 
 
 class OpeningFormRoute extends StatelessWidget {
@@ -68,12 +70,7 @@ class OpeningForm extends StatelessWidget {
             child: Text(
               'Olá! Seja bem vindo(a)!',
               textAlign: TextAlign.center,
-              style: TextStyle(
-                fontFamily: 'CircularStd',
-                fontSize: 38.0,
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ),
+              style: FontStyles.style ,
             ),
           ),
           subtitle: Padding(
@@ -98,12 +95,7 @@ class OpeningForm extends StatelessWidget {
             child: TextField(
               onChanged: (tableNumberCurrent) => this.tableNumber = tableNumberCurrent,
               keyboardType: TextInputType.number,
-              style: TextStyle(
-//                fontFamily: 'CircularStd',
-                fontSize: 16.0,
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-              ),
+              style: FontStyles.style1,
 //              onFieldSubmitted: (tableNumberCurrent) => this.tableNumber = tableNumberCurrent,
               decoration: InputDecoration(
                   labelText: 'Número da mesa',
@@ -122,12 +114,7 @@ class OpeningForm extends StatelessWidget {
                 color: Colors.white, borderRadius: BorderRadius.circular(10.0)),
             child: TextField(
               keyboardType: TextInputType.number,
-              style: TextStyle(
-//                fontFamily: 'CircularStd',
-                fontSize: 16.0,
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-              ),
+             style: FontStyles.style1,
               onChanged: (qtyConsumerCurrent) => this.qtyConsumer = qtyConsumerCurrent,
 
               decoration: new InputDecoration(
@@ -160,12 +147,7 @@ class OpeningForm extends StatelessWidget {
                 textTheme: ButtonTextTheme.primary,
                 child: new Text(
                   'ABRIR MESA',
-                  style: TextStyle(
-                    fontFamily: 'CircularStd',
-                    fontSize: 18.0,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: FontStyles.style2,
                 ),
               )),
         ),
