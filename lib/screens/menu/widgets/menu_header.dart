@@ -93,15 +93,18 @@ class MenuHeader extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 20.0, right: 30.0),
-                      child: Container(
-                        height: 50.0,
-                        width: 50.0,
-                        decoration: new BoxDecoration(
-                            image: new DecorationImage(
-                              fit: BoxFit.fill,
-                              image: new AssetImage('resources/images/environment.png'),
+                      child: new InkWell(
+                        onTap: () {showOrder(context);},
+                        child: Container(
+                          height: 50.0,
+                          width: 50.0,
+                          decoration: new BoxDecoration(
+                              image: new DecorationImage(
+                                fit: BoxFit.fill,
+                                image: new AssetImage('resources/images/environment.png'),
 //                      alignment: Alignment(-1.0, -1.0)
-                            )),
+                              )),
+                        ),
                       ),
                     ),
                     Padding(
