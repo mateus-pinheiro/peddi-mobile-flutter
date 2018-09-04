@@ -5,6 +5,8 @@ import 'package:peddi_tont_app/models/product.dart';
 import 'package:peddi_tont_app/screens/product/widgets/product_additional.dart';
 import 'package:peddi_tont_app/screens/product/widgets/product_ingredient.dart';
 import 'package:peddi_tont_app/screens/product/widgets/product_recipe.dart';
+import 'package:peddi_tont_app/themes/app_colors.dart';
+import 'package:peddi_tont_app/themes/font_styles.dart';
 
 class ProductRoute extends StatelessWidget {
   ProductRoute(this.product);
@@ -88,11 +90,29 @@ class ProductRoute extends StatelessWidget {
                 left: 290.0,
                 bottom: 1.0),
             new Positioned(
-              top: 5.0,
-              right: 110.0,
+              right: 100.0,
               child: new Stack(
                 children: <Widget>[
-                  Container(width: 30.0, height: 30.0, color: Colors.red),
+                  Container(
+                    width: 50.0,
+                    height: 50.0,
+                    decoration: BoxDecoration(
+                      color: Colors.red,
+                      borderRadius: BorderRadius.circular(100.0),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+
+                         new Icon(
+                            Icons.close,
+                            color: Colors.white,
+                            size: 35.0,
+                          ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),

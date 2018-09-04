@@ -146,6 +146,66 @@ class FontStyles {
       fontWeight: FontWeight.bold,
       fontSize: 18.0,
       color: Colors.white);
+  static const style3 = TextStyle(
+    //fontWeight: FontWeight.w900,
+      fontFamily: "CircularStd",
+      fontStyle: FontStyle.normal,
+      fontWeight: FontWeight.bold,
+      fontSize: 48.0,
+      color: Colors.white);
+  static const style4 = TextStyle(
+    //fontWeight: FontWeight.w900,
+      fontFamily: "CircularStd",
+      fontStyle: FontStyle.normal,
+      fontWeight: FontWeight.bold,
+      fontSize: 24.0,
+      color: Colors.white);
+  static const style5 = TextStyle(
+    //fontWeight: FontWeight.w900,
+      fontFamily: "CircularStd",
+      fontStyle: FontStyle.normal,
+      fontWeight: FontWeight.bold,
+      fontSize: 34.0,
+      color: Colors.white);
+  static const style6 = TextStyle(
+    //fontWeight: FontWeight.w900,
+      fontFamily: "CircularStd",
+      fontStyle: FontStyle.normal,
+      fontWeight: FontWeight.bold,
+      fontSize: 22.0,
+      color: Colors.black);
+  static const style7 = TextStyle(
+    //fontWeight: FontWeight.w900,
+      fontFamily: "CircularStd",
+      fontStyle: FontStyle.normal,
+      fontWeight: FontWeight.bold,
+      fontSize: 20.0,
+      color: Colors.black);
+  static const style8 = TextStyle(
+    //fontWeight: FontWeight.w900,
+      fontFamily: "CircularStd",
+      fontStyle: FontStyle.normal,
+      fontWeight: FontWeight.bold,
+      fontSize: 20.0,
+      color: AppColors.gray3);
+  static const style9 = TextStyle(
+    //fontWeight: FontWeight.w900,
+      fontFamily: "CircularStd",
+      fontStyle: FontStyle.normal,
+      fontWeight: FontWeight.bold,
+      fontSize: 24.0,
+      color: AppColors.gray4);
+  static const style10 = TextStyle(
+    //fontWeight: FontWeight.w900,
+      fontFamily: "CircularStd",
+      fontStyle: FontStyle.normal,
+      fontWeight: FontWeight.bold,
+      fontSize: 24.0,
+      color: Colors.black);
+
+
+
+
 
 
 }

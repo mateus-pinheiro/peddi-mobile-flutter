@@ -12,10 +12,7 @@ class MainApp extends StatelessWidget {
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
             decoration: new BoxDecoration(
-                image: new DecorationImage(
-                    fit: BoxFit.none,
-                    alignment: Alignment(-0.8, -3.0),
-                    image: new AssetImage('resources/images/waves_green.png'))),
+                ),
             child: Column(
               children: <Widget>[
                 MainHeader(),

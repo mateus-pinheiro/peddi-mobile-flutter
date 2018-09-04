@@ -10,6 +10,9 @@ import 'package:peddi_tont_app/screens/menu/menu_app.dart';
 import 'package:peddi_tont_app/screens/menu/widgets/menu_category.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'package:peddi_tont_app/themes/app_colors.dart';
+import 'package:peddi_tont_app/themes/font_styles.dart';
+
 class MainCategory extends StatelessWidget {
   final Category category;
   List<Category> storeCategories;
@@ -34,16 +37,11 @@ class MainCategory extends StatelessWidget {
           Container(
             width: 635.0,
             height: 180.0,
-            color: Colors.black,
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.0),color: Colors.black,),
             child: Center(
               child: Text(
                 category.name,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontFamily: 'CircularStd',
-                  fontSize: 34.0,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: FontStyles.style5,
               ),
             ),
           ),
@@ -87,7 +85,7 @@ class MainCategoryRoute extends StatelessWidget {
                   crossAxisCount: 2,
 //                  mainAxisSpacing: 1.0,
 //                  crossAxisSpacing: 6.0,
-                  childAspectRatio: 3.5),
+                  childAspectRatio:3.5),
               scrollDirection: Axis.vertical,
             ),
           );

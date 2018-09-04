@@ -14,4 +14,5 @@ class AppColors {
   static const peddi_green = const Color(0xff08c459);
   static const success_green = const Color(0xff00cb8a);
   static const error_red = const Color(0xffea5a55);
+  static const yellow1 = const Color(0xffFFCC00);
 }
