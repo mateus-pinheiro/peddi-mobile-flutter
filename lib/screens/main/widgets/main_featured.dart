@@ -3,16 +3,11 @@ import 'package:peddi_tont_app/themes/app_colors.dart';
 import 'package:peddi_tont_app/themes/font_styles.dart';
 
 class MainFeatured extends StatelessWidget {
-  static final _rowHeight = 50.0;
-//  static final _borderRadius = BorderRadius.circular(_rowHeight / 2);
 
-//  final Product product;
   final String name;
   final String price;
 
-//  MainFeatured(this.product, this.price, this.name);
 
-//    final featuredImage color = Colors.black;
 
   const MainFeatured({
     Key key,

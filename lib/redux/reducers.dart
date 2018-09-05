@@ -42,11 +42,20 @@ AppState addTableNumberOrder(AddTableNumberOrderAction action, AppState state) {
 }
 
 AppState addItem(AppState state, AddItemAction action) {
+
   Order addItemToOrder(AddItemAction action) {
     state.order.items.add(action.item);
     state.order.amount += action.item.amount;
     return state.order;
   }
-
   return new AppState(state.restaurant, addItemToOrder(action));
+}
+
+AppState removeItem(AppState state, RemoveItemAction action){
+  Order removeItemFromOrder(RemoveItemAction action) {
+    state.order.items.remove(action.item);
+    state.order.amount -= action.item.amount;
+    return state.order;
+  }
+  return new AppState(state.restaurant, removeItemFromOrder(action));
 }

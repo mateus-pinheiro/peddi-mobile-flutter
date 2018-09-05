@@ -41,95 +41,19 @@ class OrderApp extends StatelessWidget {
                         ),
                       ],
                     ),
-                    new Row(
-                      children: <Widget>[
-                        Expanded(
-                          child: Container(
-                            height: 75.0,
-                            color: Colors.green,
-                            child: Center(
-                                child: Text('Em aberto',
-                                    style: FontStyles.orderStatus2)),
-                          ),
-                        ),
-                        Expanded(
-                          child: Container(
-                            height: 75.0,
-                            color: Colors.white10,
-                            child: Center(
-                                child: Text('Enviados',
-                                    style: FontStyles.orderStatus2)),
-                          ),
-                        )
-                      ],
-                    ),
-                    new Row(
-                      children: <Widget>[
-                        Expanded(
-                          child: Container(
-                            height: 75.0,
-                            color: Colors.white,
-                            child: Center(
-                                child: Text('PRODUTO',
-                                    style: FontStyles.orderStatus2)),
-                          ),
-                        ),
-                        Expanded(
-                          child: Container(
-                            height: 75.0,
-                            color: Colors.white,
-                            child: Center(
-                                child: Text('QUANTIDADE',
-                                    style: FontStyles.orderStatus2)),
-                          ),
-                        ),
-                      ],
-                    ),
-                    new Expanded(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: <Widget>[
-                          Expanded(
-                            child: Container(
-                              child: OrderList(),
-                              color: Colors.white,
-                            ),
-                          ),
-                          Expanded(
-                            child: Container(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: <Widget>[
-                                  Text(
-                                    'Total',
-                                    style: FontStyles.orderStatus2,
-                                  ),
-                                  Text(
-                                    order.amount != null
-                                        ? order.amount.toString()
-                                        : 'Nenhum item adicionado',
-                                    style: FontStyles.orderStatus2,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          Container(
-                            height: 59.0,
-                            width: 545.0,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10.0),
-                                color: Colors.green),
-                            child: MaterialButton(
-                              onPressed: () {},
-                              height: 60.0,
-                              textTheme: ButtonTextTheme.accent,
-                              child: new Text('ENVIAR PEDIDO',
-                                  style: FontStyles.buttonStyle),
-                            ),
-                          ),
-                        ],
+                    Expanded(child: new OrderList(order)),
+                    Container(
+                      height: 59.0,
+                      width: 545.0,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10.0),
+                          color: Colors.green),
+                      child: MaterialButton(
+                        onPressed: () {},
+                        height: 60.0,
+                        textTheme: ButtonTextTheme.accent,
+                        child: new Text('ENVIAR PEDIDO',
+                            style: FontStyles.buttonStyle),
                       ),
                     ),
                   ],

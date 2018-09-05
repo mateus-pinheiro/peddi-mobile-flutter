@@ -24,6 +24,11 @@ class AddItemAction {
   AddItemAction(this.item);
 }
 
+class RemoveItemAction {
+  final Item item;
+  RemoveItemAction(this.item);
+}
+
 class AddItemIngredients {
   final Item item;
 
