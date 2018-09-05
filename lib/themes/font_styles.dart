@@ -202,6 +202,13 @@ class FontStyles {
       fontWeight: FontWeight.bold,
       fontSize: 24.0,
       color: Colors.black);
+  static const style11 = TextStyle(
+    //fontWeight: FontWeight.w900,
+      fontFamily: "CircularStd",
+      fontStyle: FontStyle.normal,
+      fontWeight: FontWeight.bold,
+      fontSize: 16.0,
+      color: Colors.black);
 
 
 
