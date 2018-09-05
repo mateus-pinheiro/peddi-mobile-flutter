@@ -38,9 +38,9 @@ class OrderListState extends State<OrderList> {
                 style: FontStyles.orderStatus2,
               ),
               Text(
-                order.amount != null
-                    ? order.amount.toString()
-                    : 'Nenhum item adicionado',
+                order.amount == null || order.amount == 0.0
+                    ? 'Nenhum item adicionado'
+                    : order.amount.toString(),
                 style: FontStyles.orderStatus2,
               ),
             ]),

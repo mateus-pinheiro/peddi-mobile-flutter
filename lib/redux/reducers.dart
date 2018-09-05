@@ -37,7 +37,6 @@ AppState addTableNumberOrder(AddTableNumberOrderAction action, AppState state) {
         customers: action.customers,
         createdAt: DateTime.now(),
         items: new List<Item>(),
-        amount: 0.0,
         restaurant: new RestaurantOrder(
             cnpj: state.restaurant.cnpj, name: state.restaurant.name),
       ));
@@ -46,6 +45,7 @@ AppState addTableNumberOrder(AddTableNumberOrderAction action, AppState state) {
 AppState addItem(AddItemAction action, AppState state) {
   Order addItemToOrder(AddItemAction action) {
     state.order.items.add(action.item);
+    state.order.amount == null ? state.order.amount = 0.0 : state.order.amount;
     state.order.amount += action.item.amount;
     return state.order;
   }
