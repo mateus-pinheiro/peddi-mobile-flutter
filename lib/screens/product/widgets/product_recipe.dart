@@ -5,6 +5,7 @@ import 'package:peddi_tont_app/models/item.dart';
 import 'package:peddi_tont_app/models/order.dart';
 import 'package:peddi_tont_app/models/product.dart';
 import 'package:peddi_tont_app/redux/actions.dart';
+import 'package:peddi_tont_app/services/external_images.dart';
 import 'package:peddi_tont_app/themes/font_styles.dart';
 import 'package:peddi_tont_app/themes/app_colors.dart';
 
@@ -104,7 +105,8 @@ class _ProductRecipeWidgetState extends State<ProductRecipeWidget> {
                         child: Container(
                           height: 280.0,
                           width: 430.0,
-                          color: AppColors.yellow1,
+                          child: new Image.network(getProductImage(product.image),
+                              fit: BoxFit.fitWidth),
                         ),
                       ),
                       Padding(
@@ -159,7 +161,10 @@ class _ProductRecipeWidgetState extends State<ProductRecipeWidget> {
                                                 size: 45.0,
                                               ),
                                             ),
-                                            new Text(_quantityItem.toString(), style: FontStyles.style10,),
+                                            new Text(
+                                              _quantityItem.toString(),
+                                              style: FontStyles.style10,
+                                            ),
                                             new MaterialButton(
                                               onPressed: () {
                                                 _addQtyItem();
@@ -189,9 +194,7 @@ class _ProductRecipeWidgetState extends State<ProductRecipeWidget> {
                                       width: 470.0,
                                       child: new MaterialButton(
                                         onPressed: () {
-                                          print(item.amount);
                                           _sumAmount(item);
-                                          print(item.amount);
                                           Navigator.pop(context);
                                           callback(item);
                                         },

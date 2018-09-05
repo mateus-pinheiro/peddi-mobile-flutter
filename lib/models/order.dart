@@ -4,8 +4,8 @@ import 'package:peddi_tont_app/models/restaurant_order.dart';
 
 class Order {
   final int id;
-  final String table;
-  final String customers;
+  final int table;
+  final int customers;
   double amount;
   bool status;
   final DateTime createdAt;
@@ -38,6 +38,7 @@ class Order {
             .toList();
 
   Map<String, dynamic> toJson() => {
+        'id': id,
         'table': table,
         'customers': customers,
         'amount': amount,

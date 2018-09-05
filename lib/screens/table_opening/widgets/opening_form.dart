@@ -32,33 +32,8 @@ class OpeningForm extends StatelessWidget {
 
   final OnAddTableNumber callback;
 
-  String tableNumber;
-  String qtyConsumer;
-
-//  @override
-//  Widget build(BuildContext context) {
-//    return new Form(
-//        child: ListView(
-//      children: <Widget>[
-//        new TextFormField(
-//          keyboardType: TextInputType.number,
-//          decoration: new InputDecoration(
-//              hintText: 'Número da mesa',
-//              border: new UnderlineInputBorder(
-//                  borderSide: BorderSide(
-//                      style: BorderStyle.solid,
-//                      width: 1.0,
-//                      color: Colors.black))),
-//          onSaved: (String value) => this.tableNumber = value,
-//        ),
-//        new TextFormField(
-//          keyboardType: TextInputType.number,
-//          decoration: new InputDecoration(hintText: 'Quantidade de pessoas'),
-//          onSaved: (String value) => this.qtyConsumer = value,
-//        )
-//      ],
-//    ));
-//  }
+  int tableNumber;
+  int qtyConsumer;
 
   @override
   Widget build(BuildContext context) {
@@ -93,15 +68,14 @@ class OpeningForm extends StatelessWidget {
             decoration: BoxDecoration(
                 color: Colors.white, borderRadius: BorderRadius.circular(10.0)),
             child: TextField(
-              onChanged: (tableNumberCurrent) => this.tableNumber = tableNumberCurrent,
+              onChanged: (tableNumberCurrent) => this.tableNumber = int.parse(tableNumberCurrent),
               keyboardType: TextInputType.number,
               style: FontStyles.style1,
 //              onFieldSubmitted: (tableNumberCurrent) => this.tableNumber = tableNumberCurrent,
               decoration: InputDecoration(
                   labelText: 'Número da mesa',
                   border: OutlineInputBorder(
-                      borderSide: BorderSide(
-                          style: BorderStyle.none, color: Colors.yellow),
+
                       borderRadius: BorderRadius.circular(10.0))),
             ),
           ),
@@ -115,7 +89,7 @@ class OpeningForm extends StatelessWidget {
             child: TextField(
               keyboardType: TextInputType.number,
              style: FontStyles.style1,
-              onChanged: (qtyConsumerCurrent) => this.qtyConsumer = qtyConsumerCurrent,
+              onChanged: (qtyConsumerCurrent) => this.qtyConsumer = int.parse(qtyConsumerCurrent),
 
               decoration: new InputDecoration(
                   labelText: 'Quantidade de pessoas',
@@ -157,4 +131,4 @@ class OpeningForm extends StatelessWidget {
 
 }
 
-typedef OnAddTableNumber = Function(String tableNumber, String qtyConsumer);
+typedef OnAddTableNumber = Function(int tableNumber, int qtyConsumer);

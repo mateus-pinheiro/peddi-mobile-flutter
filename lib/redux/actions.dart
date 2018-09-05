@@ -13,8 +13,8 @@ class SaveRestaurantAction {
 }
 
 class AddTableNumberOrderAction {
-  final String table;
-  final String customers;
+  final int table;
+  final int customers;
 
   AddTableNumberOrderAction(this.table, this.customers);
 }

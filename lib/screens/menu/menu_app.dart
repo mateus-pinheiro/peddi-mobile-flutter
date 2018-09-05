@@ -37,21 +37,6 @@ class MenuApp extends StatelessWidget {
                   height: 300.0,
                   color: Colors.white),
             ),
-//            Expanded(
-//              child: Container(
-////              width: MediaQuery.of(context).size.width,
-////                child: MenuSubCategoryRoute(selectedCategory.subCategory),
-//              child: MenuSubCategoryTeste(selectedCategory.subCategory),
-//                height: 300.0,
-//                  color: Colors.greenAccent
-//              ),
-//            ),
-//            Expanded(
-//              child: Container(
-//                  color: Colors.white,
-//                  child: MenuProductRoute()
-//              ),
-//            ),
           ],
         ),
       ),

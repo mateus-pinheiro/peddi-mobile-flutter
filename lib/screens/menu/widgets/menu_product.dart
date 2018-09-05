@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:peddi_tont_app/models/product.dart';
 import 'package:peddi_tont_app/screens/product/product.dart';
+import 'package:peddi_tont_app/services/external_images.dart';
 import 'package:peddi_tont_app/themes/font_styles.dart';
 
 class MenuProduct extends StatelessWidget {
-
   final Product product;
+
   MenuProduct(this.product);
 
   showProduct(BuildContext context) {
-    showDialog( context: context,
-        builder: (context) => new ProductRoute(product));
+    showDialog(
+        context: context, builder: (context) => new ProductRoute(product));
   }
 
   @override
@@ -22,16 +23,18 @@ class MenuProduct extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(left: 10.0, bottom: 10.0),
           child: InkWell(
-          onTap: () {
-            showProduct(context);
-          },
+            onTap: () {
+              showProduct(context);
+            },
             child: Container(
               decoration: BoxDecoration(
                 border: Border.all(
-                    width: 2.0, color: Colors.black12, style: BorderStyle.solid),
+                    width: 2.0,
+                    color: Colors.black12,
+                    style: BorderStyle.solid),
                 borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(10.0),
-                    bottomRight: Radius.circular(10.0),
+                  bottomLeft: Radius.circular(10.0),
+                  bottomRight: Radius.circular(10.0),
                   topRight: Radius.circular(10.0),
                   topLeft: Radius.circular(10.0),
                 ),
@@ -47,17 +50,18 @@ class MenuProduct extends StatelessWidget {
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.all(3.0),
-                    child: Image(
-                      image: new AssetImage('resources/images/product.png'),
-                    ),
+                    child: new Image.network(getProductImage(product.image),
+                        fit: BoxFit.fitWidth),
+//                      image: new AssetImage('resources/images/product.png'),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 16.0, top: 15.0),
-                    child: Text(product.name, style: FontStyles. style6),
+                    child: Text(product.name, style: FontStyles.style6),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 16.0, top: 15.0),
-                    child: Text(product.price.toString(), style: FontStyles.style7),
+                    child: Text(product.price.toString(),
+                        style: FontStyles.style7),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 16.0, top: 10.0),
@@ -74,14 +78,15 @@ class MenuProduct extends StatelessWidget {
 }
 
 class MenuProductRoute extends StatelessWidget {
-
   final List<Product> products;
-  MenuProductRoute (this.products);
+
+  MenuProductRoute(this.products);
 
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      itemBuilder: (BuildContext context, int index) => new MenuProduct(products[index]),
+      itemBuilder: (BuildContext context, int index) =>
+          new MenuProduct(products[index]),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 3,
 //          mainAxisSpacing: 1.0,
@@ -92,5 +97,4 @@ class MenuProductRoute extends StatelessWidget {
       scrollDirection: Axis.vertical,
     );
   }
-
 }
