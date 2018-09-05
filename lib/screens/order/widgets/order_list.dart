@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:peddi_tont_app/models/item.dart';
 import 'package:peddi_tont_app/models/order.dart';
+import 'package:peddi_tont_app/redux/actions.dart';
 import 'package:peddi_tont_app/themes/font_styles.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:peddi_tont_app/models/app_state.dart';
 
 class OrderList extends StatefulWidget {
   OrderList(this.order);
@@ -57,35 +60,39 @@ class OrderListState extends State<OrderList> {
     return new Column(
       children: <Widget>[
         new Container(
-                child: new Row(
-                  children: <Widget>[
-                    new Icon(
-                      Icons.delete,
-                      color: Colors.redAccent,
-                      size: 55.0,
-                    ),
-                    new Column(
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.only(top: 23.0),
-                          child:
-                              Text(item.name, style: FontStyles.orderStatus3),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 23.0),
-                          child: Text(item.price.toString(),
-                              style: FontStyles.orderStatus3),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 23.0),
-                          child: Text(item.qtyItem.toString(),
-                              style: FontStyles.orderStatus3),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-
+          child: new Row(
+            children: <Widget>[
+              new StoreConnector<AppState, OnRemoveIconClicked>(
+                  converter: (store) {
+                return (item) => store.dispatch(RemoveItemAction(item));
+              }, builder: (context, callback) {
+                return new IconButton(
+                  icon: new Icon(Icons.delete),
+                  onPressed: () {
+                    callback(item);
+                  },
+                );
+              }),
+              new Column(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(top: 23.0),
+                    child: Text(item.name, style: FontStyles.orderStatus3),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 23.0),
+                    child: Text(item.price.toString(),
+                        style: FontStyles.orderStatus3),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 23.0),
+                    child: Text(item.qtyItem.toString(),
+                        style: FontStyles.orderStatus3),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
         new Divider(
           height: 20.0,
@@ -95,3 +102,5 @@ class OrderListState extends State<OrderList> {
     );
   }
 }
+
+typedef OnRemoveIconClicked = Function(Item item);

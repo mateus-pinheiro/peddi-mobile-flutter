@@ -8,10 +8,12 @@ import 'package:peddi_tont_app/redux/actions.dart';
 AppState appStateReducers(AppState state, dynamic action) {
   if (action is LoadRestaurantAction) {
     return loadRestaurant(action, state.restaurant);
-  } else if (action is AddItemAction) {
-    return addItem(state, action);
   } else if (action is AddTableNumberOrderAction) {
     return addTableNumberOrder(action, state);
+  } else if (action is AddItemAction) {
+    return addItem(action, state);
+  } else if (action is RemoveItemAction) {
+    return removeItem(action, state);
   } else if (action is SaveRestaurantAction) {
     return saveRestaurant(action, state);
   }
@@ -41,21 +43,22 @@ AppState addTableNumberOrder(AddTableNumberOrderAction action, AppState state) {
       ));
 }
 
-AppState addItem(AppState state, AddItemAction action) {
-
+AppState addItem(AddItemAction action, AppState state) {
   Order addItemToOrder(AddItemAction action) {
     state.order.items.add(action.item);
     state.order.amount += action.item.amount;
     return state.order;
   }
+
   return new AppState(state.restaurant, addItemToOrder(action));
 }
 
-AppState removeItem(AppState state, RemoveItemAction action){
+AppState removeItem(RemoveItemAction action, AppState state) {
   Order removeItemFromOrder(RemoveItemAction action) {
     state.order.items.remove(action.item);
     state.order.amount -= action.item.amount;
     return state.order;
   }
+
   return new AppState(state.restaurant, removeItemFromOrder(action));
 }
