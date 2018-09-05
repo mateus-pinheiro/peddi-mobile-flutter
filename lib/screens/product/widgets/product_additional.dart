@@ -61,9 +61,12 @@ class AdditionalState extends State<Additional> {
       ),
       activeColor: Colors.green,
       selected: true,
-      secondary: Text(
-        'RS $additionalPrice',
-        style: FontStyles.style7,
+      secondary: Padding(
+        padding: const EdgeInsets.only(right: 100.0),
+        child: Text(
+          'RS $additionalPrice',
+          style: FontStyles.style7,
+        ),
       ),
     );
   }

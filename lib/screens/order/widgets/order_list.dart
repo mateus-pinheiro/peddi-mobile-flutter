@@ -33,10 +33,13 @@ class OrderListState extends State<OrderList> {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              Text(
-                'Total',
-                style: FontStyles.orderStatus2,
-              ),
+                 Padding(
+                   padding: const EdgeInsets.only(top: 50.0),
+                   child: Text(
+                    'Total',
+                    style: FontStyles.orderStatus2,
+                ),
+                 ),
               Text(
                 order.amount == null || order.amount == 0.0
                     ? 'Nenhum item adicionado'
@@ -53,6 +56,7 @@ class OrderListState extends State<OrderList> {
       itemBuilder: (context, position) => itemRow(items[position]),
       itemCount: items.length,
       scrollDirection: Axis.vertical,
+
     );
   }
 
@@ -68,29 +72,48 @@ class OrderListState extends State<OrderList> {
               }, builder: (context, callback) {
                 return new IconButton(
                   icon: new Icon(Icons.delete),
+                  iconSize: 40.0,
                   onPressed: () {
                     callback(item);
                   },
                 );
               }),
-              new Column(
+              Row(
                 children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(top: 23.0),
-                    child: Text(item.name, style: FontStyles.orderStatus3),
+                  new Column(
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.only(top: 10.0),
+                        child: Text(item.name, style: FontStyles.style7),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 10.0),
+                        child: Text(item.price.toString(),
+                            style: FontStyles.style7),
+                      ),
+
+
+                    ],
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 23.0),
-                    child: Text(item.price.toString(),
-                        style: FontStyles.orderStatus3),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 23.0),
-                    child: Text(item.qtyItem.toString(),
-                        style: FontStyles.orderStatus3),
+                  new Column(
+                    children: <Widget>[
+
+                      Padding(
+                        padding: const EdgeInsets.only(top: 10.0),
+                        child: Text(item.qtyItem.toString(),
+                            style: FontStyles.style7),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 10.0),
+                        child: Text(item.description.toString(),
+                            style: FontStyles.style7),
+                      ),
+
+                    ],
                   ),
                 ],
               ),
+
             ],
           ),
         ),
