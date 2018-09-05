@@ -105,7 +105,7 @@ class OrderListState extends State<OrderList> {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 10.0),
-                        child: Text(item.description.toString(),
+                        child: Text(item.ingredients[0].name.toString(),
                             style: FontStyles.style7),
                       ),
 
