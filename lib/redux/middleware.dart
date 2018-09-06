@@ -1,19 +1,13 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:peddi_tont_app/models/restaurant.dart';
 import 'package:peddi_tont_app/services/api.dart';
 import 'package:peddi_tont_app/models/app_state.dart';
 import 'package:peddi_tont_app/models/category.dart';
 import 'package:peddi_tont_app/redux/actions.dart';
 import 'package:redux/redux.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-const String RESTAURANT_KEY = "RESTAURANT_APP";
-const String CATEGORY_KEY = "CATEGORY_APP";
-const String SUB_CATEGORY_KEY = "SUB_CATEGORY_APP";
-
-//const String CATEGORY_KEY = "CATEGORY_APP";
-//const String CATEGORY_KEY = "CATEGORY_APP";
 
 const String APP_STATE_KEY = "APP_STATE";
 
@@ -26,26 +20,18 @@ void appMiddleware(Store<AppState> store, action, NextDispatcher next) {
     });
   }
 
-  if (action is SaveRestaurantAction) {
-    saveStateToPrefs(store.state);
-    saveCategoriesToPrefs(store.state.restaurant.categories);
-  }
+//  if (action is SaveRestaurantAction) {
+//    saveStateToPrefs(store.state);
+//  }
 }
 
-void saveCategoriesToPrefs(List<Category> categories) async {
-  SharedPreferences mSharedPreferences = await SharedPreferences.getInstance();
-  String categoriesString = json.encode(categories);
-  await mSharedPreferences.setString(CATEGORY_KEY, categoriesString);
-}
 
-//
 void saveStateToPrefs(AppState state) async {
   SharedPreferences preferences = await SharedPreferences.getInstance();
   var stateString = json.encode(state.toJson());
   await preferences.setString(APP_STATE_KEY, stateString);
 }
 
-//
 Future<AppState> loadStateFromPrefs() async {
   SharedPreferences preferences = await SharedPreferences.getInstance();
   var stateString = preferences.getString(APP_STATE_KEY);

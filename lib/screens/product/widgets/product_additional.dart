@@ -96,12 +96,19 @@ class AdditionalState extends State<Additional> {
               style: FontStyles.style9,
             ),
           ),
-          new Expanded(
-              child: new Container(
-            child: buildIngredientList(additionalList),
-          ))
+          validateAdditional(additionalList)
         ],
       ),
     );
+  }
+
+  Widget validateAdditional (List<Ingredient> ingredients){
+    if (ingredients.isEmpty){
+      return Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: new Container(child: Text('Nenhum adicional para esse produto.',  style: FontStyles.style7)),
+      );
+    }
+    return new Expanded(child: new Container(child: buildIngredientList(ingredients)));
   }
 }

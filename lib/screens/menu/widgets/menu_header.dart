@@ -10,13 +10,13 @@ class MenuHeader extends StatelessWidget {
     showDialog(context: context, builder: (context) => new OrderApp());
   }
 
-  String showCustomersQty(String customers) {
-    if (customers == 0.toString()) {
+  String showCustomersQty(int customers) {
+    if (customers == null) {
       return 'Não preenchido';
-    } else if (customers == 1.toString()) {
-      return customers + ' pessoa';
+    } else if (customers == 1) {
+      return customers.toString() + ' pessoa';
     } else {
-      return customers + ' pessoas';
+      return customers.toString() + ' pessoas';
     }
   }
 
@@ -71,14 +71,12 @@ class MenuHeader extends StatelessWidget {
                       ),
                     ),
                   ),
-//          color: Colors.blue,
                 )),
                 Expanded(
                     child: Container(
                   height: 130.0,
                   width: 25.0,
                   color: Colors.black,
-//          color: Colors.white,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -94,7 +92,7 @@ class MenuHeader extends StatelessWidget {
                                     : 'Mesa ' + order.table.toString(),
                                 style: FontStyles.style4),
                             Text(
-                              showCustomersQty(order.customers.toString()),
+                              showCustomersQty(order.customers),
                               style: FontStyles.style4,
                             ),
                           ],

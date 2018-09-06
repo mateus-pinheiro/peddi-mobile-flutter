@@ -45,9 +45,19 @@ class IngredientWidgetState extends State<IngredientWidget> {
             style: FontStyles.style9,
           ),
         ),
-        Expanded(child: new Container(child: buildIngredientList(ingredient)))
+        validateIngredients(ingredient)
       ],
     );
+  }
+
+  Widget validateIngredients (List<Ingredient> ingredients){
+    if (ingredients.isEmpty){
+      return Padding(
+        padding: const EdgeInsets.all(18.0),
+        child: new Container(child: Text('Nenhum ingrediente para esse produto.',  style: FontStyles.style7)),
+      );
+    }
+    return new Expanded(child: new Container(child: buildIngredientList(ingredients)));
   }
 
   Widget ingredientItem(Ingredient ingredient) {

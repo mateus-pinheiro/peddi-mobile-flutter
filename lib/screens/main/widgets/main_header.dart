@@ -6,13 +6,13 @@ import 'package:peddi_tont_app/themes/app_colors.dart';
 import 'package:peddi_tont_app/themes/font_styles.dart';
 
 class MainHeader extends StatelessWidget {
-  String showCustomersQty(String customers) {
-    if (customers == 0.toString()) {
+  String showCustomersQty(int customers) {
+    if (customers == null) {
       return 'Não preenchido';
-    } else if (customers == 1.toString()) {
-      return customers + ' pessoa';
+    } else if (customers == 1) {
+      return customers.toString() + ' pessoa';
     } else {
-      return customers + ' pessoas';
+      return customers.toString() + ' pessoas';
     }
   }
 
@@ -90,7 +90,7 @@ class MainHeader extends StatelessWidget {
                                     : 'Mesa ' + order.table.toString(),
                                 style: FontStyles.style4),
                             Text(
-                              showCustomersQty(order.customers.toString()),
+                              showCustomersQty(order.customers),
                               style: FontStyles.style4,
                             ),
                           ],
