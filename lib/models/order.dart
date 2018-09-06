@@ -7,9 +7,9 @@ class Order {
   final int table;
   final int customers;
   double amount;
-  bool status;
+  String status;
   final DateTime createdAt;
-  final String updatedAt;
+  final DateTime updatedAt;
   final RestaurantOrder restaurant;
   final List<Item> items;
 
@@ -38,7 +38,6 @@ class Order {
             .toList();
 
   Map<String, dynamic> toJson() => {
-        'id': id,
         'table': table,
         'customers': customers,
         'amount': amount,

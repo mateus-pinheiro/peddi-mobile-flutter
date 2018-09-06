@@ -54,7 +54,6 @@ class MainCategoryRoute extends StatefulWidget {
 }
 
 class MainCategoryRouteState extends State<MainCategoryRoute> {
-
   bool _loadingInProgress;
 
   @override
@@ -63,8 +62,6 @@ class MainCategoryRouteState extends State<MainCategoryRoute> {
     super.initState();
     _loadingInProgress = true;
     _loadingInProgressFalse();
-
-
   }
 
   Future _loadingInProgressFalse() async {
@@ -77,7 +74,6 @@ class MainCategoryRouteState extends State<MainCategoryRoute> {
       _loadingInProgress = false;
     });
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -134,7 +130,4 @@ class MainCategoryRouteState extends State<MainCategoryRoute> {
       ),
     );
   }
-
-
-
 }
