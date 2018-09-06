@@ -12,6 +12,12 @@ class SaveRestaurantAction {
   SaveRestaurantAction(this.restaurant);
 }
 
+class SendOrder {
+  final Order order;
+
+  SendOrder(this.order);
+}
+
 class AddTableNumberOrderAction {
   final int table;
   final int customers;
@@ -21,11 +27,13 @@ class AddTableNumberOrderAction {
 
 class AddItemAction {
   final Item item;
+
   AddItemAction(this.item);
 }
 
 class RemoveItemAction {
   final Item item;
+
   RemoveItemAction(this.item);
 }
 

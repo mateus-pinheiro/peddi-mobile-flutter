@@ -20,7 +20,8 @@ class MainHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return new StoreConnector<AppState, Order>(
       converter: (store) => store.state.order,
-      builder: (context, order) => (new Container(
+      builder: (context, order) => (
+          new Container(
             color: Colors.black,
             height: 160.0,
             child: Row(

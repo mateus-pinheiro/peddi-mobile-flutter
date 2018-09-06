@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:peddi_tont_app/models/order.dart';
 import 'package:peddi_tont_app/models/restaurant.dart';
 import 'package:peddi_tont_app/services/api.dart';
 import 'package:peddi_tont_app/models/app_state.dart';
@@ -18,11 +19,21 @@ void appMiddleware(Store<AppState> store, action, NextDispatcher next) {
     API().getRestaurant().then((restaurant) {
       store.dispatch(new SaveRestaurantAction(restaurant));
     });
+  } else if (action is SendOrder){
+    sendOrderToApi(store.state.order);
   }
 
 //  if (action is SaveRestaurantAction) {
 //    saveStateToPrefs(store.state);
 //  }
+}
+
+void sendOrderToApi(Order order){
+  try {
+    API().postOrder(order).then((response) => response);
+  } catch (E){
+    E.toString();
+  }
 }
 
 
