@@ -30,16 +30,13 @@ class OrderListState extends State<OrderList> {
       ),
       Container(
         child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.end,
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-                 Padding(
-                   padding: const EdgeInsets.only(top: 50.0),
-                   child: Text(
-                    'Total',
-                    style: FontStyles.orderStatus2,
-                ),
-                 ),
+              Text(
+                'Total',
+                style: FontStyles.orderStatus2,
+              ),
               Text(
                 order.amount == null || order.amount == 0.0
                     ? 'Nenhum item adicionado'
@@ -56,73 +53,77 @@ class OrderListState extends State<OrderList> {
       itemBuilder: (context, position) => itemRow(items[position]),
       itemCount: items.length,
       scrollDirection: Axis.vertical,
-
+        cacheExtent: 0.0,
     );
   }
 
   Widget itemRow(Item item) {
-    return new Column(
+    return Column(
       children: <Widget>[
-        new Container(
-          child: new Row(
-            children: <Widget>[
-              new StoreConnector<AppState, OnRemoveIconClicked>(
-                  converter: (store) {
-                return (item) => store.dispatch(RemoveItemAction(item));
-              }, builder: (context, callback) {
-                return new IconButton(
-                  icon: new Icon(Icons.delete),
-                  iconSize: 40.0,
-                  onPressed: () {
-                    callback(item);
-                  },
-                );
-              }),
               Row(
                 children: <Widget>[
-                  new Column(
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10.0),
-                        child: Text(item.name, style: FontStyles.style7),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10.0),
-                        child: Text(item.price.toString(),
-                            style: FontStyles.style7),
-                      ),
-
-
-                    ],
-                  ),
-                  new Column(
-                    children: <Widget>[
-
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10.0),
-                        child: Text(item.qtyItem.toString(),
-                            style: FontStyles.style7),
-                      ),
-//                      Padding(
-//                        padding: const EdgeInsets.only(top: 10.0),
-//                        child: Text(item.ingredients[0].name.toString(),
-//                            style: FontStyles.style7),
-//                      ),
-
-                    ],
-                  ),
+                  Expanded(
+                      child: Container(
+                        color: Colors.white,
+                        height: 80.0,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            Row(
+                              children: <Widget>[
+                                Column(
+                                  children: <Widget>[
+                                    Row(
+                                      children: <Widget>[
+                                        new StoreConnector<AppState, OnRemoveIconClicked>(
+                                            converter: (store) {
+                                              return (item) =>
+                                                  store.dispatch(RemoveItemAction(item));
+                                            }, builder: (context, callback) {
+                                          return new IconButton(
+                                            icon: new Icon(Icons.delete),
+                                            iconSize: 40.0,
+                                            onPressed: () {
+                                              callback(item);
+                                            },
+                                          );
+                                        }),
+                                        Column(
+                                          children: <Widget>[
+                                            Text(item.name, style: FontStyles.style7),
+                                            Text(item.price.toString(), style: FontStyles.style7),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      )),
+                  Expanded(
+                      child: Container(
+                        color: Colors.white,
+                        height: 80.0,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            Text(item.qtyItem.toString(),
+                                style: FontStyles.style7),
+                          ],
+                        ),
+                      )),
                 ],
               ),
 
-            ],
-          ),
-        ),
-        new Divider(
-          height: 20.0,
-          color: Colors.black12,
-        ),
+
       ],
     );
+
   }
 }
 

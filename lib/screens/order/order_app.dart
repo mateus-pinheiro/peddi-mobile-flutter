@@ -29,62 +29,65 @@ class OrderApp extends StatelessWidget {
                     ],
                     borderRadius: BorderRadius.circular(10.0),
                     color: Colors.white),
-                child: new Column(
+                child: Column(
                   children: <Widget>[
-                    new Row(
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.all(30.0),
-                          child: Text(
-                            'Itens do pedido',
-                            style: FontStyles.orderStatus1,
-                          ),
-                        ),
-                      ],
+                    Container(
+                      color: Colors.transparent,
+                      height: 80.0,
+                      width: 545.0,
+                      child: Center(child: Text('Itens do pedido',style: FontStyles.style10,)),
                     ),
-                    Row(
-                      children: <Widget>[
-                        Expanded(
-                            child: Container(
-                          width: 545.0,
-                          height: 50.0,
-                          color: AppColors.yellow1,
-                              child: Center(child: Text('PRODUTO',style: FontStyles.style11,)),
-                        )),
-                        Expanded(
-                            child: Container(
-                          width: 545.0,
-                          height: 50.0,
-                          color: AppColors.yellow1,
-                                child: Center(child: Text('QUANTIDADE',style: FontStyles.style11,)),
-                        )),
-                      ],
+                    Container(
+                      color: Colors.green,
+                      height: 50.0,
+                      width: 545.0,
+                      child: Row(
+                        children: <Widget>[
+                          Expanded(
+                              child: Container(
+                            width: 545.0,
+                            height: 50.0,
+                            color: AppColors.yellow1,
+                            child: Center(
+                                child: Text(
+                              'PRODUTO',
+                              style: FontStyles.style11,
+                            )),
+                          )),
+                          Expanded(
+                              child: Container(
+                            width: 545.0,
+                            height: 50.0,
+                            color: AppColors.yellow1,
+                            child: Center(
+                                child: Text(
+                              'QUANTIDADE',
+                              style: FontStyles.style11,
+                            )),
+                          )),
+                        ],
+                      ),
                     ),
-                    Column(
-                      children: <Widget>[
-                        Container(
-                          height: 430.0,
-                          color: Colors.white,
+                    Expanded(
+                        child: Container(
+                      color: Colors.white,
+                      height: 400.0,
+                      width: 545.0,
                           child: new OrderList(order),
-                        ),
-                      ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 62.0),
-                      child: Container(
-                        height: 69.0,
-                        width: 545.0,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10.0),
-                          color: AppColors.yellow1,
-                        ),
-                        child: MaterialButton(
-                          onPressed: () {},
-                          height: 60.0,
-                          textTheme: ButtonTextTheme.accent,
-                          child: new Text('ENVIAR PEDIDO',
-                              style: FontStyles.buttonStyle),
-                        ),
+                    )),
+                    Container(
+                      height: 69.0,
+                      width: 545.0,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10.0),
+                        color: AppColors.yellow1,
+                      ),
+                      child: MaterialButton(
+                        onPressed: () {},
+                        height: 60.0,
+                        textTheme: ButtonTextTheme.accent,
+                        child: new Text('ENVIAR PEDIDO',
+                            style: FontStyles.buttonStyle),
                       ),
                     ),
                   ],
