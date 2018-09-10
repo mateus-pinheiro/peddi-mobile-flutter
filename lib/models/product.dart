@@ -7,7 +7,7 @@ class Product {
   final String image;
   final String description;
   final bool featured;
-  final double price;
+  final int price;
   final List<Ingredient> ingredients;
 
   Product(
