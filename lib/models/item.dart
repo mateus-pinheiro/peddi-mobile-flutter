@@ -36,6 +36,8 @@ class Item {
             .map((ing) => new Ingredient.fromMap(ing))
             .toList();
 
-
+  String productPrice (double valor) {
+    return "R\$ " + valor.toString()+ " cada";
+  }
 
 }

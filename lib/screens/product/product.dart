@@ -7,7 +7,7 @@ import 'package:peddi_tont_app/screens/product/widgets/product_ingredient.dart';
 import 'package:peddi_tont_app/screens/product/widgets/product_recipe.dart';
 import 'package:peddi_tont_app/themes/app_colors.dart';
 import 'package:peddi_tont_app/themes/font_styles.dart';
-
+import 'package:peddi_tont_app/models/order.dart';
 class ProductRoute extends StatelessWidget {
   ProductRoute(this.product);
 

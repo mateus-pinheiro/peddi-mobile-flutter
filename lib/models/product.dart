@@ -39,5 +39,7 @@ class Product {
     'image': image
   };
 
-
+  String totalProduct (int valor) {
+    return "R\$ " + valor.toString()+ " cada";
+  }
 }

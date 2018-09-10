@@ -47,4 +47,15 @@ class Order {
         'restaurant': restaurant,
         'items': items
       };
+
+  String concatRS(double valor){
+
+    return "R\$ " + valor.toString();
+
+    
+  }
+  String productPrice (double valor) {
+    return "R\$ " + valor.toString()+ " cada";
+  }
+
 }

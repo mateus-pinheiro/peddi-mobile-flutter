@@ -115,7 +115,7 @@ class _ProductRecipeWidgetState extends State<ProductRecipeWidget> {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 40.0, top: 20.0),
-                        child: Text(item.price.toString(),
+                        child: Text(item.productPrice(item.price),
                             style: FontStyles.style6),
                       ),
                       Padding(
