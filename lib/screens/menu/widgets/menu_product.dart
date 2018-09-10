@@ -3,6 +3,8 @@ import 'package:peddi_tont_app/models/product.dart';
 import 'package:peddi_tont_app/screens/product/product.dart';
 import 'package:peddi_tont_app/services/external_images.dart';
 import 'package:peddi_tont_app/themes/font_styles.dart';
+import 'package:peddi_tont_app/models/order.dart';
+import 'package:peddi_tont_app/models/item.dart';
 
 class MenuProduct extends StatelessWidget {
   final Product product;
@@ -60,7 +62,7 @@ class MenuProduct extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 16.0, top: 15.0),
-                    child: Text(product.price.toString(),
+                    child: Text(product.totalProduct(product.price),
                         style: FontStyles.style7),
                   ),
                   Padding(

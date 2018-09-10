@@ -58,7 +58,7 @@ class OrderApp extends StatelessWidget {
                             child: Center(
                                 child: Text(
                               'PRODUTO',
-                              style: FontStyles.style11,
+                              style: FontStyles.style1,
                             )),
                           )),
                           Expanded(
@@ -69,7 +69,7 @@ class OrderApp extends StatelessWidget {
                             child: Center(
                                 child: Text(
                               'QUANTIDADE',
-                              style: FontStyles.style11,
+                              style: FontStyles.style1,
                             )),
                           )),
                         ],

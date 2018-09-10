@@ -209,6 +209,20 @@ class FontStyles {
       fontWeight: FontWeight.bold,
       fontSize: 16.0,
       color: Colors.black);
+  static const style12 = TextStyle(
+    //fontWeight: FontWeight.w900,
+      fontFamily: "CircularStd",
+      fontStyle: FontStyle.normal,
+      fontWeight: FontWeight.bold,
+      fontSize: 24.0,
+      color: Colors.green);
+  static const priceTotal = TextStyle(
+    //fontWeight: FontWeight.w900,
+      fontFamily: "CircularStd",
+      fontStyle: FontStyle.normal,
+      fontWeight: FontWeight.bold,
+      fontSize: 26.0,
+      color: Colors.green);
 
 
 
