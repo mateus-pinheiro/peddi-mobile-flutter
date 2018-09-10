@@ -14,9 +14,9 @@ class ProductRoute extends StatelessWidget {
   Product product;
   final Item item = new Item();
 
-  List<Ingredient> additionalList;
-  List<Ingredient> ingredientList;
-  List<Ingredient> optionList;
+  List<Ingredient> additionalList = new List<Ingredient>();
+  List<Ingredient> ingredientList = new List<Ingredient>();
+  List<Ingredient> optionList = new List<Ingredient>();
 
   void setItem() {
     this.item.name = this.product.name;
@@ -30,9 +30,6 @@ class ProductRoute extends StatelessWidget {
   }
 
   void validateIngredient(Ingredient element) {
-    ingredientList = new List<Ingredient>();
-    additionalList = new List<Ingredient>();
-    optionList = new List<Ingredient>();
 
     if (element != null) {
       if (element.type == 'DEFAULT')
@@ -47,9 +44,9 @@ class ProductRoute extends StatelessWidget {
   //Condicional para verificar abertura de tela de produto/ingredients;
   Widget showProduct(Product product) {
     setItem();
-    setIngredientList(product.ingredient);
+    setIngredientList(product.ingredients);
 
-    if (product.ingredient.isNotEmpty) {
+    if (product.ingredients.isNotEmpty) {
       return new Material(
         type: MaterialType.transparency,
         child: new Stack(

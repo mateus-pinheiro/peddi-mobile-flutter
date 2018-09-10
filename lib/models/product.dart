@@ -7,11 +7,11 @@ class Product {
   final String image;
   final String description;
   final bool featured;
-  final int price;
-  final List<Ingredient> ingredient;
+  final double price;
+  final List<Ingredient> ingredients;
 
   Product(
-      {this.ingredient,
+      {this.ingredients,
       this.price,
       this.featured,
       this.description,
@@ -25,8 +25,8 @@ class Product {
         featured = data['featured'],
         image = data['image'],
         description = data['description'],
-        ingredient =
-            (data['ingredient'] == null ? [] : data['ingredient'] as List)
+        ingredients =
+            (data['ingredients'] == null ? [] : data['ingredients'] as List)
                 .map((ing) => new Ingredient.fromMap(ing))
                 .toList();
 
@@ -35,7 +35,7 @@ class Product {
     'price': price,
     'featured': featured,
     'description': description,
-    'ingredient': ingredient,
+    'ingredients': ingredients,
     'image': image
   };
 

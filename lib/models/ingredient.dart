@@ -3,8 +3,9 @@ import 'package:meta/meta.dart';
 @immutable
 class Ingredient {
   final String type;
-  final int price;
+  final double price;
   final String name;
+  bool isChecked;
 
   Ingredient({this.type, this.price, this.name});
 

@@ -23,13 +23,12 @@ class IngredientWidgetState extends State<IngredientWidget> {
 
   Item item;
   List<Ingredient> ingredient;
-  bool isSelected;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    isSelected = false;
+
   }
 
   @override
@@ -50,38 +49,44 @@ class IngredientWidgetState extends State<IngredientWidget> {
     );
   }
 
-  Widget validateIngredients (List<Ingredient> ingredients){
-    if (ingredients.isEmpty){
+  Widget validateIngredients(List<Ingredient> ingredients) {
+    if (ingredients.isEmpty) {
       return Padding(
         padding: const EdgeInsets.all(18.0),
-        child: new Container(child: Text('Nenhum ingrediente para esse produto.',  style: FontStyles.style7)),
+        child: new Container(
+            child: Text('Nenhum ingrediente para esse produto.',
+                style: FontStyles.style7)),
       );
     }
-    return new Expanded(child: new Container(child: buildIngredientList(ingredients)));
+    return new Expanded(
+        child: new Container(child: buildIngredientList(ingredients)));
   }
 
   Widget ingredientItem(Ingredient ingredient) {
     return new CheckboxListTile(
-            controlAffinity: ListTileControlAffinity.leading,
-            value: isSelected,
-            onChanged: (bool newValue) {
-              setState(() {
-                isSelected = newValue;
-                if (item.ingredients == null)
-                  item.ingredients = new List<Ingredient>();
-                item.ingredients.add(ingredient);
-                if (ingredient.price != null)
-                  item.amount += ingredient.price.toDouble();
-              });
-            },
-//        onChanged: _selectIngredient,
-            title: new Text(
-              ingredient.name,
-              style: FontStyles.style7,
-            ),
-            activeColor: Colors.green,
-            selected: true,
-          );
+      controlAffinity: ListTileControlAffinity.leading,
+      value: ingredient.isChecked,
+      onChanged: (bool newValue) {
+        setState(() {
+          ingredient.isChecked = newValue;
+          if (item.ingredients == null)
+            item.ingredients = new List<Ingredient>();
+
+          if (ingredient.isChecked == true) {
+            item.ingredients.add(ingredient);
+            if (ingredient.price != null)
+              item.amount += ingredient.price.toDouble();
+          } else
+            item.ingredients.remove(ingredient);
+        });
+      },
+      title: new Text(
+        ingredient.name,
+        style: FontStyles.style7,
+      ),
+      activeColor: Colors.green,
+      selected: true,
+    );
   }
 
   Widget buildIngredientList(List<Ingredient> ingredientList) {
@@ -92,12 +97,6 @@ class IngredientWidgetState extends State<IngredientWidget> {
       itemCount: ingredientList.length,
     );
   }
-
-//  void _selectIngredient(bool select) {
-//    setState(() {
-//      isSelected = select;
-//    });
-//  }
 }
 
 typedef OnIngredientStateChanged = Function(Item item);

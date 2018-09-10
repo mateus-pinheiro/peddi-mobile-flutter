@@ -34,13 +34,6 @@ AppState sendOrder(SendOrder action, AppState state) {
   return new AppState(
       state.restaurant,
       action.order
-//      new Order(
-//          table: action.order.table,
-//          customers: action.order.customers,
-//          createdAt: action.order.createdAt,
-//          restaurant: state.order.restaurant,
-//          items: new List<Item>(),
-//          updatedAt: DateTime.now()),
   );
 }
 

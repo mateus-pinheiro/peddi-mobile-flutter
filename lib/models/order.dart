@@ -33,7 +33,7 @@ class Order {
         createdAt = data['createdAt'],
         updatedAt = data['updatedAt'],
         restaurant = data['restaurant'],
-        items = (data['items'] == null ? [] : data['items'] as List)
+        items = (data['products'] == null ? [] : data['products'] as List)
             .map((item) => new Item.fromMap(item))
             .toList();
 
@@ -42,9 +42,9 @@ class Order {
         'customers': customers,
         'amount': amount,
         'status': status,
-        'created_at': createdAt,
+        'created_at': createdAt.toString(),
         'updated_at': updatedAt,
         'restaurant': restaurant,
-        'items': items
+        'products': items
       };
 }
