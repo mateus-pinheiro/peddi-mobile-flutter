@@ -7,7 +7,7 @@ class Product {
   final String image;
   final String description;
   final bool featured;
-  final int price;
+  final double price;
   final List<Ingredient> ingredients;
 
   Product(
@@ -39,7 +39,7 @@ class Product {
     'image': image
   };
 
-  String totalProduct (int valor) {
+  String totalProduct (double valor) {
     return "R\$ " + valor.toString()+ " cada";
   }
 }

@@ -7,18 +7,11 @@ import 'package:peddi_tont_app/models/order.dart';
 import 'package:peddi_tont_app/models/restaurant.dart';
 
 class API {
-  static const String _apiUrl = 'http://192.168.15.27:3001/api';
+//  static const String _apiUrl = 'http://192.168.15.27:3001/api';
+  static const String _apiUrl = 'http://192.168.15.19:3000/api';
 //  static const String _apiUrl = 'http://192.168.0.14:3000/api';
   final http.Client _client = http.Client();
 
-//  Future<Restaurant> getRestaurant() async {
-//    var response = await _client.get('$_apiUrl');
-//    if (response.statusCode == 200) {
-//      print(Restaurant.fromMap(json.decode(response.body)));
-//    }
-//    print(response.body);
-//    return null;
-//  }
 
   Future<Restaurant> getRestaurant() async {
     var response =
@@ -30,17 +23,9 @@ class API {
     return null;
   }
 
-//  Future<Response> postOrder(url,
-//      {Map<String, String> headers, body, Encoding encoding}) {
-//    var response = ((client) => client.post('$_apiUrl/orders/',
-//        headers: headers, body: body, encoding: encoding));
-//
-//    return response;
-//  }
-
   Future<Response> postOrder(Order order) async {
     var jsonEncoded = json.encode(order.toJson());
-    var request = await _client.post(jsonEncoded);
+    var request = await _client.post('$_apiUrl/orders',headers: {"Content-Type": "application/json"}, body: jsonEncoded);
     return request;
   }
 
@@ -65,13 +50,6 @@ class API {
 //    return response.body;
 //  }
 
-//  Future<Restaurant> getRestaurant() async {
-//    var response = await _client.get('$_apiUrl/restaurant');
-//    if (response.statusCode == 200) {
-//      return Restaurant.fromMap(json.decode(response.body));
-//    }
-//
-//    return null;
-//  }
+
 
 }

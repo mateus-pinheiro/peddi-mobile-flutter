@@ -28,8 +28,10 @@ class IngredientWidgetState extends State<IngredientWidget> {
   void initState() {
     // TODO: implement initState
     super.initState();
-
+    ingredient.forEach((f) => f.isChecked = false);
   }
+
+
 
   @override
   Widget build(BuildContext context) {

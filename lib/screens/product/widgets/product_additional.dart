@@ -24,13 +24,12 @@ class AdditionalState extends State<Additional> {
 
   final List<Ingredient> additionalList;
   Item item;
-  bool isSelected;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    isSelected = false;
+    additionalList.forEach((f) => f.isChecked = false);
   }
 
   additionalItem(Ingredient additional) {
@@ -38,18 +37,20 @@ class AdditionalState extends State<Additional> {
 
     return new CheckboxListTile(
       controlAffinity: ListTileControlAffinity.leading,
-      value: isSelected,
+      value: additional.isChecked,
       onChanged: (bool newValue) {
         setState(() {
-          isSelected = newValue;
+          additional.isChecked = newValue;
           if (item.ingredients == null)
             item.ingredients = new List<Ingredient>();
-          item.ingredients.add(additional);
 
-          if (isSelected == true) {
+
+          if (additional.isChecked == true) {
+            item.ingredients.add(additional);
             if (additional.price != null)
               item.amount += additional.price.toDouble();
           } else {
+            item.ingredients.remove(additional);
             if (additional.price != null)
               item.amount -= additional.price.toDouble();
           }
