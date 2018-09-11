@@ -48,11 +48,11 @@ class AdditionalState extends State<Additional> {
           if (additional.isChecked == true) {
             item.ingredients.add(additional);
             if (additional.price != null)
-              item.amount += additional.price.toDouble();
+              item.amount += additional.price;
           } else {
             item.ingredients.remove(additional);
             if (additional.price != null)
-              item.amount -= additional.price.toDouble();
+              item.amount -= additional.price;
           }
         });
       },
