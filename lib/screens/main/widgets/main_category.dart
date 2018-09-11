@@ -113,15 +113,15 @@ class MainCategoryRouteState extends State<MainCategoryRoute> {
       textTheme: ButtonTextTheme.primary,
       child: new Container(
         width: 635.0,
-        height: 180.0,
+        height: 200.0,
         decoration: new BoxDecoration(
-            borderRadius: BorderRadius.circular(10.0),
             color: Colors.black,
             image: new DecorationImage(
                 image: new NetworkImage(getCategoryImage(category.photo)),
                 fit: BoxFit.fitWidth)),
         child: new Center(
           child: new Text(
+
             category.name,
             style: FontStyles.style5,
             textScaleFactor: 1.5,

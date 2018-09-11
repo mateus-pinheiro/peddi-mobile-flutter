@@ -91,6 +91,7 @@ class _MenuCategoryState extends State<MenuCategoryTeste> {
       onPressed: () {
         _selectCategory(category);
       },
+      splashColor: Color(0),
       child: Container(
 //            width: 80.0,
         child: Center(
@@ -100,7 +101,7 @@ class _MenuCategoryState extends State<MenuCategoryTeste> {
         )),
         height: 70.0,
         width: 180.0,
-        color: AppColors.yellow1,
+
       ),
     );
   }
@@ -110,6 +111,7 @@ class _MenuCategoryState extends State<MenuCategoryTeste> {
       onPressed: () {
         _selectSubCategory(subCategory);
       },
+      splashColor: Color(0),
       child: Container(
         child: Center(
             child: Text(
@@ -119,7 +121,7 @@ class _MenuCategoryState extends State<MenuCategoryTeste> {
 //        color: Colors.green,
         height: 60.0,
         width: 180.0,
-        color: AppColors.gray2,
+
       ),
     );
   }

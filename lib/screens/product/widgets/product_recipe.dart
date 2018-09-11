@@ -155,6 +155,7 @@ class _ProductRecipeWidgetState extends State<ProductRecipeWidget> {
                                                 _removeQtyItem();
                                               },
                                               textTheme: ButtonTextTheme.accent,
+                                              splashColor: Color(0),
                                               child: new Icon(
                                                 Icons.remove_circle,
                                                 color: Colors.black12,
@@ -170,6 +171,7 @@ class _ProductRecipeWidgetState extends State<ProductRecipeWidget> {
                                                 _addQtyItem();
                                               },
                                               textTheme: ButtonTextTheme.accent,
+                                              splashColor: Color(0),
                                               child: new Icon(
                                                 Icons.add_circle,
                                                 color: Colors.black12,
@@ -199,7 +201,9 @@ class _ProductRecipeWidgetState extends State<ProductRecipeWidget> {
                                           callback(item);
                                         },
                                         height: 60.0,
+                                        splashColor: Color(0),
                                         textTheme: ButtonTextTheme.accent,
+
                                         child: new Text('ADICIONAR AO PEDIDO',
                                             style: FontStyles.buttonStyle),
                                       ),

@@ -97,6 +97,7 @@ class OrderApp extends StatelessWidget {
                               onPressed: () {
                                 callback(order);
                               },
+                              splashColor: Color(0),
                               height: 60.0,
                               textTheme: ButtonTextTheme.accent,
                               child: new Text('ENVIAR PEDIDO',
