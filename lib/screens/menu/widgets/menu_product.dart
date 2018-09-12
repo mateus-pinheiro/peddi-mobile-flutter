@@ -68,7 +68,8 @@ class MenuProduct extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(left: 16.0, top: 10.0),
                     child: Text(product.description, style: FontStyles.style8),
-                  )
+                  ),
+                 
                 ],
               ),
             ),

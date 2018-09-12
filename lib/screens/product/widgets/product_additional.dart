@@ -65,7 +65,7 @@ class AdditionalState extends State<Additional> {
       secondary: Padding(
         padding: const EdgeInsets.only(right: 100.0),
         child: Text(
-          'RS $additionalPrice',
+          'R\$ $additionalPrice'+ " cada",
           style: FontStyles.style7,
         ),
       ),
