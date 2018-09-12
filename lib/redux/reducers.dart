@@ -31,10 +31,7 @@ AppState saveRestaurant(SaveRestaurantAction action, AppState state) {
 }
 
 AppState sendOrder(SendOrder action, AppState state) {
-  return new AppState(
-      state.restaurant,
-      action.order
-  );
+  return new AppState(state.restaurant, action.order);
 }
 
 AppState addTableNumberOrder(AddTableNumberOrderAction action, AppState state) {

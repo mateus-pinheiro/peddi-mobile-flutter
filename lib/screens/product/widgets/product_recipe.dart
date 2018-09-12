@@ -80,10 +80,7 @@ class _ProductRecipeWidgetState extends State<ProductRecipeWidget> {
   Widget build(BuildContext context) {
     return new Stack(
       children: [
-        new Container(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          child: new Column(
+        new Column(
             children: <Widget>[
               new Padding(
                 padding: const EdgeInsets.only(top: 40.0),
@@ -217,7 +214,7 @@ class _ProductRecipeWidgetState extends State<ProductRecipeWidget> {
               )
             ],
           ),
-        ),
+
       ],
     );
   }

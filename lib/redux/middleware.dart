@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:http/http.dart';
 import 'package:peddi_tont_app/models/order.dart';
 import 'package:peddi_tont_app/models/restaurant.dart';
 import 'package:peddi_tont_app/services/api.dart';
@@ -19,7 +20,7 @@ void appMiddleware(Store<AppState> store, action, NextDispatcher next) {
     API().getRestaurant().then((restaurant) {
       store.dispatch(new SaveRestaurantAction(restaurant));
     });
-  } else if (action is SendOrder){
+  } else if (action is SendOrder) {
     sendOrderToApi(store.state.order);
   }
 
@@ -28,14 +29,10 @@ void appMiddleware(Store<AppState> store, action, NextDispatcher next) {
 //  }
 }
 
-void sendOrderToApi(Order order){
-  try {
-    API().postOrder(order).then((response) => response);
-  } catch (E){
-    E.toString();
-  }
+void sendOrderToApi(Order order) {
+    API().postOrder(order).then((response) =>
+      response);
 }
-
 
 void saveStateToPrefs(AppState state) async {
   SharedPreferences preferences = await SharedPreferences.getInstance();

@@ -8,6 +8,7 @@ import 'package:peddi_tont_app/screens/product/widgets/product_recipe.dart';
 import 'package:peddi_tont_app/themes/app_colors.dart';
 import 'package:peddi_tont_app/themes/font_styles.dart';
 import 'package:peddi_tont_app/models/order.dart';
+
 class ProductRoute extends StatelessWidget {
   ProductRoute(this.product);
 
@@ -30,7 +31,6 @@ class ProductRoute extends StatelessWidget {
   }
 
   void validateIngredient(Ingredient element) {
-
     if (element != null) {
       if (element.type == 'DEFAULT')
         ingredientList.add(element);
@@ -42,7 +42,7 @@ class ProductRoute extends StatelessWidget {
   }
 
   //Condicional para verificar abertura de tela de produto/ingredients;
-  Widget showProduct(Product product) {
+  Widget showProduct(Product product, BuildContext context) {
     setItem();
     setIngredientList(product.ingredients);
 
@@ -84,8 +84,8 @@ class ProductRoute extends StatelessWidget {
             new Positioned(
 //          decoration: new BoxDecoration(gradient: backgroundGradient),
                 child: new ProductRecipe(item, product),
-                left: 290.0,
-                bottom: 1.0),
+                right: 120.0,
+                bottom: 28.0),
             new Positioned(
               right: 100.0,
               child: new Stack(
@@ -97,17 +97,13 @@ class ProductRoute extends StatelessWidget {
                       color: Colors.red,
                       borderRadius: BorderRadius.circular(100.0),
                     ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-
-                         new Icon(
-                            Icons.close,
-                            color: Colors.white,
-                            size: 35.0,
-                          ),
-                      ],
+                    child: new IconButton(
+                      onPressed: () { Navigator.pop(context); },
+                      icon: new Icon(
+                        Icons.close,
+                        color: Colors.white,
+                        size: 35.0,
+                      ),
                     ),
                   ),
                 ],
@@ -124,14 +120,29 @@ class ProductRoute extends StatelessWidget {
             new Positioned(
 //              decoration: new BoxDecoration(gradient: backgroundGradient),
                 child: new ProductRecipe(item, product),
-//          left: 240.0,
-                bottom: 3.0),
+                left: 405.0,
+                bottom: 20.0),
             new Positioned(
               top: 5.0,
-              right: 395.0,
+              right: 385.0,
               child: new Stack(
                 children: <Widget>[
-                  Container(width: 30.0, height: 30.0, color: Colors.red),
+                  new Container(
+                    width: 50.0,
+                    height: 50.0,
+                    decoration: BoxDecoration(
+                      color: Colors.red,
+                      borderRadius: BorderRadius.circular(100.0),
+                    ),
+                    child: new IconButton(
+                      onPressed: () { Navigator.pop(context); },
+                      icon: new Icon(
+                        Icons.close,
+                        color: Colors.white,
+                        size: 35.0,
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -143,6 +154,6 @@ class ProductRoute extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return showProduct(product);
+    return showProduct(product, context);
   }
 }
