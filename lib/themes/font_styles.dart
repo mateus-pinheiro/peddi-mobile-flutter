@@ -47,6 +47,14 @@ class FontStyles {
       fontWeight: FontWeight.bold,
       color: Colors.grey);
 
+  static const feedbackStyle = TextStyle(
+    //fontWeight: FontWeight.w700,
+      fontFamily: "CircularStd",
+      fontStyle: FontStyle.normal,
+      fontSize: 22.0,
+      fontWeight: FontWeight.bold,
+      color: Colors.white);
+
   static const a1 = TextStyle(
       fontFamily: "CircularStd",
       fontStyle: FontStyle.normal,

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:peddi_tont_app/models/category.dart';
 import 'package:peddi_tont_app/models/ingredient.dart';
 import 'package:peddi_tont_app/models/item.dart';
@@ -14,9 +16,17 @@ class SaveRestaurantAction {
 
 class SendOrder {
   final Order order;
-
-  SendOrder(this.order);
+  final Completer completer;
+  SendOrder(this.order, this.completer);
 }
+
+class OrderSentSuccessfully {
+  final String orderId;
+
+  OrderSentSuccessfully(this.orderId);
+}
+
+class OrderNotSentSuccessfully {}
 
 class AddTableNumberOrderAction {
   final int table;

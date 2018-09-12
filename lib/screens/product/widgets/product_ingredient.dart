@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:peddi_tont_app/models/app_state.dart';
 import 'package:peddi_tont_app/models/ingredient.dart';
 import 'package:peddi_tont_app/models/item.dart';
-import 'package:peddi_tont_app/redux/actions.dart';
 import 'package:peddi_tont_app/themes/font_styles.dart';
-import 'package:flutter_redux/flutter_redux.dart';
 
 class IngredientWidget extends StatefulWidget {
   IngredientWidget(this.ingredient, this.item);
@@ -30,8 +27,6 @@ class IngredientWidgetState extends State<IngredientWidget> {
     super.initState();
     ingredient.forEach((f) => f.isChecked = false);
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -100,5 +95,3 @@ class IngredientWidgetState extends State<IngredientWidget> {
     );
   }
 }
-
-typedef OnIngredientStateChanged = Function(Item item);

@@ -1,3 +1,5 @@
+import 'dart:async';
+import 'package:peddi_tont_app/util/completers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:peddi_tont_app/models/app_state.dart';
@@ -84,7 +86,7 @@ class OrderApp extends StatelessWidget {
                     )),
                     new StoreConnector<AppState, OnSendPressed>(
                       converter: (store) {
-                        return (order) => store.dispatch(SendOrder(order));
+                        return (order) => store.dispatch(SendOrder(order, snackBarCompleter(context, 'Dialog', shouldPop: true)));
                       },
                       builder: (BuildContext context, callback) => Container(
                             height: 69.0,

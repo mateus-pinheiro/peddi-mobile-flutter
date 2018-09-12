@@ -25,9 +25,14 @@ class API {
 
   Future<Response> postOrder(Order order) async {
     var jsonEncoded = json.encode(order.toJson());
-    var request = await _client.post('$_apiUrl/orders',
-        headers: {"Content-Type": "application/json"}, body: jsonEncoded);
-    return request;
+    try {
+      var request = await _client.post('$_apiUrl/orders',
+          headers: {"Content-Type": "application/json"}, body: jsonEncoded);
+
+      return request;
+    } on Exception catch (e) {
+      return Future.error(e);
+    }
   }
 
 //  Future<Restaurant> getRestaurantNotAsync() {

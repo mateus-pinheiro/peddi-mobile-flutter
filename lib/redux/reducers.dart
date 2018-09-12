@@ -12,6 +12,10 @@ AppState appStateReducers(AppState state, dynamic action) {
     return saveRestaurant(action, state);
   } else if (action is SendOrder) {
     return sendOrder(action, state);
+  } else if (action is OrderSentSuccessfully) {
+    return orderSent(action, state);
+  } else if (action is OrderNotSentSuccessfully) {
+    return orderNotSent(action, state);
   } else if (action is AddTableNumberOrderAction) {
     return addTableNumberOrder(action, state);
   } else if (action is AddItemAction) {
@@ -32,6 +36,14 @@ AppState saveRestaurant(SaveRestaurantAction action, AppState state) {
 
 AppState sendOrder(SendOrder action, AppState state) {
   return new AppState(state.restaurant, action.order);
+}
+
+AppState orderSent(OrderSentSuccessfully action, AppState state) {
+  return new AppState(state.restaurant, state.order);
+}
+
+AppState orderNotSent(OrderNotSentSuccessfully action, AppState state) {
+  return new AppState(state.restaurant, state.order);
 }
 
 AppState addTableNumberOrder(AddTableNumberOrderAction action, AppState state) {

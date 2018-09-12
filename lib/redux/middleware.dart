@@ -21,7 +21,7 @@ void appMiddleware(Store<AppState> store, action, NextDispatcher next) {
       store.dispatch(new SaveRestaurantAction(restaurant));
     });
   } else if (action is SendOrder) {
-    sendOrderToApi(store.state.order);
+    sendOrderToApi(store.state.order, store, action);
   }
 
 //  if (action is SaveRestaurantAction) {
@@ -29,9 +29,19 @@ void appMiddleware(Store<AppState> store, action, NextDispatcher next) {
 //  }
 }
 
-void sendOrderToApi(Order order) {
-    API().postOrder(order).then((response) =>
-      response);
+void sendOrderToApi(Order order, Store<AppState> state, SendOrder action) {
+  API().postOrder(order).then((response) {
+    state.dispatch(OrderSentSuccessfully(response.body));
+    if (action.completer != null) {
+      action.completer.complete();
+    }
+  }).catchError((Object error) {
+    print(error);
+    state.dispatch(OrderNotSentSuccessfully);
+    if (action.completer != null) {
+      action.completer.completeError(error);
+    }
+  });
 }
 
 void saveStateToPrefs(AppState state) async {
