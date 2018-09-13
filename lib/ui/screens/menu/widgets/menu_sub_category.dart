@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:peddi_tont_app/models/sub_category.dart';
-import 'package:peddi_tont_app/screens/menu/widgets/menu_product.dart';
+import 'package:peddi_tont_app/ui/screens/menu/widgets/menu_product.dart';
 
 class MenuSubCategoryTeste extends StatefulWidget {
   MenuSubCategoryTeste(this.subCategories);

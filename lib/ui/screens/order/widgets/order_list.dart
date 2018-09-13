@@ -5,6 +5,7 @@ import 'package:peddi_tont_app/redux/actions.dart';
 import 'package:peddi_tont_app/themes/font_styles.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:peddi_tont_app/models/app_state.dart';
+import 'package:peddi_tont_app/util/money_converter.dart';
 
 class OrderList extends StatefulWidget {
   OrderList(this.order);
@@ -26,24 +27,27 @@ class OrderListState extends State<OrderList> {
   Widget build(BuildContext context) {
     return new Column(
         mainAxisAlignment: MainAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.end,
         children: <Widget>[
           new Expanded(
             child: Container(child: _buildItemList(order.items)),
           ),
           Padding(
-            padding:
-                const EdgeInsets.only(top: 20.0, bottom: 30.0),
+            padding: const EdgeInsets.only(top: 20.0, bottom: 30.0, right: 50.0),
             child: Container(
-              child: Column(children: <Widget>[
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
                 Text(
-                  'Total:',
-                  style: FontStyles.style10,
+                  'TOTAL:',
+                  style: FontStyles.totalLabelCart,
                 ),
                 Text(
                   order.amount == null || order.amount == 0.0
                       ? 'Nenhum item adicionado'
-                      : order.concatRS(order.amount),
-                  style: FontStyles.priceTotal,
+                      : CurrencyConverter.toBrazilianReal(order.amount),
+                  style: FontStyles.amountCart,
                 ),
               ]),
             ),
@@ -67,11 +71,11 @@ class OrderListState extends State<OrderList> {
           children: <Widget>[
             Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-              color: Colors.white,
-              height: 80.0,
-              child: Column(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                color: Colors.white,
+                height: 80.0,
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
@@ -81,8 +85,8 @@ class OrderListState extends State<OrderList> {
                           children: <Widget>[
                             Row(
                               children: <Widget>[
-                                new StoreConnector<AppState, OnRemoveIconClicked>(
-                                    converter: (store) {
+                                new StoreConnector<AppState,
+                                    OnRemoveIconClicked>(converter: (store) {
                                   return (item) =>
                                       store.dispatch(RemoveItemAction(item));
                                 }, builder: (context, callback) {
@@ -94,20 +98,30 @@ class OrderListState extends State<OrderList> {
                                     },
                                   );
                                 }),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: <Widget>[
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 05.0),
-                                      child: Text(item.name.toString(), style: FontStyles.style7),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 05.0),
-                                      child: Text(order.productPrice(item.price),
-                                          style: FontStyles.style12),
-                                    ),
-                                  ],
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 10.0),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: <Widget>[
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(top: 5.0),
+                                        child: Text(item.name.toString(),
+                                            style: FontStyles.productNameCart),
+                                      ),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(top: 10.0),
+                                        child: Text(
+                                            CurrencyConverter.toBrazilianReal(
+                                                    item.price) +
+                                                ' cada',
+                                            style: FontStyles.productPriceCart),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ],
                             ),
@@ -116,28 +130,29 @@ class OrderListState extends State<OrderList> {
                       ],
                     ),
                   ],
+                ),
               ),
-            ),
-                )),
+            )),
             Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-              color: Colors.white,
-              height: 80.0,
-              child: Column(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                color: Colors.white,
+                height: 80.0,
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    Text(item.qtyItem.toString(), style: FontStyles.style10),
+                    Text(item.qtyItem.toString(),
+                        style: FontStyles.productsQtdProduct),
                   ],
+                ),
               ),
-            ),
-                )),
+            )),
           ],
         ),
         Padding(
-          padding: const EdgeInsets.only(left: 50.0,right: 70.0),
+          padding: const EdgeInsets.only(left: 50.0, right: 70.0),
           child: Divider(
             height: 02.0,
             color: Colors.black12,

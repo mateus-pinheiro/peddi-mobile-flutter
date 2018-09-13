@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:peddi_tont_app/screens/buttons/elevated_button.dart';
 import 'package:peddi_tont_app/themes/app_colors.dart';
 import 'package:peddi_tont_app/themes/font_styles.dart';
 
@@ -34,7 +33,7 @@ class SuccessDialog extends StatelessWidget {
             ],
           ),
         ),
-        Expanded(child: Container()),
+//        Expanded(child: Container()),
       ],
     );
   }

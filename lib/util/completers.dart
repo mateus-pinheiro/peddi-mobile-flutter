@@ -1,9 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:peddi_tont_app/screens/dialogs/error_dialog.dart';
-import 'package:peddi_tont_app/screens/dialogs/success_dialog.dart';
-import 'package:peddi_tont_app/screens/lists/snackbar_row.dart';
+import 'package:peddi_tont_app/ui/dialogs/error_dialog.dart';
+import 'package:peddi_tont_app/ui/dialogs/success_dialog.dart';
 
 Completer<Null> snackBarCompleter(BuildContext context, String message,
     {bool shouldPop = false}) {

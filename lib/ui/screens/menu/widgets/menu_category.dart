@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:peddi_tont_app/models/category.dart';
 import 'package:peddi_tont_app/models/sub_category.dart';
-import 'package:peddi_tont_app/screens/menu/widgets/menu_product.dart';
 import 'package:peddi_tont_app/themes/app_colors.dart';
 import 'package:peddi_tont_app/themes/font_styles.dart';
+import 'package:peddi_tont_app/ui/screens/menu/widgets/menu_product.dart';
 
 class MenuCategoryTeste extends StatefulWidget {
   MenuCategoryTeste(this._selectedCategory, this.storeCategories);
@@ -93,13 +93,11 @@ class _MenuCategoryState extends State<MenuCategoryTeste> {
       },
       splashColor: Color(0),
       child: Container(
-//            width: 80.0,
         child: Center(
             child: Text(
           category.name,
-         style: FontStyles.style6,
+         style: FontStyles.menuCategories,
         )),
-        height: 70.0,
         width: 180.0,
 
       ),

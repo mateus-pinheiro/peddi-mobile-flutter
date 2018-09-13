@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:peddi_tont_app/models/ingredient.dart';
 import 'package:peddi_tont_app/models/item.dart';
 import 'package:peddi_tont_app/themes/font_styles.dart';
+import 'package:peddi_tont_app/util/money_converter.dart';
 
 class Additional extends StatefulWidget {
   Additional(this.additionalList, this.item);
@@ -41,7 +42,7 @@ class AdditionalState extends State<Additional> {
             padding: const EdgeInsets.only(top: 30.0, left: 20.0),
             child: new Text(
               'Deixe seu pedido ainda mais completo!',
-              style: FontStyles.style9,
+              style: FontStyles.ingredientTitleProduct,
             ),
           ),
           validateAdditional(additionalList)
@@ -86,15 +87,15 @@ class AdditionalState extends State<Additional> {
       },
       title: new Text(
         additional.name,
-        style: FontStyles.style7,
+        style: FontStyles.ingredientNameProduct,
       ),
       activeColor: Colors.green,
       selected: true,
       secondary: Padding(
         padding: const EdgeInsets.only(right: 100.0),
         child: Text(
-          'R\$ $additionalPrice' + " cada",
-          style: FontStyles.style7,
+          CurrencyConverter.toBrazilianReal(additionalPrice) + " cada",
+          style: FontStyles.ingredientPriceProduct,
         ),
       ),
     );

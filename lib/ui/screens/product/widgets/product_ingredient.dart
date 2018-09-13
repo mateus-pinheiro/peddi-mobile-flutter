@@ -38,7 +38,7 @@ class IngredientWidgetState extends State<IngredientWidget> {
           padding: const EdgeInsets.only(top: 30.0, left: 20.0),
           child: new Text(
             'Ingredientes',
-            style: FontStyles.style9,
+            style: FontStyles.ingredientTitleProduct,
           ),
         ),
         validateIngredients(ingredient)
@@ -79,7 +79,7 @@ class IngredientWidgetState extends State<IngredientWidget> {
       },
       title: new Text(
         ingredient.name,
-        style: FontStyles.style7,
+        style: FontStyles.ingredientNameProduct,
       ),
       activeColor: Colors.green,
       selected: true,

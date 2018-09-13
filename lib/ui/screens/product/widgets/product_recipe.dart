@@ -8,6 +8,7 @@ import 'package:peddi_tont_app/redux/actions.dart';
 import 'package:peddi_tont_app/services/external_images.dart';
 import 'package:peddi_tont_app/themes/font_styles.dart';
 import 'package:peddi_tont_app/themes/app_colors.dart';
+import 'package:peddi_tont_app/util/money_converter.dart';
 
 class ProductRecipe extends StatelessWidget {
   ProductRecipe(this.item, this.product);
@@ -108,17 +109,17 @@ class _ProductRecipeWidgetState extends State<ProductRecipeWidget> {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 40.0),
-                        child: Text(item.name, style: FontStyles.style6),
+                        child: Text(item.name, style: FontStyles.productTitleProduct),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 40.0, top: 20.0),
-                        child: Text(item.productPrice(item.price),
-                            style: FontStyles.style6),
+                        padding: const EdgeInsets.only(left: 40.0, top: 15.0),
+                        child: Text(CurrencyConverter.toBrazilianReal(item.price),
+                            style: FontStyles.productsPrice),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 40.0, top: 20.0),
+                        padding: const EdgeInsets.only(left: 40.0, top: 15.0),
                         child:
-                            Text(product.description, style: FontStyles.style7),
+                            Text(product.description, style: FontStyles.productDescriptionProduct),
                       ),
                       Expanded(
                         child: Padding(
@@ -139,7 +140,7 @@ class _ProductRecipeWidgetState extends State<ProductRecipeWidget> {
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: <Widget>[
                                       new Text('Quantidade:',
-                                          style: FontStyles.a1),
+                                          style: FontStyles.productDescriptionProduct),
                                       Padding(
                                         padding:
                                             const EdgeInsets.only(top: 8.0),
@@ -156,12 +157,12 @@ class _ProductRecipeWidgetState extends State<ProductRecipeWidget> {
                                               child: new Icon(
                                                 Icons.remove_circle,
                                                 color: Colors.black12,
-                                                size: 45.0,
+                                                size: 50.0,
                                               ),
                                             ),
                                             new Text(
                                               _quantityItem.toString(),
-                                              style: FontStyles.style10,
+                                              style: FontStyles.productsQtdProduct,
                                             ),
                                             new MaterialButton(
                                               onPressed: () {
@@ -172,7 +173,7 @@ class _ProductRecipeWidgetState extends State<ProductRecipeWidget> {
                                               child: new Icon(
                                                 Icons.add_circle,
                                                 color: Colors.black12,
-                                                size: 45.0,
+                                                size: 50.0,
                                               ),
                                             ),
                                           ],

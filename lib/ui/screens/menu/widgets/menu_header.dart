@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:peddi_tont_app/models/app_state.dart';
 import 'package:peddi_tont_app/models/order.dart';
-import 'package:peddi_tont_app/screens/order/order_app.dart';
 import 'package:peddi_tont_app/themes/font_styles.dart';
+import 'package:peddi_tont_app/ui/screens/order/order_app.dart';
 
 class MenuHeader extends StatelessWidget {
   showOrder(BuildContext context) {

@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:peddi_tont_app/screens/table_opening/widgets/opening_form.dart';
-import 'package:peddi_tont_app/themes/app_colors.dart';
 import 'package:peddi_tont_app/themes/font_styles.dart';
+import 'package:peddi_tont_app/ui/screens/table_opening/widgets/opening_form.dart';
 
 class Opening extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-//      appBar: ,
       body: Material(
         child: Container(
           foregroundDecoration: BoxDecoration(
             image: DecorationImage(
-                colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.05), BlendMode.dstATop),
+                colorFilter: new ColorFilter.mode(
+                    Colors.black.withOpacity(0.05), BlendMode.dstATop),
                 image: AssetImage('resources/images/tabletimage.png'),
                 fit: BoxFit.fill),
           ),
@@ -65,18 +64,17 @@ class Opening extends StatelessWidget {
                   ),
                 ),
               ),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 5.0),
-                  child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    child: OpeningFormRoute(),
-                  ),
+              Padding(
+                padding: const EdgeInsets.only(top: 60.0),
+                child: Container(
+                  height: 450.0,
+                  width: MediaQuery.of(context).size.width,
+                  child: OpeningFormRoute(),
                 ),
               ),
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.only(bottom: 50.0),
+                  padding: const EdgeInsets.only(bottom: 40.0),
                   child: Container(
                     width: MediaQuery.of(context).size.width,
 //                    height: 80.0,
@@ -88,7 +86,7 @@ class Opening extends StatelessWidget {
                           padding: const EdgeInsets.only(top: 5.0, right: 50.0),
                           child: Text(
                             'Ajuda',
-                           style: FontStyles.style1,
+                            style: FontStyles.style1,
                           ),
                         ),
                         Padding(
@@ -100,7 +98,8 @@ class Opening extends StatelessWidget {
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 5.0, right: 40.0),
-                          child: Text('Reiniciar',
+                          child: Text(
+                            'Reiniciar',
                             style: FontStyles.style1,
                           ),
                         ),

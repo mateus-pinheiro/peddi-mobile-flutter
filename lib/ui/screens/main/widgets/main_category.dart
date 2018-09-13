@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:peddi_tont_app/models/app_state.dart';
 import 'package:peddi_tont_app/models/category.dart';
-import 'package:peddi_tont_app/screens/menu/menu_app.dart';
 import 'package:peddi_tont_app/services/external_images.dart';
 import 'package:peddi_tont_app/themes/font_styles.dart';
+import 'package:peddi_tont_app/ui/screens/menu/menu_app.dart';
 
 //@immutable
 //class MainCategory extends StatelessWidget {

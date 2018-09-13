@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:peddi_tont_app/models/product.dart';
-import 'package:peddi_tont_app/screens/product/product.dart';
 import 'package:peddi_tont_app/services/external_images.dart';
 import 'package:peddi_tont_app/themes/font_styles.dart';
-import 'package:peddi_tont_app/models/order.dart';
-import 'package:peddi_tont_app/models/item.dart';
+import 'package:peddi_tont_app/ui/screens/product/product.dart';
+import 'package:peddi_tont_app/util/money_converter.dart';
 
 class MenuProduct extends StatelessWidget {
   final Product product;
@@ -58,16 +57,16 @@ class MenuProduct extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 16.0, top: 15.0),
-                    child: Text(product.name, style: FontStyles.style6),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 16.0, top: 15.0),
-                    child: Text(product.totalProduct(product.price),
-                        style: FontStyles.style7),
+                    child: Text(product.name, style: FontStyles.productNameMenu),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 16.0, top: 10.0),
-                    child: Text(product.description, style: FontStyles.style8),
+                    child: Text(CurrencyConverter.toBrazilianReal(product.price),
+                        style: FontStyles.productPriceMenu),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 16.0, top: 10.0),
+                    child: Text(product.description, style: FontStyles.productDescriptionMenu),
                   ),
                  
                 ],

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:peddi_tont_app/models/app_state.dart';
-import 'package:peddi_tont_app/redux/actions.dart';
 import 'package:peddi_tont_app/router.dart';
-import 'package:peddi_tont_app/screens/table_opening/opening.dart';
+import 'package:peddi_tont_app/ui/screens/table_opening/opening.dart';
 import 'package:redux/redux.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'redux/reducers.dart';

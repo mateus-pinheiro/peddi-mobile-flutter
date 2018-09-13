@@ -1,11 +1,10 @@
-import 'dart:async';
+import 'package:peddi_tont_app/ui/screens/order/widgets/order_list.dart';
 import 'package:peddi_tont_app/util/completers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:peddi_tont_app/models/app_state.dart';
 import 'package:peddi_tont_app/models/order.dart';
 import 'package:peddi_tont_app/redux/actions.dart';
-import 'package:peddi_tont_app/screens/order/widgets/order_list.dart';
 import 'package:peddi_tont_app/themes/font_styles.dart';
 import 'package:peddi_tont_app/themes/app_colors.dart';
 
@@ -14,17 +13,18 @@ class OrderApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new StoreConnector<AppState, Order>(converter: (store) {
-      return store.state.order;
-    }, builder: (context, order) {
-      return new Material(
-        type: MaterialType.transparency,
-        child: new Stack(
+    return Material(
+      type: MaterialType.button,
+      color: Colors.transparent,
+      child: new StoreConnector<AppState, Order>(converter: (store) {
+        return store.state.order;
+      }, builder: (context, order) {
+        return new Stack(
           children: <Widget>[
             new Center(
               child: new Container(
                 height: 693.0,
-                width: 545.0,
+                width: 560.0,
                 decoration: BoxDecoration(
                     boxShadow: [
                       new BoxShadow(
@@ -37,60 +37,57 @@ class OrderApp extends StatelessWidget {
                 child: Column(
                   children: <Widget>[
                     Container(
-                      color: Colors.transparent,
                       height: 80.0,
-                      width: 545.0,
-                      child: Center(
-                          child: Text(
-                        'Itens do pedido',
-                        style: FontStyles.style10,
-                      )),
+                      width: 560.0,
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 30.0, left: 30.0),
+                        child: Text(
+                          'Itens do pedido',
+                          style: FontStyles.ingredientTitleProduct,
+                        ),
+                      ),
                     ),
                     Container(
-                      color: Colors.green,
                       height: 50.0,
-                      width: 545.0,
+                      width: 560.0,
                       child: Row(
                         children: <Widget>[
                           Expanded(
                               child: Container(
-                            width: 545.0,
                             height: 50.0,
                             color: AppColors.yellow1,
                             child: Center(
                                 child: Text(
-                              'PRODUTO',
-                              style: FontStyles.style1,
+                              'Produto',
+                              style: FontStyles.titlesCart,
                             )),
                           )),
                           Expanded(
                               child: Container(
-                            width: 545.0,
                             height: 50.0,
                             color: AppColors.yellow1,
                             child: Center(
                                 child: Text(
-                              'QUANTIDADE',
-                              style: FontStyles.style1,
+                              'Quantidade',
+                              style: FontStyles.titlesCart,
                             )),
                           )),
                         ],
                       ),
                     ),
                     Expanded(
-                        child: Container(
-                      color: Colors.white,
-                      height: 400.0,
-                      width: 545.0,
                       child: new OrderList(order),
-                    )),
+                    ),
                     new StoreConnector<AppState, OnSendPressed>(
                       converter: (store) {
-                        return (order) => store.dispatch(SendOrder(order, snackBarCompleter(context, 'Dialog', shouldPop: true)));
+                        return (order) => store.dispatch(SendOrder(
+                            order,
+                            snackBarCompleter(context, 'Dialog',
+                                shouldPop: true)));
                       },
                       builder: (BuildContext context, callback) => Container(
                             height: 69.0,
-                            width: 545.0,
+                            width: 560.0,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10.0),
                               color: AppColors.yellow1,
@@ -112,9 +109,9 @@ class OrderApp extends StatelessWidget {
               ),
             ),
           ],
-        ),
-      );
-    });
+        );
+      }),
+    );
   }
 }
 
