@@ -41,13 +41,13 @@ class OrderListState extends State<OrderList> {
                   children: <Widget>[
                 Text(
                   'TOTAL:',
-                  style: FontStyles.totalLabelCart,
+                  style: FontStyles.totalLabelOrder,
                 ),
                 Text(
                   order.amount == null || order.amount < 1
                       ? 'Nenhum item adicionado'
                       : CurrencyConverter.toBrazilianReal(order.amount),
-                  style: FontStyles.amountCart,
+                  style: FontStyles.amountOrder,
                 ),
               ]),
             ),
@@ -109,7 +109,7 @@ class OrderListState extends State<OrderList> {
                                         padding:
                                             const EdgeInsets.only(top: 5.0),
                                         child: Text(item.name.toString(),
-                                            style: FontStyles.productNameCart),
+                                            style: FontStyles.productNameOrder),
                                       ),
                                       Padding(
                                         padding:
@@ -118,7 +118,7 @@ class OrderListState extends State<OrderList> {
                                             CurrencyConverter.toBrazilianReal(
                                                     item.price) +
                                                 ' cada',
-                                            style: FontStyles.productPriceCart),
+                                            style: FontStyles.productPriceOrder),
                                       ),
                                     ],
                                   ),

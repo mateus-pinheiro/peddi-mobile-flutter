@@ -31,15 +31,11 @@ class Product {
                 .toList();
 
   Map<String, dynamic> toJson() => {
-    'name': name,
-    'price': price,
-    'featured': featured,
-    'description': description,
-    'ingredients': ingredients,
-    'image': image
-  };
-
-  String totalProduct (double valor) {
-    return "R\$ " + valor.toString()+ " cada";
-  }
+        'name': name,
+        'price': price,
+        'featured': featured,
+        'description': description,
+        'ingredients': ingredients,
+        'image': image
+      };
 }

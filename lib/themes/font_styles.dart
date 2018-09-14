@@ -305,7 +305,7 @@ class FontStyles {
       fontSize: 22.0,
       color: Colors.white);
 
-  static const productNameCart = TextStyle(
+  static const productNameOrder = TextStyle(
     //fontWeight: FontWeight.w900,
       fontFamily: "CircularStd",
       fontStyle: FontStyle.normal,
@@ -313,7 +313,7 @@ class FontStyles {
       fontSize: 24.0,
       color: AppColors.gray4);
 
-  static const productPriceCart = TextStyle(
+  static const productPriceOrder = TextStyle(
     //fontWeight: FontWeight.w900,
       fontFamily: "CircularStd",
       fontStyle: FontStyle.normal,
@@ -321,7 +321,7 @@ class FontStyles {
       fontSize: 20.0,
       color: AppColors.gray5);
 
-  static const totalLabelCart = TextStyle(
+  static const totalLabelOrder = TextStyle(
     //fontWeight: FontWeight.w900,
       fontFamily: "CircularStd",
       fontStyle: FontStyle.normal,
@@ -329,7 +329,7 @@ class FontStyles {
       fontSize: 16.0,
       color: AppColors.gray3);
 
-  static const amountCart = TextStyle(
+  static const amountOrder = TextStyle(
     //fontWeight: FontWeight.w900,
       fontFamily: "CircularStd",
       fontStyle: FontStyle.normal,
