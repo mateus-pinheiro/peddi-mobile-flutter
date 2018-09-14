@@ -44,7 +44,7 @@ class OrderListState extends State<OrderList> {
                   style: FontStyles.totalLabelCart,
                 ),
                 Text(
-                  order.amount == null || order.amount == 0.0
+                  order.amount == null || order.amount < 1
                       ? 'Nenhum item adicionado'
                       : CurrencyConverter.toBrazilianReal(order.amount),
                   style: FontStyles.amountCart,

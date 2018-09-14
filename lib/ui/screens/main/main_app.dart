@@ -15,11 +15,14 @@ class MainApp extends StatelessWidget {
         child: Column(
           children: <Widget>[
             MainHeader(),
-            new Expanded(
-              child: Container(
-                child: MainCategoryRoute(),
+
+              Expanded(
+                child: Container(
+                  color: Colors.black,
+                  child: MainCategoryRoute(),
+                ),
               ),
-            )
+            
           ],
         ),
       ),
