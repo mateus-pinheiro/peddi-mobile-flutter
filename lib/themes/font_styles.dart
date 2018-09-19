@@ -159,14 +159,14 @@ class FontStyles {
       fontStyle: FontStyle.normal,
       fontWeight: FontWeight.bold,
       fontSize: 48.0,
-      color: Colors.white);
+      color: AppColors.peddi_white);
   static const style4 = TextStyle(
       //fontWeight: FontWeight.w900,
       fontFamily: "CircularStd",
       fontStyle: FontStyle.normal,
       fontWeight: FontWeight.bold,
       fontSize: 24.0,
-      color: Colors.white);
+      color: AppColors.peddi_white);
   static const style5 = TextStyle(
       //fontWeight: FontWeight.w900,
       fontFamily: "CircularStd",

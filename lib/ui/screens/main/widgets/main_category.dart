@@ -5,6 +5,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:peddi_tont_app/models/app_state.dart';
 import 'package:peddi_tont_app/models/category.dart';
 import 'package:peddi_tont_app/services/external_images.dart';
+import 'package:peddi_tont_app/themes/app_colors.dart';
 import 'package:peddi_tont_app/themes/font_styles.dart';
 import 'package:peddi_tont_app/ui/screens/menu/menu_app.dart';
 
@@ -70,9 +71,10 @@ class MainCategoryRouteState extends State<MainCategoryRoute> {
                                 category, appState.restaurant.categories)));
                   },
                   child: new Container(
-                    margin: new EdgeInsets.all(1.0),
+                    margin: new EdgeInsets.all(5.0),
                     decoration: new BoxDecoration(
-                        color: Colors.black,
+                        color: Colors.white,
+                        border: Border.all(color: AppColors.peddi_white, width: 1.0),
                         image: new DecorationImage(
                             image: new NetworkImage(
                                 getCategoryImage(category.photo)),
