@@ -4,6 +4,8 @@ import 'package:peddi_tont_app/models/app_state.dart';
 import 'package:peddi_tont_app/models/order.dart';
 import 'package:peddi_tont_app/themes/app_colors.dart';
 import 'package:peddi_tont_app/themes/font_styles.dart';
+import 'package:peddi_tont_app/ui/dialogs/help_dialog.dart';
+import 'package:peddi_tont_app/ui/screens/order/order_app.dart';
 
 class MainHeader extends StatelessWidget {
   String showCustomersQty(int customers) {
@@ -20,8 +22,7 @@ class MainHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return new StoreConnector<AppState, Order>(
       converter: (store) => store.state.order,
-      builder: (context, order) => (
-          Padding(
+      builder: (context, order) => (Padding(
             padding: const EdgeInsets.only(top: 20.0),
             child: new Container(
               color: Colors.black,
@@ -83,7 +84,8 @@ class MainHeader extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
                         Padding(
-                          padding: const EdgeInsets.only(top: 20.0, right: 20.0),
+                          padding:
+                              const EdgeInsets.only(top: 20.0, right: 20.0),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
@@ -100,7 +102,8 @@ class MainHeader extends StatelessWidget {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(top: 20.0, right: 40.0),
+                          padding:
+                              const EdgeInsets.only(top: 20.0, right: 40.0),
                           child: Container(
                             height: 35.0,
                             width: 2.0,
@@ -108,16 +111,30 @@ class MainHeader extends StatelessWidget {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(top: 20.0, right: 30.0),
-                          child: Container(
-                            height: 50.0,
-                            width: 50.0,
-                            decoration: new BoxDecoration(
-                                image: new DecorationImage(
-                              fit: BoxFit.fill,
-                              image: new AssetImage('resources/images/help.png'),
-//                      alignment: Alignment(-1.0, -1.0)
-                            )),
+                          padding: const EdgeInsets.only(bottom: 15.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: <Widget>[
+                              MaterialButton (
+                                onPressed: () {
+                                  showHelp(context);
+                                },
+                                splashColor: Color(0),
+                                height: 30.0,
+                                minWidth: 30.0,
+                                child: Icon (
+                                  Icons.help_outline,
+                                  size: 55.0,
+                                  color: AppColors.gray2,
+                                ),
+                              ),
+
+//                          Text(
+//                            'Ajuda',
+//                            style: FontStyles.style2,
+//                          ),
+                            ],
                           ),
                         ),
                       ],
@@ -128,5 +145,12 @@ class MainHeader extends StatelessWidget {
             ),
           )),
     );
+  }
+
+  void showOrder(BuildContext context) {
+    showDialog(context: context, builder: (context) => new OrderApp());
+  }
+  showHelp(BuildContext context) {
+    showDialog(context: context, builder: (context) => new HelpDialog());
   }
 }

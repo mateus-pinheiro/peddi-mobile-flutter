@@ -2,13 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:peddi_tont_app/models/app_state.dart';
 import 'package:peddi_tont_app/models/order.dart';
+import 'package:peddi_tont_app/themes/app_colors.dart';
 import 'package:peddi_tont_app/themes/font_styles.dart';
+import 'package:peddi_tont_app/ui/dialogs/help_dialog.dart';
 import 'package:peddi_tont_app/ui/screens/order/order_app.dart';
 
 class MenuHeader extends StatelessWidget {
   showOrder(BuildContext context) {
     showDialog(context: context, builder: (context) => new OrderApp());
   }
+  showHelp(BuildContext context) {
+    showDialog(context: context, builder: (context) => new HelpDialog());
+  }
+
 
   String showCustomersQty(int customers) {
     if (customers == null) {
@@ -107,37 +113,59 @@ class MenuHeader extends StatelessWidget {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 20.0, right: 30.0),
-                        child: new InkWell(
-                          onTap: () {
-                            showOrder(context);
-                          },
-                          child: Container(
-                            height: 50.0,
-                            width: 50.0,
-                            decoration: new BoxDecoration(
-                                image: new DecorationImage(
-                              fit: BoxFit.fill,
-                              image: new AssetImage(
-                                  'resources/images/environment.png'),
-//                      alignment: Alignment(-1.0, -1.0)
-                            )),
-                          ),
+                        padding: const EdgeInsets.only(bottom: 25.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: <Widget>[
+                            MaterialButton (
+                              onPressed: () {
+                                Navigator.pushNamed(context, '/main');
+                              },
+                              splashColor: Color(0),
+                              height: 30.0,
+                              minWidth: 30.0,
+                              child: Icon (
+                                Icons.home,
+                                size: 60.0,
+                                color: AppColors.gray2,
+                              ),
+                            ),
+
+//                          Text(
+//                            'Início',
+//                            style: FontStyles.style2,
+//                          ),
+                          ],
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 20.0, right: 30.0),
-                        child: Container(
-                          height: 50.0,
-                          width: 50.0,
-                          decoration: new BoxDecoration(
-                              image: new DecorationImage(
-                            fit: BoxFit.fill,
-                            image: new AssetImage('resources/images/help.png'),
-//                      alignment: Alignment(-1.0, -1.0)
-                          )),
+                        padding: const EdgeInsets.only(bottom: 25.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: <Widget>[
+                            MaterialButton (
+                              onPressed: () {
+                                showHelp(context);
+                              },
+                              splashColor: Color(0),
+                              height: 30.0,
+                              minWidth: 30.0,
+                              child: Icon (
+                                Icons.help_outline,
+                                size: 55.0,
+                                color: AppColors.gray2,
+                              ),
+                            ),
+
+//                          Text(
+//                            'Ajuda',
+//                            style: FontStyles.style2,
+//                          ),
+                          ],
                         ),
-                      ),
+                      )
                     ],
                   ),
                 )),
