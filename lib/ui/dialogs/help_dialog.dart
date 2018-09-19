@@ -31,7 +31,7 @@ class HelpDialog extends StatelessWidget {
                   Icon(
                     Icons.tag_faces,
                     color: AppColors.yellow1,
-                    size: 35.0,
+                    size: 40.0,
                   ),
                 ],
               ),

@@ -173,7 +173,8 @@ class FontStyles {
       fontStyle: FontStyle.normal,
       fontWeight: FontWeight.bold,
       fontSize: 34.0,
-      color: Colors.white);
+      color: Colors.white,
+  );
   static const style6 = TextStyle(
       //fontWeight: FontWeight.w900,
       fontFamily: "CircularStd",
