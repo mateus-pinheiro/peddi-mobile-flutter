@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:peddi_tont_app/models/ingredient.dart';
 import 'package:peddi_tont_app/models/item.dart';
 import 'package:peddi_tont_app/models/product.dart';
+import 'package:peddi_tont_app/themes/app_colors.dart';
 import 'package:peddi_tont_app/ui/screens/product/widgets/product_additional.dart';
 import 'package:peddi_tont_app/ui/screens/product/widgets/product_ingredient.dart';
 import 'package:peddi_tont_app/ui/screens/product/widgets/product_recipe.dart';
@@ -91,7 +92,7 @@ class ProductRoute extends StatelessWidget {
                     width: 50.0,
                     height: 50.0,
                     decoration: BoxDecoration(
-                      color: Colors.red,
+                      color: AppColors.botonblue,
                       borderRadius: BorderRadius.circular(100.0),
                     ),
                     child: new IconButton(
