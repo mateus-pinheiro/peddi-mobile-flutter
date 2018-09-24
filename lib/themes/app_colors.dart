@@ -15,4 +15,5 @@ class AppColors {
   static const success_green = const Color(0xff00cb8a);
   static const error_red = const Color(0xffea5a55);
   static const yellow1 = const Color(0xffFFCC00);
+  static const botonblue = const Color(0xff9fa8df);
 }

@@ -12,7 +12,7 @@ class MenuHeader extends StatelessWidget {
     showDialog(context: context, builder: (context) => new OrderApp());
   }
   showHelp(BuildContext context) {
-    showDialog(context: context, builder: (context) => new HelpDialog());
+    showDialog(context: context,builder: (context) => new HelpDialog());
   }
 
 

@@ -5,7 +5,9 @@ import 'package:peddi_tont_app/ui/screens/table_opening/widgets/opening_form.dar
 class Opening extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return new WillPopScope(
+        onWillPop: () async => false,
+    child: Scaffold(
       body: Material(
         child: Container(
           foregroundDecoration: BoxDecoration(
@@ -112,6 +114,7 @@ class Opening extends StatelessWidget {
           ),
         ),
       ),
+    ),
     );
   }
 }

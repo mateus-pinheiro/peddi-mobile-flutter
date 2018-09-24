@@ -21,7 +21,10 @@ class OrderApp extends StatelessWidget {
       }, builder: (context, order) {
         return new Stack(
           children: <Widget>[
-            new Center(
+        new InkWell(
+        onTap: () => Navigator.of(context).pop(),
+        ),
+        new Center(
               child: new Container(
                 height: 693.0,
                 width: 560.0,

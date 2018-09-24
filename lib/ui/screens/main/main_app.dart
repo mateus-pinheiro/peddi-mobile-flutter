@@ -6,7 +6,9 @@ import 'widgets/main_header.dart';
 class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return new WillPopScope(
+        onWillPop: () async => false,
+    child: Scaffold(
         body: Material(
       child: Container(
         width: MediaQuery.of(context).size.width,
@@ -26,6 +28,8 @@ class MainApp extends StatelessWidget {
           ],
         ),
       ),
-    ));
+    ),
+    ),
+    );
   }
 }

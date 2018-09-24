@@ -73,12 +73,12 @@ class MainCategoryRouteState extends State<MainCategoryRoute> {
                   child: new Container(
                     margin: new EdgeInsets.all(5.0),
                     decoration: new BoxDecoration(
-                        color: Colors.white,
+                        color: Colors.black,
                         border: Border.all(color: AppColors.peddi_white, width: 1.0),
                         image: new DecorationImage(
                             image: new NetworkImage(
                                 getCategoryImage(category.photo)),
-                            fit: BoxFit.fitWidth)),
+                            fit: BoxFit.fitWidth,)),
                     child: new Center(
                       child: new Text(
                         category.name,

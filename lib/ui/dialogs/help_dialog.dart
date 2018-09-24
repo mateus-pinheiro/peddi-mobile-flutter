@@ -7,6 +7,12 @@ class HelpDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
         type: MaterialType.transparency,
+    child: new Stack(
+    children: <Widget>[
+        new InkWell(
+        onTap: () => Navigator.of(context).pop(),
+    ),
+    new Center(
     child: Container(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -31,7 +37,7 @@ class HelpDialog extends StatelessWidget {
                   Icon(
                     Icons.tag_faces,
                     color: AppColors.yellow1,
-                    size: 35.0,
+                    size: 40.0,
                   ),
                 ],
               ),
@@ -39,6 +45,9 @@ class HelpDialog extends StatelessWidget {
           ),
         ],
       ),
+    ),
+    ),
+    ],
     ),
     );
   }
