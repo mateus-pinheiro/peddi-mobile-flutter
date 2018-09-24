@@ -117,6 +117,11 @@ class ProductRoute extends StatelessWidget {
         type: MaterialType.transparency,
         child: new Stack(
           children: <Widget>[
+            new InkWell(
+              onTap: () => Navigator.of(context).pop(),
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+            ),
             new Positioned(
 //              decoration: new BoxDecoration(gradient: backgroundGradient),
                 child: new ProductRecipe(item, product),
@@ -131,7 +136,7 @@ class ProductRoute extends StatelessWidget {
                     width: 50.0,
                     height: 50.0,
                     decoration: BoxDecoration(
-                      color: Colors.red,
+                      color: AppColors.botonblue,
                       borderRadius: BorderRadius.circular(100.0),
                     ),
                     child: new IconButton(

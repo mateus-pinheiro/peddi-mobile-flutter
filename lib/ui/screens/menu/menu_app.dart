@@ -17,7 +17,9 @@ class MenuApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
+    return new WillPopScope(
+        onWillPop: () async => false,
+    child: Material(
       type: MaterialType.transparency,
       child: Container(
         width: MediaQuery.of(context).size.width,
@@ -74,6 +76,7 @@ class MenuApp extends StatelessWidget {
           ],
         ),
       ),
+    ),
     );
   }
 
