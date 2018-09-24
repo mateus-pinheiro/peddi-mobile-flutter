@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 import 'package:peddi_tont_app/models/sub_category.dart';
 
@@ -6,6 +7,8 @@ class Category {
   final String name;
   final String photo;
   final List<SubCategory> subCategory;
+  bool isSelected;
+  Color isSelectedColor;
 
   Category({
     this.name,

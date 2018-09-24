@@ -28,8 +28,14 @@ class _MenuCategoryState extends State<MenuCategoryTeste> {
     super.initState();
     _selectedCategory = _selectedCategory;
     _selectedSubCategory = _selectedCategory.subCategory[0];
-//    _selectedSubCategoryColor = Colors.transparent;
-//    callback(_selectedSubCategory);
+
+    storeCategories.forEach((c) => toFalse(c, _selectedCategory));
+  }
+
+  toFalse(Category category, Category _selectedCategory) {
+    category.isSelected = false;
+    category.isSelectedColor = AppColors.yellow1;
+    _selectedCategory.isSelectedColor = AppColors.gray2;
   }
 
   void _selectCategory(Category category) {
@@ -38,6 +44,16 @@ class _MenuCategoryState extends State<MenuCategoryTeste> {
       _selectedSubCategory = _selectedCategory.subCategory[0];
       build(context);
     });
+  }
+
+  void _selectColor(Category category) {
+    category.isSelected = !category.isSelected;
+    if (category.isSelected == true) {
+      setState(() {
+        storeCategories.forEach((c) => toFalse(c, _selectedCategory));
+      });
+    } else
+      category.isSelectedColor = AppColors.yellow1;
   }
 
   void _selectSubCategory(SubCategory subCategory) {
@@ -90,16 +106,18 @@ class _MenuCategoryState extends State<MenuCategoryTeste> {
     return MaterialButton(
       onPressed: () {
         _selectCategory(category);
+        _selectColor(category);
       },
       splashColor: Color(0),
+      elevation: 10.0,
+      color: category.isSelectedColor,
       child: Container(
         child: Center(
             child: Text(
           category.name,
-         style: FontStyles.menuCategories,
+          style: FontStyles.menuCategories,
         )),
         width: 180.0,
-
       ),
     );
   }
@@ -114,12 +132,10 @@ class _MenuCategoryState extends State<MenuCategoryTeste> {
         child: Center(
             child: Text(
           subCategory.name,
-              style: FontStyles.style7,
+          style: FontStyles.style7,
         )),
-//        color: Colors.green,
         height: 60.0,
         width: 180.0,
-
       ),
     );
   }
