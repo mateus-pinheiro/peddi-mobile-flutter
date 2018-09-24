@@ -11,6 +11,8 @@ class HelpDialog extends StatelessWidget {
     children: <Widget>[
         new InkWell(
         onTap: () => Navigator.of(context).pop(),
+            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,
     ),
     new Center(
     child: Container(
