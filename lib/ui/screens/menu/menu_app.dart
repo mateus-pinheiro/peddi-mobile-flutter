@@ -17,9 +17,7 @@ class MenuApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new WillPopScope(
-        onWillPop: () async => false,
-    child: Material(
+    return new Material(
       type: MaterialType.transparency,
       child: Container(
         width: MediaQuery.of(context).size.width,
@@ -39,33 +37,35 @@ class MenuApp extends StatelessWidget {
                 color: Colors.white,
                 child: Column(
                   children: <Widget>[
-                    Container(
-                      child:
-                          MenuCategoryTeste(selectedCategory, storeCategories),
-                      height: 600.0,
-                      color: Colors.white,
+                    Expanded(
+                      child: Container(
+                        child: MenuCategoryTeste(
+                            selectedCategory, storeCategories),
+                      ),
                     ),
+
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: <Widget>[
                         Padding(
-                          padding: const EdgeInsets.only(right: 40.0),
-                        child: new FloatingActionButton.extended(
-                          onPressed: () {
-                            showOrder(context);
-                          },
-                          isExtended: true,
-                          backgroundColor: AppColors.yellow1,
-                          icon: new Icon(
-                            Icons.shopping_cart,
-                            color: AppColors.gray2,
-                            size: 40.0,
+                          padding: const EdgeInsets.only(
+                              top: 5.0, right: 20.0, bottom: 8.0),
+                          child: new FloatingActionButton.extended(
+                            onPressed: () {
+                              showOrder(context);
+                            },
+                            isExtended: true,
+                            backgroundColor: AppColors.yellow1,
+                            icon: new Icon(
+                              Icons.shopping_cart,
+                              color: AppColors.gray2,
+                              size: 40.0,
+                            ),
+                            label: Text(
+                              'CARRINHO',
+                              style: FontStyles.style2,
+                            ),
                           ),
-                          label: Text(
-                            'CARRINHO',
-                            style: FontStyles.style2,
-                          ),
-                        ),
                         ),
                       ],
                     ),
@@ -76,7 +76,6 @@ class MenuApp extends StatelessWidget {
           ],
         ),
       ),
-    ),
     );
   }
 

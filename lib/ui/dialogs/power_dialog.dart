@@ -20,8 +20,8 @@ class PowerDialog extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Container(
-                    width: 400.0,
-                    height: 150.0,
+                    width: 500.0,
+                    height: 200.0,
                     decoration: BoxDecoration(
                         boxShadow: [
                           new BoxShadow(
@@ -32,11 +32,12 @@ class PowerDialog extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10.0),
                         color: Colors.white),
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+
                       children: <Widget>[
-                        Text('Preencher',style: FontStyles.style1,),
+                        Text('Você realmente deseja reiniciar o app?',style: FontStyles.productNameMenu,),
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: <Widget>[
                             MaterialButton (
                               onPressed: () {
@@ -45,7 +46,7 @@ class PowerDialog extends StatelessWidget {
                               color: Colors.green,
                               height: 30.0,
                               minWidth: 30.0,
-                              child: Text('SIM',style: FontStyles.style5,),
+                              child: Text('SIM',style: FontStyles.style4,),
                             ),
                             MaterialButton (
                               onPressed: () {
@@ -54,7 +55,7 @@ class PowerDialog extends StatelessWidget {
                               color: Colors.red,
                               height: 30.0,
                               minWidth: 30.0,
-                              child: Text('NÃO',style: FontStyles.style5,),
+                              child: Text('NÃO',style: FontStyles.style4,),
                             ),
                           ],
                         ),

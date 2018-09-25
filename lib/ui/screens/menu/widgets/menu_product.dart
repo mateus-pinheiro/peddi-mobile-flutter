@@ -3,7 +3,7 @@ import 'package:peddi_tont_app/models/product.dart';
 import 'package:peddi_tont_app/services/external_images.dart';
 import 'package:peddi_tont_app/themes/font_styles.dart';
 import 'package:peddi_tont_app/ui/screens/product/product.dart';
-import 'package:peddi_tont_app/util/money_converter.dart';
+import 'package:peddi_tont_app/util/currency_converter.dart';
 
 class MenuProduct extends StatelessWidget {
   final Product product;
@@ -33,11 +33,8 @@ class MenuProduct extends StatelessWidget {
                     width: 2.0,
                     color: Colors.black12,
                     style: BorderStyle.solid),
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(10.0),
-                  bottomRight: Radius.circular(10.0),
-                  topRight: Radius.circular(10.0),
-                  topLeft: Radius.circular(10.0),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(10.0)
                 ),
                 color: Colors.white,
               ),
@@ -51,8 +48,12 @@ class MenuProduct extends StatelessWidget {
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.all(3.0),
-                    child: new Image.network(getProductImage(product.image),
-                        fit: BoxFit.fitWidth),
+                    child: Container(
+                      width: 380.0,
+                      height: 250.0,
+                      child: new Image.network(getProductImage(product.image),
+                          fit: BoxFit.contain),
+                    ),
 //                      image: new AssetImage('resources/images/product.png'),
                   ),
                   Padding(

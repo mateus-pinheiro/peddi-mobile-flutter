@@ -10,7 +10,6 @@ Completer<Null> snackBarCompleter(BuildContext context, String message,
 
   completer.future.then((_) {
 
-    print('Enviado pelo completer');
     if (shouldPop) {
       Navigator.of(context).pop();
     }
@@ -28,7 +27,6 @@ Completer<Null> snackBarCompleter(BuildContext context, String message,
           return ErrorDialog(error);
         });
   });
-  print('Não enviado pelo completer');
 
   return completer;
 }

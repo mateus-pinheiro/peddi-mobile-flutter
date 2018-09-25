@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:peddi_tont_app/models/ingredient.dart';
 import 'package:peddi_tont_app/models/item.dart';
 import 'package:peddi_tont_app/themes/font_styles.dart';
-import 'package:peddi_tont_app/util/money_converter.dart';
+import 'package:peddi_tont_app/util/currency_converter.dart';
 
 class Additional extends StatefulWidget {
   Additional(this.additionalList, this.item);

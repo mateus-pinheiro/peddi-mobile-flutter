@@ -2,7 +2,7 @@ import 'package:peddi_tont_app/models/ingredient.dart';
 
 class Item {
 
-  String idEpoc;
+  int epocId;
   String name;
   int qtyItem;
   double price;
@@ -10,11 +10,11 @@ class Item {
   List<Ingredient> ingredients;
 
   Item(
-      {this.idEpoc, this.name, this.qtyItem, this.price, this.amount, this.ingredients});
+      {this.epocId, this.name, this.qtyItem, this.price, this.amount, this.ingredients});
 
 
   Map<String, dynamic> toJson() => {
-    'idEpoc': idEpoc,
+    'epoc_id': epocId,
     'name': name,
     'amount': amount,
     'quantity': qtyItem,
@@ -25,7 +25,7 @@ class Item {
   Item.fromMap(Map<String, dynamic> data)
       : name = data['name'],
         price = data['price'],
-        idEpoc = data['idEpoc'],
+        epocId = data['epoc_id'],
         amount = data['amount'],
         qtyItem = data['quantity'],
         ingredients =

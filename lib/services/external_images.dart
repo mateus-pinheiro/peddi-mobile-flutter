@@ -1,6 +1,6 @@
 
 const String _urlCategoryImages = 'https://s3-sa-east-1.amazonaws.com/peddi-service-aws/lm09/';
-const String _urlProductImages = 'https://s3-sa-east-1.amazonaws.com/peddi-service-aws/lm09/heineken-longneck.jpg';
+const String _urlProductImages = 'https://s3-sa-east-1.amazonaws.com/peddi-service-aws/';
 
 String getCategoryImage(String imageName){
 //  return _urlCategoryImages;
@@ -8,6 +8,6 @@ String getCategoryImage(String imageName){
 }
 
 String getProductImage(String imageName){
-  return _urlProductImages;
-//  return _urlProductImages + imageName;
+//  return _urlProductImages;
+  return _urlProductImages + imageName;
 }

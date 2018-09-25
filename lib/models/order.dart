@@ -1,5 +1,6 @@
 import 'package:meta/meta.dart';
 import 'package:peddi_tont_app/models/item.dart';
+import 'package:peddi_tont_app/models/responsible_employee.dart';
 import 'package:peddi_tont_app/models/restaurant_order.dart';
 
 class Order {
@@ -8,9 +9,11 @@ class Order {
   final int customers;
   double amount;
   String status;
+  ResponsibleEmployee responsibleEmployee;
   final DateTime createdAt;
   final DateTime updatedAt;
   final RestaurantOrder restaurant;
+  final int ticket;
   final List<Item> items;
 
   Order(
@@ -22,7 +25,9 @@ class Order {
       this.createdAt,
       this.updatedAt,
       this.restaurant,
-      this.items});
+      this.ticket,
+      this.items,
+      this.responsibleEmployee});
 
   Order.fromMap(Map<String, dynamic> data)
       : id = data['id'],
@@ -33,6 +38,8 @@ class Order {
         createdAt = data['createdAt'],
         updatedAt = data['updatedAt'],
         restaurant = data['restaurant'],
+        ticket = data['ticket'],
+        responsibleEmployee = data['responsibleEmployee'],
         items = (data['products'] == null ? [] : data['products'] as List)
             .map((item) => new Item.fromMap(item))
             .toList();
@@ -45,6 +52,8 @@ class Order {
         'created_at': createdAt.toString(),
         'updated_at': updatedAt,
         'restaurant': restaurant,
+        'ticket': ticket,
+        'responsibleEmployee': responsibleEmployee,
         'products': items
       };
 }

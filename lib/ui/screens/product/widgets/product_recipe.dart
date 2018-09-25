@@ -8,7 +8,7 @@ import 'package:peddi_tont_app/redux/actions.dart';
 import 'package:peddi_tont_app/services/external_images.dart';
 import 'package:peddi_tont_app/themes/font_styles.dart';
 import 'package:peddi_tont_app/themes/app_colors.dart';
-import 'package:peddi_tont_app/util/money_converter.dart';
+import 'package:peddi_tont_app/util/currency_converter.dart';
 
 class ProductRecipe extends StatelessWidget {
   ProductRecipe(this.item, this.product);
@@ -66,7 +66,7 @@ class _ProductRecipeWidgetState extends State<ProductRecipeWidget> {
 
   void _removeQtyItem() {
     setState(() {
-      _quantityItem > 0 ? _quantityItem -= 1 : _quantityItem;
+      if (_quantityItem > 1) _quantityItem -= 1;
       item.qtyItem = _quantityItem;
     });
   }
@@ -104,7 +104,7 @@ class _ProductRecipeWidgetState extends State<ProductRecipeWidget> {
                         height: 280.0,
                         width: 430.0,
                         child: new Image.network(getProductImage(product.image),
-                            fit: BoxFit.fitWidth),
+                            fit: BoxFit.contain),
                       ),
                     ),
                     Padding(

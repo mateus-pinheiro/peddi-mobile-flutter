@@ -4,6 +4,7 @@ import 'package:meta/meta.dart';
 import 'package:peddi_tont_app/models/address.dart';
 import 'package:peddi_tont_app/models/category.dart';
 import 'package:peddi_tont_app/models/contact.dart';
+import 'package:peddi_tont_app/models/responsible_employee.dart';
 
 @immutable
 class Restaurant {
@@ -15,6 +16,7 @@ class Restaurant {
   final bool status;
   final String image;
   final Address address;
+  final List<ResponsibleEmployee> responsibleEmployee;
   final List<Contact> contact;
   final List<Category> categories;
 
@@ -29,6 +31,7 @@ class Restaurant {
     this.categories,
     this.address,
     this.contact,
+    this.responsibleEmployee
   });
 
   Restaurant.fromMap(Map<String, dynamic> data)
@@ -40,6 +43,9 @@ class Restaurant {
         status = data['status'],
         image = data['image'],
         address = Address.fromMap(data['address']),
+        responsibleEmployee = (data['responsibleEmployee'] as List)
+            .map((i) => new ResponsibleEmployee.fromMap(i))
+            .toList(),
         contact = (data['contact'] as List)
             .map((i) => new Contact.fromMap(i))
             .toList(),
@@ -55,6 +61,7 @@ class Restaurant {
         'status': status,
         'image': image,
         'address': address,
+        'responsibleEmployee': responsibleEmployee,
         'contact': contact,
         'categories': categories
       };

@@ -1,6 +1,6 @@
 class RestaurantOrder {
   String name;
-  int cnpj;
+  String cnpj;
 
   RestaurantOrder({this.name, this.cnpj});
 

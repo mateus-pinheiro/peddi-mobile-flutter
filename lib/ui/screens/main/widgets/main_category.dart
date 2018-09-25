@@ -78,7 +78,7 @@ class MainCategoryRouteState extends State<MainCategoryRoute> {
                         image: new DecorationImage(
                             image: new NetworkImage(
                                 getCategoryImage(category.photo)),
-                            fit: BoxFit.fitWidth,)),
+                            fit: BoxFit.cover,)),
                     child: new Center(
                       child: new Text(
                         category.name,

@@ -21,7 +21,7 @@ class ProductRoute extends StatelessWidget {
     this.item.name = this.product.name;
     this.item.price = this.product.price.toDouble();
     this.item.amount = this.product.price.toDouble();
-//    item.idEpoc = product.idEpoc;
+    this.item.epocId = this.product.epocId;
   }
 
   setIngredientList(List<Ingredient> ingredients) {

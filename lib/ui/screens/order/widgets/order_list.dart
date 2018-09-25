@@ -5,7 +5,7 @@ import 'package:peddi_tont_app/redux/actions.dart';
 import 'package:peddi_tont_app/themes/font_styles.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:peddi_tont_app/models/app_state.dart';
-import 'package:peddi_tont_app/util/money_converter.dart';
+import 'package:peddi_tont_app/util/currency_converter.dart';
 
 class OrderList extends StatefulWidget {
   OrderList(this.order);
@@ -33,23 +33,24 @@ class OrderListState extends State<OrderList> {
             child: Container(child: _buildItemList(order.items)),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 20.0, bottom: 30.0, right: 50.0),
+            padding:
+                const EdgeInsets.only(top: 20.0, bottom: 30.0, right: 50.0),
             child: Container(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                Text(
-                  'TOTAL:',
-                  style: FontStyles.totalLabelOrder,
-                ),
-                Text(
-                  order.amount == null || order.amount < 1
-                      ? 'Nenhum item adicionado'
-                      : CurrencyConverter.toBrazilianReal(order.amount),
-                  style: FontStyles.amountOrder,
-                ),
-              ]),
+                    Text(
+                      'TOTAL:',
+                      style: FontStyles.totalLabelOrder,
+                    ),
+                    Text(
+                      order.amount == null || order.amount < 1
+                          ? 'Nenhum item adicionado'
+                          : CurrencyConverter.toBrazilianReal(order.amount),
+                      style: FontStyles.amountOrder,
+                    ),
+                  ]),
             ),
           ),
         ]);
@@ -118,7 +119,8 @@ class OrderListState extends State<OrderList> {
                                             CurrencyConverter.toBrazilianReal(
                                                     item.price) +
                                                 ' cada',
-                                            style: FontStyles.productPriceOrder),
+                                            style:
+                                                FontStyles.productPriceOrder),
                                       ),
                                     ],
                                   ),

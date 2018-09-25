@@ -3,6 +3,7 @@ import 'package:peddi_tont_app/models/ingredient.dart';
 
 @immutable
 class Product {
+  final int epocId;
   final String name;
   final String image;
   final String description;
@@ -16,11 +17,13 @@ class Product {
       this.featured,
       this.description,
       this.image,
-      this.name})
+      this.name,
+      this.epocId})
       : assert(name != null, price != null);
 
   Product.fromMap(Map<String, dynamic> data)
-      : name = data['name'],
+      : epocId = data['epoc_id'],
+        name = data['name'],
         price = data['price'],
         featured = data['featured'],
         image = data['image'],
@@ -31,6 +34,7 @@ class Product {
                 .toList();
 
   Map<String, dynamic> toJson() => {
+        'epoc_id' : epocId,
         'name': name,
         'price': price,
         'featured': featured,

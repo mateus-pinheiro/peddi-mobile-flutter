@@ -15,7 +15,7 @@ class API {
 
   Future<Restaurant> getRestaurant() async {
     var response =
-        await _client.get('$_apiUrl/restaurants/5b6a07122bd2a8162ad22e59');
+        await _client.get('$_apiUrl/restaurants/5ba9490dc3ccc9a9c664b346');
     if (response.statusCode == 200) {
       final Restaurant res = Restaurant.fromMap(json.decode(response.body));
       return res;
