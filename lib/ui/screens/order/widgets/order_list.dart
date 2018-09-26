@@ -69,78 +69,73 @@ class OrderListState extends State<OrderList> {
     return Column(
       children: <Widget>[
         Row(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            Expanded(
-                child: Padding(
+            Padding(
               padding: const EdgeInsets.all(8.0),
               child: Container(
-                color: Colors.white,
+//                color: Colors.red,
                 height: 80.0,
+                width: 350.0,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     Row(
                       children: <Widget>[
-                        Column(
-                          children: <Widget>[
-                            Row(
-                              children: <Widget>[
-                                new StoreConnector<AppState,
-                                    OnRemoveIconClicked>(converter: (store) {
-                                  return (item) =>
-                                      store.dispatch(RemoveItemAction(item));
-                                }, builder: (context, callback) {
-                                  return new IconButton(
-                                    icon: new Icon(Icons.delete),
-                                    iconSize: 40.0,
-                                    onPressed: () {
-                                      callback(item);
-                                    },
-                                  );
-                                }),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 10.0),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: <Widget>[
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(top: 5.0),
-                                        child: Text(item.name.toString(),
-                                            style: FontStyles.productNameOrder),
-                                      ),
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(top: 10.0),
-                                        child: Text(
-                                            CurrencyConverter.toBrazilianReal(
-                                                    item.price) +
-                                                ' cada',
-                                            style:
-                                                FontStyles.productPriceOrder),
-                                      ),
-                                    ],
+                        new StoreConnector<AppState, OnRemoveIconClicked>(
+                            converter: (store) {
+                          return (item) =>
+                              store.dispatch(RemoveItemAction(item));
+                        }, builder: (context, callback) {
+                          return new IconButton(
+                            icon: new Icon(Icons.delete),
+                            iconSize: 40.0,
+                            onPressed: () {
+                              callback(item);
+                            },
+                          );
+                        }),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              Padding(
+                                padding: const EdgeInsets.only(top: 5.0),
+                                child: new Container(
+                                  width: 250.0,
+                                  child: Text(
+                                    item.name.toString(),
+                                    style: FontStyles.productNameOrder,
+                                    overflow: TextOverflow.ellipsis,
                                   ),
                                 ),
-                              ],
-                            ),
-                          ],
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 10.0),
+                                child: Text(
+                                    CurrencyConverter.toBrazilianReal(
+                                            item.price) +
+                                        ' cada',
+                                    style: FontStyles.productPriceOrder),
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),
                   ],
                 ),
               ),
-            )),
-            Expanded(
-                child: Padding(
+            ),
+            Padding(
               padding: const EdgeInsets.all(8.0),
               child: Container(
-                color: Colors.white,
+//                color: Colors.red,
                 height: 80.0,
+                width: 90.0,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -150,7 +145,7 @@ class OrderListState extends State<OrderList> {
                   ],
                 ),
               ),
-            )),
+            )
           ],
         ),
         Padding(

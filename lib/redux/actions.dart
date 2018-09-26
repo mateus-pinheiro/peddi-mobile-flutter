@@ -28,6 +28,12 @@ class OrderSentSuccessfully {
 
 class OrderNotSentSuccessfully {}
 
+class AddQrCode{
+  final String qrCode;
+
+  AddQrCode(this.qrCode);
+}
+
 class AddTableNumberOrderAction {
   final int table;
   final int customers;

@@ -1,33 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:peddi_tont_app/models/app_state.dart';
+import 'package:peddi_tont_app/models/restaurant.dart';
 import 'package:peddi_tont_app/redux/actions.dart';
 import 'package:peddi_tont_app/themes/app_colors.dart';
 import 'package:peddi_tont_app/themes/font_styles.dart';
-
+import 'package:peddi_tont_app/ui/screens/table_opening/widgets/opening_scan.dart';
 
 class OpeningFormRoute extends StatelessWidget {
-
-
-
   @override
   Widget build(BuildContext context) {
-    return new StoreConnector<AppState, OnAddTableNumber>(
-        converter: (store) {
-          return (tableNumber, qtyConsumer) {
-            store.dispatch(new LoadRestaurantAction());
-            store.dispatch(new AddTableNumberOrderAction(tableNumber, qtyConsumer));
-          };
-        }, builder: (context, callback) {
+    return new StoreConnector<AppState, OnAddTableNumber>(converter: (store) {
+      return (tableNumber, qtyConsumer) {
+        store.dispatch(new LoadRestaurantAction());
+        store.dispatch(new AddTableNumberOrderAction(tableNumber, qtyConsumer));
+      };
+    }, builder: (context, callback) {
       return new OpeningForm(callback);
     });
   }
 }
 
-
-
 class OpeningForm extends StatelessWidget {
-
   OpeningForm(this.callback);
 
   final OnAddTableNumber callback;
@@ -45,7 +39,7 @@ class OpeningForm extends StatelessWidget {
             child: Text(
               'Olá! Seja bem vindo(a)!',
               textAlign: TextAlign.center,
-              style: FontStyles.style ,
+              style: FontStyles.style,
             ),
           ),
           subtitle: Padding(
@@ -68,14 +62,14 @@ class OpeningForm extends StatelessWidget {
             decoration: BoxDecoration(
                 color: Colors.white, borderRadius: BorderRadius.circular(10.0)),
             child: TextField(
-              onChanged: (tableNumberCurrent) => this.tableNumber = int.parse(tableNumberCurrent),
+              onChanged: (tableNumberCurrent) =>
+                  this.tableNumber = int.parse(tableNumberCurrent),
               keyboardType: TextInputType.number,
               style: FontStyles.style1,
 //              onFieldSubmitted: (tableNumberCurrent) => this.tableNumber = tableNumberCurrent,
               decoration: InputDecoration(
                   labelText: 'Número da mesa',
                   border: OutlineInputBorder(
-
                       borderRadius: BorderRadius.circular(10.0))),
             ),
           ),
@@ -88,9 +82,9 @@ class OpeningForm extends StatelessWidget {
                 color: Colors.white, borderRadius: BorderRadius.circular(10.0)),
             child: TextField(
               keyboardType: TextInputType.number,
-             style: FontStyles.style1,
-              onChanged: (qtyConsumerCurrent) => this.qtyConsumer = int.parse(qtyConsumerCurrent),
-
+              style: FontStyles.style1,
+              onChanged: (qtyConsumerCurrent) =>
+                  this.qtyConsumer = int.parse(qtyConsumerCurrent),
               decoration: new InputDecoration(
                   labelText: 'Quantidade de pessoas',
                   border: OutlineInputBorder(
@@ -115,8 +109,17 @@ class OpeningForm extends StatelessWidget {
                 onPressed: () {
                   Navigator.pushNamed(context, '/main');
                   callback(tableNumber, qtyConsumer);
+//                  Navigator.push(
+//                    context,
+//                    MaterialPageRoute(builder: (context) => OpeningScan()),
+//                  );
+//                  StoreConnector<AppState, AppState>(
+//                    converter: (store) => (store.state),
+//                      builder: (context, state) =>
+//                          OpeningScan(context, state)
+//
+//                  );
                 },
-
                 height: 60.0,
                 textTheme: ButtonTextTheme.primary,
                 child: new Text(
@@ -128,7 +131,6 @@ class OpeningForm extends StatelessWidget {
       ],
     );
   }
-
 }
 
 typedef OnAddTableNumber = Function(int tableNumber, int qtyConsumer);

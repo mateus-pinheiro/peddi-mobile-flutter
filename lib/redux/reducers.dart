@@ -16,6 +16,8 @@ AppState appStateReducers(AppState state, dynamic action) {
     return orderSent(action, state);
   } else if (action is OrderNotSentSuccessfully) {
     return orderNotSent(action, state);
+  } else if (action is AddQrCode) {
+    return addQrCode(action, state);
   } else if (action is AddTableNumberOrderAction) {
     return addTableNumberOrder(action, state);
   } else if (action is AddItemAction) {
@@ -46,6 +48,14 @@ AppState orderNotSent(OrderNotSentSuccessfully action, AppState state) {
   return new AppState(state.restaurant, state.order);
 }
 
+AppState addQrCode(AddQrCode action, AppState state) {
+  return new AppState(
+      state.restaurant,
+      state.order.copyWith(
+          responsibleEmployee: state.restaurant.responsibleEmployee
+              .singleWhere((i) => i.epocId != action.qrCode)));
+}
+
 AppState addTableNumberOrder(AddTableNumberOrderAction action, AppState state) {
   return new AppState(
       state.restaurant,
@@ -56,7 +66,8 @@ AppState addTableNumberOrder(AddTableNumberOrderAction action, AppState state) {
         createdAt: DateTime.now(),
         items: new List<Item>(),
         restaurant: new RestaurantOrder(
-            cnpj: state.restaurant.cnpj.toString(), name: state.restaurant.name),
+            cnpj: state.restaurant.cnpj.toString(),
+            name: state.restaurant.name),
       ));
 }
 

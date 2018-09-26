@@ -67,35 +67,38 @@ class AdditionalState extends State<Additional> {
   additionalItem(Ingredient additional) {
     var additionalPrice = additional.price;
 
-    return new CheckboxListTile(
-      controlAffinity: ListTileControlAffinity.leading,
-      value: additional.isChecked,
-      onChanged: (bool newValue) {
-        setState(() {
-          additional.isChecked = newValue;
-          if (item.ingredients == null)
-            item.ingredients = new List<Ingredient>();
+    return Padding(
+      padding: const EdgeInsets.only(top: 10.0),
+      child: new CheckboxListTile(
+        controlAffinity: ListTileControlAffinity.leading,
+        value: additional.isChecked,
+        onChanged: (bool newValue) {
+          setState(() {
+            additional.isChecked = newValue;
+            if (item.ingredients == null)
+              item.ingredients = new List<Ingredient>();
 
-          if (additional.isChecked == true) {
-            item.ingredients.add(additional);
-            if (additional.price != null) item.amount += additional.price;
-          } else {
-            item.ingredients.remove(additional);
-            if (additional.price != null) item.amount -= additional.price;
-          }
-        });
-      },
-      title: new Text(
-        additional.name,
-        style: FontStyles.ingredientNameProduct,
-      ),
-      activeColor: Colors.green,
-      selected: true,
-      secondary: Padding(
-        padding: const EdgeInsets.only(right: 100.0),
-        child: Text(
-          CurrencyConverter.toBrazilianReal(additionalPrice) + " cada",
-          style: FontStyles.ingredientPriceProduct,
+            if (additional.isChecked == true) {
+              item.ingredients.add(additional);
+              if (additional.price != null) item.amount += additional.price;
+            } else {
+              item.ingredients.remove(additional);
+              if (additional.price != null) item.amount -= additional.price;
+            }
+          });
+        },
+        title: new Text(
+          additional.name,
+          style: FontStyles.ingredientNameProduct,
+        ),
+        activeColor: Colors.green,
+        selected: true,
+        secondary: Padding(
+          padding: const EdgeInsets.only(right: 100.0),
+          child: Text(
+            CurrencyConverter.toBrazilianReal(additionalPrice) + " cada",
+            style: FontStyles.ingredientPriceProduct,
+          ),
         ),
       ),
     );

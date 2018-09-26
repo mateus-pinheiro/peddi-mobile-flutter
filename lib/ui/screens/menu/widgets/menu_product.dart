@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:peddi_tont_app/models/product.dart';
 import 'package:peddi_tont_app/services/external_images.dart';
@@ -33,9 +34,7 @@ class MenuProduct extends StatelessWidget {
                     width: 2.0,
                     color: Colors.black12,
                     style: BorderStyle.solid),
-                borderRadius: BorderRadius.all(
-                  Radius.circular(10.0)
-                ),
+                borderRadius: BorderRadius.all(Radius.circular(10.0)),
                 color: Colors.white,
               ),
               constraints: BoxConstraints.expand(
@@ -51,25 +50,40 @@ class MenuProduct extends StatelessWidget {
                     child: Container(
                       width: 380.0,
                       height: 250.0,
-                      child: new Image.network(getProductImage(product.image),
-                          fit: BoxFit.contain),
+                      child: new CachedNetworkImage(
+                        placeholder:
+                            new Center(child: new CircularProgressIndicator()),
+                        imageUrl: getProductImage(product.image),
+                        fit: BoxFit.contain,
+                        errorWidget: new Icon(Icons.error),
+                      ),
                     ),
 //                      image: new AssetImage('resources/images/product.png'),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 16.0, top: 15.0),
-                    child: Text(product.name, style: FontStyles.productNameMenu),
+                    child:
+                        Text(product.name, style: FontStyles.productNameMenu),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 16.0, top: 10.0),
-                    child: Text(CurrencyConverter.toBrazilianReal(product.price),
+                    child: Text(
+                        CurrencyConverter.toBrazilianReal(product.price),
                         style: FontStyles.productPriceMenu),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 16.0, top: 10.0),
-                    child: Text(product.description, style: FontStyles.productDescriptionMenu),
+                  Expanded(
+                    child: Container(
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                            left: 16.0, top: 10.0, right: 16.0),
+                        child: Text(
+                          product.description,
+                          style: FontStyles.productDescriptionMenu,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ),
                   ),
-                 
                 ],
               ),
             ),

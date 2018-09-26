@@ -9,6 +9,7 @@ import 'package:peddi_tont_app/services/external_images.dart';
 import 'package:peddi_tont_app/themes/font_styles.dart';
 import 'package:peddi_tont_app/themes/app_colors.dart';
 import 'package:peddi_tont_app/util/currency_converter.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class ProductRecipe extends StatelessWidget {
   ProductRecipe(this.item, this.product);
@@ -103,8 +104,11 @@ class _ProductRecipeWidgetState extends State<ProductRecipeWidget> {
                       child: Container(
                         height: 280.0,
                         width: 430.0,
-                        child: new Image.network(getProductImage(product.image),
-                            fit: BoxFit.contain),
+                        child: new CachedNetworkImage(
+                          imageUrl: getProductImage(product.image),
+                          fit: BoxFit.contain,
+                          placeholder: new CircularProgressIndicator(),
+                        ),
                       ),
                     ),
                     Padding(
@@ -118,94 +122,93 @@ class _ProductRecipeWidgetState extends State<ProductRecipeWidget> {
                           style: FontStyles.productsPrice),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 40.0, top: 15.0),
+                      padding: const EdgeInsets.only(
+                          left: 40.0, top: 15.0, right: 30.0),
                       child: Text(product.description,
                           style: FontStyles.productDescriptionProduct),
                     ),
                     Expanded(
                       child: Padding(
-                        padding: const EdgeInsets.only(top: 80.0),
+                        padding: const EdgeInsets.only(top: 10.0),
                         child: Container(
                           decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(10.0),
                           ),
                           child: Column(
+                            mainAxisAlignment: MainAxisAlignment.end,
                             children: <Widget>[
-                              new Divider(color: Colors.black12),
-                              new Padding(
-                                padding: const EdgeInsets.only(top: 10.0),
-                                child: new Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: <Widget>[
-                                    new Text('Quantidade:',
-                                        style: FontStyles
-                                            .productDescriptionProduct),
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 8.0),
-                                      child: new Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: <Widget>[
-                                          new MaterialButton(
-                                            onPressed: () {
-                                              _removeQtyItem();
-                                            },
-                                            textTheme: ButtonTextTheme.accent,
-                                            splashColor: Colors.transparent,
-                                            highlightColor: Colors.transparent,
-                                            child: new Icon(
-                                              Icons.remove_circle,
-                                              color: Colors.black12,
-                                              size: 50.0,
-                                            ),
-                                          ),
-                                          new Text(
-                                            _quantityItem.toString(),
-                                            style:
-                                                FontStyles.productsQtdProduct,
-                                          ),
-                                          new MaterialButton(
-                                            onPressed: () {
-                                              _addQtyItem();
-                                            },
-                                            textTheme: ButtonTextTheme.accent,
-                                            splashColor: Colors.transparent,
-                                            highlightColor: Colors.transparent,
-                                            child: new Icon(
-                                              Icons.add_circle,
-                                              color: Colors.black12,
-                                              size: 50.0,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 8.0),
+                                child: new Divider(color: Colors.black12),
                               ),
-                              new Expanded(
-                                child: new Padding(
-                                  padding: const EdgeInsets.only(top: 20.0),
-                                  child: new Container(
-                                    decoration: BoxDecoration(
-                                      color: AppColors.yellow1,
-                                      borderRadius: BorderRadius.circular(10.0),
+                              new Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: <Widget>[
+                                  new Text('Quantidade:',
+                                      style:
+                                          FontStyles.productDescriptionProduct),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 8.0),
+                                    child: new Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        new MaterialButton(
+                                          onPressed: () {
+                                            _removeQtyItem();
+                                          },
+                                          textTheme: ButtonTextTheme.accent,
+                                          splashColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
+                                          child: new Icon(
+                                            Icons.remove_circle,
+                                            color: Colors.black12,
+                                            size: 50.0,
+                                          ),
+                                        ),
+                                        new Text(
+                                          _quantityItem.toString(),
+                                          style: FontStyles.productsQtdProduct,
+                                        ),
+                                        new MaterialButton(
+                                          onPressed: () {
+                                            _addQtyItem();
+                                          },
+                                          textTheme: ButtonTextTheme.accent,
+                                          splashColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
+                                          child: new Icon(
+                                            Icons.add_circle,
+                                            color: Colors.black12,
+                                            size: 50.0,
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                    width: 470.0,
-                                    child: new MaterialButton(
-                                      onPressed: () {
-                                        _sumAmount(item);
-                                        Navigator.pop(context);
-                                        callback(item);
-                                      },
-                                      height: 60.0,
-                                      splashColor: Color(0),
-                                      textTheme: ButtonTextTheme.accent,
-                                      child: new Text('ADICIONAR AO PEDIDO',
-                                          style: FontStyles.buttonStyle),
-                                    ),
+                                  ),
+                                ],
+                              ),
+                              new Padding(
+                                padding: const EdgeInsets.only(top: 20.0),
+                                child: new Container(
+                                  decoration: BoxDecoration(
+                                    color: AppColors.yellow1,
+                                    borderRadius: BorderRadius.circular(10.0),
+                                  ),
+                                  width: 470.0,
+                                  child: new MaterialButton(
+                                    onPressed: () {
+                                      _sumAmount(item);
+                                      Navigator.pop(context);
+                                      callback(item);
+                                    },
+                                    height: 60.0,
+                                    splashColor: Color(0),
+                                    textTheme: ButtonTextTheme.accent,
+                                    child: new Text('ADICIONAR AO PEDIDO',
+                                        style: FontStyles.buttonStyle),
                                   ),
                                 ),
                               ),

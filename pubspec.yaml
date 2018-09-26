@@ -7,6 +7,10 @@ dependencies:
   flutter_redux_dev_tools: "^0.3.0"
   shared_preferences: "^0.4.1"
   intl: "^0.15.6"
+  simple_permissions: "^0.1.8"
+  barcode_scan: ^0.0.7
+  cached_network_image: "^0.4.1"
+
   flutter:
     sdk: flutter
 

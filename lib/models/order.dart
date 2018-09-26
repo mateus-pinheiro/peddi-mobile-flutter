@@ -56,4 +56,32 @@ class Order {
         'responsibleEmployee': responsibleEmployee,
         'products': items
       };
+
+  Order copyWith({
+    int id,
+    int table,
+    int customers,
+    double amount,
+    String status,
+    ResponsibleEmployee responsibleEmployee,
+    DateTime createdAt,
+    DateTime updatedAt,
+    RestaurantOrder restaurant,
+    int ticket,
+    List<Item> items,
+  }) {
+
+    return new Order(
+        table: table ?? this.table,
+        customers: customers ?? this.customers,
+        amount: amount ?? this.amount,
+        status: status ?? this.status,
+        createdAt: createdAt ?? this.createdAt,
+        updatedAt: updatedAt ?? this.updatedAt,
+        restaurant: restaurant ?? this.restaurant,
+        ticket: ticket ?? this.ticket,
+        responsibleEmployee: responsibleEmployee ?? this.responsibleEmployee,
+        items: items ?? this.items
+    );
+  }
 }

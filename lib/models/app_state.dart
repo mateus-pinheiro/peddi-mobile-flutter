@@ -23,4 +23,5 @@ class AppState {
         order = (json['order']);
 
   Map<String, dynamic> toJson() => {'restaurant': restaurant, 'order': order};
+
 }
