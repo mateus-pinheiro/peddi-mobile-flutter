@@ -5,6 +5,9 @@ import 'package:peddi_tont_app/themes/app_colors.dart';
 import 'package:peddi_tont_app/themes/font_styles.dart';
 
 class SuccessDialog extends StatelessWidget {
+  SuccessDialog(this.message);
+  final String message;
+
   void show(BuildContext context) async {
     await new Future.delayed(const Duration(seconds: 3));
     Navigator.pop(context);
@@ -25,7 +28,7 @@ class SuccessDialog extends StatelessWidget {
                 color: AppColors.success_green,
                 child: Center(
                     child: Text(
-                  'O seu pedido foi enviado com sucesso!',
+                  message == null ? 'O seu pedido foi enviado com sucesso!' : message,
                   style: FontStyles.feedbackStyle,
                 )
                 ),

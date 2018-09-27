@@ -61,12 +61,12 @@ class MenuProduct extends StatelessWidget {
 //                      image: new AssetImage('resources/images/product.png'),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 16.0, top: 15.0),
+                    padding: const EdgeInsets.only(left: 10.0, top: 15.0, right: 10.0),
                     child:
                         Text(product.name, style: FontStyles.productNameMenu),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 16.0, top: 10.0),
+                    padding: const EdgeInsets.only(left: 10.0, top: 10.0),
                     child: Text(
                         CurrencyConverter.toBrazilianReal(product.price),
                         style: FontStyles.productPriceMenu),
@@ -75,7 +75,7 @@ class MenuProduct extends StatelessWidget {
                     child: Container(
                       child: Padding(
                         padding: const EdgeInsets.only(
-                            left: 16.0, top: 10.0, right: 16.0),
+                            left: 10.0, top: 10.0, right: 16.0),
                         child: Text(
                           product.description,
                           style: FontStyles.productDescriptionMenu,

@@ -33,6 +33,7 @@ class FontStyles {
 
   static const h5 = TextStyle(
 //      fontWeight: FontWeight.w400,
+
       fontFamily: "CircularStd",
       fontStyle: FontStyle.normal,
       fontSize: 24.0,
@@ -168,10 +169,10 @@ class FontStyles {
       fontSize: 24.0,
       color: AppColors.peddi_white);
   static const style5 = TextStyle(
-      //fontWeight: FontWeight.w900,
+      fontWeight: FontWeight.w900,
       fontFamily: "CircularStd",
       fontStyle: FontStyle.normal,
-      fontWeight: FontWeight.bold,
+//      fontWeight: FontWeight.bold,
       fontSize: 34.0,
       color: Colors.white,
   );

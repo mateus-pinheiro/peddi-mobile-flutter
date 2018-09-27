@@ -86,7 +86,7 @@ class _ProductRecipeWidgetState extends State<ProductRecipeWidget> {
           children: <Widget>[
             new Padding(
               padding: const EdgeInsets.only(top: 40.0),
-              child: Container(
+              child: new Container(
                 decoration: BoxDecoration(
                     boxShadow: [
                       new BoxShadow(color: Colors.black, blurRadius: 5.0)
@@ -95,11 +95,11 @@ class _ProductRecipeWidgetState extends State<ProductRecipeWidget> {
                     color: Colors.white),
                 width: 470.0,
                 height: 730.0,
-                child: Column(
+                child: new Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
-                    Padding(
+                    new Padding(
                       padding: const EdgeInsets.all(40.0),
                       child: Container(
                         height: 280.0,
@@ -107,38 +107,40 @@ class _ProductRecipeWidgetState extends State<ProductRecipeWidget> {
                         child: new CachedNetworkImage(
                           imageUrl: getProductImage(product.image),
                           fit: BoxFit.contain,
-                          placeholder: new CircularProgressIndicator(),
+                          placeholder: new Center(
+                              child: new CircularProgressIndicator()),
                         ),
                       ),
                     ),
-                    Padding(
+                    new Padding(
                       padding: const EdgeInsets.only(left: 40.0),
-                      child: Text(item.name,
+                      child: new Text(item.name,
                           style: FontStyles.productTitleProduct),
                     ),
-                    Padding(
+                    new Padding(
                       padding: const EdgeInsets.only(left: 40.0, top: 15.0),
-                      child: Text(CurrencyConverter.toBrazilianReal(item.price),
+                      child: new Text(
+                          CurrencyConverter.toBrazilianReal(item.price),
                           style: FontStyles.productsPrice),
                     ),
-                    Padding(
+                    new Padding(
                       padding: const EdgeInsets.only(
                           left: 40.0, top: 15.0, right: 30.0),
-                      child: Text(product.description,
+                      child: new Text(product.description,
                           style: FontStyles.productDescriptionProduct),
                     ),
-                    Expanded(
-                      child: Padding(
+                    new Expanded(
+                      child: new Padding(
                         padding: const EdgeInsets.only(top: 10.0),
-                        child: Container(
-                          decoration: BoxDecoration(
+                        child: new Container(
+                          decoration: new BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(10.0),
                           ),
-                          child: Column(
+                          child: new Column(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: <Widget>[
-                              Padding(
+                              new Padding(
                                 padding: const EdgeInsets.only(bottom: 8.0),
                                 child: new Divider(color: Colors.black12),
                               ),
@@ -149,7 +151,7 @@ class _ProductRecipeWidgetState extends State<ProductRecipeWidget> {
                                   new Text('Quantidade:',
                                       style:
                                           FontStyles.productDescriptionProduct),
-                                  Padding(
+                                  new Padding(
                                     padding: const EdgeInsets.only(top: 8.0),
                                     child: new Row(
                                       mainAxisAlignment:

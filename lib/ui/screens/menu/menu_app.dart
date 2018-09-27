@@ -39,7 +39,7 @@ class MenuApp extends StatelessWidget {
                   children: <Widget>[
                     Expanded(
                       child: Container(
-                        child: MenuCategoryTeste(
+                        child: MenuCategory(
                             selectedCategory, storeCategories),
                       ),
                     ),

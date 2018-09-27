@@ -30,8 +30,8 @@ class OrderNotSentSuccessfully {}
 
 class AddQrCode{
   final String qrCode;
-
-  AddQrCode(this.qrCode);
+  final Completer completer;
+  AddQrCode(this.qrCode, this.completer);
 }
 
 class AddTableNumberOrderAction {

@@ -5,6 +5,7 @@ import 'package:peddi_tont_app/models/order.dart';
 import 'package:peddi_tont_app/themes/app_colors.dart';
 import 'package:peddi_tont_app/themes/font_styles.dart';
 import 'package:peddi_tont_app/ui/dialogs/help_dialog.dart';
+import 'package:peddi_tont_app/ui/dialogs/power_dialog.dart';
 import 'package:peddi_tont_app/ui/screens/order/order_app.dart';
 
 class MainHeader extends StatelessWidget {
@@ -16,6 +17,10 @@ class MainHeader extends StatelessWidget {
     } else {
       return customers.toString() + ' pessoas';
     }
+  }
+
+  showPower(BuildContext context) {
+    showDialog(context: context, builder: (context) => new PowerDialog());
   }
 
   @override
@@ -116,14 +121,14 @@ class MainHeader extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: <Widget>[
-                              MaterialButton (
+                              MaterialButton(
                                 onPressed: () {
                                   showHelp(context);
                                 },
                                 splashColor: Color(0),
                                 height: 30.0,
                                 minWidth: 30.0,
-                                child: Icon (
+                                child: Icon(
                                   Icons.help_outline,
                                   size: 55.0,
                                   color: AppColors.gray2,
@@ -137,6 +142,33 @@ class MainHeader extends StatelessWidget {
                             ],
                           ),
                         ),
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 15.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: <Widget>[
+                              MaterialButton(
+                                onPressed: () {
+                                  showPower(context);
+                                },
+                                splashColor: Color(0),
+                                height: 30.0,
+                                minWidth: 30.0,
+                                child: Icon(
+                                  Icons.power_settings_new,
+                                  size: 55.0,
+                                  color: AppColors.gray2,
+                                ),
+                              ),
+
+//                          Text(
+//                            'Ajuda',
+//                            style: FontStyles.style2,
+//                          ),
+                            ],
+                          ),
+                        )
                       ],
                     ),
                   )),
@@ -150,6 +182,7 @@ class MainHeader extends StatelessWidget {
   void showOrder(BuildContext context) {
     showDialog(context: context, builder: (context) => new OrderApp());
   }
+
   showHelp(BuildContext context) {
     showDialog(context: context, builder: (context) => new HelpDialog());
   }

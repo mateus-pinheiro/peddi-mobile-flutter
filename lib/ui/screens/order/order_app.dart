@@ -85,8 +85,10 @@ class OrderApp extends StatelessWidget {
                       converter: (store) {
                         return (order) => store.dispatch(SendOrder(
                             order,
-                            snackBarCompleter(context, 'Dialog',
-                                shouldPop: true)));
+                            snackBarCompleter(context, null,
+                                shouldPop: true)
+                        )
+                        );
                       },
                       builder: (BuildContext context, callback) => Container(
                             height: 69.0,

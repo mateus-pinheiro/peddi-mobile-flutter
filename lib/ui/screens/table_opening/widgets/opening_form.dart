@@ -6,6 +6,7 @@ import 'package:peddi_tont_app/redux/actions.dart';
 import 'package:peddi_tont_app/themes/app_colors.dart';
 import 'package:peddi_tont_app/themes/font_styles.dart';
 import 'package:peddi_tont_app/ui/screens/table_opening/widgets/opening_scan.dart';
+import 'package:peddi_tont_app/util/scan.dart';
 
 class OpeningFormRoute extends StatelessWidget {
   @override
@@ -21,12 +22,22 @@ class OpeningFormRoute extends StatelessWidget {
   }
 }
 
-class OpeningForm extends StatelessWidget {
+class OpeningForm extends StatefulWidget {
   OpeningForm(this.callback);
 
   final OnAddTableNumber callback;
 
+  @override
+  OpeningFormState createState() {
+    return new OpeningFormState();
+  }
+}
+
+class OpeningFormState extends State<OpeningForm> {
+  String _reader;
+
   int tableNumber;
+
   int qtyConsumer;
 
   @override
@@ -107,12 +118,17 @@ class OpeningForm extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10.0)),
               child: MaterialButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/main');
-                  callback(tableNumber, qtyConsumer);
+//                  Navigator.pushNamed(context, '/main');
+                  widget.callback(tableNumber, qtyConsumer);
+                  ScanBarCode()
+                      .scan()
+                      .then((result) => resultOfBarCode(result));
+
 //                  Navigator.push(
 //                    context,
 //                    MaterialPageRoute(builder: (context) => OpeningScan()),
 //                  );
+
 //                  StoreConnector<AppState, AppState>(
 //                    converter: (store) => (store.state),
 //                      builder: (context, state) =>
@@ -129,6 +145,21 @@ class OpeningForm extends StatelessWidget {
               )),
         ),
       ],
+    );
+  }
+
+  resultOfBarCode(String result) {
+    setState(() {
+      _reader = result;
+    });
+    openNextPage();
+  }
+
+  openNextPage() {
+//    Navigator.pop(context);
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => OpeningScan(_reader)),
     );
   }
 }

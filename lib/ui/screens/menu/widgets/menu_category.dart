@@ -5,8 +5,8 @@ import 'package:peddi_tont_app/themes/app_colors.dart';
 import 'package:peddi_tont_app/themes/font_styles.dart';
 import 'package:peddi_tont_app/ui/screens/menu/widgets/menu_product.dart';
 
-class MenuCategoryTeste extends StatefulWidget {
-  MenuCategoryTeste(this._selectedCategory, this.storeCategories);
+class MenuCategory extends StatefulWidget {
+  MenuCategory(this._selectedCategory, this.storeCategories);
 
   final List<Category> storeCategories;
   final Category _selectedCategory;
@@ -16,7 +16,7 @@ class MenuCategoryTeste extends StatefulWidget {
       _MenuCategoryState(storeCategories, _selectedCategory);
 }
 
-class _MenuCategoryState extends State<MenuCategoryTeste> {
+class _MenuCategoryState extends State<MenuCategory> {
   _MenuCategoryState(this.storeCategories, this._selectedCategory);
 
   final List<Category> storeCategories;

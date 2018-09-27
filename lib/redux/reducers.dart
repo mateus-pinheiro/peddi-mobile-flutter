@@ -49,11 +49,17 @@ AppState orderNotSent(OrderNotSentSuccessfully action, AppState state) {
 }
 
 AppState addQrCode(AddQrCode action, AppState state) {
+  state.restaurant.responsibleEmployee
+              .where((f) => f.epocId == int.parse(action.qrCode)).isNotEmpty
+      ? action.completer.complete()
+      : action.completer
+          .completeError('Não existe nenhum garçom com esse código.');
+
   return new AppState(
       state.restaurant,
       state.order.copyWith(
           responsibleEmployee: state.restaurant.responsibleEmployee
-              .singleWhere((i) => i.epocId != action.qrCode)));
+              .singleWhere((i) => i.epocId == int.parse(action.qrCode))));
 }
 
 AppState addTableNumberOrder(AddTableNumberOrderAction action, AppState state) {
