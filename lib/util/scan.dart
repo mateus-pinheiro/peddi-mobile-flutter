@@ -7,26 +7,20 @@ import 'package:peddi_tont_app/ui/screens/table_opening/widgets/opening_scan.dar
 import 'package:simple_permissions/simple_permissions.dart';
 import 'package:barcode_scan/barcode_scan.dart';
 
-class ScanBarCode extends StatefulWidget{
+class ScanBarCode {
   String _reader;
   Permission permission = Permission.Camera;
-
-
-  resultOfBarCode(String result) {
-    new OpeningScan(result);
-  }
+  BuildContext context;
 
   Future<String> scan() async {
     try {
       var reader = await BarcodeScanner.scan();
 
       _reader = reader;
-      resultOfBarCode(_reader);
       return _reader;
-
     } on PlatformException catch (e) {
       if (e.code == BarcodeScanner.CameraAccessDenied) {
-//        requestPermission();
+        requestPermission(context);
         return _reader;
       } else {
         _reader = "unknown exception $e";
@@ -42,18 +36,12 @@ class ScanBarCode extends StatefulWidget{
     }
   }
 
-
-  @override
-  State<StatefulWidget> createState() {
-    // TODO: implement createState
+  requestPermission(BuildContext context) async {
+    await SimplePermissions.requestPermission(permission);
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return SuccessDialog("Permissão para leitura QRCode.");
+        });
   }
-
-//  requestPermission() async {
-//    await SimplePermissions.requestPermission(permission);
-//    showDialog<SuccessDialog>(builder: (BuildContext context) {
-//      return SuccessDialog();
-//    });
-//  }
 }
-
-

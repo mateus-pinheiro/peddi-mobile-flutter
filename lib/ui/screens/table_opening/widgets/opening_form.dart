@@ -123,18 +123,6 @@ class OpeningFormState extends State<OpeningForm> {
                   ScanBarCode()
                       .scan()
                       .then((result) => resultOfBarCode(result));
-
-//                  Navigator.push(
-//                    context,
-//                    MaterialPageRoute(builder: (context) => OpeningScan()),
-//                  );
-
-//                  StoreConnector<AppState, AppState>(
-//                    converter: (store) => (store.state),
-//                      builder: (context, state) =>
-//                          OpeningScan(context, state)
-//
-//                  );
                 },
                 height: 60.0,
                 textTheme: ButtonTextTheme.primary,
@@ -151,16 +139,17 @@ class OpeningFormState extends State<OpeningForm> {
   resultOfBarCode(String result) {
     setState(() {
       _reader = result;
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => OpeningScan(_reader)),
+      );
     });
-    openNextPage();
+
   }
 
   openNextPage() {
 //    Navigator.pop(context);
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => OpeningScan(_reader)),
-    );
+
   }
 }
 

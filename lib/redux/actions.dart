@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/widgets.dart';
 import 'package:peddi_tont_app/models/category.dart';
 import 'package:peddi_tont_app/models/ingredient.dart';
 import 'package:peddi_tont_app/models/item.dart';
@@ -17,6 +18,7 @@ class SaveRestaurantAction {
 class SendOrder {
   final Order order;
   final Completer completer;
+
   SendOrder(this.order, this.completer);
 }
 
@@ -28,17 +30,25 @@ class OrderSentSuccessfully {
 
 class OrderNotSentSuccessfully {}
 
-class AddQrCode{
-  final String qrCode;
-  final Completer completer;
-  AddQrCode(this.qrCode, this.completer);
-}
-
 class AddTableNumberOrderAction {
   final int table;
   final int customers;
 
   AddTableNumberOrderAction(this.table, this.customers);
+}
+
+class AddQrResposibleCode {
+  final String qrCode;
+  final Completer completer;
+
+  AddQrResposibleCode(this.qrCode, this.completer);
+}
+
+class AddQrTicketCode {
+  final String qrCode;
+  final BuildContext context;
+
+  AddQrTicketCode(this.qrCode, this.context);
 }
 
 class AddItemAction {

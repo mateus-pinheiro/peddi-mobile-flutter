@@ -42,6 +42,7 @@ class PowerDialog extends StatelessWidget {
                             MaterialButton (
                               onPressed: () {
                                 Navigator.pushNamed(context, '/opening');
+
                               },
                               color: Colors.green,
                               height: 30.0,

@@ -6,6 +6,7 @@ import 'package:peddi_tont_app/themes/font_styles.dart';
 
 class ErrorDialog extends StatelessWidget {
   const ErrorDialog(this.error, this.message);
+
   final Object error;
   final String message;
 
@@ -29,47 +30,16 @@ class ErrorDialog extends StatelessWidget {
                 color: AppColors.error_red,
                 child: Center(
                     child: Text(
-                  message == null ? 'Houve um erro em enviar o seu pedido para a cozinha! Por favor, chame o garçom.' : message,
+                  message == null
+                      ? 'Houve um erro em enviar o seu pedido para a cozinha! Por favor, chame o garçom.'
+                      : message,
                   style: FontStyles.feedbackStyle,
                 )),
               ),
             ],
           ),
         ),
-//        Expanded(child: Container()),
       ],
     );
   }
-
-//  @override
-//  Widget build(BuildContext context) {
-//
-//    return Padding(
-//      padding: EdgeInsets.all(16.0),
-//      child: Column(
-//        children: <Widget>[
-//          Material(
-//            child: Padding(
-//              padding: const EdgeInsets.all(28.0),
-//              child: Column(
-//                crossAxisAlignment: CrossAxisAlignment.center,
-//                children: <Widget>[
-//                  Text("Ocorreu um erro",
-//                      style: Theme.of(context).textTheme.title),
-//                  SizedBox(height: 20.0),
-//                  Text(error.toString()),
-//                  SizedBox(height: 40.0),
-//                  ElevatedButton(
-//                    onPressed: () => Navigator.of(context).pop(),
-//                    label: 'Fechar',
-//                  ),
-//                ],
-//              ),
-//            ),
-//          ),
-//          Expanded(child: Container()),
-//        ],
-//      ),
-//    );
-//  }
 }

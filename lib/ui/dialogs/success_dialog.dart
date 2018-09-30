@@ -9,7 +9,7 @@ class SuccessDialog extends StatelessWidget {
   final String message;
 
   void show(BuildContext context) async {
-    await new Future.delayed(const Duration(seconds: 3));
+    await new Future.delayed(const Duration(seconds: 4));
     Navigator.pop(context);
   }
 

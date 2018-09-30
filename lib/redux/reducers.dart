@@ -16,8 +16,10 @@ AppState appStateReducers(AppState state, dynamic action) {
     return orderSent(action, state);
   } else if (action is OrderNotSentSuccessfully) {
     return orderNotSent(action, state);
-  } else if (action is AddQrCode) {
-    return addQrCode(action, state);
+  } else if (action is AddQrTicketCode) {
+    return addQrTicketCode(action, state);
+  } else if (action is AddQrResposibleCode) {
+    return addQrResposibleCode(action, state);
   } else if (action is AddTableNumberOrderAction) {
     return addTableNumberOrder(action, state);
   } else if (action is AddItemAction) {
@@ -48,9 +50,15 @@ AppState orderNotSent(OrderNotSentSuccessfully action, AppState state) {
   return new AppState(state.restaurant, state.order);
 }
 
-AppState addQrCode(AddQrCode action, AppState state) {
+AppState addQrTicketCode(AddQrTicketCode action, AppState state) {
+  return new AppState(
+      state.restaurant, state.order.copyWith(ticket: int.parse(action.qrCode)));
+}
+
+AppState addQrResposibleCode(AddQrResposibleCode action, AppState state) {
   state.restaurant.responsibleEmployee
-              .where((f) => f.epocId == int.parse(action.qrCode)).isNotEmpty
+          .where((f) => f.epocId == int.parse(action.qrCode))
+          .isNotEmpty
       ? action.completer.complete()
       : action.completer
           .completeError('Não existe nenhum garçom com esse código.');
@@ -58,6 +66,9 @@ AppState addQrCode(AddQrCode action, AppState state) {
   return new AppState(
       state.restaurant,
       state.order.copyWith(
+          restaurant: new RestaurantOrder(
+              cnpj: state.restaurant.cnpj.toString(),
+              name: state.restaurant.name),
           responsibleEmployee: state.restaurant.responsibleEmployee
               .singleWhere((i) => i.epocId == int.parse(action.qrCode))));
 }
@@ -66,15 +77,11 @@ AppState addTableNumberOrder(AddTableNumberOrderAction action, AppState state) {
   return new AppState(
       state.restaurant,
       new Order(
-        status: "ABERTO",
-        table: action.table,
-        customers: action.customers,
-        createdAt: DateTime.now(),
-        items: new List<Item>(),
-        restaurant: new RestaurantOrder(
-            cnpj: state.restaurant.cnpj.toString(),
-            name: state.restaurant.name),
-      ));
+          status: "ABERTO",
+          table: action.table,
+          customers: action.customers,
+          createdAt: DateTime.now(),
+          items: new List<Item>()));
 }
 
 AppState addItem(AddItemAction action, AppState state) {

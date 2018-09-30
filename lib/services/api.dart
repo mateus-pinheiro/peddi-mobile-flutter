@@ -7,9 +7,13 @@ import 'package:peddi_tont_app/models/order.dart';
 import 'package:peddi_tont_app/models/restaurant.dart';
 
 class API {
+//  IP LM09
 //  static const String _apiUrl = 'http://192.168.1.70:3000/api';
 
+//  IP PEDDI
 //  static const String _apiUrl = 'http://192.168.15.19:3000/api';
+
+//  IP CASA
   static const String _apiUrl = 'http://192.168.0.14:3000/api';
   final http.Client _client = http.Client();
 

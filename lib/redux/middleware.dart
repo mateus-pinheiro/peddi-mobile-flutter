@@ -8,6 +8,7 @@ import 'package:peddi_tont_app/services/api.dart';
 import 'package:peddi_tont_app/models/app_state.dart';
 import 'package:peddi_tont_app/models/category.dart';
 import 'package:peddi_tont_app/redux/actions.dart';
+import 'package:peddi_tont_app/util/completers.dart';
 import 'package:redux/redux.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -22,8 +23,9 @@ void appMiddleware(Store<AppState> store, action, NextDispatcher next) {
     });
   } else if (action is SendOrder) {
     sendOrderToApi(store.state.order, store, action);
+  } else if (action is AddQrTicketCode) {
+    store.dispatch(SendOrder(store.state.order, snackBarCompleter(action.context, null, shouldPop: true)));
   }
-
 //  if (action is SaveRestaurantAction) {
 //    saveStateToPrefs(store.state);
 //  }
