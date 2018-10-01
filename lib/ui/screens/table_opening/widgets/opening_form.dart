@@ -139,12 +139,11 @@ class OpeningFormState extends State<OpeningForm> {
   resultOfBarCode(String result) {
     setState(() {
       _reader = result;
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => OpeningScan(_reader)),
-      );
     });
-
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => OpeningScan(_reader)),
+    );
   }
 
   openNextPage() {
