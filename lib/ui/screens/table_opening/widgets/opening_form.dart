@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:peddi_tont_app/models/app_state.dart';
-import 'package:peddi_tont_app/models/restaurant.dart';
 import 'package:peddi_tont_app/redux/actions.dart';
-import 'package:peddi_tont_app/themes/app_colors.dart';
 import 'package:peddi_tont_app/themes/font_styles.dart';
 import 'package:peddi_tont_app/ui/screens/table_opening/widgets/opening_scan.dart';
 import 'package:peddi_tont_app/util/scan.dart';
@@ -34,7 +32,6 @@ class OpeningForm extends StatefulWidget {
 }
 
 class OpeningFormState extends State<OpeningForm> {
-  String _reader;
 
   int tableNumber;
 
@@ -137,12 +134,9 @@ class OpeningFormState extends State<OpeningForm> {
   }
 
   resultOfBarCode(String result) {
-    setState(() {
-      _reader = result;
-    });
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => OpeningScan(_reader)),
+      MaterialPageRoute(builder: (context) => OpeningScan(result)),
     );
   }
 

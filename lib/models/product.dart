@@ -11,6 +11,11 @@ class Product {
   final double price;
   final List<Ingredient> ingredients;
 
+  static double toDouble(dynamic value) {
+    var d = double.parse(value);
+    return d;
+  }
+
   Product(
       {this.ingredients,
       this.price,
@@ -24,7 +29,7 @@ class Product {
   Product.fromMap(Map<String, dynamic> data)
       : epocId = data['epoc_id'],
         name = data['name'],
-        price = data['price'],
+        price = toDouble(data['price'].toString()),
         featured = data['featured'],
         image = data['image'],
         description = data['description'],
@@ -34,7 +39,7 @@ class Product {
                 .toList();
 
   Map<String, dynamic> toJson() => {
-        'epoc_id' : epocId,
+        'epoc_id': epocId,
         'name': name,
         'price': price,
         'featured': featured,

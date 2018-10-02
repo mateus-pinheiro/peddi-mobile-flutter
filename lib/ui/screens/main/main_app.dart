@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'widgets/main_category.dart';
-import 'widgets/main_featured.dart';
 import 'widgets/main_header.dart';
 
 class MainApp extends StatelessWidget {

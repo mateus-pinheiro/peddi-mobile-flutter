@@ -12,12 +12,16 @@ AppState appStateReducers(AppState state, dynamic action) {
     return saveRestaurant(action, state);
   } else if (action is SendOrder) {
     return sendOrder(action, state);
-  } else if (action is OrderSentSuccessfully) {
-    return orderSent(action, state);
-  } else if (action is OrderNotSentSuccessfully) {
-    return orderNotSent(action, state);
-  } else if (action is AddQrTicketCode) {
+  }
+//  else if (action is OrderSentSuccessfully) {
+//    return orderSent(action, state);
+//  } else if (action is OrderNotSentSuccessfully) {
+//    return orderNotSent(action, state);
+//  }
+  else if (action is AddQrTicketCode) {
     return addQrTicketCode(action, state);
+  } else if (action is NewItemList) {
+    return newItemList(state);
   } else if (action is AddQrResposibleCode) {
     return addQrResposibleCode(action, state);
   } else if (action is AddTableNumberOrderAction) {
@@ -42,22 +46,32 @@ AppState sendOrder(SendOrder action, AppState state) {
   return new AppState(state.restaurant, action.order);
 }
 
-AppState orderSent(OrderSentSuccessfully action, AppState state) {
-  return new AppState(state.restaurant, state.order);
-}
-
-AppState orderNotSent(OrderNotSentSuccessfully action, AppState state) {
-  return new AppState(state.restaurant, state.order);
-}
+//AppState orderSent(OrderSentSuccessfully action, AppState state) {
+//  return new AppState(state.restaurant, state.order);
+//}
+//
+//AppState orderNotSent(OrderNotSentSuccessfully action, AppState state) {
+//  return new AppState(state.restaurant, state.order);
+//}
 
 AppState addQrTicketCode(AddQrTicketCode action, AppState state) {
   return new AppState(
-      state.restaurant, state.order.copyWith(ticket: int.parse(action.qrCode)));
+      state.restaurant, state.order.copyWith(ticket: action.qrCode));
+}
+
+AppState newItemList(AppState state) {
+  return new AppState(
+      state.restaurant,
+      state.order.copyWith(
+        items: new List<Item>(),
+        amount: 0.0,
+        ticket: '',
+      ));
 }
 
 AppState addQrResposibleCode(AddQrResposibleCode action, AppState state) {
   state.restaurant.responsibleEmployee
-          .where((f) => f.epocId == int.parse(action.qrCode))
+          .where((f) => f.epocId == action.qrCode)
           .isNotEmpty
       ? action.completer.complete()
       : action.completer
@@ -70,7 +84,7 @@ AppState addQrResposibleCode(AddQrResposibleCode action, AppState state) {
               cnpj: state.restaurant.cnpj.toString(),
               name: state.restaurant.name),
           responsibleEmployee: state.restaurant.responsibleEmployee
-              .singleWhere((i) => i.epocId == int.parse(action.qrCode))));
+              .singleWhere((i) => i.epocId == action.qrCode)));
 }
 
 AppState addTableNumberOrder(AddTableNumberOrderAction action, AppState state) {

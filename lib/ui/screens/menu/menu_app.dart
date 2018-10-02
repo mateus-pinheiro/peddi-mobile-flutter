@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:peddi_tont_app/models/category.dart';
-import 'package:peddi_tont_app/models/sub_category.dart';
 import 'package:peddi_tont_app/themes/app_colors.dart';
-import 'package:peddi_tont_app/models/category.dart';
 import 'package:peddi_tont_app/ui/screens/order/order_app.dart';
 import 'widgets/menu_header.dart';
 import 'widgets/menu_category.dart';
-import 'widgets/menu_sub_category.dart';
 import 'package:peddi_tont_app/themes/font_styles.dart';
 
 class MenuApp extends StatelessWidget {

@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:peddi_tont_app/ui/dialogs/success_dialog.dart';
-import 'package:peddi_tont_app/ui/screens/table_opening/widgets/opening_scan.dart';
 import 'package:simple_permissions/simple_permissions.dart';
 import 'package:barcode_scan/barcode_scan.dart';
 

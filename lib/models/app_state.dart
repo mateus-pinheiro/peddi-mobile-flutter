@@ -1,10 +1,6 @@
 import 'package:meta/meta.dart';
-import 'package:peddi_tont_app/models/category.dart';
-import 'package:peddi_tont_app/models/ingredient.dart';
 import 'package:peddi_tont_app/models/order.dart';
-import 'package:peddi_tont_app/models/product.dart';
 import 'package:peddi_tont_app/models/restaurant.dart';
-import 'package:peddi_tont_app/models/sub_category.dart';
 
 @immutable
 class AppState {

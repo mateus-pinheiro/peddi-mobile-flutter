@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:peddi_tont_app/themes/app_colors.dart';
-import 'package:peddi_tont_app/themes/font_styles.dart';
 
 class MainFeatured extends StatelessWidget {
 

@@ -75,7 +75,7 @@ class OpeningScan extends StatelessWidget {
         converter: (store) => store.state.restaurant.responsibleEmployee,
         builder: (context, responsibleEmployees) {
           if (responsibleEmployees
-              .where((responsible) => responsible.epocId == int.parse(_reader))
+              .where((responsible) => responsible.epocId == _reader)
               .isNotEmpty) {
             return new StoreConnector<AppState, void>(
               converter: (store) => store.dispatch(AddQrResposibleCode(

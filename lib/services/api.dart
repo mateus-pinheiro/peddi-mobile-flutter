@@ -11,7 +11,7 @@ class API {
 //  static const String _apiUrl = 'http://192.168.1.70:3000/api';
 
 //  IP PEDDI
-//  static const String _apiUrl = 'http://192.168.15.19:3000/api';
+//  static const String _apiUrl = 'http://192.168.15.15:3000/api';
 
 //  IP CASA
   static const String _apiUrl = 'http://192.168.15.11:3000/api';

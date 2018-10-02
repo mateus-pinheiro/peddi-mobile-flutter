@@ -1,13 +1,12 @@
 import 'dart:async';
 
 import 'package:flutter/widgets.dart';
-import 'package:peddi_tont_app/models/category.dart';
-import 'package:peddi_tont_app/models/ingredient.dart';
 import 'package:peddi_tont_app/models/item.dart';
 import 'package:peddi_tont_app/models/order.dart';
 import 'package:peddi_tont_app/models/restaurant.dart';
 
 class LoadRestaurantAction {}
+class NewItemList {}
 
 class SaveRestaurantAction {
   final Restaurant restaurant;

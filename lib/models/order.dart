@@ -1,4 +1,3 @@
-import 'package:meta/meta.dart';
 import 'package:peddi_tont_app/models/item.dart';
 import 'package:peddi_tont_app/models/responsible_employee.dart';
 import 'package:peddi_tont_app/models/restaurant_order.dart';
@@ -13,7 +12,7 @@ class Order {
   final DateTime createdAt;
   final DateTime updatedAt;
   final RestaurantOrder restaurant;
-  final int ticket;
+  final String ticket;
   final List<Item> items;
 
   Order(
@@ -67,7 +66,7 @@ class Order {
     DateTime createdAt,
     DateTime updatedAt,
     RestaurantOrder restaurant,
-    int ticket,
+    String ticket,
     List<Item> items,
   }) {
 

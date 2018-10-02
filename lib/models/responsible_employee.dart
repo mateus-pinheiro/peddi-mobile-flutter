@@ -1,5 +1,5 @@
 class ResponsibleEmployee {
-  int epocId;
+  String epocId;
   String name;
 
   ResponsibleEmployee({this.epocId, this.name});
@@ -11,7 +11,7 @@ class ResponsibleEmployee {
   Map<String, dynamic> toJson() => {'epoc_id': epocId, 'name': name};
 
   ResponsibleEmployee copyWith({
-    int epocId,
+    String epocId,
     String name,
   }) {
     return new ResponsibleEmployee(
