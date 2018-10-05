@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:peddi_tont_app/models/ingredient.dart';
 import 'package:peddi_tont_app/models/item.dart';
 import 'package:peddi_tont_app/models/order.dart';
 import 'package:peddi_tont_app/redux/actions.dart';
@@ -65,17 +66,39 @@ class OrderListState extends State<OrderList> {
     );
   }
 
+  Widget _buildIngredientList(List<Ingredient> ingredients) {
+    if (ingredients != null && ingredients.isNotEmpty) {
+      return new Container(
+        height: 35.0,
+        width: 280.0,
+        child: ListView.builder(
+          itemBuilder: (context, position) =>
+              ingredientRow(ingredients[position]),
+          itemCount: ingredients.length,
+          scrollDirection: Axis.horizontal,
+          cacheExtent: 0.0,
+        ),
+      );
+    } else {
+      return new Divider(
+        height: 1.0,
+        color: Colors.black12,
+      );
+    }
+  }
+
   Widget itemRow(Item item) {
-    return Column(
+    return new Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Row(
+        new Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(5.0),
               child: Container(
-//                color: Colors.red,
-                height: 80.0,
+                height: 110.0,
                 width: 350.0,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -103,7 +126,8 @@ class OrderListState extends State<OrderList> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: <Widget>[
                               Padding(
-                                padding: const EdgeInsets.only(top: 5.0),
+                                padding: const EdgeInsets.only(
+                                    top: 5.0, bottom: 5.0),
                                 child: new Container(
                                   width: 250.0,
                                   child: Text(
@@ -113,8 +137,9 @@ class OrderListState extends State<OrderList> {
                                   ),
                                 ),
                               ),
+                              _buildIngredientList(item.ingredients),
                               Padding(
-                                padding: const EdgeInsets.only(top: 10.0),
+                                padding: const EdgeInsets.only(top: 0.0),
                                 child: Text(
                                     CurrencyConverter.toBrazilianReal(
                                             item.price) +
@@ -133,7 +158,6 @@ class OrderListState extends State<OrderList> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Container(
-//                color: Colors.red,
                 height: 80.0,
                 width: 90.0,
                 child: Column(
@@ -151,11 +175,22 @@ class OrderListState extends State<OrderList> {
         Padding(
           padding: const EdgeInsets.only(left: 50.0, right: 70.0),
           child: Divider(
-            height: 02.0,
+            height: 2.0,
             color: Colors.black12,
           ),
         ),
       ],
+    );
+  }
+
+  Widget ingredientRow(Ingredient ingredient) {
+    return Padding(
+      padding: const EdgeInsets.only(right: 8.0, left: 1.0),
+      child: new Text(
+        ingredient.name +
+            ' / ',
+        style: FontStyles.ingredientNameProduct,
+      ),
     );
   }
 }

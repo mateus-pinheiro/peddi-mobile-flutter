@@ -312,7 +312,7 @@ class FontStyles {
       fontFamily: "CircularStd",
       fontStyle: FontStyle.normal,
       fontWeight: FontWeight.normal,
-      fontSize: 24.0,
+      fontSize: 26.0,
       color: AppColors.gray4);
 
   static const productPriceOrder = TextStyle(

@@ -20,29 +20,28 @@ class OrderScan extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Material(
-      child: new StoreConnector<AppState, void>(
-          converter: (store) {
-            store.dispatch(AddQrTicketCode(_reader, context));
-            store.dispatch(SendOrder(store.state.order,
-                snackBarCompleter(context, null, shouldPop: true)));
-          },
-          builder: (context, lk) => new Container(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height,
-                color: Colors.transparent,
-              )),
-    );
+        child: new StoreConnector<AppState, void>(
+            converter: (store) {
+              store.dispatch(AddQrTicketCode(_reader, context));
+              store.dispatch(SendOrder(store.state.order,
+                  snackBarCompleter(context, null, shouldPop: true)));
+            },
+            builder: (context, lk) => widget(context)));
   }
 
   void close(BuildContext context) async {
-    await new Future.delayed(const Duration(seconds: 1));
+    await new Future.delayed(const Duration(milliseconds: 500));
     Navigator.pop(context);
   }
 
   Widget widget(BuildContext context) {
     close(context);
     return new Scaffold(
-
+      body: new Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          color: Colors.black,
+          child: new Center(child: new CircularProgressIndicator())),
     );
   }
 }
