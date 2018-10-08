@@ -45,9 +45,13 @@ class AddQrResposibleCode {
 
 class AddQrTicketCode {
   final String qrCode;
-  final BuildContext context;
+  final Completer completer;
+//  final BuildContext context;
 
-  AddQrTicketCode(this.qrCode, this.context);
+  AddQrTicketCode(this.qrCode,
+//      this.context,
+      this.completer,
+      );
 }
 
 class AddItemAction {

@@ -1,3 +1,5 @@
+import 'package:peddi_tont_app/redux/actions.dart';
+import 'package:peddi_tont_app/ui/screens/order/widgets/confirmation_screen.dart';
 import 'package:peddi_tont_app/ui/screens/order/widgets/order_list.dart';
 import 'package:peddi_tont_app/ui/screens/order/widgets/order_scan.dart';
 import 'package:flutter/material.dart';
@@ -6,10 +8,11 @@ import 'package:peddi_tont_app/models/app_state.dart';
 import 'package:peddi_tont_app/models/order.dart';
 import 'package:peddi_tont_app/themes/font_styles.dart';
 import 'package:peddi_tont_app/themes/app_colors.dart';
+import 'package:peddi_tont_app/util/completers.dart';
 import 'package:peddi_tont_app/util/scan.dart';
 
 class OrderApp extends StatelessWidget {
-  OnSendPressed callback;
+  OnScanPressed callback;
 
   @override
   Widget build(BuildContext context) {
@@ -83,34 +86,38 @@ class OrderApp extends StatelessWidget {
                     Expanded(
                       child: new OrderList(state.order),
                     ),
-                    new
-//                    StoreConnector<AppState, OnSendPressed>(
-//                      converter: (store) {
-//                        return (order) => store.dispatch(SendOrder(order,
-//                            snackBarCompleter(context, null, shouldPop: true)
-//                        )
-//                        );
-//                      },
-//                      builder: (BuildContext context, callback) =>
-                        Container(
-                      height: 69.0,
-                      width: 560.0,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10.0),
-                        color: AppColors.yellow1,
-                      ),
-                      child: MaterialButton(
-                        onPressed: () {
-                          ScanBarCode().scan().then((result) =>
-                              resultOfBarCode(result, context, state));
-//                                callback(order);
-                        },
-                        splashColor: Color(0),
-                        height: 60.0,
-                        textTheme: ButtonTextTheme.accent,
-                        child: new Text('ENVIAR PEDIDO',
-                            style: FontStyles.buttonStyle),
-                      ),
+                    new StoreConnector<AppState, OnScanPressed>(
+                      converter: (store) {
+                        return (ticket) => store.dispatch(AddQrTicketCode(
+                            ticket,
+                            qrCodeCompleter(context, null, shouldPop: true)));
+                      },
+                      builder: (BuildContext context, callback) => Container(
+                            height: 69.0,
+                            width: 560.0,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10.0),
+                              color: AppColors.yellow1,
+                            ),
+                            child: MaterialButton(
+                              onPressed: () {
+//                                Navigator.pop(context);
+                                ScanBarCode().scan().then((result) {
+                                  callback(result);
+                                  openConfirmationScreen(context, result);
+                                }
+//                              resultOfBarCode(result, context, state));
+
+                                    );
+
+                              },
+                              splashColor: Color(0),
+                              height: 60.0,
+                              textTheme: ButtonTextTheme.accent,
+                              child: new Text('SCANNEAR COMANDA',
+                                  style: FontStyles.buttonStyle),
+                            ),
+                          ),
                     ),
                   ],
                 ),
@@ -126,10 +133,15 @@ class OrderApp extends StatelessWidget {
     Navigator.push(
       contextParent,
       MaterialPageRoute(
-          builder: (context) =>
-              new OrderScan(result, state.order, state.restaurant.categories, contextParent)),
+          builder: (context) => new OrderScan(
+              result, state.order, state.restaurant.categories, contextParent)),
     );
   }
 }
 
-typedef OnSendPressed = Function(Order order);
+void openConfirmationScreen(BuildContext context, String result) {
+  Navigator.push(context,
+      MaterialPageRoute(builder: (context) => ConfirmationScreen(result)));
+}
+
+typedef OnScanPressed = Function(String ticket);

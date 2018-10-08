@@ -71,6 +71,22 @@ class FontStyles {
     letterSpacing: 3.0,
   );
 
+  static const confirmationDialogText = TextStyle(
+      fontFamily: "CircularStd",
+      fontStyle: FontStyle.normal,
+      fontWeight: FontWeight.normal,
+      fontSize: 20.0,
+      color: AppColors.gray3
+  );
+
+  static const confirmationDialogButton = TextStyle(
+    fontFamily: 'CircularStd',
+    fontSize: 18.0,
+    color: Colors.blue,
+    fontWeight: FontWeight.bold,
+//    letterSpacing: 3.0,
+  );
+
   static const featuredProductTitle = TextStyle(
       fontFamily: "CircularStd",
       fontStyle: FontStyle.normal,
@@ -169,12 +185,12 @@ class FontStyles {
       fontSize: 24.0,
       color: AppColors.peddi_white);
   static const style5 = TextStyle(
-      fontWeight: FontWeight.w900,
-      fontFamily: "CircularStd",
-      fontStyle: FontStyle.normal,
+    fontWeight: FontWeight.w900,
+    fontFamily: "CircularStd",
+    fontStyle: FontStyle.normal,
 //      fontWeight: FontWeight.bold,
-      fontSize: 34.0,
-      color: Colors.white,
+    fontSize: 34.0,
+    color: Colors.white,
   );
   static const style6 = TextStyle(
       //fontWeight: FontWeight.w900,
@@ -300,15 +316,18 @@ class FontStyles {
       color: AppColors.gray3);
 
   static const titlesCart = TextStyle(
-      //fontWeight: FontWeight.w900,
-      fontFamily: "CircularStd",
-      fontStyle: FontStyle.normal,
-      fontWeight: FontWeight.normal,
-      fontSize: 22.0,
-      color: Colors.white);
+    //fontWeight: FontWeight.w900,
+    fontFamily: 'CircularStd',
+    fontSize: 24.0,
+    color: Colors.white,
+//      fontWeight: FontWeight.bold,
+    letterSpacing: 3.0,
+    fontStyle: FontStyle.normal,
+    fontWeight: FontWeight.normal,
+  );
 
   static const productNameOrder = TextStyle(
-    //fontWeight: FontWeight.w900,
+      //fontWeight: FontWeight.w900,
       fontFamily: "CircularStd",
       fontStyle: FontStyle.normal,
       fontWeight: FontWeight.normal,
@@ -316,7 +335,7 @@ class FontStyles {
       color: AppColors.gray4);
 
   static const productPriceOrder = TextStyle(
-    //fontWeight: FontWeight.w900,
+      //fontWeight: FontWeight.w900,
       fontFamily: "CircularStd",
       fontStyle: FontStyle.normal,
       fontWeight: FontWeight.bold,
@@ -324,7 +343,7 @@ class FontStyles {
       color: AppColors.gray5);
 
   static const totalLabelOrder = TextStyle(
-    //fontWeight: FontWeight.w900,
+      //fontWeight: FontWeight.w900,
       fontFamily: "CircularStd",
       fontStyle: FontStyle.normal,
       fontWeight: FontWeight.normal,
@@ -332,7 +351,7 @@ class FontStyles {
       color: AppColors.gray3);
 
   static const amountOrder = TextStyle(
-    //fontWeight: FontWeight.w900,
+      //fontWeight: FontWeight.w900,
       fontFamily: "CircularStd",
       fontStyle: FontStyle.normal,
       fontWeight: FontWeight.bold,

@@ -12,6 +12,7 @@ Completer<Null> snackBarCompleter(BuildContext context, String message,
   completer.future.then((_) {
     if (shouldPop) {
       Navigator.of(context).pop();
+      Navigator.of(context).pop();
     }
 
     showDialog<SuccessDialog>(

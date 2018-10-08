@@ -22,7 +22,7 @@ class OrderScan extends StatelessWidget {
     return new Material(
         child: new StoreConnector<AppState, void>(
             converter: (store) {
-              store.dispatch(AddQrTicketCode(_reader, context));
+//              store.dispatch(AddQrTicketCode(_reader, context));
               store.dispatch(SendOrder(store.state.order,
                   snackBarCompleter(context, null, shouldPop: true)));
             },
