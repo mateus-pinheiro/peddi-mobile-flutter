@@ -24,7 +24,7 @@ class ConfirmDialog extends StatelessWidget {
             type: MaterialType.transparency,
             child: new AlertDialog(
               title: new Text('Sua comanda é: ' + ticketMessage,
-                  style: FontStyles.productNameMenu),
+                  style: FontStyles.confirmationDialogTitle),
               content: new SingleChildScrollView(
                 child: new ListBody(
                   children: <Widget>[

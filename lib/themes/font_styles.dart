@@ -82,10 +82,18 @@ class FontStyles {
   static const confirmationDialogButton = TextStyle(
     fontFamily: 'CircularStd',
     fontSize: 18.0,
-    color: Colors.blue,
+    color: AppColors.peddi_green,
     fontWeight: FontWeight.bold,
 //    letterSpacing: 3.0,
   );
+
+  static const confirmationDialogTitle = TextStyle(
+    //fontWeight: FontWeight.w900,
+      fontFamily: "CircularStd",
+      fontStyle: FontStyle.normal,
+      fontWeight: FontWeight.bold,
+      fontSize: 26.0,
+      color: AppColors.gray5);
 
   static const featuredProductTitle = TextStyle(
       fontFamily: "CircularStd",
