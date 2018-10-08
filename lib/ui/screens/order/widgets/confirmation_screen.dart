@@ -11,7 +11,7 @@ class ConfirmationScreen extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.peddi_green,
+      backgroundColor: AppColors.yellow1,
       body: new ConfirmDialog(ticket)
     );
   }
