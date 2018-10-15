@@ -12,6 +12,7 @@ AppState appStateReducers(AppState state, dynamic action) {
     return saveRestaurant(action, state);
   } else if (action is SendOrder) {
     return sendOrder(action, state);
+  } else if (action is SendRating) {
   }
 //  else if (action is OrderSentSuccessfully) {
 //    return orderSent(action, state);
@@ -35,15 +36,15 @@ AppState appStateReducers(AppState state, dynamic action) {
 }
 
 AppState loadRestaurant(LoadRestaurantAction action, Restaurant restaurant) {
-  return new AppState(restaurant, null);
+  return new AppState(restaurant, null, null);
 }
 
 AppState saveRestaurant(SaveRestaurantAction action, AppState state) {
-  return new AppState(action.restaurant, state.order);
+  return new AppState(action.restaurant, state.order, null);
 }
 
 AppState sendOrder(SendOrder action, AppState state) {
-  return new AppState(state.restaurant, action.order);
+  return new AppState(state.restaurant, action.order, null);
 }
 
 //AppState orderSent(OrderSentSuccessfully action, AppState state) {
@@ -56,7 +57,7 @@ AppState sendOrder(SendOrder action, AppState state) {
 
 AppState addQrTicketCode(AddQrTicketCode action, AppState state) {
   return new AppState(
-      state.restaurant, state.order.copyWith(ticket: action.qrCode));
+      state.restaurant, state.order.copyWith(ticket: action.qrCode), null);
 }
 
 AppState newItemList(AppState state) {
@@ -66,7 +67,8 @@ AppState newItemList(AppState state) {
         items: new List<Item>(),
         amount: 0.0,
         ticket: '',
-      ));
+      ),
+      null);
 }
 
 AppState addQrResposibleCode(AddQrResposibleCode action, AppState state) {
@@ -84,7 +86,8 @@ AppState addQrResposibleCode(AddQrResposibleCode action, AppState state) {
               cnpj: state.restaurant.cnpj.toString(),
               name: state.restaurant.name),
           responsibleEmployee: state.restaurant.responsibleEmployee
-              .singleWhere((i) => i.epocId == action.qrCode)));
+              .singleWhere((i) => i.epocId == action.qrCode)),
+      null);
 }
 
 AppState addTableNumberOrder(AddTableNumberOrderAction action, AppState state) {
@@ -95,7 +98,8 @@ AppState addTableNumberOrder(AddTableNumberOrderAction action, AppState state) {
           table: action.table,
           customers: action.customers,
           createdAt: DateTime.now(),
-          items: new List<Item>()));
+          items: new List<Item>()),
+      null);
 }
 
 AppState addItem(AddItemAction action, AppState state) {
@@ -106,7 +110,7 @@ AppState addItem(AddItemAction action, AppState state) {
     return state.order;
   }
 
-  return new AppState(state.restaurant, addItemToOrder(action));
+  return new AppState(state.restaurant, addItemToOrder(action), null);
 }
 
 AppState removeItem(RemoveItemAction action, AppState state) {
@@ -116,5 +120,9 @@ AppState removeItem(RemoveItemAction action, AppState state) {
     return state.order;
   }
 
-  return new AppState(state.restaurant, removeItemFromOrder(action));
+  return new AppState(state.restaurant, removeItemFromOrder(action), null);
+}
+
+AppState sendRating(SendRating action, AppState state) {
+  return new AppState(state.restaurant, state.order, action.rating);
 }

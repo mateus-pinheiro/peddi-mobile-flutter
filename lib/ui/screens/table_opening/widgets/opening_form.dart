@@ -42,16 +42,16 @@ class OpeningFormState extends State<OpeningForm> {
     return Column(
       children: <Widget>[
         ListTile(
-          title: Padding(
-            padding: const EdgeInsets.only(top: 5.0),
-            child: Text(
+          title:
+             Text(
               'Olá! Seja bem vindo(a)!',
               textAlign: TextAlign.center,
               style: FontStyles.style,
+              textScaleFactor: 1.5,
             ),
-          ),
+
           subtitle: Padding(
-            padding: const EdgeInsets.only(top: 15.0),
+            padding: const EdgeInsets.only(top: 10.0),
             child: Text(
               'Vamos começar?',
               textAlign: TextAlign.center,
@@ -60,13 +60,14 @@ class OpeningFormState extends State<OpeningForm> {
                 fontSize: 24.0,
                 color: Colors.white,
               ),
+              textScaleFactor: 1.5,
             ),
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 20.0),
+          padding: const EdgeInsets.only(top: 30.0),
           child: Container(
-            width: 280.0,
+            width: 350.0,
             decoration: BoxDecoration(
                 color: Colors.white, borderRadius: BorderRadius.circular(10.0)),
             child: TextField(
@@ -83,29 +84,30 @@ class OpeningFormState extends State<OpeningForm> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 5.0),
+          padding: const EdgeInsets.only(top: 10.0),
           child: Container(
-            width: 280.0,
+            width: 350.0,
             decoration: BoxDecoration(
                 color: Colors.white, borderRadius: BorderRadius.circular(10.0)),
             child: TextField(
               keyboardType: TextInputType.number,
               style: FontStyles.style1,
+
               onChanged: (qtyConsumerCurrent) =>
                   this.qtyConsumer = int.parse(qtyConsumerCurrent),
               decoration: new InputDecoration(
                   labelText: 'Quantidade de pessoas',
                   border: OutlineInputBorder(
                       borderSide: BorderSide(
-                          style: BorderStyle.none, color: Colors.white24),
+                          style: BorderStyle.none, color: Colors.white24,),
                       borderRadius: BorderRadius.circular(10.0))),
             ),
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 8.0),
+          padding: const EdgeInsets.only(top: 30.0),
           child: Container(
-              constraints: BoxConstraints.expand(width: 280.0, height: 80.0),
+              constraints: BoxConstraints.expand(width: 350.0, height: 90.0),
               decoration: BoxDecoration(
                   color: Colors.transparent,
                   border: Border.all(
@@ -126,6 +128,7 @@ class OpeningFormState extends State<OpeningForm> {
                 child: new Text(
                   'ABRIR MESA',
                   style: FontStyles.style2,
+                  textScaleFactor: 1.5,
                 ),
               )),
         ),

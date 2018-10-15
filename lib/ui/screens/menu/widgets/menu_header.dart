@@ -6,6 +6,7 @@ import 'package:peddi_tont_app/themes/app_colors.dart';
 import 'package:peddi_tont_app/themes/font_styles.dart';
 import 'package:peddi_tont_app/ui/dialogs/help_dialog.dart';
 import 'package:peddi_tont_app/ui/dialogs/power_dialog.dart';
+import 'package:peddi_tont_app/ui/dialogs/rating_dialog.dart';
 import 'package:peddi_tont_app/ui/screens/order/order_app.dart';
 
 class MenuHeader extends StatelessWidget {
@@ -17,6 +18,9 @@ class MenuHeader extends StatelessWidget {
   }
   showPower(BuildContext context) {
     showDialog(context: context,builder: (context) => new PowerDialog());
+  }
+  showRating(BuildContext context) {
+    showDialog(context: context,builder: (context) => new RatingDialog());
   }
 
 
@@ -177,6 +181,33 @@ class MenuHeader extends StatelessWidget {
                           children: <Widget>[
                             MaterialButton (
                               onPressed: () {
+                                showRating(context);
+                              },
+                              splashColor: Color(0),
+                              height: 30.0,
+                              minWidth: 30.0,
+                              child: Icon (
+                                Icons.star,
+                                size: 55.0,
+                                color: AppColors.gray2,
+                              ),
+                            ),
+
+//                          Text(
+//                            'Ajuda',
+//                            style: FontStyles.style2,
+//                          ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 25.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: <Widget>[
+                            MaterialButton (
+                              onPressed: () {
                                 showPower(context);
                               },
                               splashColor: Color(0),
@@ -195,7 +226,7 @@ class MenuHeader extends StatelessWidget {
 //                          ),
                           ],
                         ),
-                      )
+                      ),
                     ],
                   ),
                 )),

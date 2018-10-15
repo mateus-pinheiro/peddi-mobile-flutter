@@ -3,9 +3,11 @@ import 'dart:async';
 import 'package:flutter/widgets.dart';
 import 'package:peddi_tont_app/models/item.dart';
 import 'package:peddi_tont_app/models/order.dart';
+import 'package:peddi_tont_app/models/rating.dart';
 import 'package:peddi_tont_app/models/restaurant.dart';
 
 class LoadRestaurantAction {}
+
 class NewItemList {}
 
 class SaveRestaurantAction {
@@ -46,12 +48,14 @@ class AddQrResposibleCode {
 class AddQrTicketCode {
   final String qrCode;
   final Completer completer;
+
 //  final BuildContext context;
 
-  AddQrTicketCode(this.qrCode,
+  AddQrTicketCode(
+    this.qrCode,
 //      this.context,
-      this.completer,
-      );
+    this.completer,
+  );
 }
 
 class AddItemAction {
@@ -70,4 +74,11 @@ class AddItemIngredients {
   final Item item;
 
   AddItemIngredients(this.item);
+}
+
+class SendRating {
+  final Rating rating;
+  final Completer completer;
+
+  SendRating(this.rating, this.completer);
 }

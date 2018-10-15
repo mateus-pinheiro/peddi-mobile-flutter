@@ -191,7 +191,7 @@ class FontStyles {
       fontStyle: FontStyle.normal,
       fontWeight: FontWeight.bold,
       fontSize: 24.0,
-      color: AppColors.peddi_white);
+      color: Colors.white);
   static const style5 = TextStyle(
     fontWeight: FontWeight.w900,
     fontFamily: "CircularStd",
@@ -250,6 +250,19 @@ class FontStyles {
       fontWeight: FontWeight.bold,
       fontSize: 24.0,
       color: Colors.green);
+  static const style13 = TextStyle(
+    //fontWeight: FontWeight.w900,
+      fontFamily: "CircularStd",
+      fontStyle: FontStyle.normal,
+      fontWeight: FontWeight.bold,
+      fontSize: 26.0,
+      color: AppColors.gray5);
+  static const style14 = TextStyle(
+    //fontWeight: FontWeight.w900,
+      fontFamily: "CircularStd",
+      fontStyle: FontStyle.normal,
+      fontSize: 18.0,
+      color: Colors.black);
 
   static const productNameMenu = TextStyle(
       //fontWeight: FontWeight.w900,
@@ -258,6 +271,13 @@ class FontStyles {
       fontWeight: FontWeight.normal,
       fontSize: 26.0,
       color: AppColors.gray5);
+  static const iconNameRating = TextStyle(
+    //fontWeight: FontWeight.w900,
+      fontFamily: "CircularStd",
+      fontStyle: FontStyle.normal,
+      fontWeight: FontWeight.normal,
+      fontSize: 24.0,
+      color: AppColors.gray4);
 
   static const productPriceMenu = TextStyle(
       //fontWeight: FontWeight.w900,
