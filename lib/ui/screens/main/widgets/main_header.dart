@@ -59,6 +59,13 @@ class MainHeader extends StatelessWidget {
                                         'resources/images/logo_lm_title.jpg'),
                                   ))),
                         ),
+              Padding(
+                padding: const EdgeInsets.only(top: 20.0, left: 20.0),
+                        child: Image(
+                            image: AssetImage('resources/images/logo1.png'),
+                            width: 100.0,
+                            height: 95.0),
+              ),
                       ],
                     ),
                   )),
@@ -115,33 +122,33 @@ class MainHeader extends StatelessWidget {
                             color: Colors.grey,
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 15.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: <Widget>[
-                              MaterialButton(
-                                onPressed: () {
-                                  showHelp(context);
-                                },
-                                splashColor: Color(0),
-                                height: 30.0,
-                                minWidth: 30.0,
-                                child: Icon(
-                                  Icons.help_outline,
-                                  size: 55.0,
-                                  color: AppColors.gray2,
-                                ),
-                              ),
-
-//                          Text(
-//                            'Ajuda',
-//                            style: FontStyles.style2,
+//                        Padding(
+//                          padding: const EdgeInsets.only(bottom: 15.0),
+//                          child: Column(
+//                            crossAxisAlignment: CrossAxisAlignment.center,
+//                            mainAxisAlignment: MainAxisAlignment.end,
+//                            children: <Widget>[
+//                              MaterialButton(
+//                                onPressed: () {
+//                                  showHelp(context);
+//                                },
+//                                splashColor: Color(0),
+//                                height: 30.0,
+//                                minWidth: 30.0,
+//                                child: Icon(
+//                                  Icons.help_outline,
+//                                  size: 55.0,
+//                                  color: AppColors.gray2,
+//                                ),
+//                              ),
+//
+////                          Text(
+////                            'Ajuda',
+////                            style: FontStyles.style2,
+////                          ),
+//                            ],
 //                          ),
-                            ],
-                          ),
-                        ),
+//                        ),
                         Padding(
                           padding: const EdgeInsets.only(bottom: 15.0),
                           child: Column(
@@ -168,7 +175,7 @@ class MainHeader extends StatelessWidget {
 //                          ),
                             ],
                           ),
-                        )
+                        ),
                       ],
                     ),
                   )),

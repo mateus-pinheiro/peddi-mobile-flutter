@@ -18,7 +18,7 @@ Completer<Null> snackBarCompleter(BuildContext context, String message,
     showDialog<SuccessDialog>(
         context: context,
         builder: (BuildContext context) {
-          return SuccessDialog(null);
+          return SuccessDialog(message);
         });
   }).catchError((Object error) {
     showDialog<ErrorDialog>(

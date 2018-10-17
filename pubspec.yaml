@@ -11,6 +11,7 @@ dependencies:
   barcode_scan: ^0.0.7
   cached_network_image: "^0.4.1"
 
+
   flutter:
     sdk: flutter
 
@@ -22,6 +23,16 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+  flutter_launcher_icons: "^0.6.1"
+
+flutter_icons:
+  android: true
+  ios: "Example-Icon"
+  image_path: "resources/images/logo1.png"
+  image_path_android: "resources/images/logo1.png"
+  image_path_ios: "resources/images/logo1.png"
+  adaptive_icon_background: ""
+  adaptive_icon_foreground: "resources/images/logo1.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://www.dartlang.org/tools/pub/pubspec

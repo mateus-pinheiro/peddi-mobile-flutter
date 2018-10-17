@@ -90,7 +90,8 @@ class OrderApp extends StatelessWidget {
                       converter: (store) {
                         return (ticket) => store.dispatch(AddQrTicketCode(
                             ticket,
-                            qrCodeCompleter(context, null, shouldPop: true)));
+                            qrCodeCompleter(context, null, shouldPop: true)
+                        ));
                       },
                       builder: (BuildContext context, callback) => Container(
                             height: 69.0,

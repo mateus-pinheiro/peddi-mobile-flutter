@@ -21,13 +21,9 @@ void appMiddleware(Store<AppState> store, action, NextDispatcher next) {
   } else if (action is SendOrder) {
     sendOrderToApi(store.state.order, store, action);
     store.dispatch(new NewItemList());
-  } else if (action is SendRating) {}
-//  else if (action is AddQrTicketCode) {
-//    store.dispatch(SendOrder(store.state.order, snackBarCompleter(action.context, null, shouldPop: false)));
-//  }
-//  if (action is SaveRestaurantAction) {
-//    saveStateToPrefs(store.state);
-//  }
+  } else if (action is SendRating) {
+    sendRatingToApi(action);
+  }
 }
 
 void sendOrderToApi(Order order, Store<AppState> state, SendOrder action) {
@@ -45,8 +41,8 @@ void sendOrderToApi(Order order, Store<AppState> state, SendOrder action) {
   });
 }
 
-void sendRatingToApi(Rating rating, SendRating action) {
-  API().postRating(rating).then((response) {
+void sendRatingToApi(SendRating action) {
+  API().postRating(action.rating).then((response) {
     if (action.completer != null) {
       action.completer.complete();
     }

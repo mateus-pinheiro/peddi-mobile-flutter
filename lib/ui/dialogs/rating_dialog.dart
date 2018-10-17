@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:peddi_tont_app/models/app_state.dart';
 import 'package:peddi_tont_app/models/rating.dart';
+import 'package:peddi_tont_app/redux/actions.dart';
 import 'package:peddi_tont_app/themes/app_colors.dart';
 import 'package:peddi_tont_app/themes/font_styles.dart';
+import 'package:peddi_tont_app/util/completers.dart';
 import 'package:peddi_tont_app/util/stars.dart';
 
 class RatingDialog extends StatefulWidget {
@@ -10,13 +14,20 @@ class RatingDialog extends StatefulWidget {
 }
 
 class _RatingDialogState extends State<RatingDialog> {
-  int _foodRating = 1;
-  int _serviceRating = 1;
-  int _environmentRating = 1;
+  int _foodRating = 0;
+  int _serviceRating = 0;
+  int _environmentRating = 0;
+  String _emailRating = "";
 
-  Rating _rating = new Rating(environmentRating: 1, foodRating: 1,serviceRating: 1);
-
-//  String _subjectName = "";
+  Rating ratingCreation() {
+    Rating _rating = new Rating(
+      serviceRating: this._serviceRating,
+      foodRating: this._foodRating,
+      environmentRating: this._environmentRating,
+      email: this._emailRating,
+    );
+    return _rating;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -79,16 +90,19 @@ class _RatingDialogState extends State<RatingDialog> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
                                     Padding(
-                                      padding:
-                                          const EdgeInsets.only(top: 05.0),
+                                      padding: const EdgeInsets.only(top: 05.0),
                                       child: Text(
-                                          'Fique por dentro das novidades!',style: FontStyles.style6,),
+                                        'Fique por dentro das novidades!',
+                                        style: FontStyles.style6,
+                                      ),
                                     ),
                                     Padding(
-                                      padding:
-                                          const EdgeInsets.only(bottom: 05.0,top: 05.0),
+                                      padding: const EdgeInsets.only(
+                                          bottom: 05.0, top: 05.0),
                                       child: Text(
-                                          'Cadastre-se, torne-se um cliente de fidelidade e receba promoções.',style: FontStyles.style14,),
+                                        'Cadastre-se, torne-se um cliente de fidelidade e receba promoções.',
+                                        style: FontStyles.style14,
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -102,17 +116,18 @@ class _RatingDialogState extends State<RatingDialog> {
                                   child: Container(
                                     width: 350.0,
                                     decoration: BoxDecoration(
-                                        color: Colors.white, borderRadius: BorderRadius.circular(10.0)),
+                                        color: Colors.white,
+                                        borderRadius:
+                                            BorderRadius.circular(10.0)),
                                     child: TextField(
-//                                      onChanged: (tableNumberCurrent) =>
-//                                      this.tableNumber = int.parse(tableNumberCurrent),
-//                                      keyboardType: TextInputType.number,
-//                                      style: FontStyles.style1,
-//              onFieldSubmitted: (tableNumberCurrent) => this.tableNumber = tableNumberCurrent,
+                                      onSubmitted: (result) =>
+                                          _emailRating = result,
+//                                      onEditingComplete:() => {_rating:7},
                                       decoration: InputDecoration(
                                           labelText: 'Digite seu e-mail',
                                           border: OutlineInputBorder(
-                                              borderRadius: BorderRadius.circular(10.0))),
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0))),
                                     ),
                                   ),
                                 ),
@@ -216,7 +231,8 @@ class _RatingDialogState extends State<RatingDialog> {
                                 child: new StarRating(
                                   rating: _environmentRating,
                                   onRatingChanged: (rating) => setState(
-                                      () => this._environmentRating = rating),
+                                        () => this._environmentRating = rating,
+                                      ),
                                 ),
                               ),
                             ],
@@ -224,18 +240,37 @@ class _RatingDialogState extends State<RatingDialog> {
                         ],
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 30.0),
-                      child: Container(
-                        height: 70.0,
-                        width: 250.0,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10.0),
-                            color: AppColors.yellow1),
-                        child: Center(
-                        child: Text('ENVIAR AVALIAÇÃO',style: FontStyles.style2,),
-                      ),
-                      ),
+                    new StoreConnector<AppState, OnSendRatingPressed>(
+                      converter: (store) {
+                        return (rating) => store.dispatch(SendRating(
+                            rating,
+                            snackBarCompleter(context,
+                                "Seu feedback foi enviado com sucesso!",
+                                shouldPop: true)));
+                      },
+                      builder: (BuildContext context, callback) => Center(
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 60.0),
+                              child: Container(
+                                height: 69.0,
+                                width: 560.0,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  color: AppColors.yellow1,
+                                ),
+                                child: MaterialButton(
+                                  onPressed: () {
+                                    callback(ratingCreation());
+                                  },
+                                  splashColor: Color(0),
+                                  height: 60.0,
+                                  textTheme: ButtonTextTheme.accent,
+                                  child: new Text('ENVIAR AVALIAÇÃO',
+                                      style: FontStyles.buttonStyle),
+                                ),
+                              ),
+                            ),
+                          ),
                     ),
                   ],
                 ),
@@ -247,3 +282,5 @@ class _RatingDialogState extends State<RatingDialog> {
     );
   }
 }
+
+typedef OnSendRatingPressed = Function(Rating rating);

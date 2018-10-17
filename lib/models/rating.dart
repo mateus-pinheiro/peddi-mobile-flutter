@@ -1,10 +1,10 @@
 import 'package:flutter/widgets.dart';
 
 class Rating {
-  final String email;
-  final int foodRating;
-  final int environmentRating;
-  final int serviceRating;
+   String email;
+   int foodRating;
+   int environmentRating;
+   int serviceRating;
 
    Rating({this.email, this.foodRating, this.serviceRating, this.environmentRating});
 
