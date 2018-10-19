@@ -12,13 +12,13 @@ class API {
 //  static const String _apiUrl = 'http://192.168.1.71:3001/api';
 
 //  IP LUCCAS
-//  static const String _apiUrl = 'http://192.168.15.13:3000/api';
+  static const String _apiUrl = 'http://192.168.15.13:3000/api';
 
 //  IP PEDDI
 //  static const String _apiUrl = 'http://192.168.15.11:3000/api';
 
 //  IP CASA
-  static const String _apiUrl = 'http://192.168.15.15:3000/api';
+//  static const String _apiUrl = 'http://192.168.15.15:3000/api';
   final http.Client _client = http.Client();
 
   Future<Restaurant> getRestaurant() async {

@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:peddi_tont_app/models/app_state.dart';
+import 'package:peddi_tont_app/models/responsible_employee.dart';
+import 'package:peddi_tont_app/themes/app_colors.dart';
 import 'package:peddi_tont_app/themes/font_styles.dart';
+import 'package:peddi_tont_app/util/qrcode_validator.dart';
+import 'package:peddi_tont_app/util/scan.dart';
 
 class PowerDialog extends StatelessWidget {
   @override
@@ -36,15 +42,31 @@ class PowerDialog extends StatelessWidget {
                     Navigator.of(context).pop();
                   },
                 ),
-                new FlatButton(
-                  child: new Text(
-                    'Reiniciar',
-                    style: FontStyles.confirmationDialogButton,
+
+                new StoreConnector<AppState, List<ResponsibleEmployee>>(
+                  converter: (store) =>
+                  store.state.restaurant.responsibleEmployee,
+                  builder: (BuildContext context, waiters) => Padding(
+                    padding: const EdgeInsets.only(),
+                    child: Column(
+                      children: <Widget>[
+                        FlatButton(
+                          onPressed: () {
+                            ScanBarCode()
+                                .scan()
+                                .then((result) => QrCodeValidator.qrCode(waiters,result, context));
+                          },
+                          splashColor: Color(0),
+                          child: Text(
+                            'Reiniciar',
+                            style: FontStyles.confirmationDialogButton,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/opening');
-                  },
                 ),
+
 
 //                      onSendPressed(state, context);
               ])

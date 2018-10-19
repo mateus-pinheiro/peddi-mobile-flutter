@@ -2,27 +2,32 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:peddi_tont_app/models/app_state.dart';
 import 'package:peddi_tont_app/models/order.dart';
+import 'package:peddi_tont_app/models/responsible_employee.dart';
 import 'package:peddi_tont_app/themes/app_colors.dart';
 import 'package:peddi_tont_app/themes/font_styles.dart';
 import 'package:peddi_tont_app/ui/dialogs/help_dialog.dart';
 import 'package:peddi_tont_app/ui/dialogs/power_dialog.dart';
 import 'package:peddi_tont_app/ui/dialogs/rating_dialog.dart';
 import 'package:peddi_tont_app/ui/screens/order/order_app.dart';
+import 'package:peddi_tont_app/util/qrcode_validator.dart';
+import 'package:peddi_tont_app/util/scan.dart';
 
 class MenuHeader extends StatelessWidget {
   showOrder(BuildContext context) {
     showDialog(context: context, builder: (context) => new OrderApp());
   }
+
   showHelp(BuildContext context) {
-    showDialog(context: context,builder: (context) => new HelpDialog());
-  }
-  showPower(BuildContext context) {
-    showDialog(context: context,builder: (context) => new PowerDialog());
-  }
-  showRating(BuildContext context) {
-    showDialog(context: context,builder: (context) => new RatingDialog());
+    showDialog(context: context, builder: (context) => new HelpDialog());
   }
 
+  showPower(BuildContext context) {
+    showDialog(context: context, builder: (context) => new PowerDialog());
+  }
+
+  showRating(BuildContext context) {
+    showDialog(context: context, builder: (context) => new RatingDialog());
+  }
 
   String showCustomersQty(int customers) {
     if (customers == null) {
@@ -45,7 +50,7 @@ class MenuHeader extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                 Container(
+                Container(
                   height: 130.0,
                   width: 200.0,
                   color: Colors.black,
@@ -71,7 +76,7 @@ class MenuHeader extends StatelessWidget {
                     ],
                   ),
                 ),
-                 Container(
+                Container(
                   height: 130.0,
                   width: 550.0,
                   color: Colors.black,
@@ -125,14 +130,14 @@ class MenuHeader extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: <Widget>[
-                            MaterialButton (
+                            MaterialButton(
                               onPressed: () {
                                 Navigator.pushNamed(context, '/main');
                               },
                               splashColor: Color(0),
                               height: 30.0,
                               minWidth: 30.0,
-                              child: Icon (
+                              child: Icon(
                                 Icons.home,
                                 size: 60.0,
                                 color: AppColors.gray2,
@@ -179,14 +184,14 @@ class MenuHeader extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: <Widget>[
-                            MaterialButton (
+                            MaterialButton(
                               onPressed: () {
                                 showRating(context);
                               },
                               splashColor: Color(0),
                               height: 30.0,
                               minWidth: 30.0,
-                              child: Icon (
+                              child: Icon(
                                 Icons.thumbs_up_down,
                                 size: 55.0,
                                 color: AppColors.gray2,
@@ -200,30 +205,31 @@ class MenuHeader extends StatelessWidget {
                           ],
                         ),
                       ),
+
                       Padding(
                         padding: const EdgeInsets.only(bottom: 25.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: <Widget>[
-                            MaterialButton (
+                            MaterialButton(
                               onPressed: () {
                                 showPower(context);
                               },
                               splashColor: Color(0),
                               height: 30.0,
                               minWidth: 30.0,
-                              child: Icon (
+                              child: Icon(
                                 Icons.power_settings_new,
                                 size: 55.0,
                                 color: AppColors.gray2,
                               ),
                             ),
-
-//                          Text(
-//                            'Ajuda',
-//                            style: FontStyles.style2,
-//                          ),
+//
+////                          Text(
+////                            'Ajuda',
+////                            style: FontStyles.style2,
+////                          ),
                           ],
                         ),
                       ),
