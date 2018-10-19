@@ -129,15 +129,15 @@ class OrderApp extends StatelessWidget {
       }),
     );
   }
-
-  resultOfBarCode(String result, BuildContext contextParent, AppState state) {
-    Navigator.push(
-      contextParent,
-      MaterialPageRoute(
-          builder: (context) => new OrderScan(
-              result, state.order, state.restaurant.categories, contextParent)),
-    );
-  }
+//
+//  resultOfBarCode(String result, BuildContext contextParent, AppState state) {
+//    Navigator.push(
+//      contextParent,
+//      MaterialPageRoute(
+//          builder: (context) => new OrderScan(
+//              result, state.order, state.restaurant.categories, contextParent)),
+//    );
+//  }
 }
 
 void openConfirmationScreen(BuildContext context, String result) {

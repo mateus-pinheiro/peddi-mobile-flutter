@@ -6,7 +6,9 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:peddi_tont_app/models/app_state.dart';
 import 'package:peddi_tont_app/models/category.dart';
 import 'package:peddi_tont_app/models/order.dart';
+import 'package:peddi_tont_app/models/rating.dart';
 import 'package:peddi_tont_app/redux/actions.dart';
+import 'package:peddi_tont_app/ui/dialogs/rating_dialog.dart';
 import 'package:peddi_tont_app/util/completers.dart';
 
 class OrderScan extends StatelessWidget {
@@ -24,7 +26,7 @@ class OrderScan extends StatelessWidget {
             converter: (store) {
 //              store.dispatch(AddQrTicketCode(_reader, context));
               store.dispatch(SendOrder(store.state.order,
-                  snackBarCompleter(context, null, shouldPop: true)));
+                  sendOrderCompleter(context, null, shouldPop: true)));
             },
             builder: (context, lk) => widget(context)));
   }
@@ -32,6 +34,7 @@ class OrderScan extends StatelessWidget {
   void close(BuildContext context) async {
     await new Future.delayed(const Duration(milliseconds: 500));
     Navigator.pop(context);
+
   }
 
   Widget widget(BuildContext context) {

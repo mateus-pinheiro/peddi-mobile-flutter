@@ -162,11 +162,18 @@ class MainHeader extends StatelessWidget {
                                 splashColor: Color(0),
                                 height: 30.0,
                                 minWidth: 30.0,
-                                child: Icon(
-                                  Icons.power_settings_new,
-                                  size: 55.0,
-                                  color: AppColors.gray2,
+                                child: new Image(
+                                  image: new AssetImage(
+                                      'resources/images/powerIcon.png'),
+                                  width: 60.0,
+                                  height: 60.0,
+//                                color: Colors.white,
                                 ),
+//                                child: Icon(
+//                                  Icons.power_settings_new,
+//                                  size: 55.0,
+//                                  color: AppColors.gray2,
+//                                ),
                               ),
 
 //                          Text(

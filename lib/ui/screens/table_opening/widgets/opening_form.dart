@@ -143,10 +143,10 @@ class OpeningFormState extends State<OpeningForm> {
     );
   }
 
-  openNextPage() {
-//    Navigator.pop(context);
-
-  }
+//  openNextPage() {
+////    Navigator.pop(context);
+//
+//  }
 }
 
 typedef OnAddTableNumber = Function(int tableNumber, int qtyConsumer);

@@ -18,7 +18,7 @@ class ConfirmDialog extends StatelessWidget {
     return new StoreConnector<AppState, OnSendOrder>(
       converter: (store) {
         return (order) => store.dispatch(SendOrder(
-            order, snackBarCompleter(context, null, shouldPop: true)));
+            order, sendOrderCompleter(context, null, shouldPop: true)));
       },
       builder: (context, callback) => new Material(
             type: MaterialType.transparency,

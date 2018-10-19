@@ -53,7 +53,7 @@ class _RatingDialogState extends State<RatingDialog> {
                     Padding(
                       padding: const EdgeInsets.only(top: 30.0),
                       child: Text(
-                        'Obrigado pela sua visita, volte sempre!',
+                        'Obrigado pela sua visita!',
                         style: FontStyles.style13,
                       ),
                     ),
