@@ -66,12 +66,12 @@ class ConfirmDialog extends StatelessWidget {
   }
 }
 
-void onSendPressed(AppState state, BuildContext context) {
-  new StoreConnector<AppState, void>(
-      converter: (store) => store.dispatch(SendOrder(
-          state.order, qrCodeCompleter(context, null, shouldPop: true))),
-      builder: (context, v) => new MenuApp(
-          state.restaurant.categories[0], state.restaurant.categories));
-}
+//void onSendPressed(AppState state, BuildContext context) {
+//  new StoreConnector<AppState, void>(
+//      converter: (store) => store.dispatch(SendOrder(
+//          state.order, qrCodeCompleter(context, null, shouldPop: true))),
+//      builder: (context, v) => new MenuApp(
+//          state.restaurant.categories[0], state.restaurant.categories));
+//}
 
 typedef OnSendOrder = Function(Order order);

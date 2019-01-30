@@ -41,12 +41,13 @@ Completer<Null> sendOrderCompleter(BuildContext context, String message,
       Navigator.of(context).pop();
       Navigator.of(context).pop();
     }
+
 //    new Future.delayed(const Duration(milliseconds: 900));
-    showDialog<RatingDialog>(
-        context: context,
-        builder: (BuildContext context) {
-          return RatingDialog();
-        });
+//    showDialog<RatingDialog>(
+//        context: context,
+//        builder: (BuildContext context) {
+//          return RatingDialog();
+//        });
 
     showDialog<SuccessDialog>(
         context: context,

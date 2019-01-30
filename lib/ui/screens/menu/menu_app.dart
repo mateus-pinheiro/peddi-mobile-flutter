@@ -42,11 +42,11 @@ class MenuApp extends StatelessWidget {
                     ),
 
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Padding(
                           padding: const EdgeInsets.only(
-                              top: 5.0, right: 20.0, bottom: 8.0),
+                              top: 5.0, bottom: 8.0),
                           child: new FloatingActionButton.extended(
                             onPressed: () {
                               showOrder(context);
@@ -60,7 +60,7 @@ class MenuApp extends StatelessWidget {
                             ),
                             label: Text(
                               'CARRINHO',
-                              style: FontStyles.style2,
+                              style: FontStyles.style01,
                             ),
                           ),
                         ),

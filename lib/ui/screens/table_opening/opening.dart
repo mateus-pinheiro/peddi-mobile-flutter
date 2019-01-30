@@ -17,7 +17,8 @@ class Opening extends StatelessWidget {
                 image: AssetImage('resources/images/tabletimage.png'),
                 fit: BoxFit.fill),
           ),
-          color: Color(0xffFFCC00),
+//          color: Color(0xffFFCC00),
+
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           child: Column(

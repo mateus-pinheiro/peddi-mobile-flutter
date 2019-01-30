@@ -11,6 +11,7 @@ import 'package:peddi_tont_app/util/stars.dart';
 class RatingDialog extends StatefulWidget {
   @override
   _RatingDialogState createState() => new _RatingDialogState();
+
 }
 
 class _RatingDialogState extends State<RatingDialog> {
@@ -18,6 +19,8 @@ class _RatingDialogState extends State<RatingDialog> {
   int _serviceRating = 0;
   int _environmentRating = 0;
   String _emailRating = "";
+
+
 
   Rating ratingCreation() {
     Rating _rating = new Rating(
@@ -31,6 +34,7 @@ class _RatingDialogState extends State<RatingDialog> {
 
   @override
   Widget build(BuildContext context) {
+    didChangeDependencies();
     return Material(
       type: MaterialType.transparency,
       child: new Stack(

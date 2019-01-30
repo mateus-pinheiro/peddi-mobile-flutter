@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:peddi_tont_app/models/app_state.dart';
 import 'package:peddi_tont_app/redux/actions.dart';
+import 'package:peddi_tont_app/themes/app_colors.dart';
 import 'package:peddi_tont_app/themes/font_styles.dart';
 import 'package:peddi_tont_app/ui/screens/table_opening/widgets/opening_scan.dart';
 import 'package:peddi_tont_app/util/scan.dart';
@@ -58,7 +59,7 @@ class OpeningFormState extends State<OpeningForm> {
               style: TextStyle(
                 fontFamily: 'CircularStd',
                 fontSize: 24.0,
-                color: Colors.white,
+                color: Colors.black,
               ),
               textScaleFactor: 1.5,
             ),
@@ -111,7 +112,7 @@ class OpeningFormState extends State<OpeningForm> {
               decoration: BoxDecoration(
                   color: Colors.transparent,
                   border: Border.all(
-                      color: Colors.white,
+                      color: AppColors.yellow1,
                       width: 3.0,
                       style: BorderStyle.solid),
                   borderRadius: BorderRadius.circular(10.0)),

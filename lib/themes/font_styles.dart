@@ -163,7 +163,14 @@ class FontStyles {
       fontStyle: FontStyle.normal,
       fontWeight: FontWeight.bold,
       fontSize: 38.0,
-      color: Colors.black);
+      color: AppColors.peddi_black);
+  static const style01 = TextStyle(
+    //fontWeight: FontWeight.w900,
+      fontFamily: "CircularStd",
+      fontStyle: FontStyle.normal,
+      fontWeight: FontWeight.bold,
+      fontSize: 18.0,
+      color: AppColors.gray2);
   static const style1 = TextStyle(
       //fontWeight: FontWeight.w900,
       fontFamily: "CircularStd",
@@ -177,7 +184,7 @@ class FontStyles {
       fontStyle: FontStyle.normal,
       fontWeight: FontWeight.bold,
       fontSize: 18.0,
-      color: Colors.white);
+      color: AppColors.peddi_black);
   static const style3 = TextStyle(
       //fontWeight: FontWeight.w900,
       fontFamily: "CircularStd",
