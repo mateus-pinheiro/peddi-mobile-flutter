@@ -101,7 +101,7 @@ class MenuHeader extends StatelessWidget {
                                     : 'Mesa ' + order.table.toString(),
                                 style: FontStyles.style4),
                             Text(
-                              showCustomersQty(order.customers),
+                              showCustomersQty(order.guests),
                               style: FontStyles.style4,
                             ),
                           ],

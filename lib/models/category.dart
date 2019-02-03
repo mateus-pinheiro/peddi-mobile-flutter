@@ -1,32 +1,47 @@
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
+import 'package:peddi_tont_app/models/product.dart';
 import 'package:peddi_tont_app/models/sub_category.dart';
 
 @immutable
 class Category {
+  final String id;
   final String name;
-  final String photo;
-  final List<SubCategory> subCategory;
+  final int categoryCloudId;
+  final String image;
+  final List<SubCategory> subcategories;
+  final List<Product> products;
+
   bool isSelected;
   Color isSelectedColor;
 
-  Category({
-    this.name,
-    this.photo,
-    this.subCategory,
-  });
+  Category(
+      {this.id,
+      this.name,
+      this.categoryCloudId,
+      this.image,
+      this.subcategories,
+      this.products});
 
   Category.fromMap(Map<String, dynamic> data)
-      : name = data['name'],
-        photo = data['photo'],
-        subCategory = (data['subCategory'] == null ? [] : data['subCategory']  as List).map((i) => new SubCategory.fromMap(i)).toList();
+      : id = data['_id'],
+        name = data['name'],
+        categoryCloudId = data['category_cloud_id'],
+        image = data['image'],
+        subcategories =
+            (data['subcategories'] == null ? [] : data['subcategories'] as List)
+                .map((i) => new SubCategory.fromMap(i))
+                .toList(),
+        products = (data['products'] == null ? [] : data['products'] as List)
+            .map((i) => new Product.fromMap(i))
+            .toList();
 
   Map<String, dynamic> toJson() => {
-    'name': name,
-    'photo': photo,
-    'subCategory': subCategory
-  };
-
+        '_id': id,
+        'name': name,
+        'categoryCloudId': categoryCloudId,
+        'image': image,
+        'subcategories': subcategories,
+        'products' : products
+      };
 }
-
-

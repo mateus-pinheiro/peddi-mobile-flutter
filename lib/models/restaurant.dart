@@ -3,66 +3,74 @@ import 'package:flutter/widgets.dart';
 import 'package:meta/meta.dart';
 import 'package:peddi_tont_app/models/address.dart';
 import 'package:peddi_tont_app/models/category.dart';
-import 'package:peddi_tont_app/models/contact.dart';
-import 'package:peddi_tont_app/models/responsible_employee.dart';
+import 'package:peddi_tont_app/models/manager.dart';
+import 'package:peddi_tont_app/models/waiter.dart';
 
 @immutable
 class Restaurant {
   final String id;
+  final int restaurantCloudId;
+  final String token;
   final String name;
-  final int cnpj;
-  final int numberOfTables;
-  final int numberOfEmployees;
-  final bool status;
-  final String image;
+  final String cnpj;
+  final int tables;
+  final int employees;
+  final int status;
+  final String logoImage;
   final Address address;
-  final List<ResponsibleEmployee> responsibleEmployee;
-  final List<Contact> contact;
   final List<Category> categories;
+  final List<Waiter> waiters;
+  final List<Manager> managers;
 
   Restaurant({
     this.id,
+    this.restaurantCloudId,
+    this.token,
     this.name,
     this.cnpj,
-    this.numberOfTables,
-    this.numberOfEmployees,
+    this.tables,
+    this.employees,
     this.status,
-    this.image,
+    this.logoImage,
     this.categories,
     this.address,
-    this.contact,
-    this.responsibleEmployee
+    this.managers,
+    this.waiters
   });
 
   Restaurant.fromMap(Map<String, dynamic> data)
       : id = data['_id'],
+        restaurantCloudId = data['restaurant_cloud_id'],
+        token = data['token'],
         name = data['name'],
         cnpj = data['cnpj'],
-        numberOfTables = data['numberOfTables'],
-        numberOfEmployees = data['numberOfEmployees'],
+        tables = data['tables'],
+        employees = data['employees'],
         status = data['status'],
-        image = data['image'],
+        logoImage = data['logo_image'],
         address = Address.fromMap(data['address']),
-        responsibleEmployee = (data['responsibleEmployee'] as List)
-            .map((i) => new ResponsibleEmployee.fromMap(i))
+        waiters = (data['waiters'] as List)
+            .map((i) => new Waiter.fromMap(i))
             .toList(),
-        contact = (data['contact'] as List)
-            .map((i) => new Contact.fromMap(i))
+        managers = (data['managers'] as List)
+            .map((i) => new Manager.fromMap(i))
             .toList(),
         categories = (data['categories'] as List)
             .map((i) => new Category.fromMap(i))
             .toList();
 
   Map<String, dynamic> toJson() => {
+        'restaurant_cloud_id': restaurantCloudId,
+        'token': token,
         'name': name,
         'cnpj': cnpj,
-        'numberOfTables': numberOfTables,
-        'numberOfEmployees': numberOfEmployees,
+        'tables': tables,
+        'employees': employees,
         'status': status,
-        'image': image,
+        'image': logoImage,
         'address': address,
-        'responsibleEmployee': responsibleEmployee,
-        'contact': contact,
+        'waiters': waiters,
+        'managers': managers,
         'categories': categories
       };
 }

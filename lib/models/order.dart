@@ -1,86 +1,81 @@
+import 'package:peddi_tont_app/models/consumer.dart';
 import 'package:peddi_tont_app/models/item.dart';
-import 'package:peddi_tont_app/models/responsible_employee.dart';
+import 'package:peddi_tont_app/models/waiter.dart';
 import 'package:peddi_tont_app/models/restaurant_order.dart';
 
 class Order {
   final int id;
   final int table;
-  final int customers;
-  double amount;
-  String status;
-  ResponsibleEmployee responsibleEmployee;
+  final int guests;
+  double amountPrice;
+  int status;
+  Waiter waiter;
   final DateTime createdAt;
   final DateTime updatedAt;
-  final RestaurantOrder restaurant;
-  final String ticket;
-  final List<Item> items;
+  final int restaurantCloudId;
+  final List<Consumer> consumers;
 
   Order(
       {this.id,
       this.table,
-      this.customers,
-      this.amount,
+      this.guests,
+      this.amountPrice,
       this.status,
       this.createdAt,
       this.updatedAt,
-      this.restaurant,
-      this.ticket,
-      this.items,
-      this.responsibleEmployee});
+      this.restaurantCloudId,
+      this.consumers,
+      this.waiter});
 
   Order.fromMap(Map<String, dynamic> data)
       : id = data['id'],
         table = data['table'],
-        customers = data['customers'],
-        amount = data['amount'],
+        guests = data['guests'],
+        amountPrice = data['amount_price'],
         status = data['status'],
         createdAt = data['createdAt'],
         updatedAt = data['updatedAt'],
-        restaurant = data['restaurant'],
-        ticket = data['ticket'],
-        responsibleEmployee = data['responsibleEmployee'],
-        items = (data['products'] == null ? [] : data['products'] as List)
-            .map((item) => new Item.fromMap(item))
+        restaurantCloudId = data['restaurant_cloud_id'],
+        waiter = data['waiter_cloud_id'],
+        consumers = (data['consumers'] == null ? [] : data['consumers'] as List)
+            .map((consumer) => new Consumer.fromMap(consumer))
             .toList();
 
   Map<String, dynamic> toJson() => {
         'table': table,
-        'customers': customers,
-        'amount': amount,
+        'guests': guests,
+        'amount_price': amountPrice,
         'status': status,
         'created_at': createdAt.toString(),
         'updated_at': updatedAt,
-        'restaurant': restaurant,
-        'ticket': ticket,
-        'responsibleEmployee': responsibleEmployee,
-        'products': items
+        'restaurant_cloud_id': restaurantCloudId,
+        'waiter_cloud_id': waiter,
+        'consumers': consumers
       };
 
   Order copyWith({
     int id,
     int table,
-    int customers,
-    double amount,
+    int guests,
+    double amountPrice,
     String status,
-    ResponsibleEmployee responsibleEmployee,
+    Waiter waiter,
     DateTime createdAt,
     DateTime updatedAt,
-    RestaurantOrder restaurant,
-    String ticket,
-    List<Item> items,
+    int restaurantCloudId,
+    List<Consumer> consumers,
   }) {
 
     return new Order(
         table: table ?? this.table,
-        customers: customers ?? this.customers,
-        amount: amount ?? this.amount,
+        guests: guests ?? this.guests,
+        amountPrice: amountPrice ?? this.amountPrice,
         status: status ?? this.status,
         createdAt: createdAt ?? this.createdAt,
         updatedAt: updatedAt ?? this.updatedAt,
-        restaurant: restaurant ?? this.restaurant,
-        ticket: ticket ?? this.ticket,
-        responsibleEmployee: responsibleEmployee ?? this.responsibleEmployee,
-        items: items ?? this.items
+        restaurantCloudId: restaurantCloudId ?? this.restaurantCloudId,
+        waiter: waiter ?? this.waiter,
+        consumers: consumers ?? this.consumers
     );
   }
 }

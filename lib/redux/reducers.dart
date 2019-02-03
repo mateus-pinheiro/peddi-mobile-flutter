@@ -1,4 +1,5 @@
 import 'package:peddi_tont_app/models/app_state.dart';
+import 'package:peddi_tont_app/models/consumer.dart';
 import 'package:peddi_tont_app/models/item.dart';
 import 'package:peddi_tont_app/models/order.dart';
 import 'package:peddi_tont_app/models/restaurant.dart';
@@ -19,9 +20,9 @@ AppState appStateReducers(AppState state, dynamic action) {
 //    return orderNotSent(action, state);
 //  }
   else if (action is AddQrTicketCode) {
-    return addQrTicketCode(action, state);
+    return addConsumerCode(action, state);
   } else if (action is NewItemList) {
-    return newItemList(state);
+//    return newItemList(state);
   } else if (action is AddQrResposibleCode) {
     return addQrResposibleCode(action, state);
   } else if (action is AddTableNumberOrderAction) {
@@ -54,25 +55,31 @@ AppState sendOrder(SendOrder action, AppState state) {
 //  return new AppState(state.restaurant, state.order);
 //}
 
-AppState addQrTicketCode(AddQrTicketCode action, AppState state) {
-  return new AppState(
-      state.restaurant, state.order.copyWith(ticket: action.qrCode));
-}
+AppState addConsumerCode(AddQrTicketCode action, AppState state) {
+  List<Consumer> addConsumerToOrder(AddQrTicketCode action) {
+    var consumer = new Consumer();
+    consumer.card = state.order.table;
+    state.order.consumers.add(consumer);
+    return state.order.consumers;
+  }
 
-AppState newItemList(AppState state) {
   return new AppState(
       state.restaurant,
-      state.order.copyWith(
-        items: new List<Item>(),
-        amount: 0.0,
-        ticket: '',
-      ));
+      state.order.copyWith(consumers: addConsumerToOrder(action)));
 }
 
+//AppState newItemList(AppState state) {
+//  return new AppState(
+//      state.restaurant,
+//      state.order.copyWith(
+//        items: new List<Item>(),
+//        amountPrice: 0.0,
+//        ticket: '',
+//      ));
+//}
+
 AppState addQrResposibleCode(AddQrResposibleCode action, AppState state) {
-  state.restaurant.responsibleEmployee
-          .where((f) => f.epocId == action.qrCode)
-          .isNotEmpty
+  state.restaurant.waiters.where((f) => f.mgmtId == action.qrCode).isNotEmpty
       ? action.completer.complete()
       : action.completer
           .completeError('Não existe nenhum garçom com esse código.');
@@ -80,29 +87,27 @@ AppState addQrResposibleCode(AddQrResposibleCode action, AppState state) {
   return new AppState(
       state.restaurant,
       state.order.copyWith(
-          restaurant: new RestaurantOrder(
-              cnpj: state.restaurant.cnpj.toString(),
-              name: state.restaurant.name),
-          responsibleEmployee: state.restaurant.responsibleEmployee
-              .singleWhere((i) => i.epocId == action.qrCode)));
+          restaurantCloudId: state.restaurant.restaurantCloudId,
+          waiter: state.restaurant.waiters
+              .singleWhere((i) => i.mgmtId == action.qrCode)));
 }
 
 AppState addTableNumberOrder(AddTableNumberOrderAction action, AppState state) {
   return new AppState(
       state.restaurant,
       new Order(
-          status: "ABERTO",
+          status: 1,
           table: action.table,
-          customers: action.customers,
+          guests: action.customers,
           createdAt: DateTime.now(),
-          items: new List<Item>()));
+          consumers: new List<Consumer>()));
 }
 
 AppState addItem(AddItemAction action, AppState state) {
   Order addItemToOrder(AddItemAction action) {
-    state.order.items.add(action.item);
-    if (state.order.amount == null) state.order.amount = 0.0;
-    state.order.amount += action.item.amount;
+//    state.order.consumers.add(action.item);
+    if (state.order.amountPrice == null) state.order.amountPrice = 0.0;
+    state.order.amountPrice += action.item.amount;
     return state.order;
   }
 
@@ -111,8 +116,8 @@ AppState addItem(AddItemAction action, AppState state) {
 
 AppState removeItem(RemoveItemAction action, AppState state) {
   Order removeItemFromOrder(RemoveItemAction action) {
-    state.order.items.remove(action.item);
-    state.order.amount -= action.item.amount;
+    state.order.consumers.remove(action.item);
+    state.order.amountPrice -= action.item.amount;
     return state.order;
   }
 

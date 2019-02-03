@@ -2,7 +2,7 @@ import 'package:peddi_tont_app/models/ingredient.dart';
 
 class Item {
 
-  int epocId;
+  String epocId;
   String name;
   int qtyItem;
   double price;

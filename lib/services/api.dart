@@ -11,7 +11,7 @@ class API {
 //  static const String _apiUrl = 'http://192.168.1.71:3001/api';
 
 //  IP PEDDI
-  static const String _apiUrl = 'http://192.168.15.11:3000/api';
+  static const String _apiUrl = 'http://192.168.0.17:8000/api';
 
 //  IP CASA
 //  static const String _apiUrl = 'http://192.168.15.11:3000/api';
@@ -19,12 +19,24 @@ class API {
 
   Future<Restaurant> getRestaurant() async {
     var response =
-        await _client.get('$_apiUrl/restaurants/5ba9490dc3ccc9a9c664b346');
+        await _client.get('$_apiUrl/restaurants/');
     if (response.statusCode == 200) {
       final Restaurant res = Restaurant.fromMap(json.decode(response.body));
       return res;
     }
     return null;
+  }
+
+  Future<Response> openOrder(Order order) async {
+    var jsonEncoded = json.encode(order.toJson());
+    try {
+      var request = await _client.post('$_apiUrl/orders',
+          headers: {"Content-Type": "application/json"}, body: jsonEncoded);
+
+      return request;
+    } on Exception catch (e) {
+      return Future.error(e);
+    }
   }
 
   Future<Response> postOrder(Order order) async {

@@ -27,7 +27,7 @@ class _MenuCategoryState extends State<MenuCategory> {
   void initState() {
     super.initState();
     _selectedCategory = _selectedCategory;
-    _selectedSubCategory = _selectedCategory.subCategory[0];
+//    _selectedSubCategory = _selectedCategory.subcategories[0];
 
     storeCategories.forEach((c) => toFalse(c, _selectedCategory));
   }
@@ -41,7 +41,7 @@ class _MenuCategoryState extends State<MenuCategory> {
   void _selectCategory(Category category) {
     setState(() {
       _selectedCategory = category;
-      _selectedSubCategory = _selectedCategory.subCategory[0];
+//      _selectedSubCategory = _selectedCategory.subcategories[0];
       build(context);
     });
   }
@@ -73,14 +73,14 @@ class _MenuCategoryState extends State<MenuCategory> {
           color: AppColors.yellow1,
           child: buildCategoryList(storeCategories),
         ),
-        new Container(
-          height: 65.0,
-          color: AppColors.gray2,
-          child: buildSubCategoryList(_selectedCategory.subCategory),
-        ),
+//        new Container(
+//          height: 65.0,
+//          color: AppColors.gray2,
+//          child: buildSubCategoryList(_selectedCategory.subcategories),
+//        ),
         new Expanded(
             child: new Container(
-                child: new MenuProductRoute(_selectedSubCategory.products)))
+                child: new MenuProductRoute(_selectedCategory.products)))
       ],
     );
   }

@@ -21,7 +21,6 @@ class MainCategoryRouteState extends State<MainCategoryRoute> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _loadingInProgress = true;
     _loadingInProgressFalse();
@@ -75,12 +74,12 @@ class MainCategoryRouteState extends State<MainCategoryRoute> {
                     decoration: new BoxDecoration(
                         color: Colors.black,
                         border: Border.all(
-                            color: AppColors.peddi_white, width: 1.0),
-                        image: new DecorationImage(
-                          image: new NetworkImage(
-                              getCategoryImage(category.photo)),
-                          fit: BoxFit.cover,
-                        )
+                            color: AppColors.peddi_white, width: 1.0)
+//                        image: new DecorationImage(
+//                          image: new NetworkImage(
+//                              getCategoryImage(category.image)),
+//                          fit: BoxFit.cover,
+//                        )
                     ),
                     child: new Center(
                       child: new Text(
@@ -110,7 +109,7 @@ class MainCategoryRouteState extends State<MainCategoryRoute> {
         decoration: new BoxDecoration(
             color: Colors.black,
             image: new DecorationImage(
-                image: new NetworkImage(getCategoryImage(category.photo)),
+                image: new NetworkImage(getCategoryImage(category.image)),
                 fit: BoxFit.fitWidth)),
         child: new Center(
           child: new Text(

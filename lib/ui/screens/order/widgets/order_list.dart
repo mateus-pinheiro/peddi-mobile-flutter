@@ -31,7 +31,7 @@ class OrderListState extends State<OrderList> {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: <Widget>[
           new Expanded(
-            child: Container(child: _buildItemList(order.items)),
+            child: Container(child: _buildItemList(order.consumers[0].items)),
           ),
           Padding(
             padding:
@@ -46,9 +46,9 @@ class OrderListState extends State<OrderList> {
                       style: FontStyles.totalLabelOrder,
                     ),
                     Text(
-                      order.amount == null || order.amount < 1
+                      order.amountPrice == null || order.amountPrice < 1
                           ? 'Nenhum item adicionado'
-                          : CurrencyConverter.toBrazilianReal(order.amount),
+                          : CurrencyConverter.toBrazilianReal(order.amountPrice),
                       style: FontStyles.amountOrder,
                     ),
                   ]),

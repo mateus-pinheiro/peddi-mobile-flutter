@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:peddi_tont_app/models/app_state.dart';
-import 'package:peddi_tont_app/models/responsible_employee.dart';
+import 'package:peddi_tont_app/models/waiter.dart';
 import 'package:peddi_tont_app/redux/actions.dart';
 import 'package:peddi_tont_app/ui/screens/main/main_app.dart';
 import 'package:peddi_tont_app/ui/screens/table_opening/opening.dart';
@@ -71,11 +71,11 @@ class OpeningScan extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new StoreConnector<AppState, List<ResponsibleEmployee>>(
-        converter: (store) => store.state.restaurant.responsibleEmployee,
+    return new StoreConnector<AppState, List<Waiter>>(
+        converter: (store) => store.state.restaurant.waiters,
         builder: (context, responsibleEmployees) {
           if (responsibleEmployees
-              .where((responsible) => responsible.epocId == _reader)
+              .where((responsible) => responsible.mgmtId == _reader)
               .isNotEmpty) {
             return new StoreConnector<AppState, void>(
               converter: (store) => store.dispatch(AddQrResposibleCode(
