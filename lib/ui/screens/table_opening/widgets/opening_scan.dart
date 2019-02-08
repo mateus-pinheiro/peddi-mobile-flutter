@@ -80,6 +80,7 @@ class OpeningScan extends StatelessWidget {
             return new StoreConnector<AppState, void>(
               converter: (store) => store.dispatch(AddQrResposibleCode(
                   _reader,
+                  store.state.order.id,
                   qrCodeCompleter(context, 'Seja muito bem atendido!',
                       shouldPop: true))),
               builder: (context, w) {

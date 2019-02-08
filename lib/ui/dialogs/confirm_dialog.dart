@@ -8,9 +8,9 @@ import 'package:peddi_tont_app/ui/screens/menu/menu_app.dart';
 import 'package:peddi_tont_app/util/completers.dart';
 
 class ConfirmDialog extends StatelessWidget {
-  ConfirmDialog(this.ticketMessage, {this.order});
+  ConfirmDialog({this.order});
 
-  final String ticketMessage;
+  final String ticketMessage = "";
   final OnSendOrder order;
 
   @override

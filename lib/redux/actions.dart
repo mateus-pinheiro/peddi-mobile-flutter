@@ -8,6 +8,7 @@ import 'package:peddi_tont_app/models/restaurant.dart';
 class LoadRestaurantAction {}
 class NewItemList {}
 
+
 class SaveRestaurantAction {
   final Restaurant restaurant;
 
@@ -31,16 +32,17 @@ class OrderNotSentSuccessfully {}
 
 class AddTableNumberOrderAction {
   final int table;
-  final int customers;
+  final int guests;
 
-  AddTableNumberOrderAction(this.table, this.customers);
+  AddTableNumberOrderAction(this.table, this.guests);
 }
 
 class AddQrResposibleCode {
   final String qrCode;
+  final String orderId;
   final Completer completer;
 
-  AddQrResposibleCode(this.qrCode, this.completer);
+  AddQrResposibleCode(this.qrCode, this.orderId, this.completer);
 }
 
 class AddQrTicketCode {

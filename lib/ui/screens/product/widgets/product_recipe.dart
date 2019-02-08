@@ -51,7 +51,6 @@ class _ProductRecipeWidgetState extends State<ProductRecipeWidget> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _quantityItem = 1;
     item.qtyItem = _quantityItem;
@@ -125,7 +124,7 @@ class _ProductRecipeWidgetState extends State<ProductRecipeWidget> {
                     new Padding(
                       padding: const EdgeInsets.only(
                           left: 40.0, top: 15.0, right: 30.0),
-                      child: new Text(product.description,
+                      child: new Text(product.description == null ? "" : product.description,
                           style: FontStyles.productDescriptionProduct),
                     ),
                     new Expanded(

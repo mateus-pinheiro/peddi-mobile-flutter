@@ -4,15 +4,14 @@ import 'package:peddi_tont_app/ui/dialogs/confirm_dialog.dart';
 
 class ConfirmationScreen extends StatelessWidget{
 
-  ConfirmationScreen(this.ticket);
+  ConfirmationScreen();
 
-  final String ticket;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.yellow1,
-      body: new ConfirmDialog(ticket)
+      body: new ConfirmDialog()
     );
   }
 }

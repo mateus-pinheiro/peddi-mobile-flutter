@@ -4,7 +4,7 @@ import 'package:peddi_tont_app/models/waiter.dart';
 import 'package:peddi_tont_app/models/restaurant_order.dart';
 
 class Order {
-  final int id;
+  final String id;
   final int table;
   final int guests;
   double amountPrice;
@@ -33,8 +33,8 @@ class Order {
         guests = data['guests'],
         amountPrice = data['amount_price'],
         status = data['status'],
-        createdAt = data['createdAt'],
-        updatedAt = data['updatedAt'],
+        createdAt = data['created_at'],
+        updatedAt = data['updated_at'],
         restaurantCloudId = data['restaurant_cloud_id'],
         waiter = data['waiter_cloud_id'],
         consumers = (data['consumers'] == null ? [] : data['consumers'] as List)
@@ -42,6 +42,7 @@ class Order {
             .toList();
 
   Map<String, dynamic> toJson() => {
+        'id' : id,
         'table': table,
         'guests': guests,
         'amount_price': amountPrice,
@@ -54,7 +55,7 @@ class Order {
       };
 
   Order copyWith({
-    int id,
+    String id,
     int table,
     int guests,
     double amountPrice,
@@ -67,6 +68,7 @@ class Order {
   }) {
 
     return new Order(
+        id: id ?? this.id,
         table: table ?? this.table,
         guests: guests ?? this.guests,
         amountPrice: amountPrice ?? this.amountPrice,

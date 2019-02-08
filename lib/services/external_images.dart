@@ -9,5 +9,8 @@ String getCategoryImage(String imageName){
 
 String getProductImage(String imageName){
 //  return _urlProductImages;
-  return _urlProductImages + imageName;
+  if (imageName != null)
+    return _urlProductImages + imageName;
+
+  return "";
 }

@@ -101,20 +101,21 @@ class OrderApp extends StatelessWidget {
                             ),
                             child: MaterialButton(
                               onPressed: () {
+                                openConfirmationScreen(context);
 //                                Navigator.pop(context);
-                                ScanBarCode().scan().then((result) {
-                                  callback(result);
-                                  openConfirmationScreen(context, result);
-                                }
-//                              resultOfBarCode(result, context, state));
-
-                                    );
+//                                ScanBarCode().scan().then((result) {
+//                                  callback(result);
+//                                  openConfirmationScreen(context, result);
+//                                }
+////                              resultOfBarCode(result, context, state));
+//
+//                                    );
 
                               },
                               splashColor: Color(0),
                               height: 60.0,
                               textTheme: ButtonTextTheme.accent,
-                              child: new Text('SCANNEAR COMANDA',
+                              child: new Text('ENVIAR PEDIDO PARA COZINHA/BAR',
                                   style: FontStyles.buttonStyle),
                             ),
                           ),
@@ -139,9 +140,9 @@ class OrderApp extends StatelessWidget {
   }
 }
 
-void openConfirmationScreen(BuildContext context, String result) {
+void openConfirmationScreen(BuildContext context) {
   Navigator.push(context,
-      MaterialPageRoute(builder: (context) => ConfirmationScreen(result)));
+      MaterialPageRoute(builder: (context) => ConfirmationScreen()));
 }
 
 typedef OnScanPressed = Function(String ticket);

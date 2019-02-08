@@ -31,7 +31,9 @@ class OrderListState extends State<OrderList> {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: <Widget>[
           new Expanded(
-            child: Container(child: _buildItemList(order.consumers[0].items)),
+            child: Container(
+                child: _buildItemList(
+                    order.consumers.isEmpty ? null : order.consumers[0].items)),
           ),
           Padding(
             padding:
@@ -60,7 +62,7 @@ class OrderListState extends State<OrderList> {
   Widget _buildItemList(List<Item> items) {
     return ListView.builder(
       itemBuilder: (context, position) => itemRow(items[position]),
-      itemCount: items.length,
+      itemCount: items == null ? 0 : items.length,
       scrollDirection: Axis.vertical,
       cacheExtent: 0.0,
     );
@@ -74,7 +76,7 @@ class OrderListState extends State<OrderList> {
         child: ListView.builder(
           itemBuilder: (context, position) =>
               ingredientRow(ingredients[position]),
-          itemCount: ingredients.length,
+          itemCount: ingredients == null ? 0 : ingredients.length,
           scrollDirection: Axis.horizontal,
           cacheExtent: 0.0,
         ),
@@ -187,8 +189,7 @@ class OrderListState extends State<OrderList> {
     return Padding(
       padding: const EdgeInsets.only(right: 8.0, left: 1.0),
       child: new Text(
-        ingredient.name +
-            ' / ',
+        ingredient.name + ' / ',
         style: FontStyles.ingredientNameProduct,
       ),
     );

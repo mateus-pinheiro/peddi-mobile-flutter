@@ -4,6 +4,7 @@ import 'package:peddi_tont_app/models/item.dart';
 import 'package:peddi_tont_app/models/order.dart';
 import 'package:peddi_tont_app/models/restaurant.dart';
 import 'package:peddi_tont_app/models/restaurant_order.dart';
+import 'package:peddi_tont_app/models/waiter.dart';
 import 'package:peddi_tont_app/redux/actions.dart';
 
 AppState appStateReducers(AppState state, dynamic action) {
@@ -79,17 +80,26 @@ AppState addConsumerCode(AddQrTicketCode action, AppState state) {
 //}
 
 AppState addQrResposibleCode(AddQrResposibleCode action, AppState state) {
-  state.restaurant.waiters.where((f) => f.mgmtId == action.qrCode).isNotEmpty
-      ? action.completer.complete()
-      : action.completer
-          .completeError('Não existe nenhum garçom com esse código.');
+
+  var waiter;
+  if (action.qrCode.isNotEmpty) {
+    state.restaurant.waiters.where((f) => f.mgmtId == action.qrCode).isNotEmpty
+        ? action.completer.complete()
+        : action.completer
+            .completeError('Não existe nenhum garçom com esse código.');
+
+    waiter = state.restaurant.waiters
+        .singleWhere((i) => i.mgmtId == action.qrCode);
+  } else {
+    waiter = new Waiter();
+  }
 
   return new AppState(
       state.restaurant,
       state.order.copyWith(
+          id: action.orderId,
           restaurantCloudId: state.restaurant.restaurantCloudId,
-          waiter: state.restaurant.waiters
-              .singleWhere((i) => i.mgmtId == action.qrCode)));
+          waiter: waiter));
 }
 
 AppState addTableNumberOrder(AddTableNumberOrderAction action, AppState state) {
@@ -97,15 +107,28 @@ AppState addTableNumberOrder(AddTableNumberOrderAction action, AppState state) {
       state.restaurant,
       new Order(
           status: 1,
+          amountPrice: null,
           table: action.table,
-          guests: action.customers,
+          guests: action.guests,
+          restaurantCloudId: state.restaurant.restaurantCloudId,
+          waiter: null,
           createdAt: DateTime.now(),
+          updatedAt: null,
           consumers: new List<Consumer>()));
 }
 
 AppState addItem(AddItemAction action, AppState state) {
   Order addItemToOrder(AddItemAction action) {
-//    state.order.consumers.add(action.item);
+
+    var consumer = Consumer(items: new List<Item>());
+    if (state.order.consumers.length < 1) {
+      consumer.card = state.order.table;
+      consumer.items.add(action.item);
+      state.order.consumers.add(consumer);
+    } else {
+      state.order.consumers[0].items.add(action.item);
+    }
+
     if (state.order.amountPrice == null) state.order.amountPrice = 0.0;
     state.order.amountPrice += action.item.amount;
     return state.order;
@@ -116,7 +139,7 @@ AppState addItem(AddItemAction action, AppState state) {
 
 AppState removeItem(RemoveItemAction action, AppState state) {
   Order removeItemFromOrder(RemoveItemAction action) {
-    state.order.consumers.remove(action.item);
+    state.order.consumers[0].items.remove(action.item);
     state.order.amountPrice -= action.item.amount;
     return state.order;
   }

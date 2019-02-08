@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:peddi_tont_app/models/order.dart';
+import 'package:peddi_tont_app/models/response/response_open_order.dart';
 import 'package:peddi_tont_app/services/api.dart';
 import 'package:peddi_tont_app/models/app_state.dart';
 import 'package:peddi_tont_app/redux/actions.dart';
@@ -20,6 +21,8 @@ void appMiddleware(Store<AppState> store, action, NextDispatcher next) {
   } else if (action is SendOrder) {
     sendOrderToApi(store.state.order, store, action);
     store.dispatch(new NewItemList());
+  } else if (action is AddTableNumberOrderAction) {
+    openOrder(store, action);
   }
 //  else if (action is AddQrTicketCode) {
 //    store.dispatch(SendOrder(store.state.order, snackBarCompleter(action.context, null, shouldPop: false)));
@@ -27,6 +30,13 @@ void appMiddleware(Store<AppState> store, action, NextDispatcher next) {
 //  if (action is SaveRestaurantAction) {
 //    saveStateToPrefs(store.state);
 //  }
+}
+
+void openOrder(Store<AppState> store, AddTableNumberOrderAction action) {
+  API().openOrder(store.state.order).then((response) {
+    ResponseOpenOrder responseOpenOrder = ResponseOpenOrder.fromMap(json.decode(response.body));
+    store.dispatch(new AddQrResposibleCode("", responseOpenOrder.id, null));
+  }).catchError((error) => error.toString());
 }
 
 void sendOrderToApi(Order order, Store<AppState> state, SendOrder action) {
