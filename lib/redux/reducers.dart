@@ -12,22 +12,24 @@ AppState appStateReducers(AppState state, dynamic action) {
     return loadRestaurant(action, state.restaurant);
   } else if (action is SaveRestaurantAction) {
     return saveRestaurant(action, state);
-  } else if (action is SendOrder) {
-    return sendOrder(action, state);
+  } else if (action is AskOrderAction) {
+    return askOrder(action, state);
+  } else if (action is EndOrderAction) {
+    return endOrder(action, state);
   }
 //  else if (action is OrderSentSuccessfully) {
 //    return orderSent(action, state);
-//  } else if (action is OrderNotSentSuccessfully) {
-//    return orderNotSent(action, state);
-//  }
+////  } else if (action is OrderNotSentSuccessfully) {
+////    return orderNotSent(action, state);
+////  }
   else if (action is AddQrTicketCode) {
     return addConsumerCode(action, state);
   } else if (action is NewItemList) {
-//    return newItemList(state);
+    return newItemList(state);
   } else if (action is AddQrResposibleCode) {
     return addQrResposibleCode(action, state);
-  } else if (action is AddTableNumberOrderAction) {
-    return addTableNumberOrder(action, state);
+  } else if (action is OpenOrderAction) {
+    return openOrder(action, state);
   } else if (action is AddItemAction) {
     return addItem(action, state);
   } else if (action is RemoveItemAction) {
@@ -44,8 +46,8 @@ AppState saveRestaurant(SaveRestaurantAction action, AppState state) {
   return new AppState(action.restaurant, state.order);
 }
 
-AppState sendOrder(SendOrder action, AppState state) {
-  return new AppState(state.restaurant, action.order);
+AppState askOrder(AskOrderAction action, AppState state) {
+  return new AppState(state.restaurant, state.order.copyWith(status: 2));
 }
 
 //AppState orderSent(OrderSentSuccessfully action, AppState state) {
@@ -64,32 +66,33 @@ AppState addConsumerCode(AddQrTicketCode action, AppState state) {
     return state.order.consumers;
   }
 
-  return new AppState(
-      state.restaurant,
+  return new AppState(state.restaurant,
       state.order.copyWith(consumers: addConsumerToOrder(action)));
 }
 
-//AppState newItemList(AppState state) {
-//  return new AppState(
-//      state.restaurant,
-//      state.order.copyWith(
-//        items: new List<Item>(),
-//        amountPrice: 0.0,
-//        ticket: '',
-//      ));
-//}
+AppState newItemList(AppState state) {
+  List<Consumer> consumerList(List<Consumer> consumerList) {
+    consumerList.elementAt(0).copyWith(items: new List<Item>());
+    return consumerList;
+  }
+
+  return new AppState(
+      state.restaurant,
+      state.order.copyWith(
+          amountPrice: 0.0, consumers: consumerList(state.order.consumers)));
+}
 
 AppState addQrResposibleCode(AddQrResposibleCode action, AppState state) {
-
   var waiter;
+  var orderId = action.orderId;
   if (action.qrCode.isNotEmpty) {
-    state.restaurant.waiters.where((f) => f.mgmtId == action.qrCode).isNotEmpty
+    state.restaurant.waiters.where((f) => f.qrCode == action.qrCode).isNotEmpty
         ? action.completer.complete()
         : action.completer
             .completeError('Não existe nenhum garçom com esse código.');
 
-    waiter = state.restaurant.waiters
-        .singleWhere((i) => i.mgmtId == action.qrCode);
+    waiter =
+        state.restaurant.waiters.singleWhere((i) => i.qrCode == action.qrCode);
   } else {
     waiter = new Waiter();
   }
@@ -97,12 +100,12 @@ AppState addQrResposibleCode(AddQrResposibleCode action, AppState state) {
   return new AppState(
       state.restaurant,
       state.order.copyWith(
-          id: action.orderId,
+          id: orderId,
           restaurantCloudId: state.restaurant.restaurantCloudId,
           waiter: waiter));
 }
 
-AppState addTableNumberOrder(AddTableNumberOrderAction action, AppState state) {
+AppState openOrder(OpenOrderAction action, AppState state) {
   return new AppState(
       state.restaurant,
       new Order(
@@ -117,9 +120,12 @@ AppState addTableNumberOrder(AddTableNumberOrderAction action, AppState state) {
           consumers: new List<Consumer>()));
 }
 
+AppState endOrder(EndOrderAction action, AppState state) {
+  return new AppState(state.restaurant, new Order());
+}
+
 AppState addItem(AddItemAction action, AppState state) {
   Order addItemToOrder(AddItemAction action) {
-
     var consumer = Consumer(items: new List<Item>());
     if (state.order.consumers.length < 1) {
       consumer.card = state.order.table;

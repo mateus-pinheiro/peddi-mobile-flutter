@@ -91,22 +91,45 @@ class MenuHeader extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
                       Padding(
-                        padding: const EdgeInsets.only(top: 20.0, right: 20.0),
+                        padding: const EdgeInsets.only(bottom: 25.0),
                         child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.end,
                           children: <Widget>[
-                            Text(
-                                order.table == null
-                                    ? 'Não preenchido'
-                                    : 'Mesa ' + order.table.toString(),
-                                style: FontStyles.style4),
-                            Text(
-                              showCustomersQty(order.guests),
-                              style: FontStyles.style4,
+                            MaterialButton (
+                              onPressed: () {
+                                showOrder(context);
+                              },
+                              splashColor: Color(0),
+                              height: 30.0,
+                              minWidth: 30.0,
+                              child: Icon (
+                                Icons.shopping_cart,
+                                size: 55.0,
+                                color: AppColors.gray2,
+                              ),
                             ),
+
                           ],
                         ),
                       ),
+//                      Padding(
+//                        padding: const EdgeInsets.only(top: 20.0, right: 20.0),
+//                        child: Column(
+//                          mainAxisAlignment: MainAxisAlignment.center,
+//                          children: <Widget>[
+//                            Text(
+//                                order.table == null
+//                                    ? 'Não preenchido'
+//                                    : 'Mesa ' + order.table.toString(),
+//                                style: FontStyles.style4),
+//                            Text(
+//                              showCustomersQty(order.guests),
+//                              style: FontStyles.style4,
+//                            ),
+//                          ],
+//                        ),
+//                      ),
                       Padding(
                         padding: const EdgeInsets.only(top: 20.0, right: 40.0),
                         child: Container(
@@ -204,4 +227,8 @@ class MenuHeader extends StatelessWidget {
           ),
     );
   }
+}
+
+void showOrder(BuildContext context) {
+  showDialog(context: context, builder: (context) => new OrderApp());
 }

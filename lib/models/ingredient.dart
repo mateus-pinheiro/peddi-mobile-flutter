@@ -3,7 +3,7 @@ import 'package:meta/meta.dart';
 @immutable
 class Ingredient {
   final int epocId;
-  final String type;
+  final int type;
   final double price;
   final String name;
   bool isChecked;

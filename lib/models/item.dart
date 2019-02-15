@@ -26,12 +26,12 @@ class Item {
 
   Item.fromMap(Map<String, dynamic> data)
       : name = data['name'],
-        price = data['price'],
-        mgmtId = data['mgmtId'],
+        price = data['item_price'],
+        mgmtId = data['mgmt_id'],
         amount = data['amount'],
         qtyItem = data['quantity'],
         ingredients =
-        (data['ingredient'] == null ? [] : data['ingredient'] as List)
+        (data['ingredients'] == null ? [] : data['ingredients'] as List)
             .map((ing) => new Ingredient.fromMap(ing))
             .toList();
 

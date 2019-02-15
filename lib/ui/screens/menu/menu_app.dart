@@ -41,31 +41,31 @@ class MenuApp extends StatelessWidget {
                       ),
                     ),
 
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              top: 5.0, right: 20.0, bottom: 8.0),
-                          child: new FloatingActionButton.extended(
-                            onPressed: () {
-                              showOrder(context);
-                            },
-                            isExtended: true,
-                            backgroundColor: AppColors.yellow1,
-                            icon: new Icon(
-                              Icons.shopping_cart,
-                              color: AppColors.gray2,
-                              size: 40.0,
-                            ),
-                            label: Text(
-                              'CARRINHO',
-                              style: FontStyles.style2,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+//                    Row(
+//                      mainAxisAlignment: MainAxisAlignment.end,
+//                      children: <Widget>[
+//                        Padding(
+//                          padding: const EdgeInsets.only(
+//                              top: 5.0, right: 20.0, bottom: 8.0),
+//                          child: new FloatingActionButton.extended(
+//                            onPressed: () {
+//                              showOrder(context);
+//                            },
+//                            isExtended: true,
+//                            backgroundColor: AppColors.yellow1,
+//                            icon: new Icon(
+//                              Icons.shopping_cart,
+//                              color: AppColors.gray2,
+//                              size: 40.0,
+//                            ),
+//                            label: Text(
+//                              'CARRINHO',
+//                              style: FontStyles.style2,
+//                            ),
+//                          ),
+//                        ),
+//                      ],
+//                    ),
                   ],
                 ),
               ),

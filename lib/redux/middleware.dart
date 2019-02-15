@@ -18,11 +18,13 @@ void appMiddleware(Store<AppState> store, action, NextDispatcher next) {
     API().getRestaurant().then((restaurant) {
       store.dispatch(new SaveRestaurantAction(restaurant));
     });
-  } else if (action is SendOrder) {
-    sendOrderToApi(store.state.order, store, action);
-    store.dispatch(new NewItemList());
-  } else if (action is AddTableNumberOrderAction) {
+  } else if (action is AskOrderAction) {
+    sendOrderToApi(store, action);
+//    store.dispatch(new NewItemList());
+  } else if (action is OpenOrderAction) {
     openOrder(store, action);
+  } else if (action is EndOrderAction) {
+    endOrder(store, action);
   }
 //  else if (action is AddQrTicketCode) {
 //    store.dispatch(SendOrder(store.state.order, snackBarCompleter(action.context, null, shouldPop: false)));
@@ -32,25 +34,24 @@ void appMiddleware(Store<AppState> store, action, NextDispatcher next) {
 //  }
 }
 
-void openOrder(Store<AppState> store, AddTableNumberOrderAction action) {
+void openOrder(Store<AppState> store, OpenOrderAction action) {
   API().openOrder(store.state.order).then((response) {
-    ResponseOpenOrder responseOpenOrder = ResponseOpenOrder.fromMap(json.decode(response.body));
-    store.dispatch(new AddQrResposibleCode("", responseOpenOrder.id, null));
+    store.dispatch(new AddQrResposibleCode("", response.id, null));
   }).catchError((error) => error.toString());
 }
 
-void sendOrderToApi(Order order, Store<AppState> state, SendOrder action) {
-  API().postOrder(order).then((response) {
-//    state.dispatch(OrderSentSuccessfully(response.body));
-    if (action.completer != null) {
-      action.completer.complete();
-    }
+void endOrder(Store<AppState> store, EndOrderAction action) {
+  API().endOrder(action.orderId).then((response) {
+    action.completer.complete();
+  }).catchError((error) => action.completer.completeError(error));
+}
+
+void sendOrderToApi(Store<AppState> state, AskOrderAction action) {
+  API().askOrder(action.order).then((response) {
+    action.completer.complete();
+    state.dispatch(new NewItemList());
   }).catchError((Object error) {
-    print(error);
-//    state.dispatch(OrderNotSentSuccessfully);
-    if (action.completer != null) {
-      action.completer.completeError(error);
-    }
+    action.completer.completeError(error);
   });
 }
 

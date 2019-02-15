@@ -59,7 +59,7 @@ class Order {
     int table,
     int guests,
     double amountPrice,
-    String status,
+    int status,
     Waiter waiter,
     DateTime createdAt,
     DateTime updatedAt,

@@ -1,13 +1,16 @@
 import 'dart:async';
 
 import 'package:flutter/widgets.dart';
+import 'package:peddi_tont_app/models/body/ask_order_body.dart';
 import 'package:peddi_tont_app/models/item.dart';
 import 'package:peddi_tont_app/models/order.dart';
 import 'package:peddi_tont_app/models/restaurant.dart';
 
 class LoadRestaurantAction {}
+
 class NewItemList {}
 
+class Success {}
 
 class SaveRestaurantAction {
   final Restaurant restaurant;
@@ -15,11 +18,11 @@ class SaveRestaurantAction {
   SaveRestaurantAction(this.restaurant);
 }
 
-class SendOrder {
-  final Order order;
+class AskOrderAction {
+  final AskOrderBody order;
   final Completer completer;
 
-  SendOrder(this.order, this.completer);
+  AskOrderAction(this.order, this.completer);
 }
 
 class OrderSentSuccessfully {
@@ -30,11 +33,18 @@ class OrderSentSuccessfully {
 
 class OrderNotSentSuccessfully {}
 
-class AddTableNumberOrderAction {
+class OpenOrderAction {
   final int table;
   final int guests;
 
-  AddTableNumberOrderAction(this.table, this.guests);
+  OpenOrderAction(this.table, this.guests);
+}
+
+class EndOrderAction {
+  final String orderId;
+  final Completer completer;
+
+  EndOrderAction(this.orderId, this.completer);
 }
 
 class AddQrResposibleCode {
@@ -48,12 +58,14 @@ class AddQrResposibleCode {
 class AddQrTicketCode {
   final String qrCode;
   final Completer completer;
+
 //  final BuildContext context;
 
-  AddQrTicketCode(this.qrCode,
+  AddQrTicketCode(
+    this.qrCode,
 //      this.context,
-      this.completer,
-      );
+    this.completer,
+  );
 }
 
 class AddItemAction {

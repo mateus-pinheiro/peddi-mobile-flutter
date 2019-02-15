@@ -1,55 +1,73 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:peddi_tont_app/models/app_state.dart';
+import 'package:peddi_tont_app/models/order.dart';
+import 'package:peddi_tont_app/redux/actions.dart';
 import 'package:peddi_tont_app/themes/font_styles.dart';
+import 'package:peddi_tont_app/util/completers.dart';
 
 class PowerDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Material(
-      type: MaterialType.transparency,
-      child: new Stack(
-        children: <Widget>[
-          new InkWell(
-            onTap: () => Navigator.of(context).pop(),
-            splashColor: Colors.transparent,
-            highlightColor: Colors.transparent,
-          ),
-          new AlertDialog(
-              title: new Text('Realmente deseja reiniciar o app?',
-                  style: FontStyles.confirmationDialogTitle),
-              content: new SingleChildScrollView(
-                child: new ListBody(
-                  children: <Widget>[
-                    new Text('Caso reinice, seu carrinho será esvaziado.',
-                        style: FontStyles.confirmationDialogText),
-                    new Text('Cancele e continue fazendo o seu pedido',
-                        style: FontStyles.confirmationDialogText),
-                  ],
+    return new StoreConnector<AppState, OnFinishOrder>(
+      converter: (store) {
+        return (order) => store.dispatch(EndOrderAction(
+            order,
+            snackBarCompleterToOpening(
+                context,
+                "O pedido foi finalizado com sucesso.",
+                "Não conseguimos realizar a finalização do pedido. Tente novamente.",
+                shouldPop: true)));
+      },
+      builder: (context, callback) => new Material(
+            type: MaterialType.transparency,
+            child: new Stack(
+              children: <Widget>[
+                new InkWell(
+                  onTap: () => Navigator.of(context).pop(),
+                  splashColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
                 ),
-              ),
-              actions: <Widget>[
-                new FlatButton(
-                  child: new Text(
-                    'Cancelar',
-                    style: FontStyles.confirmationDialogButton,
-                  ),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                ),
-                new FlatButton(
-                  child: new Text(
-                    'Reiniciar',
-                    style: FontStyles.confirmationDialogButton,
-                  ),
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/opening');
-                  },
-                ),
+                new AlertDialog(
+                    title: new Text('Realmente deseja reiniciar o app?',
+                        style: FontStyles.confirmationDialogTitle),
+                    content: new SingleChildScrollView(
+                      child: new ListBody(
+                        children: <Widget>[
+                          new Text('Caso reinice, seu carrinho será esvaziado.',
+                              style: FontStyles.confirmationDialogText),
+                          new Text('Cancele e continue fazendo o seu pedido',
+                              style: FontStyles.confirmationDialogText),
+                        ],
+                      ),
+                    ),
+                    actions: <Widget>[
+                      new FlatButton(
+                        child: new Text(
+                          'Cancelar',
+                          style: FontStyles.confirmationDialogButton,
+                        ),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                      new StoreConnector <AppState, Order>(
+                        converter: (store) => store.state.order,
+                        builder: (context, order) => new FlatButton(
+                          child: new Text(
+                            'Reiniciar',
+                            style: FontStyles.confirmationDialogButton,
+                          ),
+                          onPressed: () {
+                            callback(order.id);
+                          },
+                        ),
+                      ),
 
 //                      onSendPressed(state, context);
-              ])
-        ],
-      ),
+                    ])
+              ],
+            ),
 
 //          new Center(
 //            child: Container(
@@ -104,6 +122,9 @@ class PowerDialog extends StatelessWidget {
 //              ),
 //            ),
 //          ),
+          ),
     );
   }
 }
+
+typedef OnFinishOrder = Function(String orderId);

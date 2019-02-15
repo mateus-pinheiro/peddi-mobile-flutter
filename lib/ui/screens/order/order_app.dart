@@ -1,3 +1,4 @@
+import 'package:peddi_tont_app/models/body/ask_order_body.dart';
 import 'package:peddi_tont_app/redux/actions.dart';
 import 'package:peddi_tont_app/ui/screens/order/widgets/confirmation_screen.dart';
 import 'package:peddi_tont_app/ui/screens/order/widgets/order_list.dart';
@@ -13,6 +14,7 @@ import 'package:peddi_tont_app/util/scan.dart';
 
 class OrderApp extends StatelessWidget {
   OnScanPressed callback;
+  AskOrderBody askOrderBody;
 
   @override
   Widget build(BuildContext context) {
@@ -130,14 +132,14 @@ class OrderApp extends StatelessWidget {
     );
   }
 
-  resultOfBarCode(String result, BuildContext contextParent, AppState state) {
-    Navigator.push(
-      contextParent,
-      MaterialPageRoute(
-          builder: (context) => new OrderScan(
-              result, state.order, state.restaurant.categories, contextParent)),
-    );
-  }
+//  resultOfBarCode(String result, BuildContext contextParent, AppState state) {
+//    Navigator.push(
+//      contextParent,
+//      MaterialPageRoute(
+//          builder: (context) => new OrderScan(
+//              result, state.order, state.restaurant.categories, contextParent)),
+//    );
+//  }
 }
 
 void openConfirmationScreen(BuildContext context) {

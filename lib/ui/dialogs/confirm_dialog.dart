@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:peddi_tont_app/models/app_state.dart';
+import 'package:peddi_tont_app/models/body/ask_order_body.dart';
 import 'package:peddi_tont_app/models/order.dart';
 import 'package:peddi_tont_app/redux/actions.dart';
 import 'package:peddi_tont_app/themes/font_styles.dart';
@@ -12,13 +13,14 @@ class ConfirmDialog extends StatelessWidget {
 
   final String ticketMessage = "";
   final OnSendOrder order;
+  AskOrderBody askOrderBody;
 
   @override
   Widget build(BuildContext context) {
     return new StoreConnector<AppState, OnSendOrder>(
       converter: (store) {
-        return (order) => store.dispatch(SendOrder(
-            order, snackBarCompleter(context, null, shouldPop: true)));
+        return (order) => store.dispatch(AskOrderAction(
+            order, snackBarCompleter(context, null, null, shouldPop: true)));
       },
       builder: (context, callback) => new Material(
             type: MaterialType.transparency,
@@ -28,26 +30,33 @@ class ConfirmDialog extends StatelessWidget {
               content: new SingleChildScrollView(
                 child: new ListBody(
                   children: <Widget>[
-                    new Text(
-                        'Envie o pedido e o próximo passo é aguardar :)', style: FontStyles.confirmationDialogText),
-                    new Text(
-                        'Cancele e pediremos para que escaneie novamente.', style: FontStyles.confirmationDialogText),
+                    new Text('Envie o pedido e o próximo passo é aguardar :)',
+                        style: FontStyles.confirmationDialogText),
+                    new Text('Cancele e pediremos para que escaneie novamente.',
+                        style: FontStyles.confirmationDialogText),
                   ],
                 ),
               ),
               actions: <Widget>[
                 new FlatButton(
-                  child: new Text('Cancelar', style: FontStyles.confirmationDialogButton,),
+                  child: new Text(
+                    'Cancelar',
+                    style: FontStyles.confirmationDialogButton,
+                  ),
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
                 ),
-                new StoreConnector<AppState, AppState>(
-                  converter: (store) => store.state,
-                  builder: (context, state) => new FlatButton(
-                      child: new Text('Enviar pedido', style: FontStyles.confirmationDialogButton,),
+                new StoreConnector<AppState, Order>(
+                  converter: (store) => store.state.order,
+                  builder: (context, order) => new FlatButton(
+                      child: new Text(
+                        'Enviar pedido',
+                        style: FontStyles.confirmationDialogButton,
+                      ),
                       onPressed: () {
-                        callback(state.order);
+                        askOrderBody = setOrderBody(order);
+                        callback(askOrderBody);
 //                        Navigator.pop(context);
 //                        Navigator.push(
 //                          context,
@@ -66,12 +75,21 @@ class ConfirmDialog extends StatelessWidget {
   }
 }
 
-void onSendPressed(AppState state, BuildContext context) {
-  new StoreConnector<AppState, void>(
-      converter: (store) => store.dispatch(SendOrder(
-          state.order, qrCodeCompleter(context, null, shouldPop: true))),
-      builder: (context, v) => new MenuApp(
-          state.restaurant.categories[0], state.restaurant.categories));
+AskOrderBody setOrderBody(Order order) {
+  var it = new AskOrderBody(
+      id: order.id,
+      orderPrice: order.amountPrice,
+      updatedAt: DateTime.now(),
+      consumers: order.consumers);
+  return it;
 }
 
-typedef OnSendOrder = Function(Order order);
+//void onSendPressed(AppState state, BuildContext context) {
+//  new StoreConnector<AppState, void>(
+//      converter: (store) => store.dispatch(AskOrderAction(
+//          state.order, qrCodeCompleter(context, null, shouldPop: true))),
+//      builder: (context, v) => new MenuApp(
+//          state.restaurant.categories[0], state.restaurant.categories));
+//}
+
+typedef OnSendOrder = Function(AskOrderBody order);

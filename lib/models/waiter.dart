@@ -1,22 +1,41 @@
 class Waiter {
-  String mgmtId;
+  String id;
+  int waiterCloudId;
   String name;
+  String qrCode;
+  int status;
 
-  Waiter({this.mgmtId, this.name});
+  Waiter({this.waiterCloudId, this.name, this.qrCode, this.status, this.id});
 
   Waiter.fromMap(Map<String, dynamic> data)
-      : mgmtId = data['mgmt_id'],
-        name = data['name'];
+      : waiterCloudId = data['waiter_cloud_id'],
+        name = data['name'],
+        id = data['_id'],
+        qrCode = data['QRcode'],
+        status = data['status'];
 
-  Map<String, dynamic> toJson() => {'mgmt_id': mgmtId, 'name': name};
+  Map<String, dynamic> toJson() => {
+        '_id': id,
+        'waiter_cloud_id': waiterCloudId,
+        'name': name,
+        'QRcode': qrCode,
+        'status': status
+      };
 
   Waiter copyWith({
-    String mgmtId,
+    String id,
+    int waiterCloudId,
     String name,
+    String qrCode,
+    int status
+
   }) {
     return new Waiter(
-      mgmtId: mgmtId?? this.mgmtId,
+      waiterCloudId: waiterCloudId ?? this.waiterCloudId,
       name: name ?? this.name,
+      qrCode: qrCode ?? this.qrCode,
+      status: status ?? this.status,
+      id: id ?? this.id
     );
   }
 }
