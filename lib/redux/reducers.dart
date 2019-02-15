@@ -16,13 +16,7 @@ AppState appStateReducers(AppState state, dynamic action) {
     return askOrder(action, state);
   } else if (action is EndOrderAction) {
     return endOrder(action, state);
-  }
-//  else if (action is OrderSentSuccessfully) {
-//    return orderSent(action, state);
-////  } else if (action is OrderNotSentSuccessfully) {
-////    return orderNotSent(action, state);
-////  }
-  else if (action is AddQrTicketCode) {
+  } else if (action is AddQrTicketCode) {
     return addConsumerCode(action, state);
   } else if (action is NewItemList) {
     return newItemList(state);
@@ -72,7 +66,8 @@ AppState addConsumerCode(AddQrTicketCode action, AppState state) {
 
 AppState newItemList(AppState state) {
   List<Consumer> consumerList(List<Consumer> consumerList) {
-    consumerList.elementAt(0).copyWith(items: new List<Item>());
+//    consumerList.elementAt(0).copyWith(items: new List<Item>());
+    consumerList.first.items = new List<Item>();
     return consumerList;
   }
 
@@ -86,13 +81,19 @@ AppState addQrResposibleCode(AddQrResposibleCode action, AppState state) {
   var waiter;
   var orderId = action.orderId;
   if (action.qrCode.isNotEmpty) {
-    state.restaurant.waiters.where((f) => f.qrCode == action.qrCode).isNotEmpty
-        ? action.completer.complete()
-        : action.completer
-            .completeError('Não existe nenhum garçom com esse código.');
+    if (state.restaurant.waiters != null) {
+      state.restaurant.waiters
+              .where((f) => f.qrCode == action.qrCode)
+              .isNotEmpty
+          ? action.completer.complete()
+          : action.completer
+              .completeError('Não existe nenhum garçom com esse código.');
 
-    waiter =
-        state.restaurant.waiters.singleWhere((i) => i.qrCode == action.qrCode);
+      waiter = state.restaurant.waiters
+          .singleWhere((i) => i.qrCode == action.qrCode);
+    } else {
+      action.completer.completeError('Não existe nenhum garçom cadastrado');
+    }
   } else {
     waiter = new Waiter();
   }

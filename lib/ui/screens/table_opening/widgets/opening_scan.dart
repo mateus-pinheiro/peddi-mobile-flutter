@@ -71,23 +71,28 @@ class OpeningScan extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new StoreConnector<AppState, List<Waiter>>(
-        converter: (store) => store.state.restaurant.waiters,
-        builder: (context, responsibleEmployees) {
-          if (responsibleEmployees
-              .where((responsible) => responsible.qrCode == _reader)
-              .isNotEmpty) {
-            return new StoreConnector<AppState, void>(
-              converter: (store) => store.dispatch(AddQrResposibleCode(
-                  _reader,
-                  store.state.order.id,
-                  qrCodeCompleter(context, 'Seja muito bem atendido!',
-                      shouldPop: true))),
-              builder: (context, w) {
-                return new MainApp();
-              },
-            );
+    return new StoreConnector<AppState, AppState>(
+        converter: (store) => store.state,
+        builder: (context, state) {
+          if (state.restaurant != null) {
+            if (state.restaurant.waiters
+                .where((responsible) => responsible.qrCode == _reader)
+                .isNotEmpty) {
+              return new StoreConnector<AppState, void>(
+                converter: (store) => store.dispatch(AddQrResposibleCode(
+                    _reader,
+                    store.state.order.id,
+                    qrCodeCompleter(context, 'Seja muito bem atendido!',
+                        shouldPop: true))),
+                builder: (context, w) {
+                  return new MainApp();
+                },
+              );
+            } else
+              return new Opening();
           } else
+            qrCodeCompleter(context, 'Não conseguimos recuperar as informações do restaurante, por favor chame o garçom!',
+                shouldPop: true).completeError('Não conseguimos recuperar as informações do restaurante, por favor chame o garçom!');
             return new Opening();
         });
   }
