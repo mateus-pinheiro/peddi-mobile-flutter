@@ -74,7 +74,7 @@ class OpeningScan extends StatelessWidget {
     return new StoreConnector<AppState, AppState>(
         converter: (store) => store.state,
         builder: (context, state) {
-          if (state.restaurant != null) {
+          if (state.restaurant != null && state.restaurant.waiters != null) {
             if (state.restaurant.waiters
                 .where((responsible) => responsible.qrCode == _reader)
                 .isNotEmpty) {

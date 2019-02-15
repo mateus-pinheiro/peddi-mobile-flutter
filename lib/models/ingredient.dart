@@ -2,13 +2,15 @@ import 'package:meta/meta.dart';
 
 @immutable
 class Ingredient {
-  final int epocId;
+  final String id;
+  final String mgmtId;
   final int type;
   final double price;
+  final int ingredientCloudId;
   final String name;
   bool isChecked;
 
-  Ingredient({this.type, this.price, this.name, this.epocId});
+  Ingredient({this.type, this.price, this.name, this.mgmtId, this.ingredientCloudId, this.id});
 
   static double toDouble(dynamic value) {
     if (value != "null") {
@@ -19,15 +21,19 @@ class Ingredient {
   }
 
   Ingredient.fromMap(Map<String, dynamic> data)
-      : epocId = data['epoc_id'],
+      : mgmtId = data['mgmt_id'],
+        id = data['_id'],
+        ingredientCloudId = data['ingredient_cloud_id'],
         name = data['name'],
         type = data['type'],
         price = toDouble(data['price'].toString());
 
   Map<String, dynamic> toJson() => {
-        'epoc_id': epocId,
+        'mgmt_id': mgmtId,
         'name': name,
         'price': price,
         'type': type,
+        'ingredient_cloud_id': ingredientCloudId,
+        '_id' : id
       };
 }

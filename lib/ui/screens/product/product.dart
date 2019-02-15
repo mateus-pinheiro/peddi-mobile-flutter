@@ -12,6 +12,9 @@ class ProductRoute extends StatelessWidget {
 
   Product product;
   final Item item = new Item();
+  static const FREE_INGREDIENT = 0;
+  static const PAID_INGREDIENT = 1;
+  static const PIECE_INGREDIENT = 2;
 
   List<Ingredient> additionalList = new List<Ingredient>();
   List<Ingredient> ingredientList = new List<Ingredient>();
@@ -31,9 +34,9 @@ class ProductRoute extends StatelessWidget {
 
   void validateIngredient(Ingredient element) {
     if (element != null) {
-      if (element.type == 'DEFAULT')
+      if (element.type == FREE_INGREDIENT)
         ingredientList.add(element);
-      else if (element.type == 'ADDITIONAL')
+      else if (element.type == PAID_INGREDIENT)
         additionalList.add(element);
       else
         optionList.add(element);
