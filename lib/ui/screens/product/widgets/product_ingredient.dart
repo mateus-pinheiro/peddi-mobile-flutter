@@ -72,7 +72,7 @@ class IngredientWidgetState extends State<IngredientWidget> {
           if (ingredient.isChecked == true) {
             item.ingredients.add(ingredient);
             if (ingredient.price != null)
-              item.amount += ingredient.price.toDouble();
+              item.itemPrice += ingredient.price.toDouble();
           } else
             item.ingredients.remove(ingredient);
         });

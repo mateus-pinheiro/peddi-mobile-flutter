@@ -15,12 +15,9 @@ void appMiddleware(Store<AppState> store, action, NextDispatcher next) {
   next(action);
 
   if (action is LoadRestaurantAction) {
-    API().getRestaurant().then((restaurant) {
-      store.dispatch(new SaveRestaurantAction(restaurant));
-    });
+    loadRestaurant(store, action);
   } else if (action is AskOrderAction) {
     sendOrderToApi(store, action);
-//    store.dispatch(new NewItemList());
   } else if (action is OpenOrderAction) {
     openOrder(store, action);
   } else if (action is EndOrderAction) {
@@ -48,10 +45,17 @@ void endOrder(Store<AppState> store, EndOrderAction action) {
 
 void sendOrderToApi(Store<AppState> state, AskOrderAction action) {
   API().askOrder(action.order).then((response) {
-    action.completer.complete();
+    action.completer.complete(response);
     state.dispatch(new NewItemList());
   }).catchError((Object error) {
     action.completer.completeError(error);
+  });
+}
+
+void loadRestaurant(Store<AppState> store, LoadRestaurantAction action) {
+  API().getRestaurant().then((restaurant) {
+    store.dispatch(new SaveRestaurantAction(restaurant));
+    store.dispatch(new OpenOrderAction(action.table, action.guests));
   });
 }
 

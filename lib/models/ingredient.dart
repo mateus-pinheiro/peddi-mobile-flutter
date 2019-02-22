@@ -6,11 +6,12 @@ class Ingredient {
   final String mgmtId;
   final int type;
   final double price;
-  final int ingredientCloudId;
+  final int cloudId;
   final String name;
+  final int action;
   bool isChecked;
 
-  Ingredient({this.type, this.price, this.name, this.mgmtId, this.ingredientCloudId, this.id});
+  Ingredient({this.action = 2, this.type, this.price, this.name, this.mgmtId, this.cloudId, this.id});
 
   static double toDouble(dynamic value) {
     if (value != "null") {
@@ -22,8 +23,9 @@ class Ingredient {
 
   Ingredient.fromMap(Map<String, dynamic> data)
       : mgmtId = data['mgmt_id'],
+        action = 0,
         id = data['_id'],
-        ingredientCloudId = data['ingredient_cloud_id'],
+        cloudId = data['cloud_id'],
         name = data['name'],
         type = data['type'],
         price = toDouble(data['price'].toString());
@@ -33,7 +35,8 @@ class Ingredient {
         'name': name,
         'price': price,
         'type': type,
-        'ingredient_cloud_id': ingredientCloudId,
-        '_id' : id
+        'cloud_id': cloudId,
+        '_id' : id,
+        'action': 2
       };
 }

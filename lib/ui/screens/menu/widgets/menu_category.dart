@@ -90,6 +90,7 @@ class _MenuCategoryState extends State<MenuCategory> {
       itemCount: categories.length,
       itemBuilder: (context, position) => categoryItem(categories[position]),
       scrollDirection: Axis.horizontal,
+
     );
   }
 

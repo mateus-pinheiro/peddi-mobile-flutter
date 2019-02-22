@@ -33,19 +33,19 @@ class Opening extends StatelessWidget {
                     children: <Widget>[
                       Padding(
                         padding: const EdgeInsets.only(
-                          top: 15.0,
+                          top: 22.0,
                           left: 20.0,
                         ),
                         child: Container(
-                            width: 120.0,
-                            height: 90.0,
+                            width: 200.0,
+                            height: 120.0,
                             decoration: new BoxDecoration(
                                 borderRadius: BorderRadius.circular(10.0),
 //                                shape: BoxShape.circle,
                                 image: new DecorationImage(
                                     fit: BoxFit.fill,
                                     image: new AssetImage(
-                                        'resources/images/logo_lm_title.jpg'),
+                                        'resources/images/logo_fitfood_01.png'),
                                     alignment: Alignment(-1.0, -1.0)))),
                       ),
                       Expanded(

@@ -91,8 +91,8 @@ class OpeningScan extends StatelessWidget {
             } else
               return new Opening();
           } else
-            qrCodeCompleter(context, 'Não conseguimos recuperar as informações do restaurante, por favor chame o garçom!',
-                shouldPop: true).completeError('Não conseguimos recuperar as informações do restaurante, por favor chame o garçom!');
+            qrCodeCompleter(context, 'Não conseguimos recuperar as informações do restaurante, por favor chame um responsável!',
+                shouldPop: true).completeError('Não conseguimos recuperar as informações do restaurante, por favor chame um responsável!');
             return new Opening();
         });
   }

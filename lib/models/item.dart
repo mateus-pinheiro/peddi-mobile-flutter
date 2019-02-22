@@ -6,29 +6,29 @@ class Item {
   int baseCloudId;
   String name;
   int qtyItem;
-  double price;
-  double amount;
+  double basePrice;
+  double itemPrice;
   List<Ingredient> ingredients;
 
   Item(
-      {this.mgmtId, this.baseCloudId, this.name, this.qtyItem, this.price, this.amount, this.ingredients});
+      {this.mgmtId, this.baseCloudId, this.name, this.qtyItem, this.basePrice, this.itemPrice, this.ingredients});
 
 
   Map<String, dynamic> toJson() => {
     'mgmt_id': mgmtId,
     'base_cloud_id' : baseCloudId,
     'name': name,
-    'amount': amount,
+    'item_price': itemPrice,
     'quantity': qtyItem,
-    'item_price': price,
+    'base_price': basePrice,
     'ingredients': ingredients
   };
 
   Item.fromMap(Map<String, dynamic> data)
       : name = data['name'],
-        price = data['item_price'],
+        basePrice = data['base_price'],
         mgmtId = data['mgmt_id'],
-        amount = data['amount'],
+        itemPrice = data['item_price'],
         qtyItem = data['quantity'],
         ingredients =
         (data['ingredients'] == null ? [] : data['ingredients'] as List)

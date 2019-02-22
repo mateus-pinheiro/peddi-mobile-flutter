@@ -72,7 +72,7 @@ class _ProductRecipeWidgetState extends State<ProductRecipeWidget> {
 
   void _sumAmount(Item item) {
     setState(() {
-      item.amount = item.amount * _quantityItem;
+      item.itemPrice = item.itemPrice * _quantityItem;
     });
   }
 
@@ -103,28 +103,32 @@ class _ProductRecipeWidgetState extends State<ProductRecipeWidget> {
                         height: 280.0,
                         width: 430.0,
                         child: new CachedNetworkImage(
-                          imageUrl: getProductImage(product.image),
-                          fit: BoxFit.contain,
-                          placeholder: new Center(
-                              child: new CircularProgressIndicator()),
-                        ),
+                            imageUrl: getProductImage(product.image),
+                            fit: BoxFit.contain,
+                            repeat: ImageRepeat.noRepeat,
+                            placeholder: new Center(
+                                child: new CircularProgressIndicator()),
+                            errorWidget: new Icon(Icons.error)),
                       ),
                     ),
                     new Padding(
-                      padding: const EdgeInsets.only(left: 40.0),
+                      padding: const EdgeInsets.only(left: 40.0, right: 30),
                       child: new Text(item.name,
                           style: FontStyles.productTitleProduct),
                     ),
                     new Padding(
                       padding: const EdgeInsets.only(left: 40.0, top: 15.0),
                       child: new Text(
-                          CurrencyConverter.toBrazilianReal(item.price),
+                          CurrencyConverter.toBrazilianReal(item.basePrice),
                           style: FontStyles.productsPrice),
                     ),
                     new Padding(
                       padding: const EdgeInsets.only(
                           left: 40.0, top: 15.0, right: 30.0),
-                      child: new Text(product.description == null ? "" : product.description,
+                      child: new Text(
+                          product.description == null
+                              ? ""
+                              : product.description,
                           style: FontStyles.productDescriptionProduct),
                     ),
                     new Expanded(

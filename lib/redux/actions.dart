@@ -6,7 +6,12 @@ import 'package:peddi_tont_app/models/item.dart';
 import 'package:peddi_tont_app/models/order.dart';
 import 'package:peddi_tont_app/models/restaurant.dart';
 
-class LoadRestaurantAction {}
+class LoadRestaurantAction {
+  final int table;
+  final int guests;
+
+  LoadRestaurantAction(this.table, this.guests);
+}
 
 class NewItemList {}
 

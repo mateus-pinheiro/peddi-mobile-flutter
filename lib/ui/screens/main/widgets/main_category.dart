@@ -74,12 +74,12 @@ class MainCategoryRouteState extends State<MainCategoryRoute> {
                     decoration: new BoxDecoration(
                         color: Colors.black,
                         border: Border.all(
-                            color: AppColors.peddi_white, width: 1.0)
-//                        image: new DecorationImage(
-//                          image: new NetworkImage(
-//                              getCategoryImage(category.image)),
-//                          fit: BoxFit.cover,
-//                        )
+                            color: AppColors.peddi_white, width: 1.0),
+                        image: new DecorationImage(
+                          image: new NetworkImage(
+                              getCategoryImage(category.image)),
+                          fit: BoxFit.cover,
+                        )
                     ),
                     child: new Center(
                       child: new Text(
@@ -95,30 +95,30 @@ class MainCategoryRouteState extends State<MainCategoryRoute> {
           }
         });
   }
-
-  Widget categoryItem(Category category, List<Category> storeCategories) {
-    return new MaterialButton(
-      onPressed: () {
-        Navigator.push(
-            context,
-            new MaterialPageRoute(
-                builder: (context) => new MenuApp(category, storeCategories)));
-      },
-      textTheme: ButtonTextTheme.primary,
-      child: new Container(
-        decoration: new BoxDecoration(
-            color: Colors.black,
-            image: new DecorationImage(
-                image: new NetworkImage(getCategoryImage(category.image)),
-                fit: BoxFit.fitWidth)),
-        child: new Center(
-          child: new Text(
-            category.name,
-            style: FontStyles.style5,
-            textScaleFactor: 1.5,
-          ),
-        ),
-      ),
-    );
-  }
+//
+//  Widget categoryItem(Category category, List<Category> storeCategories) {
+//    return new MaterialButton(
+//      onPressed: () {
+//        Navigator.push(
+//            context,
+//            new MaterialPageRoute(
+//                builder: (context) => new MenuApp(category, storeCategories)));
+//      },
+//      textTheme: ButtonTextTheme.primary,
+//      child: new Container(
+//        decoration: new BoxDecoration(
+//            color: Colors.black,
+//            image: new DecorationImage(
+//                image: new NetworkImage(getCategoryImage(category.image)),
+//                fit: BoxFit.fitWidth)),
+//        child: new Center(
+//          child: new Text(
+//            category.name,
+//            style: FontStyles.style5,
+//            textScaleFactor: 1.5,
+//          ),
+//        ),
+//      ),
+//    );
+//  }
 }

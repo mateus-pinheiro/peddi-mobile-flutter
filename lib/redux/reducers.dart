@@ -133,11 +133,17 @@ AppState addItem(AddItemAction action, AppState state) {
       consumer.items.add(action.item);
       state.order.consumers.add(consumer);
     } else {
+      consumer = state.order.consumers[0];
       state.order.consumers[0].items.add(action.item);
     }
 
     if (state.order.amountPrice == null) state.order.amountPrice = 0.0;
-    state.order.amountPrice += action.item.amount;
+    state.order.amountPrice += action.item.itemPrice;
+
+    consumer.items
+        .singleWhere((item) => item == action.item && item.qtyItem > 1)
+        .itemPrice = action.item.itemPrice / action.item.qtyItem;
+
     return state.order;
   }
 
@@ -147,7 +153,7 @@ AppState addItem(AddItemAction action, AppState state) {
 AppState removeItem(RemoveItemAction action, AppState state) {
   Order removeItemFromOrder(RemoveItemAction action) {
     state.order.consumers[0].items.remove(action.item);
-    state.order.amountPrice -= action.item.amount;
+    state.order.amountPrice -= action.item.itemPrice;
     return state.order;
   }
 

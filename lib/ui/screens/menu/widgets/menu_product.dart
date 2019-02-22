@@ -50,13 +50,14 @@ class MenuProduct extends StatelessWidget {
                     child: Container(
                       width: 380.0,
                       height: 250.0,
-//                      child: new CachedNetworkImage(
-//                        placeholder:
-//                            new Center(child: new CircularProgressIndicator()),
-//                        imageUrl: getProductImage(product.image),
-//                        fit: BoxFit.contain,
-//                        errorWidget: new Icon(Icons.error),
-//                      ),
+                      child: new CachedNetworkImage(
+                        placeholder:
+                            new Center(child: new CircularProgressIndicator()),
+                        imageUrl: getProductImage(product.image),
+                        fit: BoxFit.contain,
+                        fadeOutDuration: Duration(milliseconds: 50),
+                        errorWidget: new Icon(Icons.error),
+                      ),
                     ),
 //                      image: new AssetImage('resources/images/product.png'),
                   ),

@@ -9,15 +9,13 @@ import 'package:peddi_tont_app/models/response/response_open_order.dart';
 import 'package:peddi_tont_app/models/restaurant.dart';
 
 class API {
-//  IP LM09
-//  static const String _apiUrl = 'http://192.168.1.71:3001/api';
 
-//  IP PEDDI
-//  static const String _apiUrl = 'http://192.168.15.27:8000/api';
-  static const String _apiUrl = 'http://192.168.15.11:8000/api';
+//RASPI
+//  static const String _apiUrl = 'http://192.168.0.70:8000/api';
 
 //  IP CASA
-//  static const String _apiUrl = 'http://192.168.15.11:3000/api';
+  static const String _apiUrl = 'http://192.168.15.13:8000/api';
+
   final http.Client _client = http.Client();
 
   Future<Restaurant> getRestaurant() async {

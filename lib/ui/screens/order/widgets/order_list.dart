@@ -144,7 +144,7 @@ class OrderListState extends State<OrderList> {
                                 padding: const EdgeInsets.only(top: 0.0),
                                 child: Text(
                                     CurrencyConverter.toBrazilianReal(
-                                            item.price) +
+                                            item.basePrice) +
                                         ' cada',
                                     style: FontStyles.productPriceOrder),
                               ),

@@ -9,10 +9,10 @@ import 'package:peddi_tont_app/util/scan.dart';
 class OpeningFormRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new StoreConnector<AppState, OnAddTableNumber>(converter: (store) {
+    return new StoreConnector<AppState, OnAddTableNumber>(converter: (store)  {
       return (tableNumber, qtyConsumer) {
-        store.dispatch(new LoadRestaurantAction());
-        store.dispatch(new OpenOrderAction(tableNumber, qtyConsumer));
+        store.dispatch(new LoadRestaurantAction(tableNumber, qtyConsumer));
+//        store.dispatch(new OpenOrderAction(tableNumber, qtyConsumer));
       };
     }, builder: (context, callback) {
       return new OpeningForm(callback);

@@ -22,8 +22,8 @@ class ProductRoute extends StatelessWidget {
 
   void setItem() {
     this.item.name = this.product.name;
-    this.item.price = this.product.price.toDouble();
-    this.item.amount = this.product.price.toDouble();
+    this.item.basePrice = this.product.price.toDouble();
+    this.item.itemPrice = this.product.price.toDouble();
     this.item.mgmtId = this.product.mgmtId;
     this.item.baseCloudId = this.product.productCloudId;
   }
