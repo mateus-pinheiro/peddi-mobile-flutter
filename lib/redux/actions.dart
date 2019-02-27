@@ -13,7 +13,11 @@ class LoadRestaurantAction {
   LoadRestaurantAction(this.table, this.guests);
 }
 
-class NewItemList {}
+class NewItemListAction {
+  final List<Item> items;
+
+  NewItemListAction({this.items});
+}
 
 class Success {}
 

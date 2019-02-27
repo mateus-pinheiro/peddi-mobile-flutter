@@ -56,7 +56,7 @@ class MainHeader extends StatelessWidget {
                                   image: new DecorationImage(
                                     fit: BoxFit.fill,
                                     image: new AssetImage(
-                                        'resources/images/logo_lm_title.jpg'),
+                                        'resources/images/fitfood-301.png'),
                                   ))),
                         ),
                       ],

@@ -5,6 +5,8 @@ import 'package:peddi_tont_app/themes/app_colors.dart';
 import 'package:peddi_tont_app/themes/font_styles.dart';
 import 'package:peddi_tont_app/ui/screens/menu/widgets/menu_product.dart';
 
+const double _ITEM_HEIGHT = 70.0;
+
 class MenuCategory extends StatefulWidget {
   MenuCategory(this._selectedCategory, this.storeCategories);
 
@@ -22,11 +24,15 @@ class _MenuCategoryState extends State<MenuCategory> {
   final List<Category> storeCategories;
   Category _selectedCategory;
   SubCategory _selectedSubCategory;
+  ScrollController _scrollController;
 
   @override
   void initState() {
     super.initState();
+
+    _scrollController = new ScrollController();
     _selectedCategory = _selectedCategory;
+    storeCategories.where((category) => category == _selectedCategory ? category.isSelected = true : null);
 //    _selectedSubCategory = _selectedCategory.subcategories[0];
 
     storeCategories.forEach((c) => toFalse(c, _selectedCategory));
@@ -64,6 +70,24 @@ class _MenuCategoryState extends State<MenuCategory> {
 
   @override
   Widget build(BuildContext context) {
+    // scroll to first selected item
+    for (int i = 0; i < storeCategories.length; i++) {
+      if (storeCategories.elementAt(i).isSelected) {
+        _scrollController.animateTo(i * _ITEM_HEIGHT,
+            duration: new Duration(seconds: 2), curve: Curves.ease);
+        break;
+      }
+    }
+
+    Widget buildCategoryList(List<Category> categories) {
+      return new ListView.builder(
+        controller: _scrollController,
+        itemCount: categories.length,
+        itemBuilder: (context, position) => categoryItem(categories[position]),
+        scrollDirection: Axis.horizontal,
+      );
+    }
+
     return new Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -82,15 +106,6 @@ class _MenuCategoryState extends State<MenuCategory> {
             child: new Container(
                 child: new MenuProductRoute(_selectedCategory.products)))
       ],
-    );
-  }
-
-  Widget buildCategoryList(List<Category> categories) {
-    return new ListView.builder(
-      itemCount: categories.length,
-      itemBuilder: (context, position) => categoryItem(categories[position]),
-      scrollDirection: Axis.horizontal,
-
     );
   }
 

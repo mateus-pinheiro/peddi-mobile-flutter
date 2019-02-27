@@ -1,5 +1,5 @@
 
-const String _urlCloudImages = 'https://s3-sa-east-1.amazonaws.com/peddi-service-aws/Fit%20food';
+const String _urlCloudImages = 'https://s3-sa-east-1.amazonaws.com/peddi-service-aws/Fit+food';
 const String _urlProductImages = 'https://s3-sa-east-1.amazonaws.com/peddi-service-aws/';
 
 String getCategoryImage(String imageName){

@@ -11,7 +11,7 @@ class ErrorDialog extends StatelessWidget {
   final String message;
 
   void show(BuildContext context) async {
-    await new Future.delayed(const Duration(seconds: 5));
+    await new Future.delayed(const Duration(seconds: 10));
     Navigator.pop(context);
   }
 

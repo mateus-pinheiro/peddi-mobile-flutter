@@ -18,8 +18,8 @@ AppState appStateReducers(AppState state, dynamic action) {
     return endOrder(action, state);
   } else if (action is AddQrTicketCode) {
     return addConsumerCode(action, state);
-  } else if (action is NewItemList) {
-    return newItemList(state);
+  } else if (action is NewItemListAction) {
+    return newItemList(action, state);
   } else if (action is AddQrResposibleCode) {
     return addQrResposibleCode(action, state);
   } else if (action is OpenOrderAction) {
@@ -64,17 +64,24 @@ AppState addConsumerCode(AddQrTicketCode action, AppState state) {
       state.order.copyWith(consumers: addConsumerToOrder(action)));
 }
 
-AppState newItemList(AppState state) {
+AppState newItemList(NewItemListAction action, AppState state) {
+  var amountPrice;
   List<Consumer> consumerList(List<Consumer> consumerList) {
-//    consumerList.elementAt(0).copyWith(items: new List<Item>());
-    consumerList.first.items = new List<Item>();
+    if (action.items != null && action.items.length > 0) {
+      consumerList.first.items = action.items;
+      action.items.every((item) => amountPrice += item.itemPrice);
+    } else {
+      consumerList.first.items = new List<Item>();
+      amountPrice = 0.0;
+    }
     return consumerList;
   }
 
   return new AppState(
       state.restaurant,
       state.order.copyWith(
-          amountPrice: 0.0, consumers: consumerList(state.order.consumers)));
+          amountPrice: amountPrice,
+          consumers: consumerList(state.order.consumers)));
 }
 
 AppState addQrResposibleCode(AddQrResposibleCode action, AppState state) {
@@ -140,9 +147,10 @@ AppState addItem(AddItemAction action, AppState state) {
     if (state.order.amountPrice == null) state.order.amountPrice = 0.0;
     state.order.amountPrice += action.item.itemPrice;
 
-    consumer.items
-        .singleWhere((item) => item == action.item && item.qtyItem > 1)
-        .itemPrice = action.item.itemPrice / action.item.qtyItem;
+    if (action.item.qtyItem > 1)
+      consumer.items
+          .singleWhere((item) => item == action.item && item.qtyItem > 1)
+          .itemPrice = action.item.itemPrice / action.item.qtyItem;
 
     return state.order;
   }
@@ -152,8 +160,13 @@ AppState addItem(AddItemAction action, AppState state) {
 
 AppState removeItem(RemoveItemAction action, AppState state) {
   Order removeItemFromOrder(RemoveItemAction action) {
+    var totalPriceOfItem;
+    if (action.item.qtyItem > 1) {
+      totalPriceOfItem = action.item.itemPrice * action.item.qtyItem;
+    }
+
     state.order.consumers[0].items.remove(action.item);
-    state.order.amountPrice -= action.item.itemPrice;
+    state.order.amountPrice -= totalPriceOfItem;
     return state.order;
   }
 

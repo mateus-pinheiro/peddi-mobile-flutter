@@ -5,16 +5,16 @@ import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:peddi_tont_app/models/body/ask_order_body.dart';
 import 'package:peddi_tont_app/models/order.dart';
+import 'package:peddi_tont_app/models/response/response_error_send_product.dart';
 import 'package:peddi_tont_app/models/response/response_open_order.dart';
 import 'package:peddi_tont_app/models/restaurant.dart';
 
 class API {
-
 //RASPI
 //  static const String _apiUrl = 'http://192.168.0.70:8000/api';
 
 //  IP CASA
-  static const String _apiUrl = 'http://192.168.15.13:8000/api';
+  static const String _apiUrl = 'http://192.168.0.26:8000/api';
 
   final http.Client _client = http.Client();
 
@@ -33,7 +33,8 @@ class API {
       var request = await _client.post('$_apiUrl/orders/',
           headers: {"Content-Type": "application/json"}, body: jsonEncoded);
 
-      ResponseOpenOrder responseOpenOrder = ResponseOpenOrder.fromMap(json.decode(request.body));
+      ResponseOpenOrder responseOpenOrder =
+          ResponseOpenOrder.fromMap(json.decode(request.body));
 
       return responseOpenOrder;
     } on Exception catch (e) {
@@ -43,16 +44,68 @@ class API {
 
   Future<Response> askOrder(AskOrderBody order) async {
     var jsonEncoded = json.encode(order.toJson());
-    var response = await _client.put('$_apiUrl/orders/' + order.id,
-          headers: {"Content-Type": "application/json"},
-          body: jsonEncoded);
+//    List<ResponseErrorSendProduct> response1;
+    try {
+      var response = await _client.put('$_apiUrl/orders/' + order.id,
+          headers: {"Content-Type": "application/json"}, body: jsonEncoded);
 
-    if (response.statusCode == 200) {
+      if (response.statusCode == 400) {
+        throw Exception(response);
+      }
+
       return response;
+//      response1 = (json.decode(response.body) as List)
+//          .map((e) => new ResponseErrorSendProduct.fromJson(e))
+//          .toList();
+//
+//      if (response.statusCode == 400) {
+//        throw Exception();
+////        return Future.error(response1);
+//      }
+//
+//      return response1;
+    } on Exception catch (e){
+//      List<ResponseErrorSendProduct> response1 =
+//      (json.decode(e)
+//      as List)
+//          .map((e) => new ResponseErrorSendProduct.fromJson(e)).toList();
+      return Future.error(e);
+//      return null;
     }
 
-    return null;
+//    if (response.statusCode == 200) {
+//
+//    }
+
+//    return null;
   }
+
+//  Future<Response> askOrderTeste(AskOrderBody order) async {
+//    var jsonEncoded = json.encode(order.toJson());
+//    try {
+//
+//      var response = await _client.put('$_apiUrl/orders/' + order.id,
+//          headers: {"Content-Type": "application/json"}, body: jsonEncoded);
+//
+//
+//      return response;
+//
+//    } on Exception catch (e) {
+////      List<ResponseErrorSendProduct> response1 =
+////      (json.decode(e)
+////      as List)
+////          .map((e) => new ResponseErrorSendProduct.fromJson(e)).toList();
+////      return response1;
+//      return null;
+//    }
+//
+//
+////    if (response.statusCode == 200) {
+////
+////    }
+//
+////    return null;
+//  }
 
   Future<Response> endOrder(String orderId) async {
     var response = await _client.delete('$_apiUrl/orders/' + orderId,

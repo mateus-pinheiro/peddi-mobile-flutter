@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:peddi_tont_app/models/item.dart';
 import 'package:peddi_tont_app/models/order.dart';
+import 'package:peddi_tont_app/models/response/response_error_send_product.dart';
 import 'package:peddi_tont_app/models/response/response_open_order.dart';
 import 'package:peddi_tont_app/services/api.dart';
 import 'package:peddi_tont_app/models/app_state.dart';
@@ -43,12 +45,29 @@ void endOrder(Store<AppState> store, EndOrderAction action) {
   }).catchError((error) => action.completer.completeError(error));
 }
 
-void sendOrderToApi(Store<AppState> state, AskOrderAction action) {
+void sendOrderToApi(Store<AppState> store, AskOrderAction action) {
+  List<Item> itemNotSentList = new List<Item>();
   API().askOrder(action.order).then((response) {
-    action.completer.complete(response);
-    state.dispatch(new NewItemList());
-  }).catchError((Object error) {
+    action.completer.complete();
+    store.dispatch(new NewItemListAction(items: itemNotSentList));
+  }).catchError((error) {
+    if (error != null) {
+      List<ResponseErrorSendProduct> responseBody =
+          (json.decode(error.message.body) as List)
+              .map((e) => new ResponseErrorSendProduct.fromJson(e))
+              .toList();
+
+      if (responseBody.length > 0) {
+        responseBody.forEach((productNotSent) => store
+            .state.order.consumers[0].items
+            .forEach((item) => item.baseCloudId == productNotSent.cloudId
+                ? itemNotSentList.add(item)
+                : ""));
+      }
+    }
+
     action.completer.completeError(error);
+    store.dispatch(new NewItemListAction(items: itemNotSentList));
   });
 }
 

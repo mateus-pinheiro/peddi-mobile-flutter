@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:peddi_tont_app/models/product.dart';
 import 'package:peddi_tont_app/services/external_images.dart';
+import 'package:peddi_tont_app/themes/app_colors.dart';
 import 'package:peddi_tont_app/themes/font_styles.dart';
 import 'package:peddi_tont_app/ui/screens/product/product.dart';
 import 'package:peddi_tont_app/util/currency_converter.dart';
@@ -50,19 +51,29 @@ class MenuProduct extends StatelessWidget {
                     child: Container(
                       width: 380.0,
                       height: 250.0,
-                      child: new CachedNetworkImage(
-                        placeholder:
-                            new Center(child: new CircularProgressIndicator()),
-                        imageUrl: getProductImage(product.image),
-                        fit: BoxFit.contain,
-                        fadeOutDuration: Duration(milliseconds: 50),
-                        errorWidget: new Icon(Icons.error),
-                      ),
+//                      child: new CachedNetworkImage(
+//                        placeholder:
+//                            new Center(child: new CircularProgressIndicator()),
+//                        imageUrl: getProductImage(product.image),
+//                        fit: BoxFit.contain,
+//                        fadeOutDuration: Duration(milliseconds: 50),
+//                        errorWidget: new Container(
+//                          decoration: new BoxDecoration(
+//                              color: Colors.black,
+//                              border: Border.all(
+//                                  color: AppColors.peddi_white, width: 1.0),
+//                              image: new DecorationImage(
+//                                image: new AssetImage('resources/images/fitfood-301.png'),
+//                                fit: BoxFit.contain,
+//                              )),
+//                        ),
+//                      ),
                     ),
 //                      image: new AssetImage('resources/images/product.png'),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 10.0, top: 15.0, right: 10.0),
+                    padding: const EdgeInsets.only(
+                        left: 10.0, top: 15.0, right: 10.0),
                     child:
                         Text(product.name, style: FontStyles.productNameMenu),
                   ),
@@ -78,7 +89,9 @@ class MenuProduct extends StatelessWidget {
                         padding: const EdgeInsets.only(
                             left: 10.0, top: 10.0, right: 16.0),
                         child: Text(
-                          product.description == null ? "" : product.description,
+                          product.description == null
+                              ? ""
+                              : product.description,
                           style: FontStyles.productDescriptionMenu,
                           overflow: TextOverflow.ellipsis,
                         ),

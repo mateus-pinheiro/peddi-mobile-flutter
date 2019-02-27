@@ -45,7 +45,7 @@ class Opening extends StatelessWidget {
                                 image: new DecorationImage(
                                     fit: BoxFit.fill,
                                     image: new AssetImage(
-                                        'resources/images/logo_fitfood_01.png'),
+                                        'resources/images/fitfood-301.png'),
                                     alignment: Alignment(-1.0, -1.0)))),
                       ),
                       Expanded(
