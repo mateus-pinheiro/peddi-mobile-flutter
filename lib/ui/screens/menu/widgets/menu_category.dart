@@ -32,7 +32,9 @@ class _MenuCategoryState extends State<MenuCategory> {
 
     _scrollController = new ScrollController();
     _selectedCategory = _selectedCategory;
-    storeCategories.where((category) => category == _selectedCategory ? category.isSelected = true : null);
+    storeCategories.forEach((category) =>
+        category == _selectedCategory ? category.isSelected = true : category.isSelected = false);
+//    storeCategories.where((category) => category == _selectedCategory ? category.isSelected = true : null);
 //    _selectedSubCategory = _selectedCategory.subcategories[0];
 
     storeCategories.forEach((c) => toFalse(c, _selectedCategory));

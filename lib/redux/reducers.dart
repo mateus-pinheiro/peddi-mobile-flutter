@@ -69,7 +69,7 @@ AppState newItemList(NewItemListAction action, AppState state) {
   List<Consumer> consumerList(List<Consumer> consumerList) {
     if (action.items != null && action.items.length > 0) {
       consumerList.first.items = action.items;
-      action.items.every((item) => amountPrice += item.itemPrice);
+      action.items.every((item) => amountPrice += (item.itemPrice * item.qtyItem));
     } else {
       consumerList.first.items = new List<Item>();
       amountPrice = 0.0;
@@ -80,8 +80,9 @@ AppState newItemList(NewItemListAction action, AppState state) {
   return new AppState(
       state.restaurant,
       state.order.copyWith(
-          amountPrice: amountPrice,
-          consumers: consumerList(state.order.consumers)));
+          consumers: consumerList(state.order.consumers),
+          amountPrice: amountPrice
+      ));
 }
 
 AppState addQrResposibleCode(AddQrResposibleCode action, AppState state) {
@@ -163,6 +164,8 @@ AppState removeItem(RemoveItemAction action, AppState state) {
     var totalPriceOfItem;
     if (action.item.qtyItem > 1) {
       totalPriceOfItem = action.item.itemPrice * action.item.qtyItem;
+    } else {
+      totalPriceOfItem = action.item.itemPrice;
     }
 
     state.order.consumers[0].items.remove(action.item);

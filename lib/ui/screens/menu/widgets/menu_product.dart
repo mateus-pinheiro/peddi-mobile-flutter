@@ -7,6 +7,8 @@ import 'package:peddi_tont_app/themes/font_styles.dart';
 import 'package:peddi_tont_app/ui/screens/product/product.dart';
 import 'package:peddi_tont_app/util/currency_converter.dart';
 
+
+bool _loadingInProgress;
 class MenuProduct extends StatelessWidget {
   final Product product;
 
@@ -19,6 +21,7 @@ class MenuProduct extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    _loadingInProgress = true;
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -51,23 +54,24 @@ class MenuProduct extends StatelessWidget {
                     child: Container(
                       width: 380.0,
                       height: 250.0,
-//                      child: new CachedNetworkImage(
-//                        placeholder:
-//                            new Center(child: new CircularProgressIndicator()),
-//                        imageUrl: getProductImage(product.image),
-//                        fit: BoxFit.contain,
-//                        fadeOutDuration: Duration(milliseconds: 50),
-//                        errorWidget: new Container(
-//                          decoration: new BoxDecoration(
-//                              color: Colors.black,
-//                              border: Border.all(
-//                                  color: AppColors.peddi_white, width: 1.0),
-//                              image: new DecorationImage(
-//                                image: new AssetImage('resources/images/fitfood-301.png'),
-//                                fit: BoxFit.contain,
-//                              )),
-//                        ),
-//                      ),
+                      child: new CachedNetworkImage(
+                        placeholder:
+                            new Center(child: new CircularProgressIndicator()),
+                        imageUrl: getProductImage(product.image),
+                        fit: BoxFit.contain,
+                        fadeOutDuration: Duration(milliseconds: 50),
+                        errorWidget: new Container(
+                          decoration: new BoxDecoration(
+                              color: Colors.black,
+                              border: Border.all(
+                                  color: AppColors.peddi_white, width: 1.0),
+                              image: new DecorationImage(
+                                image: new AssetImage(
+                                    'resources/images/fitfood-301.png'),
+                                fit: BoxFit.contain,
+                              )),
+                        ),
+                      ),
                     ),
 //                      image: new AssetImage('resources/images/product.png'),
                   ),
@@ -108,24 +112,55 @@ class MenuProduct extends StatelessWidget {
   }
 }
 
-class MenuProductRoute extends StatelessWidget {
+class MenuProductRoute extends StatefulWidget {
   final List<Product> products;
 
   MenuProductRoute(this.products);
 
   @override
+  _MenuProductRouteState createState() => _MenuProductRouteState();
+}
+
+class _MenuProductRouteState extends State<MenuProductRoute> {
+
+
+  @override
+  void initState() {
+    _loadingInProgress = true;
+//    _loadingInProgressFalse();
+    super.initState();
+  }
+
+
+  @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      itemBuilder: (BuildContext context, int index) =>
-          new MenuProduct(products[index]),
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3,
-//          mainAxisSpacing: 1.0,
-//          crossAxisSpacing: 1.0,
-//          childAspectRatio: 3.4
-      ),
-      itemCount: products.length,
-      scrollDirection: Axis.vertical,
-    );
+    if (_loadingInProgress) {
+      _loadingInProgressFalse();
+      return new Container(
+        child: new Center(
+          child: new CircularProgressIndicator(),
+        ),
+      );
+    } else {
+      return GridView.builder(
+        itemBuilder: (BuildContext context, int index) =>
+            new MenuProduct(widget.products[index]),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 3,
+          //          mainAxisSpacing: 1.0,
+          //          crossAxisSpacing: 1.0,
+          //          childAspectRatio: 3.4
+        ),
+        itemCount: widget.products.length,
+        scrollDirection: Axis.vertical,
+      );
+    }
+  }
+
+  Future _loadingInProgressFalse() async {
+    await new Future.delayed(new Duration(seconds: 1));
+    setState(() {
+      _loadingInProgress = false;
+    });
   }
 }

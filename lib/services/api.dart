@@ -12,9 +12,11 @@ import 'package:peddi_tont_app/models/restaurant.dart';
 class API {
 //RASPI
 //  static const String _apiUrl = 'http://192.168.0.70:8000/api';
+// CASA
+//  static const String _apiUrl = 'http://192.168.15.13:8000/api';
 
-//  IP CASA
-  static const String _apiUrl = 'http://192.168.0.26:8000/api';
+//  IP FITFOOD
+  static const String _apiUrl = 'http://192.168.0.119:8000/api';
 
   final http.Client _client = http.Client();
 
@@ -54,58 +56,10 @@ class API {
       }
 
       return response;
-//      response1 = (json.decode(response.body) as List)
-//          .map((e) => new ResponseErrorSendProduct.fromJson(e))
-//          .toList();
-//
-//      if (response.statusCode == 400) {
-//        throw Exception();
-////        return Future.error(response1);
-//      }
-//
-//      return response1;
-    } on Exception catch (e){
-//      List<ResponseErrorSendProduct> response1 =
-//      (json.decode(e)
-//      as List)
-//          .map((e) => new ResponseErrorSendProduct.fromJson(e)).toList();
+    } on Exception catch (e) {
       return Future.error(e);
-//      return null;
     }
-
-//    if (response.statusCode == 200) {
-//
-//    }
-
-//    return null;
   }
-
-//  Future<Response> askOrderTeste(AskOrderBody order) async {
-//    var jsonEncoded = json.encode(order.toJson());
-//    try {
-//
-//      var response = await _client.put('$_apiUrl/orders/' + order.id,
-//          headers: {"Content-Type": "application/json"}, body: jsonEncoded);
-//
-//
-//      return response;
-//
-//    } on Exception catch (e) {
-////      List<ResponseErrorSendProduct> response1 =
-////      (json.decode(e)
-////      as List)
-////          .map((e) => new ResponseErrorSendProduct.fromJson(e)).toList();
-////      return response1;
-//      return null;
-//    }
-//
-//
-////    if (response.statusCode == 200) {
-////
-////    }
-//
-////    return null;
-//  }
 
   Future<Response> endOrder(String orderId) async {
     var response = await _client.delete('$_apiUrl/orders/' + orderId,
@@ -117,26 +71,4 @@ class API {
 
     return null;
   }
-
-//  Future<Restaurant> getRestaurantNotAsync() {
-//    var response = _client.get('$_apiUrl/restaurants/5b6a07122bd2a8162ad22e59');
-//    response.then(Restaurant.fromMap(json.decode(response.body)), onError: 'erro');
-//
-//    //    if (response.statusCode == 200) {
-////      return (Restaurant.fromMap(json.decode(response.body)));
-//////      final Restaurant res = JSON.decode(response.body);
-////
-////    }
-//    return null;
-//  }
-
-//  Future<String> getData() async {
-//    http.Response response = await http.get(
-//        Uri.encodeFull("https://jsonplaceholder.typicode.com/posts"),
-//        headers: {"Accept": "application/json"});
-//
-//    print(response.body);
-//    return response.body;
-//  }
-
 }

@@ -104,6 +104,7 @@ Completer<Null> sendUpdateOrder(BuildContext context, String message,
 
     if (shouldPop) {
       Navigator.of(context).pop();
+      Navigator.of(context).pop();
     }
 
     showDialog<MainApp>(
