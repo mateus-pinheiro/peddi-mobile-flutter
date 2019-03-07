@@ -59,7 +59,7 @@ class MenuHeader extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(10.0),
 //                                shape: BoxShape.circle,
                                 image: new DecorationImage(
-                                  fit: BoxFit.fill,
+                                  fit: BoxFit.scaleDown,
                                   image: new AssetImage(
                                       'resources/images/fitfood-301.png'),
                                 ))),

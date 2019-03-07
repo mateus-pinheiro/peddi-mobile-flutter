@@ -42,8 +42,8 @@ class _MenuCategoryState extends State<MenuCategory> {
 
   toFalse(Category category, Category _selectedCategory) {
     category.isSelected = false;
-    category.isSelectedColor = AppColors.yellow1;
-    _selectedCategory.isSelectedColor = AppColors.gray2;
+    category.isSelectedColor = AppColors.fitfood;
+    _selectedCategory.isSelectedColor = AppColors.fitfood1;
   }
 
   void _selectCategory(Category category) {
@@ -96,7 +96,7 @@ class _MenuCategoryState extends State<MenuCategory> {
       children: <Widget>[
         new Container(
           height: 75.0,
-          color: AppColors.yellow1,
+          color: AppColors.fitfood,
           child: buildCategoryList(storeCategories),
         ),
 //        new Container(

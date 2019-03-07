@@ -177,7 +177,7 @@ class FontStyles {
       fontStyle: FontStyle.normal,
       fontWeight: FontWeight.bold,
       fontSize: 18.0,
-      color: Colors.white);
+      color: AppColors.peddi_black);
   static const style3 = TextStyle(
       //fontWeight: FontWeight.w900,
       fontFamily: "CircularStd",
@@ -370,9 +370,9 @@ class FontStyles {
       //fontWeight: FontWeight.w900,
       fontFamily: "CircularStd",
       fontStyle: FontStyle.normal,
-      fontWeight: FontWeight.normal,
+      fontWeight: FontWeight.bold,
       fontSize: 24.0,
-      color: Colors.black);
+      color: AppColors.gray3);
 
   static const productsPrice = TextStyle(
       //fontWeight: FontWeight.w900,

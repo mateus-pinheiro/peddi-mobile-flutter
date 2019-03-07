@@ -198,7 +198,7 @@ class _ProductRecipeWidgetState extends State<ProductRecipeWidget> {
                                 padding: const EdgeInsets.only(top: 20.0),
                                 child: new Container(
                                   decoration: BoxDecoration(
-                                    color: AppColors.yellow1,
+                                    color: AppColors.button,
                                     borderRadius: BorderRadius.circular(10.0),
                                   ),
                                   width: 470.0,

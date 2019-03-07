@@ -17,7 +17,7 @@ class Opening extends StatelessWidget {
                 image: AssetImage('resources/images/tabletimage.png'),
                 fit: BoxFit.fill),
           ),
-          color: Color(0xffFFCC00),
+//          color: Color(0xffFFCC00),
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           child: Column(
@@ -33,7 +33,7 @@ class Opening extends StatelessWidget {
                     children: <Widget>[
                       Padding(
                         padding: const EdgeInsets.only(
-                          top: 22.0,
+                          top: 30.0,
                           left: 20.0,
                         ),
                         child: Container(
@@ -43,7 +43,7 @@ class Opening extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(10.0),
 //                                shape: BoxShape.circle,
                                 image: new DecorationImage(
-                                    fit: BoxFit.fill,
+                                    fit: BoxFit.scaleDown,
                                     image: new AssetImage(
                                         'resources/images/fitfood-301.png'),
                                     alignment: Alignment(-1.0, -1.0)))),
@@ -74,42 +74,42 @@ class Opening extends StatelessWidget {
                   child: OpeningFormRoute(),
                 ),
               ),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom: 40.0),
-                  child: Container(
-                    width: MediaQuery.of(context).size.width,
-//                    height: 80.0,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.only(top: 5.0, right: 50.0),
-                          child: Text(
-                            'Ajuda',
-                            style: FontStyles.style1,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 5.0, right: 50.0),
-                          child: Text(
-                            'Suporte',
-                            style: FontStyles.style1,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 5.0, right: 40.0),
-                          child: Text(
-                            'Reiniciar',
-                            style: FontStyles.style1,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
+//              Expanded(
+//                child: Padding(
+//                  padding: const EdgeInsets.only(bottom: 40.0),
+//                  child: Container(
+//                    width: MediaQuery.of(context).size.width,
+////                    height: 80.0,
+//                    child: Row(
+//                      mainAxisAlignment: MainAxisAlignment.end,
+//                      crossAxisAlignment: CrossAxisAlignment.end,
+//                      children: <Widget>[
+//                        Padding(
+//                          padding: const EdgeInsets.only(top: 5.0, right: 50.0),
+//                          child: Text(
+//                            'Ajuda',
+//                            style: FontStyles.style1,
+//                          ),
+//                        ),
+//                        Padding(
+//                          padding: const EdgeInsets.only(top: 5.0, right: 50.0),
+//                          child: Text(
+//                            'Suporte',
+//                            style: FontStyles.style1,
+//                          ),
+//                        ),
+//                        Padding(
+//                          padding: const EdgeInsets.only(top: 5.0, right: 40.0),
+//                          child: Text(
+//                            'Reiniciar',
+//                            style: FontStyles.style1,
+//                          ),
+//                        ),
+//                      ],
+//                    ),
+//                  ),
+//                ),
+//              ),
             ],
           ),
         ),

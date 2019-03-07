@@ -62,13 +62,13 @@ class MenuProduct extends StatelessWidget {
                         fadeOutDuration: Duration(milliseconds: 50),
                         errorWidget: new Container(
                           decoration: new BoxDecoration(
-                              color: Colors.black,
+                              color: Colors.white,
                               border: Border.all(
                                   color: AppColors.peddi_white, width: 1.0),
                               image: new DecorationImage(
                                 image: new AssetImage(
                                     'resources/images/fitfood-301.png'),
-                                fit: BoxFit.contain,
+                                fit: BoxFit.scaleDown,
                               )),
                         ),
                       ),

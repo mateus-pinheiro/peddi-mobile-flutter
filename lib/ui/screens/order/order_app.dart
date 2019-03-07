@@ -65,7 +65,7 @@ class OrderApp extends StatelessWidget {
                           Expanded(
                               child: Container(
                             height: 50.0,
-                            color: AppColors.yellow1,
+                            color: AppColors.fitfood,
                             child: Center(
                                 child: Text(
                               'Produto',
@@ -75,7 +75,7 @@ class OrderApp extends StatelessWidget {
                           Expanded(
                               child: Container(
                             height: 50.0,
-                            color: AppColors.yellow1,
+                            color: AppColors.fitfood,
                             child: Center(
                                 child: Text(
                               'Quantidade',
@@ -99,7 +99,7 @@ class OrderApp extends StatelessWidget {
                             width: 560.0,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10.0),
-                              color: AppColors.yellow1,
+                              color: AppColors.button,
                             ),
                             child: MaterialButton(
                               onPressed: () {
@@ -112,7 +112,6 @@ class OrderApp extends StatelessWidget {
 ////                              resultOfBarCode(result, context, state));
 //
 //                                    );
-
                               },
                               splashColor: Color(0),
                               height: 60.0,
@@ -143,8 +142,8 @@ class OrderApp extends StatelessWidget {
 }
 
 void openConfirmationScreen(BuildContext context) {
-  Navigator.push(context,
-      MaterialPageRoute(builder: (context) => ConfirmationScreen()));
+  Navigator.push(
+      context, MaterialPageRoute(builder: (context) => ConfirmationScreen()));
 }
 
 typedef OnScanPressed = Function(String ticket);
