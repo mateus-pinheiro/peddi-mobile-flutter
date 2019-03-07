@@ -9,8 +9,9 @@ import 'package:peddi_tont_app/models/restaurant.dart';
 class LoadRestaurantAction {
   final int table;
   final int guests;
+  final BuildContext context;
 
-  LoadRestaurantAction(this.table, this.guests);
+  LoadRestaurantAction(this.context, this.table, this.guests);
 }
 
 class NewItemListAction {
@@ -45,8 +46,9 @@ class OrderNotSentSuccessfully {}
 class OpenOrderAction {
   final int table;
   final int guests;
+  final BuildContext context;
 
-  OpenOrderAction(this.table, this.guests);
+  OpenOrderAction(this.context, this.table, this.guests);
 }
 
 class EndOrderAction {

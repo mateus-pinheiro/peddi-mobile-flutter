@@ -88,23 +88,28 @@ AppState newItemList(NewItemListAction action, AppState state) {
 AppState addQrResposibleCode(AddQrResposibleCode action, AppState state) {
   var waiter;
   var orderId = action.orderId;
-  if (action.qrCode.isNotEmpty) {
-    if (state.restaurant.waiters != null) {
-      state.restaurant.waiters
-              .where((f) => f.qrCode == action.qrCode)
-              .isNotEmpty
-          ? action.completer.complete()
-          : action.completer
-              .completeError('Não existe nenhum garçom com esse código.');
-
-      waiter = state.restaurant.waiters
-          .singleWhere((i) => i.qrCode == action.qrCode);
-    } else {
-      action.completer.completeError('Não existe nenhum garçom cadastrado');
-    }
+  if (action.orderId == null) {
+    action.completer.completeError("");
   } else {
-    waiter = new Waiter();
+    action.completer.complete();
   }
+//  if (action.qrCode.isNotEmpty) {
+//    if (state.restaurant.waiters != null) {
+//      state.restaurant.waiters
+//              .where((f) => f.qrCode == action.qrCode)
+//              .isNotEmpty
+//          ? action.completer.complete()
+//          : action.completer
+//              .completeError('Não existe nenhum garçom com esse código.');
+//
+//      waiter = state.restaurant.waiters
+//          .singleWhere((i) => i.qrCode == action.qrCode);
+//    } else {
+//      action.completer.completeError('Não existe nenhum garçom cadastrado');
+//    }
+//  } else {
+//    waiter = new Waiter();
+//  }
 
   return new AppState(
       state.restaurant,

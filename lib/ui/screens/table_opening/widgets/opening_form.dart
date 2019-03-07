@@ -12,7 +12,7 @@ class OpeningFormRoute extends StatelessWidget {
   Widget build(BuildContext context) {
     return new StoreConnector<AppState, OnAddTableNumber>(converter: (store)  {
       return (tableNumber, qtyConsumer) {
-        store.dispatch(new LoadRestaurantAction(tableNumber, qtyConsumer));
+        store.dispatch(new LoadRestaurantAction(context, tableNumber, qtyConsumer));
 //        store.dispatch(new OpenOrderAction(tableNumber, qtyConsumer));
       };
     }, builder: (context, callback) {
@@ -119,9 +119,6 @@ class OpeningFormState extends State<OpeningForm> {
                 onPressed: () {
 //                  Navigator.pushNamed(context, '/main');
                   widget.callback(tableNumber, qtyConsumer);
-                  ScanBarCode()
-                      .scan()
-                      .then((result) => resultOfBarCode(result));
                 },
                 height: 60.0,
                 textTheme: ButtonTextTheme.primary,

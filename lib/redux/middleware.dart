@@ -8,6 +8,7 @@ import 'package:peddi_tont_app/models/response/response_open_order.dart';
 import 'package:peddi_tont_app/services/api.dart';
 import 'package:peddi_tont_app/models/app_state.dart';
 import 'package:peddi_tont_app/redux/actions.dart';
+import 'package:peddi_tont_app/util/completers.dart';
 import 'package:redux/redux.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -35,7 +36,13 @@ void appMiddleware(Store<AppState> store, action, NextDispatcher next) {
 
 void openOrder(Store<AppState> store, OpenOrderAction action) {
   API().openOrder(store.state.order).then((response) {
-    store.dispatch(new AddQrResposibleCode("", response.id, null));
+    store.dispatch(new AddQrResposibleCode(
+        null,
+        response.id,
+        loginFlow(
+          action.context,
+          "Bem vindo!",
+        )));
   }).catchError((error) => error.toString());
 }
 
@@ -74,8 +81,8 @@ void sendOrderToApi(Store<AppState> store, AskOrderAction action) {
 void loadRestaurant(Store<AppState> store, LoadRestaurantAction action) {
   API().getRestaurant().then((restaurant) {
     store.dispatch(new SaveRestaurantAction(restaurant));
-    store.dispatch(new OpenOrderAction(action.table, action.guests));
-  });
+    store.dispatch(new OpenOrderAction(action.context, action.table, action.guests));
+  }).catchError((error) => error);
 }
 
 void saveStateToPrefs(AppState state) async {
