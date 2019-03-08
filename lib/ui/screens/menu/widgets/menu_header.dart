@@ -12,13 +12,14 @@ class MenuHeader extends StatelessWidget {
   showOrder(BuildContext context) {
     showDialog(context: context, builder: (context) => new OrderApp());
   }
+
   showHelp(BuildContext context) {
-    showDialog(context: context,builder: (context) => new HelpDialog());
-  }
-  showPower(BuildContext context) {
-    showDialog(context: context,builder: (context) => new PowerDialog());
+    showDialog(context: context, builder: (context) => new HelpDialog());
   }
 
+  showPower(BuildContext context) {
+    showDialog(context: context, builder: (context) => new PowerDialog());
+  }
 
   String showCustomersQty(int customers) {
     if (customers == null) {
@@ -41,7 +42,7 @@ class MenuHeader extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                 Container(
+                Container(
                   height: 130.0,
                   width: 200.0,
                   color: Colors.black,
@@ -67,9 +68,31 @@ class MenuHeader extends StatelessWidget {
                     ],
                   ),
                 ),
-                 Container(
+                Padding(
+                  padding: const EdgeInsets.only(top: 20.0, left: 15.0),
+                  child: Container(
+                    height: 35.0,
+                    width: 2.0,
+                    color: Colors.grey,
+                  ),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.only(top: 20.0, left: 15.0, bottom: 5.0),
+                  child: Container(
+                      height: 70.0,
+                      width: 110.0,
+                      decoration: new BoxDecoration(
+                          borderRadius: BorderRadius.circular(10.0),
+//                                shape: BoxShape.circle,
+                          image: new DecorationImage(
+                            fit: BoxFit.scaleDown,
+                            image: new AssetImage('resources/images/logo1.png'),
+                          ))),
+                ),
+                Container(
                   height: 130.0,
-                  width: 550.0,
+                  width: 540.0,
                   color: Colors.black,
                   child: Padding(
                     padding: const EdgeInsets.only(top: 20.0),
@@ -96,20 +119,19 @@ class MenuHeader extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: <Widget>[
-                            MaterialButton (
+                            MaterialButton(
                               onPressed: () {
                                 showOrder(context);
                               },
                               splashColor: Color(0),
                               height: 30.0,
                               minWidth: 30.0,
-                              child: Icon (
+                              child: Icon(
                                 Icons.shopping_cart,
                                 size: 55.0,
                                 color: AppColors.gray2,
                               ),
                             ),
-
                           ],
                         ),
                       ),
@@ -144,14 +166,14 @@ class MenuHeader extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: <Widget>[
-                            MaterialButton (
+                            MaterialButton(
                               onPressed: () {
                                 Navigator.pushNamed(context, '/main');
                               },
                               splashColor: Color(0),
                               height: 30.0,
                               minWidth: 30.0,
-                              child: Icon (
+                              child: Icon(
                                 Icons.home,
                                 size: 60.0,
                                 color: AppColors.gray2,
@@ -171,14 +193,14 @@ class MenuHeader extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: <Widget>[
-                            MaterialButton (
+                            MaterialButton(
                               onPressed: () {
                                 showHelp(context);
                               },
                               splashColor: Color(0),
                               height: 30.0,
                               minWidth: 30.0,
-                              child: Icon (
+                              child: Icon(
                                 Icons.help_outline,
                                 size: 55.0,
                                 color: AppColors.gray2,
@@ -198,14 +220,14 @@ class MenuHeader extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: <Widget>[
-                            MaterialButton (
+                            MaterialButton(
                               onPressed: () {
                                 showPower(context);
                               },
                               splashColor: Color(0),
                               height: 30.0,
                               minWidth: 30.0,
-                              child: Icon (
+                              child: Icon(
                                 Icons.power_settings_new,
                                 size: 55.0,
                                 color: AppColors.gray2,

@@ -103,7 +103,10 @@ class OrderApp extends StatelessWidget {
                             ),
                             child: MaterialButton(
                               onPressed: () {
-                                openConfirmationScreen(context);
+                                if (state.order.consumers[0].items != null &&
+                                    state.order.consumers[0].items.length > 0) {
+                                  openConfirmationScreen(context);
+                                }
 //                                Navigator.pop(context);
 //                                ScanBarCode().scan().then((result) {
 //                                  callback(result);

@@ -10,7 +10,7 @@ class ConfirmationScreen extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.yellow1,
+      backgroundColor: AppColors.fitfood,
       body: new ConfirmDialog()
     );
   }

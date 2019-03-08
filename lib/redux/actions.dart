@@ -10,8 +10,9 @@ class LoadRestaurantAction {
   final int table;
   final int guests;
   final BuildContext context;
+  final Completer completer;
 
-  LoadRestaurantAction(this.context, this.table, this.guests);
+  LoadRestaurantAction(this.context, this.table, this.guests, this.completer);
 }
 
 class NewItemListAction {

@@ -46,7 +46,8 @@ class MainHeader extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
                         Padding(
-                          padding: const EdgeInsets.only(top: 20.0, left: 20.0),
+                          padding: const EdgeInsets.only(
+                              top: 15.0, left: 20.0, bottom: 5.0),
                           child: Container(
                               height: 95.0,
                               width: 150.0,
@@ -54,9 +55,32 @@ class MainHeader extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(10.0),
 //                                shape: BoxShape.circle,
                                   image: new DecorationImage(
-                                    fit: BoxFit.fill,
+                                    fit: BoxFit.scaleDown,
                                     image: new AssetImage(
                                         'resources/images/fitfood-301.png'),
+                                  ))),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 20.0, left: 40.0),
+                          child: Container(
+                            height: 35.0,
+                            width: 2.0,
+                            color: Colors.grey,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              top: 15.0, left: 20.0, bottom: 5.0),
+                          child: Container(
+                              height: 95.0,
+                              width: 150.0,
+                              decoration: new BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10.0),
+//                                shape: BoxShape.circle,
+                                  image: new DecorationImage(
+                                    fit: BoxFit.scaleDown,
+                                    image: new AssetImage(
+                                        'resources/images/logo1.png'),
                                   ))),
                         ),
                       ],

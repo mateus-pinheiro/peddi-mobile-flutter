@@ -5,14 +5,18 @@ import 'package:peddi_tont_app/redux/actions.dart';
 import 'package:peddi_tont_app/themes/app_colors.dart';
 import 'package:peddi_tont_app/themes/font_styles.dart';
 import 'package:peddi_tont_app/ui/screens/table_opening/widgets/opening_scan.dart';
+import 'package:peddi_tont_app/util/completers.dart';
 import 'package:peddi_tont_app/util/scan.dart';
 
+
+bool _loadingInProgress;
 class OpeningFormRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new StoreConnector<AppState, OnAddTableNumber>(converter: (store)  {
+    return new StoreConnector<AppState, OnAddTableNumber>(converter: (store) {
       return (tableNumber, qtyConsumer) {
-        store.dispatch(new LoadRestaurantAction(context, tableNumber, qtyConsumer));
+        store.dispatch(new LoadRestaurantAction(
+            context, tableNumber, qtyConsumer, loginFlow(context, "Não conseguimos recuperar os dados do restaurante, por favor tente novamente!")));
 //        store.dispatch(new OpenOrderAction(tableNumber, qtyConsumer));
       };
     }, builder: (context, callback) {
@@ -33,10 +37,15 @@ class OpeningForm extends StatefulWidget {
 }
 
 class OpeningFormState extends State<OpeningForm> {
-
   int tableNumber;
-
   int qtyConsumer;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    _loadingInProgress = true;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -119,6 +128,7 @@ class OpeningFormState extends State<OpeningForm> {
                 onPressed: () {
 //                  Navigator.pushNamed(context, '/main');
                   widget.callback(tableNumber, qtyConsumer);
+
                 },
                 height: 60.0,
                 textTheme: ButtonTextTheme.primary,
@@ -141,7 +151,6 @@ class OpeningFormState extends State<OpeningForm> {
 
   openNextPage() {
 //    Navigator.pop(context);
-
   }
 }
 

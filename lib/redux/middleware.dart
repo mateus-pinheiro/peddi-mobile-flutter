@@ -82,7 +82,7 @@ void loadRestaurant(Store<AppState> store, LoadRestaurantAction action) {
   API().getRestaurant().then((restaurant) {
     store.dispatch(new SaveRestaurantAction(restaurant));
     store.dispatch(new OpenOrderAction(action.context, action.table, action.guests));
-  }).catchError((error) => error);
+  }).catchError((error) => action.completer.completeError(error));
 }
 
 void saveStateToPrefs(AppState state) async {

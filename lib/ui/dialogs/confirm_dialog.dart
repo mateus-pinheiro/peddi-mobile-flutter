@@ -31,9 +31,9 @@ class ConfirmDialog extends StatelessWidget {
                 child: new ListBody(
                   children: <Widget>[
                     new Text('Envie o pedido e o próximo passo é aguardar :)',
-                        style: FontStyles.confirmationDialogText),
-                    new Text('Cancele e pediremos para que escaneie novamente.',
-                        style: FontStyles.confirmationDialogText),
+                        style: FontStyles.confirmationDialogText)
+//                    new Text('Cancele e pediremos para que escaneie novamente.',
+//                        style: FontStyles.confirmationDialogText)
                   ],
                 ),
               ),
