@@ -10,13 +10,13 @@ import 'package:peddi_tont_app/models/response/response_open_order.dart';
 import 'package:peddi_tont_app/models/restaurant.dart';
 
 class API {
-//RASPI
+// RASPI
 //  static const String _apiUrl = 'http://192.168.0.70:8000/api';
 // CASA
 //  static const String _apiUrl = 'http://192.168.15.13:8000/api';
 
-//  IP FITFOOD
-  static const String _apiUrl = 'http://192.168.0.119:8000/api';
+// IP FITFOOD
+  static const String _apiUrl = 'http://192.168.0.123:8000/api';
 
   final http.Client _client = http.Client();
 
