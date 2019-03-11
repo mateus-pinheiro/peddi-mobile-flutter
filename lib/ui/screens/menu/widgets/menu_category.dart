@@ -52,13 +52,13 @@ class _MenuCategoryState extends State<MenuCategory>
 
     _scrollController = new ScrollController();
     _selectedCategory = _selectedCategory;
-    storeCategories.forEach((category) => category == _selectedCategory
-        ? category.isSelected = true
-        : category.isSelected = false);
 //    storeCategories.where((category) => category == _selectedCategory ? category.isSelected = true : null);
 //    _selectedSubCategory = _selectedCategory.subcategories[0];
 
     storeCategories.forEach((c) => toFalse(c, _selectedCategory));
+    storeCategories.forEach((category) => category == _selectedCategory
+        ? category.isSelected = true
+        : category.isSelected = false);
 //    swipeAnimationController.forward();
   }
 
@@ -127,13 +127,13 @@ class _MenuCategoryState extends State<MenuCategory>
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
 //     scroll to first selected item
-    for (int i = 0; i < storeCategories.length; i++) {
-      if (storeCategories.elementAt(i).isSelected) {
-        _scrollController.animateTo(i * _ITEM_HEIGHT,
-            duration: new Duration(seconds: 2), curve: Curves.ease);
-        break;
-      }
-    }
+//    for (int i = 0; i < storeCategories.length; i++) {
+//      if (storeCategories.elementAt(i).isSelected) {
+//        _scrollController.animateTo(i * _ITEM_HEIGHT,
+//            duration: new Duration(seconds: 2), curve: Curves.ease);
+//        break;
+//      }
+//    }
 
     Widget buildCategoryList(List<Category> categories) {
       return new ListView.builder(
