@@ -20,13 +20,18 @@ class MenuCategory extends StatefulWidget {
       _MenuCategoryState(storeCategories, _selectedCategory);
 }
 
-class _MenuCategoryState extends State<MenuCategory> {
+class _MenuCategoryState extends State<MenuCategory>
+    with SingleTickerProviderStateMixin {
   _MenuCategoryState(this.storeCategories, this._selectedCategory);
 
   final List<Category> storeCategories;
   Category _selectedCategory;
   SubCategory _selectedSubCategory;
   ScrollController _scrollController;
+
+  Animation swipeAnimation;
+  AnimationController swipeAnimationController;
+
   double myOpacity;
   Color swipeColor;
   double swipeSize;
@@ -35,11 +40,16 @@ class _MenuCategoryState extends State<MenuCategory> {
   @override
   void initState() {
     super.initState();
-    swipeColor = Colors.white;
-    swipeSize = 90;
-    swipeIcon = Icons.swap_horizontal_circle;
-    myOpacity = 1;
-    swipeAnimation();
+//    swipeColor = Colors.white;
+//    swipeSize = 90;
+//    swipeIcon = Icons.swap_horizontal_circle;
+//    myOpacity = 1;
+//    swipeAnimation();
+//    swipeAnimationController =
+//        AnimationController(duration: Duration(seconds: 10), vsync: this);
+//    swipeAnimation = Tween(begin: 0.1, end: 1.0).animate(CurvedAnimation(
+//        parent: swipeAnimationController, curve: Curves.fastOutSlowIn));
+
     _scrollController = new ScrollController();
     _selectedCategory = _selectedCategory;
     storeCategories.forEach((category) => category == _selectedCategory
@@ -49,29 +59,30 @@ class _MenuCategoryState extends State<MenuCategory> {
 //    _selectedSubCategory = _selectedCategory.subcategories[0];
 
     storeCategories.forEach((c) => toFalse(c, _selectedCategory));
+//    swipeAnimationController.forward();
   }
 
-  swipeAnimation() {
-    Timer(
-        Duration(milliseconds: 2000),
-        () => {
-              setState(() {
-                swipeColor = Colors.white;
-                swipeIcon = Icons.swap_horiz;
-//                swipeSize = 120.0;
-              }),
-              Timer(Duration(milliseconds: 1000),
-                  () => {myOpacity = 0, setState(() {})}),
-            }
-
-//      for (int i = 0; i > 3; i++) {
-//        myOpacity = 1;
-//        setState(() {});
-//        Timer(Duration(seconds: 3), () => {myOpacity = 0, setState(() {})});
-//        Timer(Duration(seconds: 3), () => {});
-//      }
-        );
-  }
+//  swipeAnimation() {
+//    Timer(
+//        Duration(milliseconds: 2000),
+//        () => {
+//              setState(() {
+//                swipeColor = Colors.white;
+//                swipeIcon = Icons.swap_horiz;
+////                swipeSize = 120.0;
+//              }),
+//              Timer(Duration(milliseconds: 1000),
+//                  () => {myOpacity = 0, setState(() {})}),
+//            }
+//
+////      for (int i = 0; i > 3; i++) {
+////        myOpacity = 1;
+////        setState(() {});
+////        Timer(Duration(seconds: 3), () => {myOpacity = 0, setState(() {})});
+////        Timer(Duration(seconds: 3), () => {});
+////      }
+//        );
+//  }
 
   forAnimation() {
     for (int i = 0; i > 3; i++) {
@@ -114,7 +125,8 @@ class _MenuCategoryState extends State<MenuCategory> {
 
   @override
   Widget build(BuildContext context) {
-    // scroll to first selected item
+    final double width = MediaQuery.of(context).size.width;
+//     scroll to first selected item
     for (int i = 0; i < storeCategories.length; i++) {
       if (storeCategories.elementAt(i).isSelected) {
         _scrollController.animateTo(i * _ITEM_HEIGHT,
@@ -137,36 +149,48 @@ class _MenuCategoryState extends State<MenuCategory> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         new Container(
-            height: 90.0,
-            color: AppColors.fitfood,
-            child: new Stack(
-              fit: StackFit.passthrough,
-              children: <Widget>[
-                buildCategoryList(storeCategories),
-                Align(
-                  alignment: Alignment.center,
-                  child: AnimatedOpacity(
-                    child: Padding(
-                      padding: const EdgeInsets.only(bottom: 25.0),
-                      child: Icon(
-                        swipeIcon,
-                        size: swipeSize,
-                        color: swipeColor,
-                      ),
-                    ),
-//                      child: Image(
-//                        image: AssetImage('resources/images/swipe-icon.png'),
-//                        height: 150.0,
-//                        width: 60.0,
-//                        fit: BoxFit.fill,
-//                      ),
-//                      child: Image.asset('resources/images/swipe-icon.png'),
-                    duration: Duration(seconds: 1),
-                    opacity: myOpacity,
-                  ),
+          height: 150.0,
+          color: AppColors.fitfood,
+          child: Stack(
+            children: <Widget>[
+              buildCategoryList(storeCategories),
+              Align(
+                alignment: Alignment.centerRight,
+                child: Icon(
+                  Icons.arrow_forward_ios,
+                  size: 60,
+                  color: AppColors.peddi_white,
                 ),
-              ],
-            )
+
+              )
+//                AnimatedBuilder(
+//                  animation: swipeAnimationController,
+//                  builder: (BuildContext context, Widget child) {
+//                    return new Transform(
+//                      transform: Matrix4.translationValues(
+//                        swipeAnimation.value * width,
+//                        0.0,
+//                        0.0,
+//                      ),
+//                      child: Center(
+//                        child: Icon(
+//                          Icons.forward,
+//                          size: 100,
+//                          color: AppColors.peddi_white,
+//                        ),
+//                      ),
+//                    );
+//                  },
+////                      child: Image(
+////                        image: AssetImage('resources/images/swipe-icon.png'),
+////                        height: 150.0,
+////                        width: 60.0,
+////                        fit: BoxFit.fill,
+////                      ),
+////                      child: Image.asset('resources/images/swipe-icon.png'),
+//                )
+            ],
+          ),
 
 //            crossAxisAlignment: CrossAxisAlignment.center,
 //            mainAxisAlignment: MainAxisAlignment.center,
@@ -175,7 +199,7 @@ class _MenuCategoryState extends State<MenuCategory> {
 //            ],
 
 //          child: buildCategoryList(storeCategories),
-            ),
+        ),
 
 //        new Container(
 //          height: 65.0,
