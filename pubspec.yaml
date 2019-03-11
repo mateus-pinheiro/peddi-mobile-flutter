@@ -62,6 +62,7 @@ flutter:
       - resources/images/tabletimage.png
       - resources/images/logo_fitfood_01.png
       - resources/images/fitfood-301.png
+      - resources/images/swipe-icon.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.

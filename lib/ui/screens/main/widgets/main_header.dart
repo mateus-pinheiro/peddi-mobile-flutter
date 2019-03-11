@@ -100,14 +100,12 @@ class MainHeader extends StatelessWidget {
                         ),
                       ),
                     ),
-//          color: Colors.blue,
                   )),
                   Expanded(
                       child: Container(
                     height: 130.0,
                     width: 25.0,
                     color: Colors.black,
-//          color: Colors.white,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       crossAxisAlignment: CrossAxisAlignment.center,

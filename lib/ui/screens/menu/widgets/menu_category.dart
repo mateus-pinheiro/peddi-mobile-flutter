@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:peddi_tont_app/models/category.dart';
 import 'package:peddi_tont_app/models/sub_category.dart';
@@ -25,19 +27,59 @@ class _MenuCategoryState extends State<MenuCategory> {
   Category _selectedCategory;
   SubCategory _selectedSubCategory;
   ScrollController _scrollController;
+  double myOpacity;
+  Color swipeColor;
+  double swipeSize;
+  IconData swipeIcon;
 
   @override
   void initState() {
     super.initState();
-
+    swipeColor = Colors.white;
+    swipeSize = 90;
+    swipeIcon = Icons.swap_horizontal_circle;
+    myOpacity = 1;
+    swipeAnimation();
     _scrollController = new ScrollController();
     _selectedCategory = _selectedCategory;
-    storeCategories.forEach((category) =>
-        category == _selectedCategory ? category.isSelected = true : category.isSelected = false);
+    storeCategories.forEach((category) => category == _selectedCategory
+        ? category.isSelected = true
+        : category.isSelected = false);
 //    storeCategories.where((category) => category == _selectedCategory ? category.isSelected = true : null);
 //    _selectedSubCategory = _selectedCategory.subcategories[0];
 
     storeCategories.forEach((c) => toFalse(c, _selectedCategory));
+  }
+
+  swipeAnimation() {
+    Timer(
+        Duration(milliseconds: 2000),
+        () => {
+              setState(() {
+                swipeColor = Colors.white;
+                swipeIcon = Icons.swap_horiz;
+//                swipeSize = 120.0;
+              }),
+              Timer(Duration(milliseconds: 1000),
+                  () => {myOpacity = 0, setState(() {})}),
+            }
+
+//      for (int i = 0; i > 3; i++) {
+//        myOpacity = 1;
+//        setState(() {});
+//        Timer(Duration(seconds: 3), () => {myOpacity = 0, setState(() {})});
+//        Timer(Duration(seconds: 3), () => {});
+//      }
+        );
+  }
+
+  forAnimation() {
+    for (int i = 0; i > 3; i++) {
+      myOpacity = 1;
+      setState(() {});
+      Timer(
+          Duration(milliseconds: 1500), () => {myOpacity = 0, setState(() {})});
+    }
   }
 
   toFalse(Category category, Category _selectedCategory) {
@@ -95,10 +137,46 @@ class _MenuCategoryState extends State<MenuCategory> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         new Container(
-          height: 75.0,
-          color: AppColors.fitfood,
-          child: buildCategoryList(storeCategories),
-        ),
+            height: 90.0,
+            color: AppColors.fitfood,
+            child: new Stack(
+              fit: StackFit.passthrough,
+              children: <Widget>[
+                buildCategoryList(storeCategories),
+                Align(
+                  alignment: Alignment.center,
+                  child: AnimatedOpacity(
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 25.0),
+                      child: Icon(
+                        swipeIcon,
+                        size: swipeSize,
+                        color: swipeColor,
+                      ),
+                    ),
+//                      child: Image(
+//                        image: AssetImage('resources/images/swipe-icon.png'),
+//                        height: 150.0,
+//                        width: 60.0,
+//                        fit: BoxFit.fill,
+//                      ),
+//                      child: Image.asset('resources/images/swipe-icon.png'),
+                    duration: Duration(seconds: 1),
+                    opacity: myOpacity,
+                  ),
+                ),
+              ],
+            )
+
+//            crossAxisAlignment: CrossAxisAlignment.center,
+//            mainAxisAlignment: MainAxisAlignment.center,
+//            children: <Widget>[
+//
+//            ],
+
+//          child: buildCategoryList(storeCategories),
+            ),
+
 //        new Container(
 //          height: 65.0,
 //          color: AppColors.gray2,
@@ -121,6 +199,10 @@ class _MenuCategoryState extends State<MenuCategory> {
   }
 
   Widget categoryItem(Category category) {
+    return categoryItemButton(category);
+  }
+
+  Widget categoryItemButton(Category category) {
     return MaterialButton(
       onPressed: () {
         _selectCategory(category);

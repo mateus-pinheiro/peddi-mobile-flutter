@@ -25,7 +25,6 @@ class AdditionalState extends State<Additional> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     additionalList.forEach((f) => f.isChecked = false);
   }
