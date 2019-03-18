@@ -103,12 +103,20 @@ class _ProductRecipeWidgetState extends State<ProductRecipeWidget> {
                         height: 280.0,
                         width: 430.0,
                         child: new CachedNetworkImage(
-                            imageUrl: getProductImage(product.image),
-                            fit: BoxFit.contain,
-                            repeat: ImageRepeat.noRepeat,
-                            placeholder: new Center(
-                                child: new CircularProgressIndicator()),
-                            errorWidget: new Icon(Icons.error)),
+                          imageUrl: getProductImage(product.image),
+                          fit: BoxFit.contain,
+                          repeat: ImageRepeat.noRepeat,
+                          placeholder: new Center(
+                              child: new CircularProgressIndicator()),
+                          errorWidget: new Container(
+                            decoration: new BoxDecoration(
+                                color: Colors.white,
+                                image: new DecorationImage(
+                                  image: new AssetImage(
+                                      'resources/images/fitfood-301.png'),
+                                )),
+                          ),
+                        ),
                       ),
                     ),
                     new Padding(

@@ -5,13 +5,14 @@ import 'package:peddi_tont_app/themes/app_colors.dart';
 import 'package:peddi_tont_app/themes/font_styles.dart';
 
 class ErrorDialog extends StatelessWidget {
-  const ErrorDialog(this.error, this.message);
+  const ErrorDialog(this.error, this.message, {this.seconds});
 
   final Object error;
+  final int seconds;
   final String message;
 
   void show(BuildContext context) async {
-    await new Future.delayed(const Duration(seconds: 10));
+    await new Future.delayed(const Duration(seconds: 6));
     Navigator.pop(context);
   }
 

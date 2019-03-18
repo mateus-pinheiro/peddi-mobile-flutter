@@ -14,32 +14,34 @@ class MenuApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new Material(
-      type: MaterialType.transparency,
-      child: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        color: Colors.transparent,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            Container(
-              height: 130.0,
-              color: AppColors.gray1,
-              child: MenuHeader(),
-            ),
-            Expanded(
-              child: Container(
-                color: Colors.white,
-                child: Column(
-                  children: <Widget>[
-                    Expanded(
-                      child: Container(
-                        child: MenuCategory(
-                            selectedCategory, storeCategories),
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: new Material(
+        type: MaterialType.transparency,
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          color: Colors.transparent,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Container(
+                height: 130.0,
+                color: AppColors.gray1,
+                child: MenuHeader(),
+              ),
+              Expanded(
+                child: Container(
+                  color: Colors.white,
+                  child: Column(
+                    children: <Widget>[
+                      Expanded(
+                        child: Container(
+                          child: MenuCategory(
+                              selectedCategory, storeCategories),
+                        ),
                       ),
-                    ),
 
 //                    Row(
 //                      mainAxisAlignment: MainAxisAlignment.end,
@@ -66,11 +68,12 @@ class MenuApp extends StatelessWidget {
 //                        ),
 //                      ],
 //                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

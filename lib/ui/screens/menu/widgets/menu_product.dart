@@ -63,8 +63,8 @@ class MenuProduct extends StatelessWidget {
                         errorWidget: new Container(
                           decoration: new BoxDecoration(
                               color: Colors.white,
-                              border: Border.all(
-                                  color: AppColors.peddi_white, width: 1.0),
+//                              border: Border.all(
+//                                  color: AppColors.peddi_white, width: 1.0),
                               image: new DecorationImage(
                                 image: new AssetImage(
                                     'resources/images/fitfood-301.png'),

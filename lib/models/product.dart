@@ -11,6 +11,7 @@ class Product {
   final int featured;
   final double price;
   final int productCloudId;
+  final int sidesLimit;
   final List<Ingredient> ingredients;
 
   static double toDouble(dynamic value) {
@@ -27,11 +28,13 @@ class Product {
       this.description,
       this.image,
       this.name,
-      this.mgmtId})
+      this.mgmtId,
+      this.sidesLimit})
       : assert(name != null, price != null);
 
   Product.fromMap(Map<String, dynamic> data)
       : id = data['_id'],
+        sidesLimit = data['sides_limit'],
         mgmtId = data['mgmt_id'],
         productCloudId = data['product_cloud_id'],
         name = data['name'],
@@ -51,6 +54,7 @@ class Product {
         'name': name,
         'price': price,
         'featured': featured,
+        'sides_limit': sidesLimit,
         'description': description,
         'ingredients': ingredients,
         'image': image

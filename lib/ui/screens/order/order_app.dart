@@ -68,7 +68,7 @@ class OrderApp extends StatelessWidget {
                             color: AppColors.fitfood,
                             child: Center(
                                 child: Text(
-                              'Produto',
+                              'PRODUTO',
                               style: FontStyles.titlesCart,
                             )),
                           )),
@@ -78,7 +78,7 @@ class OrderApp extends StatelessWidget {
                             color: AppColors.fitfood,
                             child: Center(
                                 child: Text(
-                              'Quantidade',
+                              'QUANTIDADE',
                               style: FontStyles.titlesCart,
                             )),
                           )),

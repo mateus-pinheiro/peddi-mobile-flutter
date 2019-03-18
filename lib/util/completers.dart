@@ -115,6 +115,7 @@ Completer<Null> loginFlow(BuildContext context, String message,
           return SuccessDialog(message);
         });
   }).catchError((Object error) {
+    Navigator.of(context).pop();
     showDialog<ErrorDialog>(
         context: context,
         builder: (BuildContext context) {

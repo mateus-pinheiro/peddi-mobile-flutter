@@ -13,7 +13,7 @@ class API {
 // RASPI
 //  static const String _apiUrl = 'http://192.168.0.70:8000/api';
 // CASA
-  static const String _apiUrl = 'http://192.168.15.13:8000/api';
+  static const String _apiUrl = 'http://192.168.0.70:8000/api';
 
 // IP FITFOOD
 //  static const String _apiUrl = 'http://192.168.0.123:8000/api';

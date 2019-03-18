@@ -4,19 +4,24 @@ import 'package:peddi_tont_app/models/app_state.dart';
 import 'package:peddi_tont_app/redux/actions.dart';
 import 'package:peddi_tont_app/themes/app_colors.dart';
 import 'package:peddi_tont_app/themes/font_styles.dart';
+import 'package:peddi_tont_app/ui/dialogs/error_dialog.dart';
 import 'package:peddi_tont_app/ui/screens/table_opening/widgets/opening_scan.dart';
 import 'package:peddi_tont_app/util/completers.dart';
 import 'package:peddi_tont_app/util/scan.dart';
 
-
 bool _loadingInProgress;
+
 class OpeningFormRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new StoreConnector<AppState, OnAddTableNumber>(converter: (store) {
       return (tableNumber, qtyConsumer) {
         store.dispatch(new LoadRestaurantAction(
-            context, tableNumber, qtyConsumer, loginFlow(context, "Não conseguimos recuperar os dados do restaurante, por favor tente novamente!")));
+            context,
+            tableNumber,
+            qtyConsumer,
+            loginFlow(context,
+                "Não conseguimos recuperar os dados do restaurante, por favor tente novamente!")));
 //        store.dispatch(new OpenOrderAction(tableNumber, qtyConsumer));
       };
     }, builder: (context, callback) {
@@ -39,10 +44,10 @@ class OpeningForm extends StatefulWidget {
 class OpeningFormState extends State<OpeningForm> {
   int tableNumber;
   int qtyConsumer;
-
+  TextEditingController _controllerTable = new TextEditingController();
+  TextEditingController _controllerConsumers = new TextEditingController();
   @override
   void initState() {
-    // TODO: implement initState
     _loadingInProgress = true;
     super.initState();
   }
@@ -80,6 +85,7 @@ class OpeningFormState extends State<OpeningForm> {
             decoration: BoxDecoration(
                 color: Colors.white, borderRadius: BorderRadius.circular(10.0)),
             child: TextField(
+              controller: _controllerTable,
               onChanged: (tableNumberCurrent) =>
                   this.tableNumber = int.parse(tableNumberCurrent),
               keyboardType: TextInputType.number,
@@ -99,6 +105,7 @@ class OpeningFormState extends State<OpeningForm> {
             decoration: BoxDecoration(
                 color: Colors.white, borderRadius: BorderRadius.circular(10.0)),
             child: TextField(
+              controller: _controllerConsumers,
               keyboardType: TextInputType.number,
               style: FontStyles.style1,
               onChanged: (qtyConsumerCurrent) =>
@@ -126,9 +133,18 @@ class OpeningFormState extends State<OpeningForm> {
               child: MaterialButton(
                 color: AppColors.fitfood1,
                 onPressed: () {
-//                  Navigator.pushNamed(context, '/main');
-                  widget.callback(tableNumber, qtyConsumer);
-
+                  if (tableNumber != null && qtyConsumer != null) {
+                    Navigator.pushNamed(context, '/loading');
+                    widget.callback(tableNumber, qtyConsumer);
+                    cleanFields();
+                  } else {
+                    showDialog<ErrorDialog>(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return ErrorDialog(
+                              null, "Preencha os campos para iniciar");
+                        });
+                  }
                 },
                 height: 60.0,
                 textTheme: ButtonTextTheme.primary,
@@ -140,6 +156,13 @@ class OpeningFormState extends State<OpeningForm> {
         ),
       ],
     );
+  }
+
+  cleanFields(){
+    tableNumber = null;
+    qtyConsumer = null;
+    _controllerTable.clear();
+    _controllerConsumers.clear();
   }
 
   resultOfBarCode(String result) {

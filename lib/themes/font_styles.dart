@@ -329,7 +329,7 @@ class FontStyles {
     fontSize: 24.0,
     color: Colors.white,
 //      fontWeight: FontWeight.bold,
-    letterSpacing: 3.0,
+    letterSpacing: 1.0,
     fontStyle: FontStyle.normal,
     fontWeight: FontWeight.normal,
   );

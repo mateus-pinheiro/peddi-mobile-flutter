@@ -149,7 +149,7 @@ class _MenuCategoryState extends State<MenuCategory>
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         new Container(
-          height: 150.0,
+          height: 130.0,
           color: AppColors.fitfood,
           child: Stack(
             children: <Widget>[
@@ -193,12 +193,12 @@ class _MenuCategoryState extends State<MenuCategory>
           ),
 
 //            crossAxisAlignment: CrossAxisAlignment.center,
-//            mainAxisAlignment: MainAxisAlignment.center,
+//            mainAxisAlignment: MainAxisAlignment.ceanter,
 //            children: <Widget>[
 //
 //            ],
 
-//          child: buildCategoryList(storeCategories),
+//          child: buildCategoryList(storeCategories)
         ),
 
 //        new Container(
