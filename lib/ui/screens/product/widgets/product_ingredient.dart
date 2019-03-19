@@ -60,7 +60,7 @@ class IngredientWidgetState extends State<IngredientWidget> {
   }
 
   Widget ingredientItem(Ingredient ingredient) {
-    item.maxChoices = 2;
+//    item.maxChoices = 2;
     return new CheckboxListTile(
       controlAffinity: ListTileControlAffinity.leading,
       value: ingredient.isChecked,
