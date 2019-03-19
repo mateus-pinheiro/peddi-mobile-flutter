@@ -8,6 +8,7 @@ class Item {
   int qtyItem;
   double basePrice;
   double itemPrice;
+  int maxChoices;
   List<Ingredient> ingredients;
 
   Item(

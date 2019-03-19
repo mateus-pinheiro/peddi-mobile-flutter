@@ -55,6 +55,7 @@ class _ProductRouteState extends State<ProductRoute>
     this.item.name = this.widget.product.name;
     this.item.basePrice = this.widget.product.price.toDouble();
     this.item.itemPrice = this.widget.product.price.toDouble();
+    this.item.maxChoices = this.widget.product.sidesLimit;
     this.item.mgmtId = this.widget.product.mgmtId;
     this.item.baseCloudId = this.widget.product.productCloudId;
   }
@@ -65,29 +66,30 @@ class _ProductRouteState extends State<ProductRoute>
 
   void validateIngredient(Ingredient element) {
     if (element != null) {
-      if (element.type == ProductRoute.FREE_INGREDIENT)
+      if (element.type == ProductRoute.PIECE_INGREDIENT)
         ingredientList.add(element);
-      else if (element.type == ProductRoute.PAID_INGREDIENT)
-        additionalList.add(element);
       else
-        optionList.add(element);
+        additionalList.add(element);
+//      else
+//        optionList.add(element);
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final double width = MediaQuery.of(context).size.width;
-
-    return new AnimatedBuilder(
-      builder: (BuildContext context, Widget child) {
-        return Transform(
-          transform:
-              Matrix4.translationValues(animation.value * width, 0.0, 0.0),
-          child: showProduct(widget.product, context),
-        );
-      },
-      animation: animationController,
-    );
+    return showProduct(widget.product, context);
+//    final double width = MediaQuery.of(context).size.width;
+//
+//    return new AnimatedBuilder(
+//      builder: (BuildContext context, Widget child) {
+//        return Transform(
+//          transform:
+//              Matrix4.translationValues(animation.value * width, 0.0, 0.0),
+//          child: showProduct(widget.product, context),
+//        );
+//      },
+//      animation: animationController,
+//    );
   }
 
   Widget showProduct(Product product, BuildContext context) {

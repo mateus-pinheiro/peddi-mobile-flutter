@@ -64,7 +64,7 @@ class AdditionalState extends State<Additional> {
   }
 
   additionalItem(Ingredient additional) {
-    var additionalPrice = additional.price;
+    var additionalPrice = additional.price == null ? null : CurrencyConverter.toBrazilianReal(additional.price);
 
     return Padding(
       padding: const EdgeInsets.only(top: 10.0),
@@ -76,7 +76,6 @@ class AdditionalState extends State<Additional> {
             additional.isChecked = newValue;
             if (item.ingredients == null)
               item.ingredients = new List<Ingredient>();
-
             if (additional.isChecked == true) {
               item.ingredients.add(additional);
               if (additional.price != null) item.itemPrice += additional.price;
@@ -95,7 +94,7 @@ class AdditionalState extends State<Additional> {
         secondary: Padding(
           padding: const EdgeInsets.only(right: 100.0),
           child: Text(
-            CurrencyConverter.toBrazilianReal(additionalPrice) + " cada",
+            additionalPrice == null ? "GRÁTIS" : additionalPrice + " cada",
             style: FontStyles.ingredientPriceProduct,
           ),
         ),

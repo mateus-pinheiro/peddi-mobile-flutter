@@ -60,6 +60,7 @@ class IngredientWidgetState extends State<IngredientWidget> {
   }
 
   Widget ingredientItem(Ingredient ingredient) {
+    item.maxChoices = 2;
     return new CheckboxListTile(
       controlAffinity: ListTileControlAffinity.leading,
       value: ingredient.isChecked,
@@ -68,13 +69,19 @@ class IngredientWidgetState extends State<IngredientWidget> {
           ingredient.isChecked = newValue;
           if (item.ingredients == null)
             item.ingredients = new List<Ingredient>();
-
-          if (ingredient.isChecked == true) {
+          if (!ingredient.isChecked) {
+            item.ingredients.remove(ingredient);
+          } else if (item.maxChoices == null) {
+            item.ingredients.add(ingredient);
+            if (ingredient.price != null)
+              item.itemPrice += ingredient.price.toDouble();
+          } else if (item.ingredients.length < item.maxChoices) {
             item.ingredients.add(ingredient);
             if (ingredient.price != null)
               item.itemPrice += ingredient.price.toDouble();
           } else
-            item.ingredients.remove(ingredient);
+            ingredient.isChecked = !newValue;
+
         });
       },
       title: new Text(
