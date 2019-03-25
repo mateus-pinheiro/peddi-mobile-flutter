@@ -41,7 +41,7 @@ void openOrder(Store<AppState> store, OpenOrderAction action) {
         response.id,
         loginFlow(
           action.context,
-          "Bem vindo!",
+          "Bem-vindo(a)!",
         )));
   }).catchError((error) => action.completer.completeError(error));
 }

@@ -60,7 +60,7 @@ class OpeningFormState extends State<OpeningForm> {
           title: Padding(
             padding: const EdgeInsets.only(top: 5.0),
             child: Text(
-              'Olá! Seja bem vindo(a)!',
+              'Olá! Seja bem-vindo(a)!',
               textAlign: TextAlign.center,
               style: FontStyles.style,
             ),
