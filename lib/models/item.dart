@@ -12,7 +12,7 @@ class Item {
   List<Ingredient> ingredients;
 
   Item(
-      {this.mgmtId, this.baseCloudId, this.name, this.qtyItem, this.basePrice, this.itemPrice, this.ingredients});
+      {this.mgmtId, this.baseCloudId, this.name, this.qtyItem, this.basePrice, this.itemPrice, this.ingredients, this.maxChoices});
 
 
   Map<String, dynamic> toJson() => {
@@ -31,6 +31,7 @@ class Item {
         mgmtId = data['mgmt_id'],
         itemPrice = data['item_price'],
         qtyItem = data['quantity'],
+        maxChoices = data['maxChoices'],
         ingredients =
         (data['ingredients'] == null ? [] : data['ingredients'] as List)
             .map((ing) => new Ingredient.fromMap(ing))

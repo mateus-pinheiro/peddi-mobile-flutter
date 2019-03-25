@@ -79,7 +79,7 @@ class MenuProduct extends StatelessWidget {
                     padding: const EdgeInsets.only(
                         left: 10.0, top: 15.0, right: 10.0),
                     child:
-                        Text(product.name, style: FontStyles.productNameMenu),
+                        Text(product.name, style: FontStyles.productNameMenu, overflow: TextOverflow.ellipsis),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 10.0, top: 10.0),
@@ -97,7 +97,7 @@ class MenuProduct extends StatelessWidget {
                               ? ""
                               : product.description,
                           style: FontStyles.productDescriptionMenu,
-                          overflow: TextOverflow.ellipsis,
+                          overflow: TextOverflow.ellipsis
                         ),
                       ),
                     ),

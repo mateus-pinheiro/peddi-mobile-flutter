@@ -48,8 +48,9 @@ class OpenOrderAction {
   final int table;
   final int guests;
   final BuildContext context;
+  final Completer completer;
 
-  OpenOrderAction(this.context, this.table, this.guests);
+  OpenOrderAction(this.completer, this.context, this.table, this.guests);
 }
 
 class EndOrderAction {

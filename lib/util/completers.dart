@@ -55,6 +55,9 @@ Completer<Null> snackBarCompleterToOpening(
           return SuccessDialog(successMessage);
         });
   }).catchError((Object error) {
+    if (shouldPop) {
+      Navigator.of(context).pop();
+    }
     showDialog<ErrorDialog>(
         context: context,
         builder: (BuildContext context) {

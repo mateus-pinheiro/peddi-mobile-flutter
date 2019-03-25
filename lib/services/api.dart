@@ -13,7 +13,7 @@ class API {
 // RASPI
 //  static const String _apiUrl = 'http://192.168.0.70:8000/api';
 // CASA
-  static const String _apiUrl = 'http://192.168.0.70:8000/api';
+  static const String _apiUrl = 'http://192.168.0.23:8000/api';
 
 // IP FITFOOD
 //  static const String _apiUrl = 'http://192.168.0.123:8000/api';
@@ -34,6 +34,10 @@ class API {
     try {
       var request = await _client.post('$_apiUrl/orders/',
           headers: {"Content-Type": "application/json"}, body: jsonEncoded);
+
+      if (request.statusCode == 400) {
+        throw Exception(request);
+      }
 
       ResponseOpenOrder responseOpenOrder =
           ResponseOpenOrder.fromMap(json.decode(request.body));

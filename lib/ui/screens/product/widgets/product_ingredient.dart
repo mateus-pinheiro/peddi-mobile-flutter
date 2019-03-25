@@ -37,13 +37,23 @@ class IngredientWidgetState extends State<IngredientWidget> {
         new Padding(
           padding: const EdgeInsets.only(top: 30.0, left: 20.0),
           child: new Text(
-            'Ingredientes',
+            'Ingredientes ' + ingredientQuantity(item.maxChoices),
             style: FontStyles.ingredientTitleProduct,
           ),
         ),
         validateIngredients(ingredient)
       ],
     );
+  }
+
+  String ingredientQuantity(int max) {
+    if (max != null) {
+      if (max == 1)
+        return "(Escolha $max ingrediente)";
+      else if (max > 1) return "(Escolha $max ingredientes)";
+    } else {
+      return "";
+    }
   }
 
   Widget validateIngredients(List<Ingredient> ingredients) {
@@ -81,7 +91,6 @@ class IngredientWidgetState extends State<IngredientWidget> {
               item.itemPrice += ingredient.price.toDouble();
           } else
             ingredient.isChecked = !newValue;
-
         });
       },
       title: new Text(

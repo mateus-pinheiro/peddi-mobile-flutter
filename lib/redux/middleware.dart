@@ -43,7 +43,7 @@ void openOrder(Store<AppState> store, OpenOrderAction action) {
           action.context,
           "Bem vindo!",
         )));
-  }).catchError((error) => error.toString());
+  }).catchError((error) => action.completer.completeError(error));
 }
 
 void endOrder(Store<AppState> store, EndOrderAction action) {
@@ -81,7 +81,13 @@ void sendOrderToApi(Store<AppState> store, AskOrderAction action) {
 void loadRestaurant(Store<AppState> store, LoadRestaurantAction action) {
   API().getRestaurant().then((restaurant) {
     store.dispatch(new SaveRestaurantAction(restaurant));
-    store.dispatch(new OpenOrderAction(action.context, action.table, action.guests));
+    store.dispatch(new OpenOrderAction(
+        snackBarCompleterToOpening(
+            action.context, "", "Erro na abertura de mesa",
+            shouldPop: true),
+        action.context,
+        action.table,
+        action.guests));
   }).catchError((error) => action.completer.completeError(error));
 }
 

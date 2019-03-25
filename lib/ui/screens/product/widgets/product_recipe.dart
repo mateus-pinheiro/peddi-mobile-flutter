@@ -92,13 +92,18 @@ class _ProductRecipeWidgetState extends State<ProductRecipeWidget> {
                     borderRadius: BorderRadius.circular(20.0),
                     color: Colors.white),
                 width: 470.0,
-                height: 730.0,
+                height: 760.0,
                 child: new Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
                     new Padding(
-                      padding: const EdgeInsets.all(40.0),
+                      padding: const EdgeInsets.only(
+                        left: 40.0,
+                        top: 40.0,
+                        bottom: 10.0,
+                        right: 40.0,
+                      ),
                       child: Container(
                         height: 280.0,
                         width: 430.0,
@@ -125,23 +130,23 @@ class _ProductRecipeWidgetState extends State<ProductRecipeWidget> {
                           style: FontStyles.productTitleProduct),
                     ),
                     new Padding(
-                      padding: const EdgeInsets.only(left: 40.0, top: 15.0),
+                      padding: const EdgeInsets.only(left: 40.0, top: 10.0),
                       child: new Text(
                           CurrencyConverter.toBrazilianReal(item.basePrice),
                           style: FontStyles.productsPrice),
                     ),
                     new Padding(
                       padding: const EdgeInsets.only(
-                          left: 40.0, top: 15.0, right: 30.0),
+                          left: 40.0, top: 10.0, right: 30.0),
                       child: new Text(
                           product.description == null
                               ? ""
                               : product.description,
-                          style: FontStyles.productDescriptionProduct),
+                          style: FontStyles.productDescriptionProduct, overflow: TextOverflow.fade),
                     ),
                     new Expanded(
                       child: new Padding(
-                        padding: const EdgeInsets.only(top: 10.0),
+                        padding: const EdgeInsets.only(top: 5.0),
                         child: new Container(
                           decoration: new BoxDecoration(
                             color: Colors.white,
@@ -203,7 +208,7 @@ class _ProductRecipeWidgetState extends State<ProductRecipeWidget> {
                                 ],
                               ),
                               new Padding(
-                                padding: const EdgeInsets.only(top: 20.0),
+                                padding: const EdgeInsets.only(top: 15.0),
                                 child: new Container(
                                   decoration: BoxDecoration(
                                     color: AppColors.button,
