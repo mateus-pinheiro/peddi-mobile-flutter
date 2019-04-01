@@ -33,7 +33,7 @@ class MainHeader extends StatelessWidget {
               color: Colors.black,
               height: 100.0,
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   Expanded(
@@ -61,7 +61,7 @@ class MainHeader extends StatelessWidget {
                                   ))),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(top: 20.0, left: 40.0),
+                          padding: const EdgeInsets.only(top: 20.0, left: 25.0),
                           child: Container(
                             height: 35.0,
                             width: 2.0,
@@ -70,7 +70,7 @@ class MainHeader extends StatelessWidget {
                         ),
                         Padding(
                           padding: const EdgeInsets.only(
-                              top: 15.0, left: 20.0, bottom: 5.0),
+                              top: 15.0, bottom: 5.0),
                           child: Container(
                               height: 95.0,
                               width: 150.0,
@@ -90,7 +90,6 @@ class MainHeader extends StatelessWidget {
                       child: Container(
                     height: 130.0,
                     width: 25.0,
-                    color: Colors.black,
                     child: Padding(
                       padding: const EdgeInsets.only(top: 20.0),
                       child: Center(
@@ -107,12 +106,12 @@ class MainHeader extends StatelessWidget {
                     width: 25.0,
                     color: Colors.black,
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
                       crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.end,
                       children: <Widget>[
                         Padding(
                           padding:
-                              const EdgeInsets.only(top: 20.0, right: 20.0),
+                              const EdgeInsets.only(top: 20.0, right: 25.0),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
@@ -130,11 +129,28 @@ class MainHeader extends StatelessWidget {
                         ),
                         Padding(
                           padding:
-                              const EdgeInsets.only(top: 20.0, right: 40.0),
+                              const EdgeInsets.only(top: 20.0),
                           child: Container(
                             height: 35.0,
                             width: 2.0,
                             color: Colors.grey,
+                          ),
+                        ),
+                        Padding(
+                          padding:
+                              const EdgeInsets.only(top: 18.0),
+                          child: MaterialButton(
+                            onPressed: () {
+                              showOrder(context);
+                            },
+                            splashColor: Color(0),
+                            height: 30.0,
+                            minWidth: 30.0,
+                            child: Icon(
+                              Icons.shopping_cart,
+                              size: 50.0,
+                              color: AppColors.gray2,
+                            ),
                           ),
                         ),
                         Padding(
@@ -201,7 +217,7 @@ class MainHeader extends StatelessWidget {
     );
   }
 
-  void showOrder(BuildContext context) {
+  showOrder(BuildContext context) {
     showDialog(context: context, builder: (context) => new OrderApp());
   }
 

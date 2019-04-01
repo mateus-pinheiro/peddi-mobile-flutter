@@ -55,7 +55,7 @@ AppState askOrder(AskOrderAction action, AppState state) {
 AppState addConsumerCode(AddQrTicketCode action, AppState state) {
   List<Consumer> addConsumerToOrder(AddQrTicketCode action) {
     var consumer = new Consumer();
-    consumer.card = state.order.table;
+    consumer.card = state.order.table.toString();
     state.order.consumers.add(consumer);
     return state.order.consumers;
   }
@@ -140,9 +140,12 @@ AppState endOrder(EndOrderAction action, AppState state) {
 
 AppState addItem(AddItemAction action, AppState state) {
   Order addItemToOrder(AddItemAction action) {
+    if (state.order.productAddedCounter == null)
+      state.order.productAddedCounter = 0;
+    state.order.productAddedCounter += 1;
     var consumer = Consumer(items: new List<Item>());
     if (state.order.consumers.length < 1) {
-      consumer.card = state.order.table;
+      consumer.card = state.order.table.toString();
       consumer.items.add(action.item);
       state.order.consumers.add(consumer);
     } else {
@@ -157,6 +160,9 @@ AppState addItem(AddItemAction action, AppState state) {
       consumer.items
           .singleWhere((item) => item == action.item && item.qtyItem > 1)
           .itemPrice = action.item.itemPrice / action.item.qtyItem;
+
+    if (state.order.productAddedCounter < 3)
+      action.completer.complete();
 
     return state.order;
   }

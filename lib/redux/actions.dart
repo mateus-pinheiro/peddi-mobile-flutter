@@ -83,8 +83,10 @@ class AddQrTicketCode {
 
 class AddItemAction {
   final Item item;
+  final Completer completer;
+  int counter;
 
-  AddItemAction(this.item);
+  AddItemAction(this.item, this.completer, {this.counter});
 }
 
 class RemoveItemAction {

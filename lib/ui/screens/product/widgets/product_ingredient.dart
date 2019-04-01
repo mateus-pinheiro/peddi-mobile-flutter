@@ -3,6 +3,8 @@ import 'package:peddi_tont_app/models/ingredient.dart';
 import 'package:peddi_tont_app/models/item.dart';
 import 'package:peddi_tont_app/themes/font_styles.dart';
 
+const PIECE_INGREDIENT = 2;
+
 class IngredientWidget extends StatefulWidget {
   IngredientWidget(this.ingredient, this.item);
 
@@ -70,7 +72,6 @@ class IngredientWidgetState extends State<IngredientWidget> {
   }
 
   Widget ingredientItem(Ingredient ingredient) {
-//    item.maxChoices = 2;
     return new CheckboxListTile(
       controlAffinity: ListTileControlAffinity.leading,
       value: ingredient.isChecked,
@@ -85,12 +86,16 @@ class IngredientWidgetState extends State<IngredientWidget> {
             item.ingredients.add(ingredient);
             if (ingredient.price != null)
               item.itemPrice += ingredient.price.toDouble();
-          } else if (item.ingredients.length < item.maxChoices) {
+          } else if (item.ingredients
+                  .where((ingredient) => ingredient.type == PIECE_INGREDIENT)
+                  .length <
+              item.maxChoices) {
             item.ingredients.add(ingredient);
             if (ingredient.price != null)
               item.itemPrice += ingredient.price.toDouble();
-          } else
+          } else {
             ingredient.isChecked = !newValue;
+          }
         });
       },
       title: new Text(

@@ -14,6 +14,7 @@ class Order {
   final DateTime updatedAt;
   final int restaurantCloudId;
   final List<Consumer> consumers;
+  int productAddedCounter;
 
   Order(
       {this.id,

@@ -7,6 +7,7 @@ import 'package:peddi_tont_app/redux/actions.dart';
 import 'package:peddi_tont_app/services/external_images.dart';
 import 'package:peddi_tont_app/themes/font_styles.dart';
 import 'package:peddi_tont_app/themes/app_colors.dart';
+import 'package:peddi_tont_app/util/completers.dart';
 import 'package:peddi_tont_app/util/currency_converter.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
@@ -20,7 +21,10 @@ class ProductRecipe extends StatelessWidget {
   Widget build(BuildContext context) {
     return new StoreConnector<AppState, OnAddCallback>(converter: (store) {
       return (item) {
-        store.dispatch(AddItemAction(item));
+        store.dispatch(AddItemAction(
+            item,
+            sendUpdateOrder(context,
+                "Produto adicionado com sucesso, caso deseja enviar seu carrinho para a cozinha, clique no ícone:", isAddedProduct: true)));
       };
     }, builder: (context, callback) {
       return new ProductRecipeWidget(product, item, callback);
@@ -142,7 +146,8 @@ class _ProductRecipeWidgetState extends State<ProductRecipeWidget> {
                           product.description == null
                               ? ""
                               : product.description,
-                          style: FontStyles.productDescriptionProduct, overflow: TextOverflow.fade),
+                          style: FontStyles.productDescriptionProduct,
+                          overflow: TextOverflow.fade),
                     ),
                     new Expanded(
                       child: new Padding(

@@ -2,7 +2,7 @@ import 'package:peddi_tont_app/models/item.dart';
 
 class Consumer {
 
-  int card;
+  String card;
   List<Item> items;
 
   Consumer(

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:peddi_tont_app/ui/dialogs/cart_indicate_dialog.dart';
 import 'package:peddi_tont_app/ui/dialogs/error_dialog.dart';
 import 'package:peddi_tont_app/ui/dialogs/success_dialog.dart';
 import 'package:peddi_tont_app/ui/screens/main/main_app.dart';
@@ -130,7 +131,7 @@ Completer<Null> loginFlow(BuildContext context, String message,
 }
 
 Completer<Null> sendUpdateOrder(BuildContext context, String message,
-    {bool shouldPop = false}) {
+    {bool shouldPop = false, bool isAddedProduct = false}) {
   final Completer<Null> completer = Completer<Null>();
 
   completer.future.then((itemsNotSent) {
@@ -141,11 +142,19 @@ Completer<Null> sendUpdateOrder(BuildContext context, String message,
       Navigator.of(context).pop();
     }
 
-    showDialog<MainApp>(
-        context: context,
-        builder: (BuildContext context) {
-          return SuccessDialog(message);
-        });
+    if (!isAddedProduct) {
+      showDialog<MainApp>(
+          context: context,
+          builder: (BuildContext context) {
+            return SuccessDialog(message);
+          });
+    } else {
+      showDialog<MainApp>(
+          context: context,
+          builder: (BuildContext context) {
+            return CartIndicateDialog(message);
+          });
+    }
   }).catchError((Object error) {
     showDialog<ErrorDialog>(
         context: context,
