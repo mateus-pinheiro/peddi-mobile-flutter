@@ -140,8 +140,7 @@ AppState endOrder(EndOrderAction action, AppState state) {
 
 AppState addItem(AddItemAction action, AppState state) {
   Order addItemToOrder(AddItemAction action) {
-    if (state.order.productAddedCounter == null)
-      state.order.productAddedCounter = 0;
+
     state.order.productAddedCounter += 1;
     var consumer = Consumer(items: new List<Item>());
     if (state.order.consumers.length < 1) {
