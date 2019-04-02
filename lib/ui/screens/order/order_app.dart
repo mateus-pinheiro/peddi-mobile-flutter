@@ -88,11 +88,11 @@ class OrderApp extends StatelessWidget {
                     Expanded(
                       child: new OrderList(state.order),
                     ),
-                    new StoreConnector<AppState, OnScanPressed>(
+                    new StoreConnector<AppState, OnSendPressed>(
                       converter: (store) {
-                        return (ticket) => store.dispatch(AddQrTicketCode(
-                            ticket,
-                            qrCodeCompleter(context, null, shouldPop: true)));
+                        return (orderCallback) => store.dispatch(AskOrderAction(
+                            orderCallback,
+                            sendUpdateOrder(context, null, shouldPop: true)));
                       },
                       builder: (BuildContext context, callback) => Container(
                             height: 69.0,
@@ -101,12 +101,20 @@ class OrderApp extends StatelessWidget {
                               borderRadius: BorderRadius.circular(10.0),
                               color: AppColors.button,
                             ),
-                            child: MaterialButton(
-                              onPressed: () {
-                                if (state.order.consumers[0].items != null &&
-                                    state.order.consumers[0].items.length > 0) {
-                                  openConfirmationScreen(context);
-                                }
+                            child: StoreConnector<AppState, Order>(
+                              converter: (store) => store.state.order,
+                              builder: (context, order) => new MaterialButton(
+                                    onPressed: () {
+                                      if (state.order.consumers[0].items !=
+                                              null &&
+                                          state.order.consumers[0].items
+                                                  .length >
+                                              0) {
+                                        askOrderBody = setOrderBody(order);
+                                        callback(askOrderBody);
+                                        Navigator.pushNamed(context, '/loading');
+//                                    openConfirmationScreen(context);
+                                      }
 //                                Navigator.pop(context);
 //                                ScanBarCode().scan().then((result) {
 //                                  callback(result);
@@ -115,12 +123,14 @@ class OrderApp extends StatelessWidget {
 ////                              resultOfBarCode(result, context, state));
 //
 //                                    );
-                              },
-                              splashColor: Color(0),
-                              height: 60.0,
-                              textTheme: ButtonTextTheme.accent,
-                              child: new Text('ENVIAR PEDIDO PARA COZINHA/BAR',
-                                  style: FontStyles.buttonStyle),
+                                    },
+                                    splashColor: Color(0),
+                                    height: 60.0,
+                                    textTheme: ButtonTextTheme.accent,
+                                    child: new Text(
+                                        'ENVIAR PEDIDO PARA COZINHA/BAR',
+                                        style: FontStyles.buttonStyle),
+                                  ),
                             ),
                           ),
                     ),
@@ -144,9 +154,19 @@ class OrderApp extends StatelessWidget {
 //  }
 }
 
+AskOrderBody setOrderBody(Order order) {
+  var it = new AskOrderBody(
+      id: order.id,
+      orderPrice: order.amountPrice,
+      updatedAt: DateTime.now(),
+      consumers: order.consumers);
+  return it;
+}
+
 void openConfirmationScreen(BuildContext context) {
   Navigator.push(
       context, MaterialPageRoute(builder: (context) => ConfirmationScreen()));
 }
 
 typedef OnScanPressed = Function(String ticket);
+typedef OnSendPressed = Function(AskOrderBody p0);

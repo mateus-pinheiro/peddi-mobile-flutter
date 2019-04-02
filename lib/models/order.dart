@@ -14,7 +14,7 @@ class Order {
   final DateTime updatedAt;
   final int restaurantCloudId;
   final List<Consumer> consumers;
-  int productAddedCounter = 0;
+  final int productAddedCounter;
 
   Order(
       {this.id,
@@ -26,7 +26,8 @@ class Order {
       this.updatedAt,
       this.restaurantCloudId,
       this.consumers,
-      this.waiter});
+      this.waiter,
+      this.productAddedCounter});
 
   Order.fromMap(Map<String, dynamic> data)
       : id = data['id'],
@@ -34,6 +35,7 @@ class Order {
         guests = data['guests'],
         amountPrice = data['amount_price'],
         status = data['status'],
+        productAddedCounter = 0,
         createdAt = data['created_at'],
         updatedAt = data['updated_at'],
         restaurantCloudId = data['restaurant_cloud_id'],
@@ -66,6 +68,7 @@ class Order {
     DateTime updatedAt,
     int restaurantCloudId,
     List<Consumer> consumers,
+    int productAddedCounter,
   }) {
 
     return new Order(
@@ -78,7 +81,8 @@ class Order {
         updatedAt: updatedAt ?? this.updatedAt,
         restaurantCloudId: restaurantCloudId ?? this.restaurantCloudId,
         waiter: waiter ?? this.waiter,
-        consumers: consumers ?? this.consumers
+        consumers: consumers ?? this.consumers,
+        productAddedCounter: productAddedCounter ?? this.productAddedCounter
     );
   }
 }

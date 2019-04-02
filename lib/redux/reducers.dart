@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart';
 import 'package:peddi_tont_app/models/app_state.dart';
 import 'package:peddi_tont_app/models/consumer.dart';
 import 'package:peddi_tont_app/models/item.dart';
@@ -129,6 +130,7 @@ AppState openOrder(OpenOrderAction action, AppState state) {
           guests: action.guests,
           restaurantCloudId: state.restaurant.restaurantCloudId,
           waiter: null,
+          productAddedCounter: 0,
           createdAt: DateTime.now(),
           updatedAt: null,
           consumers: new List<Consumer>()));
@@ -141,7 +143,8 @@ AppState endOrder(EndOrderAction action, AppState state) {
 AppState addItem(AddItemAction action, AppState state) {
   Order addItemToOrder(AddItemAction action) {
 
-    state.order.productAddedCounter += 1;
+    var counter = state.order.productAddedCounter;
+    state.order.copyWith(productAddedCounter: counter += 1);
     var consumer = Consumer(items: new List<Item>());
     if (state.order.consumers.length < 1) {
       consumer.card = state.order.table.toString();
@@ -160,8 +163,10 @@ AppState addItem(AddItemAction action, AppState state) {
           .singleWhere((item) => item == action.item && item.qtyItem > 1)
           .itemPrice = action.item.itemPrice / action.item.qtyItem;
 
-    if (state.order.productAddedCounter < 3)
+    if (state.order.productAddedCounter < 2)
       action.completer.complete();
+    else
+      Navigator.pushNamed(action.context, '/order');
 
     return state.order;
   }

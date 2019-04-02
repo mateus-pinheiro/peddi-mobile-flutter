@@ -24,7 +24,9 @@ class ProductRecipe extends StatelessWidget {
         store.dispatch(AddItemAction(
             item,
             sendUpdateOrder(context,
-                "Produto adicionado com sucesso, caso deseja enviar seu carrinho para a cozinha, clique no ícone:", isAddedProduct: true)));
+                "Produto adicionado com sucesso, caso deseja enviar seu carrinho para a cozinha, clique no ícone:",
+                isAddedProduct: true),
+            context));
       };
     }, builder: (context, callback) {
       return new ProductRecipeWidget(product, item, callback);

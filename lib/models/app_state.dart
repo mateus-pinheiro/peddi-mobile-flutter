@@ -14,6 +14,7 @@ class AppState {
 
   AppState(this.restaurant, this.order);
 
+
   AppState.fromJson(Map<String, dynamic> json)
       : restaurant = (json['restaurant']),
         order = (json['order']);

@@ -84,9 +84,9 @@ class AddQrTicketCode {
 class AddItemAction {
   final Item item;
   final Completer completer;
-  int counter;
+  final BuildContext context;
 
-  AddItemAction(this.item, this.completer, {this.counter});
+  AddItemAction(this.item, this.completer, this.context);
 }
 
 class RemoveItemAction {
