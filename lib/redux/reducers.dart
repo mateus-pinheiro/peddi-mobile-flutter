@@ -143,8 +143,6 @@ AppState endOrder(EndOrderAction action, AppState state) {
 
 AppState addItem(AddItemAction action, AppState state) {
   Order addItemToOrder(AddItemAction action) {
-    if (state.order.productAddedCounter == null)
-      state.order.productAddedCounter = 0;
     var counter = state.order.productAddedCounter += 1;
     var consumer = Consumer(items: new List<Item>());
     if (state.order.consumers.length < 1) {
@@ -164,10 +162,7 @@ AppState addItem(AddItemAction action, AppState state) {
           .singleWhere((item) => item == action.item && item.qtyItem > 1)
           .itemPrice = action.item.itemPrice / action.item.qtyItem;
 
-    if (counter < 2)
-      action.completer.complete();
-    else
-      showDialog(context: action.context, builder: (context) => new OrderApp());
+    showDialog(context: action.context, builder: (context) => new OrderApp());
 
     return state.order;
   }
