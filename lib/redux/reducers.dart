@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:peddi_tont_app/models/app_state.dart';
 import 'package:peddi_tont_app/models/consumer.dart';
@@ -7,6 +8,7 @@ import 'package:peddi_tont_app/models/restaurant.dart';
 import 'package:peddi_tont_app/models/restaurant_order.dart';
 import 'package:peddi_tont_app/models/waiter.dart';
 import 'package:peddi_tont_app/redux/actions.dart';
+import 'package:peddi_tont_app/ui/screens/order/order_app.dart';
 
 AppState appStateReducers(AppState state, dynamic action) {
   if (action is LoadRestaurantAction) {
@@ -70,7 +72,8 @@ AppState newItemList(NewItemListAction action, AppState state) {
   List<Consumer> consumerList(List<Consumer> consumerList) {
     if (action.items != null && action.items.length > 0) {
       consumerList.first.items = action.items;
-      action.items.every((item) => amountPrice += (item.itemPrice * item.qtyItem));
+      action.items
+          .every((item) => amountPrice += (item.itemPrice * item.qtyItem));
     } else {
       consumerList.first.items = new List<Item>();
       amountPrice = 0.0;
@@ -82,8 +85,7 @@ AppState newItemList(NewItemListAction action, AppState state) {
       state.restaurant,
       state.order.copyWith(
           consumers: consumerList(state.order.consumers),
-          amountPrice: amountPrice
-      ));
+          amountPrice: amountPrice));
 }
 
 AppState addQrResposibleCode(AddQrResposibleCode action, AppState state) {
@@ -130,7 +132,6 @@ AppState openOrder(OpenOrderAction action, AppState state) {
           guests: action.guests,
           restaurantCloudId: state.restaurant.restaurantCloudId,
           waiter: null,
-          productAddedCounter: 0,
           createdAt: DateTime.now(),
           updatedAt: null,
           consumers: new List<Consumer>()));
@@ -142,9 +143,9 @@ AppState endOrder(EndOrderAction action, AppState state) {
 
 AppState addItem(AddItemAction action, AppState state) {
   Order addItemToOrder(AddItemAction action) {
-
-    var counter = state.order.productAddedCounter;
-    state.order.copyWith(productAddedCounter: counter += 1);
+    if (state.order.productAddedCounter == null)
+      state.order.productAddedCounter = 0;
+    var counter = state.order.productAddedCounter += 1;
     var consumer = Consumer(items: new List<Item>());
     if (state.order.consumers.length < 1) {
       consumer.card = state.order.table.toString();
@@ -163,10 +164,10 @@ AppState addItem(AddItemAction action, AppState state) {
           .singleWhere((item) => item == action.item && item.qtyItem > 1)
           .itemPrice = action.item.itemPrice / action.item.qtyItem;
 
-    if (state.order.productAddedCounter < 2)
+    if (counter < 2)
       action.completer.complete();
     else
-      Navigator.pushNamed(action.context, '/order');
+      showDialog(context: action.context, builder: (context) => new OrderApp());
 
     return state.order;
   }
