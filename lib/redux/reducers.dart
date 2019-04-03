@@ -143,7 +143,6 @@ AppState endOrder(EndOrderAction action, AppState state) {
 
 AppState addItem(AddItemAction action, AppState state) {
   Order addItemToOrder(AddItemAction action) {
-    var counter = state.order.productAddedCounter += 1;
     var consumer = Consumer(items: new List<Item>());
     if (state.order.consumers.length < 1) {
       consumer.card = state.order.table.toString();
