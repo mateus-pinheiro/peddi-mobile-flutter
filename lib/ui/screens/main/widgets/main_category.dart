@@ -39,11 +39,6 @@ class MainCategoryRouteState extends State<MainCategoryRoute> {
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
-
-    final double itemHeight = (size.height - kToolbarHeight - 90) / 2;
-    final double itemWidth = size.width / 2;
-
     return new StoreConnector<AppState, AppState>(
         converter: (store) => store.state,
         builder: (context, appState) {
@@ -55,47 +50,9 @@ class MainCategoryRouteState extends State<MainCategoryRoute> {
             );
           } else {
             return new Stack(
+              alignment: Alignment.topRight,
               children: <Widget>[
-                new GridView.count(
-                  crossAxisCount: 2,
-                  childAspectRatio: (itemWidth / itemHeight),
-                  controller: new ScrollController(keepScrollOffset: false),
-                  shrinkWrap: true,
-                  scrollDirection: Axis.vertical,
-                  children: appState.restaurant.categories.map((
-                      Category category) {
-                    return InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            new MaterialPageRoute(
-                                builder: (context) =>
-                                new MenuApp(
-                                    category, appState.restaurant.categories)));
-                      },
-                      child: new Container(
-                        margin: new EdgeInsets.all(5.0),
-                        decoration: new BoxDecoration(
-                            color: Colors.black,
-                            border: Border.all(
-                                color: AppColors.peddi_white, width: 1.0),
-                            image: new DecorationImage(
-                              image: new NetworkImage(
-                                  getCategoryImage(category.image)),
-                              fit: BoxFit.cover,
-                            )
-                        ),
-                        child: new Center(
-                          child: new Text(
-                            category.name,
-                            style: FontStyles.style5,
-                            textScaleFactor: 1.5,
-                          ),
-                        ),
-                      ),
-                    );
-                  }).toList(),
-                ),
+                _buildCategoryGrid(appState),
                 new Align(
                   alignment: Alignment.bottomCenter,
                   child: Icon(
@@ -103,13 +60,56 @@ class MainCategoryRouteState extends State<MainCategoryRoute> {
                     size: 120,
                     color: AppColors.peddi_white,
                   ),
-
                 )
               ],
             );
           }
         });
   }
+
+  Widget _buildCategoryGrid(AppState appState) {
+    var size = MediaQuery.of(context).size;
+
+    final double itemHeight = (size.height - kToolbarHeight - 90) / 2;
+    final double itemWidth = size.width / 2;
+
+    return new GridView.count(
+      crossAxisCount: 2,
+      childAspectRatio: (itemWidth / itemHeight),
+      controller: new ScrollController(keepScrollOffset: false),
+      shrinkWrap: true,
+      scrollDirection: Axis.vertical,
+      children: appState.restaurant.categories.map((Category category) {
+        return InkWell(
+          onTap: () {
+            Navigator.push(
+                context,
+                new MaterialPageRoute(
+                    builder: (context) =>
+                        new MenuApp(category, appState.restaurant.categories)));
+          },
+          child: new Container(
+            margin: new EdgeInsets.all(5.0),
+            decoration: new BoxDecoration(
+                color: Colors.black,
+                border: Border.all(color: AppColors.peddi_white, width: 1.0),
+                image: new DecorationImage(
+                  image: new NetworkImage(getCategoryImage(category.image)),
+                  fit: BoxFit.cover,
+                )),
+            child: new Center(
+              child: new Text(
+                category.name,
+                style: FontStyles.style5,
+                textScaleFactor: 1.5,
+              ),
+            ),
+          ),
+        );
+      }).toList(),
+    );
+  }
+
 //
 //  Widget categoryItem(Category category, List<Category> storeCategories) {
 //    return new MaterialButton(

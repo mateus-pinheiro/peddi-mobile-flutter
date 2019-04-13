@@ -12,9 +12,13 @@ import 'package:peddi_tont_app/ui/screens/order/order_app.dart';
 
 AppState appStateReducers(AppState state, dynamic action) {
   if (action is LoadRestaurantAction) {
-    return loadRestaurant(action, state.restaurant);
+    return loadRestaurant(action, state);
   } else if (action is SaveRestaurantAction) {
     return saveRestaurant(action, state);
+  } else if (action is GetFeaturedList) {
+    return getFeaturedList(state);
+  } else if (action is SaveFeaturedList) {
+    return saveFeaturedList(state, action);
   } else if (action is AskOrderAction) {
     return askOrder(action, state);
   } else if (action is EndOrderAction) {
@@ -35,16 +39,25 @@ AppState appStateReducers(AppState state, dynamic action) {
   return state;
 }
 
-AppState loadRestaurant(LoadRestaurantAction action, Restaurant restaurant) {
-  return new AppState(restaurant, null);
+AppState saveFeaturedList(AppState state, SaveFeaturedList action) {
+  return new AppState(state.restaurant, state.order, action.featuredList);
+}
+
+AppState getFeaturedList(AppState state) {
+  return new AppState(state.restaurant, state.order, state.featuredList);
+}
+
+AppState loadRestaurant(LoadRestaurantAction action, AppState state) {
+  return new AppState(state.restaurant, null, state.featuredList);
 }
 
 AppState saveRestaurant(SaveRestaurantAction action, AppState state) {
-  return new AppState(action.restaurant, state.order);
+  return new AppState(action.restaurant, state.order, state.featuredList);
 }
 
 AppState askOrder(AskOrderAction action, AppState state) {
-  return new AppState(state.restaurant, state.order.copyWith(status: 2));
+  return new AppState(
+      state.restaurant, state.order.copyWith(status: 2), state.featuredList);
 }
 
 //AppState orderSent(OrderSentSuccessfully action, AppState state) {
@@ -63,8 +76,10 @@ AppState addConsumerCode(AddQrTicketCode action, AppState state) {
     return state.order.consumers;
   }
 
-  return new AppState(state.restaurant,
-      state.order.copyWith(consumers: addConsumerToOrder(action)));
+  return new AppState(
+      state.restaurant,
+      state.order.copyWith(consumers: addConsumerToOrder(action)),
+      state.featuredList);
 }
 
 AppState newItemList(NewItemListAction action, AppState state) {
@@ -85,7 +100,8 @@ AppState newItemList(NewItemListAction action, AppState state) {
       state.restaurant,
       state.order.copyWith(
           consumers: consumerList(state.order.consumers),
-          amountPrice: amountPrice));
+          amountPrice: amountPrice),
+      state.featuredList);
 }
 
 AppState addQrResposibleCode(AddQrResposibleCode action, AppState state) {
@@ -119,7 +135,8 @@ AppState addQrResposibleCode(AddQrResposibleCode action, AppState state) {
       state.order.copyWith(
           id: orderId,
           restaurantCloudId: state.restaurant.restaurantCloudId,
-          waiter: waiter));
+          waiter: waiter),
+      state.featuredList);
 }
 
 AppState openOrder(OpenOrderAction action, AppState state) {
@@ -134,11 +151,12 @@ AppState openOrder(OpenOrderAction action, AppState state) {
           waiter: null,
           createdAt: DateTime.now(),
           updatedAt: null,
-          consumers: new List<Consumer>()));
+          consumers: new List<Consumer>()),
+      state.featuredList);
 }
 
 AppState endOrder(EndOrderAction action, AppState state) {
-  return new AppState(state.restaurant, new Order());
+  return new AppState(state.restaurant, new Order(), state.featuredList);
 }
 
 AppState addItem(AddItemAction action, AppState state) {
@@ -166,7 +184,8 @@ AppState addItem(AddItemAction action, AppState state) {
     return state.order;
   }
 
-  return new AppState(state.restaurant, addItemToOrder(action));
+  return new AppState(
+      state.restaurant, addItemToOrder(action), state.featuredList);
 }
 
 AppState removeItem(RemoveItemAction action, AppState state) {
@@ -183,5 +202,6 @@ AppState removeItem(RemoveItemAction action, AppState state) {
     return state.order;
   }
 
-  return new AppState(state.restaurant, removeItemFromOrder(action));
+  return new AppState(
+      state.restaurant, removeItemFromOrder(action), state.featuredList);
 }

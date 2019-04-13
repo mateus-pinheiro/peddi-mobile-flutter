@@ -96,6 +96,7 @@ class FontStyles {
       color: AppColors.gray5);
 
   static const featuredProductTitle = TextStyle(
+
       fontFamily: "CircularStd",
       fontStyle: FontStyle.normal,
       fontSize: 48.0,
@@ -105,9 +106,11 @@ class FontStyles {
   static const featuredProductPrice = TextStyle(
       fontFamily: "CircularStd",
       fontStyle: FontStyle.normal,
-      fontSize: 48.0,
-//      fontWeight: FontWeight.bold,
-      color: Colors.white);
+      fontSize: 20.0,
+      fontWeight: FontWeight.bold,
+      color: Color.fromRGBO(143, 206, 81, 1.0),);
+
+
 
   static const textStyle20 = TextStyle(
       //fontWeight: FontWeight.w400,

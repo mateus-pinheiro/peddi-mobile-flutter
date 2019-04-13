@@ -5,13 +5,16 @@ import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:peddi_tont_app/models/body/ask_order_body.dart';
 import 'package:peddi_tont_app/models/order.dart';
+import 'package:peddi_tont_app/models/product.dart';
 import 'package:peddi_tont_app/models/response/response_error_send_product.dart';
+import 'package:peddi_tont_app/models/response/response_featured_list.dart';
 import 'package:peddi_tont_app/models/response/response_open_order.dart';
 import 'package:peddi_tont_app/models/restaurant.dart';
 
 class API {
 // RASPI
-  static const String _apiUrl = 'http://192.168.0.70:8000/api';
+  static const String _apiUrl = 'http://192.168.15.15:8000/api';
+
 // CASA
 //  static const String _apiUrl = 'http://192.168.15.15:8000/api';
 
@@ -71,6 +74,26 @@ class API {
 
     if (response.statusCode == 200) {
       return response;
+    }
+
+    return null;
+  }
+
+  Future<ResponseFeaturedList> featured() async {
+    var response = await _client.get('$_apiUrl/featured/',
+        headers: {"Content-Type": "application/json"});
+
+//    List<Product> responseProducts = json.decode(response.body);
+
+    Iterable l = json.decode(response.body);
+    List<Product> responseProducts =
+        l.map((model) => Product.fromMap(model)).toList();
+
+    ResponseFeaturedList responseFeaturedList =
+        new ResponseFeaturedList(products: responseProducts);
+
+    if (response.statusCode == 200) {
+      return responseFeaturedList;
     }
 
     return null;

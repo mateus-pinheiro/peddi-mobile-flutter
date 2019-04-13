@@ -2,8 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/widgets.dart';
 import 'package:peddi_tont_app/models/body/ask_order_body.dart';
+import 'package:peddi_tont_app/models/featured_list.dart';
 import 'package:peddi_tont_app/models/item.dart';
 import 'package:peddi_tont_app/models/order.dart';
+import 'package:peddi_tont_app/models/response/response_featured_list.dart';
 import 'package:peddi_tont_app/models/restaurant.dart';
 
 class LoadRestaurantAction {
@@ -22,6 +24,12 @@ class NewItemListAction {
 }
 
 class Success {}
+class GetFeaturedList {}
+class SaveFeaturedList {
+  final FeaturedList featuredList;
+
+  SaveFeaturedList(this.featuredList);
+}
 
 class SaveRestaurantAction {
   final Restaurant restaurant;
@@ -100,3 +108,5 @@ class AddItemIngredients {
 
   AddItemIngredients(this.item);
 }
+
+

@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:peddi_tont_app/models/featured_list.dart';
 import 'package:peddi_tont_app/models/item.dart';
 import 'package:peddi_tont_app/models/order.dart';
 import 'package:peddi_tont_app/models/response/response_error_send_product.dart';
@@ -25,6 +26,8 @@ void appMiddleware(Store<AppState> store, action, NextDispatcher next) {
     openOrder(store, action);
   } else if (action is EndOrderAction) {
     endOrder(store, action);
+  } else if (action is GetFeaturedList) {
+    getFeaturedList(store);
   }
 //  else if (action is AddQrTicketCode) {
 //    store.dispatch(SendOrder(store.state.order, snackBarCompleter(action.context, null, shouldPop: false)));
@@ -89,6 +92,12 @@ void loadRestaurant(Store<AppState> store, LoadRestaurantAction action) {
         action.table,
         action.guests));
   }).catchError((error) => action.completer.completeError(error));
+}
+
+void getFeaturedList(Store<AppState> store) {
+  API().featured().then((featuredList) {
+      store.dispatch(new SaveFeaturedList(new FeaturedList(products: featuredList.products)));
+  }).catchError((error) => error);
 }
 
 void saveStateToPrefs(AppState state) async {

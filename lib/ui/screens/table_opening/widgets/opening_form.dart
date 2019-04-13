@@ -22,7 +22,7 @@ class OpeningFormRoute extends StatelessWidget {
             qtyConsumer,
             loginFlow(context,
                 "Não conseguimos recuperar os dados do restaurante, por favor tente novamente!")));
-//        store.dispatch(new OpenOrderAction(tableNumber, qtyConsumer));
+        store.dispatch(new GetFeaturedList());
       };
     }, builder: (context, callback) {
       return new OpeningForm(callback);
