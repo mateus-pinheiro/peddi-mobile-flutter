@@ -76,8 +76,7 @@ class FontStyles {
       fontStyle: FontStyle.normal,
       fontWeight: FontWeight.normal,
       fontSize: 20.0,
-      color: AppColors.gray3
-  );
+      color: AppColors.gray3);
 
   static const confirmationDialogButton = TextStyle(
     fontFamily: 'CircularStd',
@@ -88,7 +87,7 @@ class FontStyles {
   );
 
   static const confirmationDialogTitle = TextStyle(
-    //fontWeight: FontWeight.w900,
+      //fontWeight: FontWeight.w900,
       fontFamily: "CircularStd",
       fontStyle: FontStyle.normal,
       fontWeight: FontWeight.bold,
@@ -96,7 +95,6 @@ class FontStyles {
       color: AppColors.gray5);
 
   static const featuredProductTitle = TextStyle(
-
       fontFamily: "CircularStd",
       fontStyle: FontStyle.normal,
       fontSize: 48.0,
@@ -104,13 +102,34 @@ class FontStyles {
       color: Colors.white);
 
   static const featuredProductPrice = TextStyle(
+    fontFamily: "CircularStd",
+    fontStyle: FontStyle.normal,
+    fontSize: 20.0,
+    fontWeight: FontWeight.bold,
+    color: Color.fromRGBO(143, 206, 81, 1.0),
+  );
+
+  static const advertisingProductTitle = TextStyle(
       fontFamily: "CircularStd",
       fontStyle: FontStyle.normal,
-      fontSize: 20.0,
+      fontSize: 48.0,
       fontWeight: FontWeight.bold,
-      color: Color.fromRGBO(143, 206, 81, 1.0),);
+      color: AppColors.peddi_white);
 
+  static const advertisingProductPrice = TextStyle(
+    fontFamily: "CircularStd",
+    fontStyle: FontStyle.normal,
+    fontSize: 42.0,
+    color: AppColors.peddi_white,
+  );
 
+  static const advertisingTextButton = TextStyle(
+    fontFamily: "CircularStd",
+    fontStyle: FontStyle.normal,
+    fontSize: 18.0,
+    fontWeight: FontWeight.bold,
+    color: Colors.white,
+  );
 
   static const textStyle20 = TextStyle(
       //fontWeight: FontWeight.w400,
@@ -186,7 +205,7 @@ class FontStyles {
       fontFamily: "CircularStd",
       fontStyle: FontStyle.normal,
       fontWeight: FontWeight.bold,
-      fontSize: 48.0,
+      fontSize: 46.0,
       color: AppColors.peddi_white);
   static const style4 = TextStyle(
       //fontWeight: FontWeight.w900,

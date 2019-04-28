@@ -13,7 +13,7 @@ import 'package:peddi_tont_app/models/restaurant.dart';
 
 class API {
 // RASPI
-  static const String _apiUrl = 'http://192.168.15.15:8000/api';
+  static const String _apiUrl = 'http://192.168.0.23:8000/api';
 
 // CASA
 //  static const String _apiUrl = 'http://192.168.15.15:8000/api';
@@ -84,13 +84,14 @@ class API {
         headers: {"Content-Type": "application/json"});
 
 //    List<Product> responseProducts = json.decode(response.body);
+//    Iterable l = json.decode(response.body);
+//    List<Product> responseProducts =
+//        l.map((model) => Product.fromMap(model)).toList();
+//
+//    ResponseFeaturedList responseFeaturedList =
+//        new ResponseFeaturedList(products: responseProducts);
 
-    Iterable l = json.decode(response.body);
-    List<Product> responseProducts =
-        l.map((model) => Product.fromMap(model)).toList();
-
-    ResponseFeaturedList responseFeaturedList =
-        new ResponseFeaturedList(products: responseProducts);
+    ResponseFeaturedList responseFeaturedList = ResponseFeaturedList.fromMap(json.decode(response.body));
 
     if (response.statusCode == 200) {
       return responseFeaturedList;

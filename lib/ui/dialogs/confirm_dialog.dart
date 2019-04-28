@@ -8,6 +8,7 @@ import 'package:peddi_tont_app/themes/font_styles.dart';
 import 'package:peddi_tont_app/ui/screens/menu/menu_app.dart';
 import 'package:peddi_tont_app/util/completers.dart';
 
+// ignore: must_be_immutable
 class ConfirmDialog extends StatelessWidget {
   ConfirmDialog({this.order});
 

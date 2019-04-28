@@ -121,7 +121,7 @@ class OpeningFormState extends State<OpeningForm> {
         ),
         Padding(
           padding: const EdgeInsets.only(top: 8.0),
-          child: Container(
+          child: new Container(
               constraints: BoxConstraints.expand(width: 280.0, height: 80.0),
               decoration: BoxDecoration(
                   color: Colors.transparent,

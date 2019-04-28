@@ -228,7 +228,18 @@ class _MainFeaturedRouteState extends State<MainFeaturedRoute> {
     return new StoreConnector<AppState, AppState>(
         converter: (store) => store.state,
         builder: (context, appState) {
-          return _buildCategoryGrid(appState);
+          if (appState.featuredList.products == null || appState.featuredList.products.length < 1) {
+            return Container(
+              width: MediaQuery.of(context).size.width / 1.1,
+              color: Colors.black,
+              child: Text(
+                'Não temos nenhum destaque no momento. Escolha uma categoria abaixo.',
+                style: FontStyles.advertisingProductPrice,
+              ),
+            );
+          } else {
+            return _buildCategoryGrid(appState);
+          }
         });
   }
 

@@ -21,7 +21,7 @@ class Category {
       this.categoryCloudId,
       this.image,
       this.subcategories,
-      this.products});
+      this.products, this.isSelected, this.isSelectedColor});
 
   Category.fromMap(Map<String, dynamic> data)
       : id = data['_id'],

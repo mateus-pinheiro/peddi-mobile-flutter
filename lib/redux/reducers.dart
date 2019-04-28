@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:peddi_tont_app/models/app_state.dart';
+import 'package:peddi_tont_app/models/category.dart';
 import 'package:peddi_tont_app/models/consumer.dart';
 import 'package:peddi_tont_app/models/item.dart';
 import 'package:peddi_tont_app/models/order.dart';
@@ -9,6 +10,8 @@ import 'package:peddi_tont_app/models/restaurant_order.dart';
 import 'package:peddi_tont_app/models/waiter.dart';
 import 'package:peddi_tont_app/redux/actions.dart';
 import 'package:peddi_tont_app/ui/screens/order/order_app.dart';
+
+const String featuredCategory = "DESTAQUES";
 
 AppState appStateReducers(AppState state, dynamic action) {
   if (action is LoadRestaurantAction) {
@@ -52,6 +55,8 @@ AppState loadRestaurant(LoadRestaurantAction action, AppState state) {
 }
 
 AppState saveRestaurant(SaveRestaurantAction action, AppState state) {
+  //add a category to featured list of products
+  action.restaurant.categories.add(new Category(name: featuredCategory, isSelected: false));
   return new AppState(action.restaurant, state.order, state.featuredList);
 }
 
