@@ -33,8 +33,9 @@ class SaveFeaturedList {
 
 class SaveRestaurantAction {
   final Restaurant restaurant;
+  final BuildContext context;
 
-  SaveRestaurantAction(this.restaurant);
+  SaveRestaurantAction(this.restaurant,{this.context});
 }
 
 class AskOrderAction {

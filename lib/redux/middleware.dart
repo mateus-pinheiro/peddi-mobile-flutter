@@ -83,7 +83,7 @@ void sendOrderToApi(Store<AppState> store, AskOrderAction action) {
 
 void loadRestaurant(Store<AppState> store, LoadRestaurantAction action) {
   API().getRestaurant().then((restaurant) {
-    store.dispatch(new SaveRestaurantAction(restaurant));
+    store.dispatch(new SaveRestaurantAction(restaurant, context: action.context));
     store.dispatch(new OpenOrderAction(
         snackBarCompleterToOpening(
             action.context, "", "Erro na abertura de mesa",

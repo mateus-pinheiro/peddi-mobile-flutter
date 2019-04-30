@@ -46,6 +46,7 @@ class OpeningFormState extends State<OpeningForm> {
   int qtyConsumer;
   TextEditingController _controllerTable = new TextEditingController();
   TextEditingController _controllerConsumers = new TextEditingController();
+
   @override
   void initState() {
     _loadingInProgress = true;
@@ -123,14 +124,7 @@ class OpeningFormState extends State<OpeningForm> {
           padding: const EdgeInsets.only(top: 8.0),
           child: new Container(
               constraints: BoxConstraints.expand(width: 280.0, height: 80.0),
-              decoration: BoxDecoration(
-                  color: Colors.transparent,
-                  border: Border.all(
-                      color: AppColors.peddi_black,
-                      width: 3.0,
-                      style: BorderStyle.solid),
-                  borderRadius: BorderRadius.circular(10.0)),
-              child: MaterialButton(
+              child: RaisedButton(
                 color: AppColors.fitfood1,
                 onPressed: () {
                   if (tableNumber != null && qtyConsumer != null) {
@@ -146,8 +140,8 @@ class OpeningFormState extends State<OpeningForm> {
                         });
                   }
                 },
-                height: 60.0,
-                textTheme: ButtonTextTheme.primary,
+                shape: new RoundedRectangleBorder(
+                    borderRadius: new BorderRadius.circular(15.0)),
                 child: new Text(
                   'ABRIR MESA',
                   style: FontStyles.style2,
@@ -158,7 +152,7 @@ class OpeningFormState extends State<OpeningForm> {
     );
   }
 
-  cleanFields(){
+  cleanFields() {
     tableNumber = null;
     qtyConsumer = null;
     _controllerTable.clear();

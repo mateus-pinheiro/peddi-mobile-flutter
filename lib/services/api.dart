@@ -13,7 +13,7 @@ import 'package:peddi_tont_app/models/restaurant.dart';
 
 class API {
 // RASPI
-  static const String _apiUrl = 'http://192.168.0.23:8000/api';
+  static const String _apiUrl = 'http://192.168.15.15:8000/api';
 
 // CASA
 //  static const String _apiUrl = 'http://192.168.15.15:8000/api';

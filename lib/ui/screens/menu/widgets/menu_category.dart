@@ -17,22 +17,43 @@ import 'package:peddi_tont_app/ui/screens/product/product.dart';
 const double _ITEM_HEIGHT = 70.0;
 const String featuredCategory = "DESTAQUES";
 
-class MenuCategory extends StatefulWidget {
-  MenuCategory(this._selectedCategory, this.storeCategories);
+// ignore: must_be_immutable
+class MenuCategoryRoute extends StatelessWidget {
+  MenuCategoryRoute({this.selectedCategory, this.fromInactivityTimer});
 
-  final List<Category> storeCategories;
-  final Category _selectedCategory;
+  final Category selectedCategory;
+  final bool fromInactivityTimer;
 
   @override
-  _MenuCategoryState createState() =>
-      _MenuCategoryState(storeCategories, _selectedCategory);
+  Widget build(BuildContext context) {
+    return StoreConnector<AppState, List<Category>>(
+        converter: (store) => store.state.restaurant.categories,
+        builder: (context, categories) => MenuCategory(categories,
+            selectedCategory: selectedCategory,
+            fromInactivityTimer: fromInactivityTimer));
+  }
+}
+
+class MenuCategory extends StatefulWidget {
+  MenuCategory(this.storeCategories,
+      {this.selectedCategory, this.fromInactivityTimer});
+
+  final List<Category> storeCategories;
+  final Category selectedCategory;
+  final bool fromInactivityTimer;
+
+  @override
+  _MenuCategoryState createState() => _MenuCategoryState(
+      storeCategories, selectedCategory, fromInactivityTimer);
 }
 
 class _MenuCategoryState extends State<MenuCategory>
     with SingleTickerProviderStateMixin {
-  _MenuCategoryState(this.storeCategories, this._selectedCategory);
+  _MenuCategoryState(
+      this.storeCategories, this._selectedCategory, this.fromInactivityTimer);
 
   final List<Category> storeCategories;
+  final bool fromInactivityTimer;
   Category _selectedCategory;
   SubCategory _selectedSubCategory;
   ScrollController _scrollController;
@@ -59,6 +80,9 @@ class _MenuCategoryState extends State<MenuCategory>
 //        parent: swipeAnimationController, curve: Curves.fastOutSlowIn));
 
     _scrollController = new ScrollController();
+
+    if (_selectedCategory == null) _selectedCategory = storeCategories.last;
+
     _selectedCategory = _selectedCategory;
 //    storeCategories.where((category) => category == _selectedCategory ? category.isSelected = true : null);
 //    _selectedSubCategory = _selectedCategory.subcategories[0];
@@ -146,6 +170,9 @@ class _MenuCategoryState extends State<MenuCategory>
 //        break;
 //      }
 //    }
+    if (fromInactivityTimer)
+      Timer(Duration(milliseconds: 1000), () => _scrollController.jumpTo(_scrollController.position.maxScrollExtent));
+
 
     if (_selectedCategory.name == featuredCategory)
       return categoryToShowFeatured();
@@ -159,6 +186,7 @@ class _MenuCategoryState extends State<MenuCategory>
       itemCount: categories.length,
       itemBuilder: (context, position) => categoryItem(categories[position]),
       scrollDirection: Axis.horizontal,
+
     );
   }
 

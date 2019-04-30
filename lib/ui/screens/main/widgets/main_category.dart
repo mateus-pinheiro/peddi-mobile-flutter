@@ -85,8 +85,10 @@ class MainCategoryRouteState extends State<MainCategoryRoute> {
             Navigator.push(
                 context,
                 new MaterialPageRoute(
-                    builder: (context) =>
-                        new MenuApp(category, appState.restaurant.categories)));
+                    builder: (context) => new MenuApp(
+                          selectedCategory: category,
+                          fromInactivityTimer: false,
+                        )));
           },
           child: new Container(
             margin: new EdgeInsets.all(5.0),

@@ -8,9 +8,10 @@ import 'package:peddi_tont_app/themes/font_styles.dart';
 
 class MenuApp extends StatelessWidget {
   final Category selectedCategory;
-  final List<Category> storeCategories;
+  final bool fromInactivityTimer;
 
-  MenuApp(this.selectedCategory, this.storeCategories);
+  MenuApp(
+  {this.selectedCategory, this.fromInactivityTimer});
 
   @override
   Widget build(BuildContext context) {
@@ -38,8 +39,9 @@ class MenuApp extends StatelessWidget {
                     children: <Widget>[
                       Expanded(
                         child: Container(
-                          child: MenuCategory(
-                              selectedCategory, storeCategories),
+                          child: MenuCategoryRoute(
+                              selectedCategory: selectedCategory,
+                              fromInactivityTimer: fromInactivityTimer),
                         ),
                       ),
 
