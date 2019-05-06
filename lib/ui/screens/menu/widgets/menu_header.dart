@@ -187,33 +187,34 @@ class MenuHeader extends StatelessWidget {
                           ],
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 25.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: <Widget>[
-                            MaterialButton(
-                              onPressed: () {
-                                showHelp(context);
-                              },
-                              splashColor: Color(0),
-                              height: 30.0,
-                              minWidth: 30.0,
-                              child: Icon(
-                                Icons.help_outline,
-                                size: 55.0,
-                                color: AppColors.gray2,
-                              ),
-                            ),
-
-//                          Text(
-//                            'Ajuda',
-//                            style: FontStyles.style2,
-//                          ),
-                          ],
-                        ),
-                      ),
+//                      help icon
+//                      Padding(
+//                        padding: const EdgeInsets.only(bottom: 25.0),
+//                        child: Column(
+//                          crossAxisAlignment: CrossAxisAlignment.center,
+//                          mainAxisAlignment: MainAxisAlignment.end,
+//                          children: <Widget>[
+//                            MaterialButton(
+//                              onPressed: () {
+//                                showHelp(context);
+//                              },
+//                              splashColor: Color(0),
+//                              height: 30.0,
+//                              minWidth: 30.0,
+//                              child: Icon(
+//                                Icons.help_outline,
+//                                size: 55.0,
+//                                color: AppColors.gray2,
+//                              ),
+//                            ),
+//
+////                          Text(
+////                            'Ajuda',
+////                            style: FontStyles.style2,
+////                          ),
+//                          ],
+//                        ),
+//                      ),
                       Padding(
                         padding: const EdgeInsets.only(bottom: 25.0),
                         child: Column(

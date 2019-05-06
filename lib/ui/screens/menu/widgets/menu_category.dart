@@ -5,17 +5,18 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:peddi_tont_app/models/app_state.dart';
 import 'package:peddi_tont_app/models/category.dart';
 import 'package:peddi_tont_app/models/featured_list.dart';
-import 'package:peddi_tont_app/models/product.dart';
 import 'package:peddi_tont_app/models/sub_category.dart';
 import 'package:peddi_tont_app/themes/app_colors.dart';
 import 'package:peddi_tont_app/themes/font_styles.dart';
 import 'package:peddi_tont_app/ui/dialogs/advertising_widget.dart';
 import 'package:peddi_tont_app/ui/screens/menu/widgets/menu_product.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:peddi_tont_app/ui/screens/product/product.dart';
+import 'package:redux/redux.dart';
 
 const double _ITEM_HEIGHT = 70.0;
-const String featuredCategory = "DESTAQUES";
+const String _featuredCategory = "DESTAQUES";
+const int TIME_TO_SCROLL = 1000;
+const int ITEM_SIZE = 200;
 
 // ignore: must_be_immutable
 class MenuCategoryRoute extends StatelessWidget {
@@ -53,7 +54,7 @@ class _MenuCategoryState extends State<MenuCategory>
       this.storeCategories, this._selectedCategory, this.fromInactivityTimer);
 
   final List<Category> storeCategories;
-  final bool fromInactivityTimer;
+  bool fromInactivityTimer;
   Category _selectedCategory;
   SubCategory _selectedSubCategory;
   ScrollController _scrollController;
@@ -65,6 +66,8 @@ class _MenuCategoryState extends State<MenuCategory>
   Color swipeColor;
   double swipeSize;
   IconData swipeIcon;
+  Widget widgetOfProducts;
+  bool jumpTo;
 
   @override
   void initState() {
@@ -92,6 +95,8 @@ class _MenuCategoryState extends State<MenuCategory>
         ? category.isSelected = true
         : category.isSelected = false);
 
+    jumpTo = true;
+
 //    swipeAnimationController.forward();
   }
 
@@ -117,14 +122,14 @@ class _MenuCategoryState extends State<MenuCategory>
 //        );
 //  }
 
-  forAnimation() {
-    for (int i = 0; i > 3; i++) {
-      myOpacity = 1;
-      setState(() {});
-      Timer(
-          Duration(milliseconds: 1500), () => {myOpacity = 0, setState(() {})});
-    }
-  }
+//  forAnimation() {
+//    for (int i = 0; i > 3; i++) {
+//      myOpacity = 1;
+//      setState(() {});
+//      Timer(
+//          Duration(milliseconds: 1500), () => {myOpacity = 0, setState(() {})});
+//    }
+//  }
 
   toFalse(Category category, Category _selectedCategory) {
     category.isSelected = false;
@@ -135,8 +140,15 @@ class _MenuCategoryState extends State<MenuCategory>
   void _selectCategory(Category category) {
     setState(() {
       _selectedCategory = category;
+      if (_selectedCategory.name == _featuredCategory)
+        setState(() {
+          fromInactivityTimer = true;
+        });
+      else
+        setState(() {
+          fromInactivityTimer = false;
+        });
 //      _selectedSubCategory = _selectedCategory.subcategories[0];
-      build(context);
     });
   }
 
@@ -162,6 +174,31 @@ class _MenuCategoryState extends State<MenuCategory>
   @override
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
+
+    if (fromInactivityTimer && _selectedCategory.name == _featuredCategory) {
+      if (jumpTo) {
+        Timer(
+            Duration(milliseconds: TIME_TO_SCROLL),
+            () => _scrollController.animateTo(
+                _scrollController.position.maxScrollExtent,
+                curve: Curves.linear,
+                duration: Duration(milliseconds: 500)));
+      }
+      widgetOfProducts = categoryToShowFeatured();
+    } else {
+      if (jumpTo) {
+        Timer(
+            Duration(milliseconds: TIME_TO_SCROLL),
+            () => _scrollController.jumpTo(
+                storeCategories.indexOf(_selectedCategory).toDouble() *
+                    ITEM_SIZE));
+      }
+      widgetOfProducts = categoryToShowProducts();
+    }
+
+    // only when on init screen, it is true
+    jumpTo = false;
+    return screen();
 //     scroll to first selected item
 //    for (int i = 0; i < storeCategories.length; i++) {
 //      if (storeCategories.elementAt(i).isSelected) {
@@ -170,27 +207,18 @@ class _MenuCategoryState extends State<MenuCategory>
 //        break;
 //      }
 //    }
-    if (fromInactivityTimer)
-      Timer(Duration(milliseconds: 1000), () => _scrollController.jumpTo(_scrollController.position.maxScrollExtent));
+//    if (fromInactivityTimer)
+//      Timer(Duration(milliseconds: TIME_TO_SCROLL), () => _scrollController.jumpTo(_scrollController.position.maxScrollExtent));
+//    else
+//      Timer(Duration(milliseconds: TIME_TO_SCROLL), () => _scrollController.jumpTo(storeCategories.indexOf(_selectedCategory).toDouble()));
 
-
-    if (_selectedCategory.name == featuredCategory)
-      return categoryToShowFeatured();
-    else
-      return categoryToShowProducts();
+//    if (_selectedCategory.name == _featuredCategory)
+//      return categoryToShowFeatured();
+//    else
+//      return categoryToShowProducts();
   }
 
-  Widget buildCategoryList(List<Category> categories) {
-    return new ListView.builder(
-      controller: _scrollController,
-      itemCount: categories.length,
-      itemBuilder: (context, position) => categoryItem(categories[position]),
-      scrollDirection: Axis.horizontal,
-
-    );
-  }
-
-  Widget categoryToShowProducts() {
+  Widget screen() {
     return new Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -212,102 +240,94 @@ class _MenuCategoryState extends State<MenuCategory>
             ],
           ),
         ),
-        new Expanded(
-            child: new Container(
-                child: new MenuProductRoute(_selectedCategory.products)))
+        widgetOfProducts
       ],
     );
   }
 
+  Widget buildCategoryList(List<Category> categories) {
+    return new ListView.builder(
+      controller: _scrollController,
+      itemCount: categories.length,
+      itemBuilder: (context, position) {
+        return categoryItem(categories[position]);
+      },
+      scrollDirection: Axis.horizontal,
+    );
+  }
+
+  Widget categoryToShowProducts() {
+    return new StoreConnector<AppState, FeaturedList>(
+        converter: (store) => store.state.featuredList,
+        builder: (converter, featuredList) {
+          var productList;
+
+          if (_selectedCategory.name == _featuredCategory)
+            productList = featuredList.products;
+          else
+            productList = _selectedCategory.products;
+
+          return Expanded(
+              child: new Container(child: new MenuProductRoute(productList)));
+        });
+  }
+
   Widget categoryToShowFeatured() {
     int _currentProduct = 0;
-    double featuredCategoryIndex = storeCategories
-        .lastIndexWhere((category) => category.name == featuredCategory)
-        .toDouble();
+//    double featuredCategoryIndex = storeCategories
+//        .lastIndexWhere((category) => category.name == _featuredCategory)
+//        .toDouble();
     SwiperController controller = new SwiperController();
 
-    return InkWell(
+    return Expanded(
+        child: new InkWell(
       onTap: () {
         setState(() {
           controller.stopAutoplay();
         });
       },
-      child: new Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          new Container(
-            height: 100.0,
-            color: AppColors.fitfood,
-            child: Stack(
-              children: <Widget>[
-                buildCategoryList(storeCategories),
-//                Align(
-//                  alignment: Alignment.centerRight,
-//                  child: Icon(
-//                    Icons.arrow_forward_ios,
-//                    size: 60,
-//                    color: AppColors.peddi_white,
-//                  ),
-//                )
-              ],
-            ),
-          ),
-          new Expanded(
-            child: new StoreConnector<AppState, FeaturedList>(
-                converter: (store) => store.state.featuredList,
-                builder: (context, featuredList) {
-                  if (featuredList.products == null ||
-                      featuredList.products.length < 1) {
-                    return Container(
-                      width: MediaQuery.of(context).size.width,
-                      color: Colors.black,
-                      child: Text(
-                        'Não temos nenhum destaque no momento.',
-                        style: FontStyles.advertisingProductTitle,
-                      ),
-                    );
-                  } else {
-                    return new Swiper(
-                      itemCount: featuredList.products.length,
-                      itemBuilder: (context, position) => new AdvertisingWidget(
-                            product: featuredList.products[position],
-                          ),
-                      scrollDirection: Axis.horizontal,
-                      autoplayDisableOnInteraction: true,
-                      autoplay: true,
-                      autoplayDelay: 5000,
-                      duration: 1500,
-                      containerHeight: 100,
-                      itemHeight: 100,
-                      controller: controller,
+      child: new StoreConnector<AppState, FeaturedList>(
+          converter: (store) => store.state.featuredList,
+          builder: (context, featuredList) {
+            if (featuredList.products == null ||
+                featuredList.products.length < 1) {
+              return Container(
+                width: MediaQuery.of(context).size.width,
+                color: Colors.black,
+                child: Text(
+                  'Não temos nenhum destaque no momento.',
+                  style: FontStyles.advertisingProductTitle,
+                ),
+              );
+            } else {
+              return new Swiper(
+                itemCount: featuredList.products.length,
+                itemBuilder: (context, position) => new AdvertisingWidget(
+                      product: featuredList.products[position],
+                    ),
+                scrollDirection: Axis.horizontal,
+                autoplayDisableOnInteraction: true,
+                autoplay: true,
+                autoplayDelay: 5000,
+                duration: 1500,
+                containerHeight: 100,
+                itemHeight: 100,
+                controller: controller,
 //                loop: true,
-                      onIndexChanged: (index) {
-                        setState(() {
-                          _currentProduct = index;
-                        });
-                      },
-                      onTap: (teste) {
-                        setState(() {
-                          controller.stopAutoplay();
-                        });
-                      },
-                    );
-                  }
-                }),
-          )
-        ],
-      ),
-    );
-  }
-
-  Widget buildSubCategoryList(List<SubCategory> subCategories) {
-    return new ListView.builder(
-      itemCount: subCategories.length,
-      itemBuilder: (context, position) =>
-          subCategoryItem(subCategories[position]),
-      scrollDirection: Axis.horizontal,
-    );
+                onIndexChanged: (index) {
+                  setState(() {
+                    _currentProduct = index;
+                  });
+                },
+                onTap: (teste) {
+                  setState(() {
+                    controller.stopAutoplay();
+                  });
+                },
+              );
+            }
+          }),
+    ));
   }
 
   Widget categoryItem(Category category) {
@@ -352,6 +372,15 @@ class _MenuCategoryState extends State<MenuCategory>
         height: 60.0,
         width: 180.0,
       ),
+    );
+  }
+
+  Widget buildSubCategoryList(List<SubCategory> subCategories) {
+    return new ListView.builder(
+      itemCount: subCategories.length,
+      itemBuilder: (context, position) =>
+          subCategoryItem(subCategories[position]),
+      scrollDirection: Axis.horizontal,
     );
   }
 }

@@ -114,6 +114,12 @@ class FontStyles {
       fontStyle: FontStyle.normal,
       fontSize: 48.0,
       fontWeight: FontWeight.bold,
+      shadows: [
+        const BoxShadow(
+          color: Colors.black,
+          blurRadius: 10.0,
+        )
+      ],
       color: AppColors.peddi_white);
 
   static const advertisingProductPrice = TextStyle(
@@ -184,7 +190,7 @@ class FontStyles {
       fontFamily: "CircularStd",
       fontStyle: FontStyle.normal,
       fontWeight: FontWeight.bold,
-      fontSize: 38.0,
+      fontSize: 42.0,
       color: Colors.black);
   static const style1 = TextStyle(
       //fontWeight: FontWeight.w900,
@@ -221,6 +227,12 @@ class FontStyles {
 //      fontWeight: FontWeight.bold,
     fontSize: 34.0,
     color: Colors.white,
+    shadows: [
+      const BoxShadow(
+        color: Colors.black,
+        blurRadius: 10.0,
+      )
+    ],
   );
   static const style6 = TextStyle(
       //fontWeight: FontWeight.w900,

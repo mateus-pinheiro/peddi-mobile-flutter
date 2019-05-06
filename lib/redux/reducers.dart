@@ -43,26 +43,32 @@ AppState appStateReducers(AppState state, dynamic action) {
 }
 
 AppState saveFeaturedList(AppState state, SaveFeaturedList action) {
-  return new AppState(state.restaurant, state.order, action.featuredList, context: state.context);
+  return new AppState(state.restaurant, state.order, action.featuredList,
+      context: state.context, timerActive: state.timerActive);
 }
 
 AppState getFeaturedList(AppState state) {
-  return new AppState(state.restaurant, state.order, state.featuredList, context: state.context);
+  return new AppState(state.restaurant, state.order, state.featuredList,
+      context: state.context, timerActive: state.timerActive);
 }
 
 AppState loadRestaurant(LoadRestaurantAction action, AppState state) {
-  return new AppState(state.restaurant, null, state.featuredList, context: action.context);
+  return new AppState(state.restaurant, null, state.featuredList,
+      context: action.context, timerActive: state.timerActive);
 }
 
 AppState saveRestaurant(SaveRestaurantAction action, AppState state) {
   //add a category to featured list of products
-  action.restaurant.categories.add(new Category(name: featuredCategory, isSelected: false));
-  return new AppState(action.restaurant, state.order, state.featuredList, context: action.context);
+  action.restaurant.categories
+      .add(new Category(name: featuredCategory, isSelected: false, image: "/featured/coffee-featured.jpg"));
+  return new AppState(action.restaurant, state.order, state.featuredList,
+      context: action.context, timerActive: state.timerActive);
 }
 
 AppState askOrder(AskOrderAction action, AppState state) {
   return new AppState(
-      state.restaurant, state.order.copyWith(status: 2), state.featuredList, context: state.context);
+      state.restaurant, state.order.copyWith(status: 2), state.featuredList,
+      context: state.context, timerActive: state.timerActive);
 }
 
 //AppState orderSent(OrderSentSuccessfully action, AppState state) {
@@ -84,7 +90,9 @@ AppState addConsumerCode(AddQrTicketCode action, AppState state) {
   return new AppState(
       state.restaurant,
       state.order.copyWith(consumers: addConsumerToOrder(action)),
-      state.featuredList, context: state.context);
+      state.featuredList,
+      context: state.context,
+      timerActive: state.timerActive);
 }
 
 AppState newItemList(NewItemListAction action, AppState state) {
@@ -106,7 +114,9 @@ AppState newItemList(NewItemListAction action, AppState state) {
       state.order.copyWith(
           consumers: consumerList(state.order.consumers),
           amountPrice: amountPrice),
-      state.featuredList, context: state.context);
+      state.featuredList,
+      context: state.context,
+      timerActive: state.timerActive);
 }
 
 AppState addQrResposibleCode(AddQrResposibleCode action, AppState state) {
@@ -141,7 +151,9 @@ AppState addQrResposibleCode(AddQrResposibleCode action, AppState state) {
           id: orderId,
           restaurantCloudId: state.restaurant.restaurantCloudId,
           waiter: waiter),
-      state.featuredList, context: state.context);
+      state.featuredList,
+      context: state.context,
+      timerActive: state.timerActive);
 }
 
 AppState openOrder(OpenOrderAction action, AppState state) {
@@ -157,11 +169,14 @@ AppState openOrder(OpenOrderAction action, AppState state) {
           createdAt: DateTime.now(),
           updatedAt: null,
           consumers: new List<Consumer>()),
-      state.featuredList, context: action.context);
+      state.featuredList,
+      context: action.context,
+      timerActive: true);
 }
 
 AppState endOrder(EndOrderAction action, AppState state) {
-  return new AppState(state.restaurant, new Order(), state.featuredList, context: state.context);
+  return new AppState(state.restaurant, new Order(), state.featuredList,
+      context: state.context, timerActive: false);
 }
 
 AppState addItem(AddItemAction action, AppState state) {
@@ -190,7 +205,8 @@ AppState addItem(AddItemAction action, AppState state) {
   }
 
   return new AppState(
-      state.restaurant, addItemToOrder(action), state.featuredList, context: action.context);
+      state.restaurant, addItemToOrder(action), state.featuredList,
+      context: state.context, timerActive: state.timerActive);
 }
 
 AppState removeItem(RemoveItemAction action, AppState state) {
@@ -208,5 +224,6 @@ AppState removeItem(RemoveItemAction action, AppState state) {
   }
 
   return new AppState(
-      state.restaurant, removeItemFromOrder(action), state.featuredList, context: state.context);
+      state.restaurant, removeItemFromOrder(action), state.featuredList,
+      context: state.context, timerActive: state.timerActive);
 }

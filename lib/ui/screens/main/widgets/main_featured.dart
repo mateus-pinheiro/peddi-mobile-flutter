@@ -195,6 +195,8 @@ import 'package:peddi_tont_app/ui/screens/menu/menu_app.dart';
 import 'package:peddi_tont_app/ui/screens/product/product.dart';
 import 'package:peddi_tont_app/util/currency_converter.dart';
 
+const int TIME_SCROLL = 2000;
+
 class MainFeaturedRoute extends StatefulWidget {
   @override
   _MainFeaturedRouteState createState() => _MainFeaturedRouteState();
@@ -202,14 +204,14 @@ class MainFeaturedRoute extends StatefulWidget {
 
 class _MainFeaturedRouteState extends State<MainFeaturedRoute> {
   bool _loadingInProgress;
-
-
+  ScrollController _scrollController;
 
   @override
   void initState() {
     super.initState();
     _loadingInProgress = true;
     _loadingInProgressFalse();
+    _scrollController = new ScrollController();
   }
 
   Future _loadingInProgressFalse() async {
@@ -225,10 +227,18 @@ class _MainFeaturedRouteState extends State<MainFeaturedRoute> {
 
   @override
   Widget build(BuildContext context) {
+    Timer(
+        Duration(milliseconds: TIME_SCROLL),
+        () => _scrollController.animateTo(
+            _scrollController.position.maxScrollExtent,
+            curve: Curves.linear,
+            duration: Duration(seconds: 45)));
+
     return new StoreConnector<AppState, AppState>(
         converter: (store) => store.state,
         builder: (context, appState) {
-          if (appState.featuredList.products == null || appState.featuredList.products.length < 1) {
+          if (appState.featuredList.products == null ||
+              appState.featuredList.products.length < 1) {
             return Container(
               width: MediaQuery.of(context).size.width / 1.1,
               color: Colors.black,
@@ -255,85 +265,89 @@ class _MainFeaturedRouteState extends State<MainFeaturedRoute> {
     final double itemWidth = size.width / 2;
 
     return new ListView.builder(
-      controller: new ScrollController(keepScrollOffset: false),
+      controller: _scrollController,
       shrinkWrap: true,
       scrollDirection: Axis.horizontal,
       itemCount: appState.featuredList.products.length,
-      itemBuilder: (context, position) => productItem(appState.featuredList.products[position]),
+      itemBuilder: (context, position) =>
+          productItem(appState.featuredList.products[position]),
     );
   }
 
 //
   Widget productItem(Product product) {
     return new InkWell(
-            onTap: () {
-              showProduct(context, product);
-            },
-            child: new Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  new Padding(
-                    padding: const EdgeInsets.only(top: 5.0, left: 30.0, bottom: 5),
-                    child: new Container(
-                      width: 390.0,
-                      height: 150.0,
-                      decoration: new BoxDecoration(
-                          color: Colors.black,
-                          borderRadius: BorderRadius.circular(8),
-                          border: new Border.all(
-                              color: AppColors.peddi_white, width: 1.0),
-                          image: new DecorationImage(
-                            image: new NetworkImage(
-                                getCategoryImage(product.image)),
-                            fit: BoxFit.cover,
-                          )),
-                      child: new Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: <Widget>[
-                            new Padding(
-                              padding: const EdgeInsets.only(
+        onTap: () {
+          showProduct(context, product);
+        },
+        child: new Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              new Padding(
+                padding: const EdgeInsets.only(top: 5.0, left: 30.0, bottom: 5),
+                child: new Container(
+                  width: 390.0,
+                  height: 150.0,
+                  decoration: new BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadius.circular(8),
+                      border: new Border.all(
+                          color: AppColors.peddi_white, width: 1.0),
+                      image: new DecorationImage(
+                        image:
+                            new NetworkImage(getCategoryImage(product.image)),
+                        fit: BoxFit.cover,
+                      )),
+                  child: new Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: <Widget>[
+                        new Padding(
+                          padding: const EdgeInsets.only(
+                            left: 20.0,
+                            top: 37.0,
+                            right: 29.0,
+                          ),
+                          child: new Text(
+                            product.name,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontFamily: 'CircularStd',
+                              fontSize: 24.0,
+                              fontWeight: FontWeight.bold,
+                              shadows: [
+                                const BoxShadow(
+                                  color: Colors.black,
+                                  blurRadius: 10.0,
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                        new Expanded(
+                          child: new Padding(
+                            padding: const EdgeInsets.only(
                                 left: 20.0,
-                                top: 37.0,
-                                right: 29.0,
+                                top: 10.0,
+                                right: 220.0,
+                                bottom: 21.0),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(8.0),
                               ),
-                              child: new Text(
-                                product.name,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontFamily: 'CircularStd',
-                                  fontSize: 24.0,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                            new Expanded(
-                              child: new Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 20.0,
-                                    top: 10.0,
-                                    right: 220.0,
-                                    bottom: 21.0),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(8.0),
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      CurrencyConverter.toBrazilianReal(
-                                          product.price) + " cada",
-                                      style: FontStyles.featuredProductPrice
-                                    ),
-                                  ),
-                                ),
+                              child: Center(
+                                child: Text(
+                                    CurrencyConverter.toBrazilianReal(
+                                            product.price) +
+                                        " cada",
+                                    style: FontStyles.featuredProductPrice),
                               ),
                             ),
-                          ]),
-                    ),
-                  )
-                ]));
+                          ),
+                        ),
+                      ]),
+                ),
+              )
+            ]));
   }
-
-
-
 }

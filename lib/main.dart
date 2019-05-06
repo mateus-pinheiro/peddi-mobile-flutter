@@ -30,11 +30,6 @@ class TontAppRootState extends State<TontAppRoot> {
   final store = new Store(appStateReducers,
       initialState: AppState.empty, middleware: [appMiddleware]);
 
-  void _initializeTimer() {
-    _timer =
-        Timer.periodic(const Duration(seconds: 40), (_) => _goToAdvertising());
-  }
-
   @override
   void initState() {
     super.initState();
@@ -52,11 +47,24 @@ class TontAppRootState extends State<TontAppRoot> {
 
   // You'll probably want to wrap this function in a debounce
   void _handleUserInteraction([_]) {
-//    if (!_timer.isActive) {
-//      // This means the user has been logged out
+//    if (!store.state.timerActive) {
+//      // This means the login has not been made
 //      return;
 //    }
 
+    _restartTimer();
+  }
+
+  void _initializeTimer() {
+    _timer = Timer.periodic(const Duration(seconds: 90), (_) {
+      if (store.state.timerActive)
+        _goToAdvertising();
+      else
+        _restartTimer();
+    });
+  }
+
+  void _restartTimer() {
     _timer.cancel();
     _initializeTimer();
   }
@@ -86,9 +94,9 @@ class TontAppRootState extends State<TontAppRoot> {
 
   _goToAdvertising() {
     Navigator.push(
-      store.state.context,
-      MaterialPageRoute(builder: (context) => MenuApp(fromInactivityTimer: true))
-    );
+        store.state.context,
+        MaterialPageRoute(
+            builder: (context) => MenuApp(fromInactivityTimer: true)));
     _timer.cancel();
   }
 }
