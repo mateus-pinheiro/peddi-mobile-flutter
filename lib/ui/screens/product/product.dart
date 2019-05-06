@@ -189,7 +189,7 @@ class _ProductRouteState extends State<ProductRoute>
 //          decoration: new BoxDecoration(gradient: backgroundGradient),
               child: new ProductRecipe(item, widget.product),
               right: 120.0,
-              bottom: 5.0),
+              bottom: 20.0),
           new Positioned(
             right: 100.0,
             child: new Stack(

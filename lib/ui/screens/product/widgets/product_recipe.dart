@@ -89,7 +89,7 @@ class _ProductRecipeWidgetState extends State<ProductRecipeWidget> {
         new Column(
           children: <Widget>[
             new Padding(
-              padding: const EdgeInsets.only(top: 40.0),
+              padding: const EdgeInsets.only(top: 30.0),
               child: new Container(
                 decoration: BoxDecoration(
                     boxShadow: [
@@ -98,7 +98,7 @@ class _ProductRecipeWidgetState extends State<ProductRecipeWidget> {
                     borderRadius: BorderRadius.circular(20.0),
                     color: Colors.white),
                 width: 470.0,
-                height: 760.0,
+                height: 740.0,
                 child: new Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -144,12 +144,17 @@ class _ProductRecipeWidgetState extends State<ProductRecipeWidget> {
                     new Padding(
                       padding: const EdgeInsets.only(
                           left: 40.0, top: 10.0, right: 30.0),
-                      child: new Text(
-                          product.description == null
-                              ? ""
-                              : product.description,
-                          style: FontStyles.productDescriptionProduct,
-                          overflow: TextOverflow.fade),
+                      child: new Container(
+                        height: 100,
+                        child: new SingleChildScrollView(
+                          child: new Text(
+                              product.description == null
+                                  ? ""
+                                  : product.description,
+                              style: FontStyles.productDescriptionProduct,
+                              overflow: TextOverflow.fade),
+                        ),
+                      ),
                     ),
                     new Expanded(
                       child: new Padding(
