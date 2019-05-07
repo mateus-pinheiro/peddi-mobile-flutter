@@ -19,23 +19,22 @@ class AdvertisingWidget extends StatelessWidget {
     return new Stack(
       children: <Widget>[
         new Container(
-
-//          new CachedNetworkImage(
-//            placeholder: new Center(child: new CircularProgressIndicator()),
-//            imageUrl: getProductImage(product.image),
-//            fit: BoxFit.contain,
-//            fadeOutDuration: Duration(milliseconds: 50),
-//            errorWidget: new Container(
-//              decoration: new BoxDecoration(
-//                  color: Colors.white,
-//                  //                              border: Border.all(
-//                  //                                  color: AppColors.peddi_white, width: 1.0),
-//                  image: new DecorationImage(
-//                    image: new AssetImage('resources/images/fitfood-301.png'),
-//                    fit: BoxFit.contain,
-//                  )),
-//            ),
-//          ),
+          child: new CachedNetworkImage(
+            placeholder: new Center(child: new CircularProgressIndicator()),
+            imageUrl: getProductImage(product.image),
+            fit: BoxFit.contain,
+            fadeOutDuration: Duration(milliseconds: 50),
+            errorWidget: new Container(
+              decoration: new BoxDecoration(
+                  color: Colors.white,
+                  //                              border: Border.all(
+                  //                                  color: AppColors.peddi_white, width: 1.0),
+                  image: new DecorationImage(
+                    image: new AssetImage('resources/images/fitfood-301.png'),
+                    fit: BoxFit.scaleDown,
+                  )),
+            ),
+          ),
           width: MediaQuery.of(context).size.width,
           color: Colors.black,
         ),
@@ -90,6 +89,5 @@ class AdvertisingWidget extends StatelessWidget {
 }
 
 showProduct(BuildContext context, Product product) {
-  showDialog(
-      context: context, builder: (context) => new ProductRoute(product));
+  showDialog(context: context, builder: (context) => new ProductRoute(product));
 }

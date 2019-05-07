@@ -127,6 +127,12 @@ class FontStyles {
     fontStyle: FontStyle.normal,
     fontSize: 42.0,
     color: AppColors.peddi_white,
+    shadows: [
+      const BoxShadow(
+        color: Colors.black,
+        blurRadius: 10.0,
+      )
+    ]
   );
 
   static const advertisingTextButton = TextStyle(

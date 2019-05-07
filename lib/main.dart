@@ -56,7 +56,7 @@ class TontAppRootState extends State<TontAppRoot> {
   }
 
   void _initializeTimer() {
-    _timer = Timer.periodic(const Duration(seconds: 90), (_) {
+    _timer = Timer.periodic(const Duration(seconds: 30), (_) {
       if (store.state.timerActive)
         _goToAdvertising();
       else
