@@ -30,8 +30,8 @@ class API {
       // load json file from root bundle instead of DefaultAssetBundle so that context doesn't
       // have to be passed in.
       final String _restaurantString = await rootBundle.loadString('mock/restaurant.json');
-      final Map<String, dynamic> _restaurantJson = json.decode(_restaurantString);
-      return Restaurant.fromMap(_restaurantJson);
+      final Map<String, dynamic> _restaurantMap = json.decode(_restaurantString);
+      return Restaurant.fromMap(_restaurantMap);
     } on Exception catch (e) {
       return null;
     }
@@ -87,23 +87,14 @@ class API {
   }
 
   Future<ResponseFeaturedList> featured() async {
-    var response = await _client.get('$_apiUrl/featured/',
-        headers: {"Content-Type": "application/json"});
-
-//    List<Product> responseProducts = json.decode(response.body);
-//    Iterable l = json.decode(response.body);
-//    List<Product> responseProducts =
-//        l.map((model) => Product.fromMap(model)).toList();
-//
-//    ResponseFeaturedList responseFeaturedList =
-//        new ResponseFeaturedList(products: responseProducts);
-
-    ResponseFeaturedList responseFeaturedList = ResponseFeaturedList.fromMap(json.decode(response.body));
-
-    if (response.statusCode == 200) {
-      return responseFeaturedList;
+    try {
+      // load json file from root bundle instead of DefaultAssetBundle so that context doesn't
+      // have to be passed in.
+      final String _featuredString = await rootBundle.loadString('mock/featured.json');
+      final Map<String, dynamic> _featuredMap = json.decode(_featuredString);
+      return ResponseFeaturedList.fromMap(_featuredMap);
+    } on Exception catch (e) {
+      return null;
     }
-
-    return null;
   }
 }

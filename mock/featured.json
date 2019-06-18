@@ -1,0 +1,893 @@
+{
+    "bases": [
+        {
+            "product_cloud_id": 105,
+            "mgmt_id": "2620",
+            "name": "CAFE NESPRESSO LEGGERO",
+            "image": "/cafe-new/2620.jpg",
+            "description": null,
+            "price": 5.5,
+            "sides_limit": null,
+            "ingredients": [
+                {
+                    "cloud_id": 32,
+                    "mgmt_id": "2665",
+                    "name": "MEL SACHE",
+                    "price": 1.1,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 46,
+                    "mgmt_id": "3",
+                    "name": "ADOÇANTE",
+                    "price": 0,
+                    "type": 0
+                },
+                {
+                    "cloud_id": 52,
+                    "mgmt_id": "8",
+                    "name": "AÇÚCAR",
+                    "price": 0,
+                    "type": 0
+                },
+                {
+                    "cloud_id": 34,
+                    "mgmt_id": "2787",
+                    "name": "EMBALAGEM COPO VIAGEM",
+                    "price": 1,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 9,
+                    "mgmt_id": "2511",
+                    "name": "LEITE COPO EXTRA",
+                    "price": 2.2,
+                    "type": 1
+                }
+            ]
+        },
+        {
+            "product_cloud_id": 104,
+            "mgmt_id": "2618",
+            "name": "CAFE NESPRESSO CARAMELO",
+            "image": "/cafe-new/2618.jpg",
+            "description": null,
+            "price": 5.5,
+            "sides_limit": null,
+            "ingredients": [
+                {
+                    "cloud_id": 32,
+                    "mgmt_id": "2665",
+                    "name": "MEL SACHE",
+                    "price": 1.1,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 46,
+                    "mgmt_id": "3",
+                    "name": "ADOÇANTE",
+                    "price": 0,
+                    "type": 0
+                },
+                {
+                    "cloud_id": 52,
+                    "mgmt_id": "8",
+                    "name": "AÇÚCAR",
+                    "price": 0,
+                    "type": 0
+                },
+                {
+                    "cloud_id": 34,
+                    "mgmt_id": "2787",
+                    "name": "EMBALAGEM COPO VIAGEM",
+                    "price": 1,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 9,
+                    "mgmt_id": "2511",
+                    "name": "LEITE COPO EXTRA",
+                    "price": 2.2,
+                    "type": 1
+                }
+            ]
+        },
+        {
+            "product_cloud_id": 107,
+            "mgmt_id": "2621",
+            "name": "CAFE NESPRESSO RISTRETO",
+            "image": "/cafe-new/2621.jpg",
+            "description": null,
+            "price": 5.5,
+            "sides_limit": null,
+            "ingredients": [
+                {
+                    "cloud_id": 32,
+                    "mgmt_id": "2665",
+                    "name": "MEL SACHE",
+                    "price": 1.1,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 46,
+                    "mgmt_id": "3",
+                    "name": "ADOÇANTE",
+                    "price": 0,
+                    "type": 0
+                },
+                {
+                    "cloud_id": 52,
+                    "mgmt_id": "8",
+                    "name": "AÇÚCAR",
+                    "price": 0,
+                    "type": 0
+                },
+                {
+                    "cloud_id": 34,
+                    "mgmt_id": "2787",
+                    "name": "EMBALAGEM COPO VIAGEM",
+                    "price": 1,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 9,
+                    "mgmt_id": "2511",
+                    "name": "LEITE COPO EXTRA",
+                    "price": 2.2,
+                    "type": 1
+                }
+            ]
+        },
+        {
+            "product_cloud_id": 8,
+            "mgmt_id": "2470",
+            "name": "SUCO LARANJA",
+            "image": "/suco-1-frutas-new/2470.jpg",
+            "description": null,
+            "price": 9.9,
+            "sides_limit": null,
+            "ingredients": [
+                {
+                    "cloud_id": 1,
+                    "mgmt_id": "2504",
+                    "name": "ACAI 1 BOLA EXTRA",
+                    "price": 8,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 2,
+                    "mgmt_id": "2505",
+                    "name": "CIDREIRA EXTRA",
+                    "price": 1.1,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 3,
+                    "mgmt_id": "2506",
+                    "name": "GENGIBRE EXTRA",
+                    "price": 1.1,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 28,
+                    "mgmt_id": "2608",
+                    "name": "AVEIA",
+                    "price": 3.9,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 30,
+                    "mgmt_id": "2625",
+                    "name": "CHIA",
+                    "price": 2.9,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 31,
+                    "mgmt_id": "2645",
+                    "name": "FRUTA EXTRA",
+                    "price": 8.9,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 32,
+                    "mgmt_id": "2665",
+                    "name": "MEL SACHE",
+                    "price": 1.1,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 51,
+                    "mgmt_id": "9",
+                    "name": "AÇÚCAR",
+                    "price": 0,
+                    "type": 0
+                },
+                {
+                    "cloud_id": 57,
+                    "mgmt_id": "12",
+                    "name": "LARANJA RODELA",
+                    "price": 0,
+                    "type": 0
+                },
+                {
+                    "cloud_id": 53,
+                    "mgmt_id": "10",
+                    "name": "LIMÃO RODELA",
+                    "price": 0,
+                    "type": 0
+                },
+                {
+                    "cloud_id": 54,
+                    "mgmt_id": "11",
+                    "name": "ADOÇANTE",
+                    "price": 0,
+                    "type": 0
+                },
+                {
+                    "cloud_id": 58,
+                    "mgmt_id": "13",
+                    "name": "LIMÃO ESPREMIDO",
+                    "price": 0,
+                    "type": 0
+                },
+                {
+                    "cloud_id": 34,
+                    "mgmt_id": "2787",
+                    "name": "EMBALAGEM COPO VIAGEM",
+                    "price": 1,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 5,
+                    "mgmt_id": "2508",
+                    "name": "GRANOLA EXTRA",
+                    "price": 4,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 7,
+                    "mgmt_id": "2509",
+                    "name": "HORTELA EXTRA",
+                    "price": 1.1,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 9,
+                    "mgmt_id": "2511",
+                    "name": "LEITE COPO EXTRA",
+                    "price": 2.2,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 10,
+                    "mgmt_id": "2513",
+                    "name": "SACHE DE MEL EXTRA",
+                    "price": 1,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 11,
+                    "mgmt_id": "2514",
+                    "name": "LINHACA EXTRA",
+                    "price": 2.9,
+                    "type": 1
+                }
+            ]
+        },
+        {
+            "product_cloud_id": 194,
+            "mgmt_id": "2713",
+            "name": "FILE DE FRANGO GRELHADO",
+            "image": "/proteinas-new/file-de-frango",
+            "description": null,
+            "price": 29.9,
+            "sides_limit": 1,
+            "ingredients": [
+                {
+                    "cloud_id": 62,
+                    "mgmt_id": "2463",
+                    "name": "BATATA DOCE GRELHADO",
+                    "price": 9.9,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 63,
+                    "mgmt_id": "2521",
+                    "name": "ARROZ INTEGRAL",
+                    "price": 9.9,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 64,
+                    "mgmt_id": "2522",
+                    "name": "ARROZ BRANCO",
+                    "price": 9.9,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 65,
+                    "mgmt_id": "2523",
+                    "name": "LEGUMES AO VAPOR",
+                    "price": 9.9,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 66,
+                    "mgmt_id": "2524",
+                    "name": "LEGUMES SALTEADOS",
+                    "price": 9.9,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 67,
+                    "mgmt_id": "2525",
+                    "name": "MOLHO DE MOSTARDA",
+                    "price": 9.9,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 68,
+                    "mgmt_id": "2526",
+                    "name": "SALADINHA",
+                    "price": 9.9,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 69,
+                    "mgmt_id": "2547",
+                    "name": "TORRADA SIMPLES",
+                    "price": 6,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 70,
+                    "mgmt_id": "2644",
+                    "name": "FEIJAO",
+                    "price": 9.9,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 71,
+                    "mgmt_id": "2669",
+                    "name": "OVO DE CODORNA",
+                    "price": 8,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 72,
+                    "mgmt_id": "2797",
+                    "name": "ARROZ ESPECIAL",
+                    "price": 12,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 73,
+                    "mgmt_id": "2798",
+                    "name": "MIX DE COGUMELOS",
+                    "price": 16,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 74,
+                    "mgmt_id": "2799",
+                    "name": "QUINUA VERDE",
+                    "price": 15,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 75,
+                    "mgmt_id": "2805",
+                    "name": "ESPINAFRE",
+                    "price": 2,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 154,
+                    "mgmt_id": "2464",
+                    "name": "EMBALAGEM VIAGEM",
+                    "price": 1.5,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 12,
+                    "mgmt_id": "2527",
+                    "name": "ARROZ BRANCO",
+                    "price": 0.01,
+                    "type": 2
+                },
+                {
+                    "cloud_id": 13,
+                    "mgmt_id": "2528",
+                    "name": "ARROZ INTEGRAL",
+                    "price": 0.01,
+                    "type": 2
+                },
+                {
+                    "cloud_id": 14,
+                    "mgmt_id": "2529",
+                    "name": "BATATA DOCE GRELHADA",
+                    "price": 0.01,
+                    "type": 2
+                },
+                {
+                    "cloud_id": 15,
+                    "mgmt_id": "2530",
+                    "name": "FEIJAO",
+                    "price": 0.01,
+                    "type": 2
+                },
+                {
+                    "cloud_id": 16,
+                    "mgmt_id": "2531",
+                    "name": "LEGUMES AO VAPOR",
+                    "price": 0.01,
+                    "type": 2
+                },
+                {
+                    "cloud_id": 17,
+                    "mgmt_id": "2532",
+                    "name": "LEGUMES SALTEADOS",
+                    "price": 0.01,
+                    "type": 2
+                },
+                {
+                    "cloud_id": 18,
+                    "mgmt_id": "2533",
+                    "name": "PURE DE BATATA DOCE",
+                    "price": 0.01,
+                    "type": 2
+                },
+                {
+                    "cloud_id": 19,
+                    "mgmt_id": "2534",
+                    "name": "MOLHO DE MOSTARDA QUENTE",
+                    "price": 0.01,
+                    "type": 2
+                },
+                {
+                    "cloud_id": 20,
+                    "mgmt_id": "2535",
+                    "name": "SALADINHA",
+                    "price": 0.01,
+                    "type": 2
+                }
+            ]
+        },
+        {
+            "product_cloud_id": 108,
+            "mgmt_id": "2622",
+            "name": "CAFE NESPRESSO VANILLA",
+            "image": "/cafe-new/2622.jpg",
+            "description": null,
+            "price": 5.5,
+            "sides_limit": null,
+            "ingredients": [
+                {
+                    "cloud_id": 32,
+                    "mgmt_id": "2665",
+                    "name": "MEL SACHE",
+                    "price": 1.1,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 46,
+                    "mgmt_id": "3",
+                    "name": "ADOÇANTE",
+                    "price": 0,
+                    "type": 0
+                },
+                {
+                    "cloud_id": 52,
+                    "mgmt_id": "8",
+                    "name": "AÇÚCAR",
+                    "price": 0,
+                    "type": 0
+                },
+                {
+                    "cloud_id": 34,
+                    "mgmt_id": "2787",
+                    "name": "EMBALAGEM COPO VIAGEM",
+                    "price": 1,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 9,
+                    "mgmt_id": "2511",
+                    "name": "LEITE COPO EXTRA",
+                    "price": 2.2,
+                    "type": 1
+                }
+            ]
+        },
+        {
+            "product_cloud_id": 161,
+            "mgmt_id": "2680",
+            "name": "SANDUICHE ATUM",
+            "image": null,
+            "description": "Atum, cream cheese, alface e tomate",
+            "price": 17.9,
+            "sides_limit": null,
+            "ingredients": [
+                {
+                    "cloud_id": 27,
+                    "mgmt_id": "2598",
+                    "name": "CEBOLA EXTRA",
+                    "price": 1.7,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 28,
+                    "mgmt_id": "2608",
+                    "name": "AVEIA",
+                    "price": 3.9,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 30,
+                    "mgmt_id": "2625",
+                    "name": "CHIA",
+                    "price": 2.9,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 33,
+                    "mgmt_id": "2668",
+                    "name": "OVO",
+                    "price": 3.3,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 35,
+                    "mgmt_id": "2821",
+                    "name": "TOMATE EXTRA",
+                    "price": 2,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 154,
+                    "mgmt_id": "2464",
+                    "name": "EMBALAGEM VIAGEM",
+                    "price": 1.5,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 11,
+                    "mgmt_id": "2514",
+                    "name": "LINHACA EXTRA",
+                    "price": 2.9,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 21,
+                    "mgmt_id": "2536",
+                    "name": "COTTAGE",
+                    "price": 6.9,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 22,
+                    "mgmt_id": "2537",
+                    "name": "CREAM CHEESE",
+                    "price": 6,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 23,
+                    "mgmt_id": "2538",
+                    "name": "PEITO DE PERU",
+                    "price": 5,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 24,
+                    "mgmt_id": "2555",
+                    "name": "QUEIJO BRANCO",
+                    "price": 4,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 25,
+                    "mgmt_id": "2559",
+                    "name": "MUSSARELA",
+                    "price": 1.8,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 26,
+                    "mgmt_id": "2560",
+                    "name": "MOLHO",
+                    "price": 3.3,
+                    "type": 1
+                }
+            ]
+        },
+        {
+            "product_cloud_id": 235,
+            "mgmt_id": "2754",
+            "name": "TAPIOCA COTTAGE",
+            "image": null,
+            "description": null,
+            "price": 16,
+            "sides_limit": null,
+            "ingredients": [
+                {
+                    "cloud_id": 27,
+                    "mgmt_id": "2598",
+                    "name": "CEBOLA EXTRA",
+                    "price": 1.7,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 28,
+                    "mgmt_id": "2608",
+                    "name": "AVEIA",
+                    "price": 3.9,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 30,
+                    "mgmt_id": "2625",
+                    "name": "CHIA",
+                    "price": 2.9,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 33,
+                    "mgmt_id": "2668",
+                    "name": "OVO",
+                    "price": 3.3,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 35,
+                    "mgmt_id": "2821",
+                    "name": "TOMATE EXTRA",
+                    "price": 2,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 154,
+                    "mgmt_id": "2464",
+                    "name": "EMBALAGEM VIAGEM",
+                    "price": 1.5,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 11,
+                    "mgmt_id": "2514",
+                    "name": "LINHACA EXTRA",
+                    "price": 2.9,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 21,
+                    "mgmt_id": "2536",
+                    "name": "COTTAGE",
+                    "price": 6.9,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 22,
+                    "mgmt_id": "2537",
+                    "name": "CREAM CHEESE",
+                    "price": 6,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 23,
+                    "mgmt_id": "2538",
+                    "name": "PEITO DE PERU",
+                    "price": 5,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 24,
+                    "mgmt_id": "2555",
+                    "name": "QUEIJO BRANCO",
+                    "price": 4,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 25,
+                    "mgmt_id": "2559",
+                    "name": "MUSSARELA",
+                    "price": 1.8,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 26,
+                    "mgmt_id": "2560",
+                    "name": "MOLHO",
+                    "price": 3.3,
+                    "type": 1
+                }
+            ]
+        },
+        {
+            "product_cloud_id": 87,
+            "mgmt_id": "2599",
+            "name": "AGUA DE COCO NATURAL",
+            "image": "/suco-1-frutas-new/2599.jpg",
+            "description": null,
+            "price": 7.5,
+            "sides_limit": null,
+            "ingredients": [
+                {
+                    "cloud_id": 1,
+                    "mgmt_id": "2504",
+                    "name": "ACAI 1 BOLA EXTRA",
+                    "price": 8,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 2,
+                    "mgmt_id": "2505",
+                    "name": "CIDREIRA EXTRA",
+                    "price": 1.1,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 3,
+                    "mgmt_id": "2506",
+                    "name": "GENGIBRE EXTRA",
+                    "price": 1.1,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 28,
+                    "mgmt_id": "2608",
+                    "name": "AVEIA",
+                    "price": 3.9,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 30,
+                    "mgmt_id": "2625",
+                    "name": "CHIA",
+                    "price": 2.9,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 31,
+                    "mgmt_id": "2645",
+                    "name": "FRUTA EXTRA",
+                    "price": 8.9,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 32,
+                    "mgmt_id": "2665",
+                    "name": "MEL SACHE",
+                    "price": 1.1,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 51,
+                    "mgmt_id": "9",
+                    "name": "AÇÚCAR",
+                    "price": 0,
+                    "type": 0
+                },
+                {
+                    "cloud_id": 57,
+                    "mgmt_id": "12",
+                    "name": "LARANJA RODELA",
+                    "price": 0,
+                    "type": 0
+                },
+                {
+                    "cloud_id": 53,
+                    "mgmt_id": "10",
+                    "name": "LIMÃO RODELA",
+                    "price": 0,
+                    "type": 0
+                },
+                {
+                    "cloud_id": 54,
+                    "mgmt_id": "11",
+                    "name": "ADOÇANTE",
+                    "price": 0,
+                    "type": 0
+                },
+                {
+                    "cloud_id": 58,
+                    "mgmt_id": "13",
+                    "name": "LIMÃO ESPREMIDO",
+                    "price": 0,
+                    "type": 0
+                },
+                {
+                    "cloud_id": 34,
+                    "mgmt_id": "2787",
+                    "name": "EMBALAGEM COPO VIAGEM",
+                    "price": 1,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 5,
+                    "mgmt_id": "2508",
+                    "name": "GRANOLA EXTRA",
+                    "price": 4,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 7,
+                    "mgmt_id": "2509",
+                    "name": "HORTELA EXTRA",
+                    "price": 1.1,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 9,
+                    "mgmt_id": "2511",
+                    "name": "LEITE COPO EXTRA",
+                    "price": 2.2,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 10,
+                    "mgmt_id": "2513",
+                    "name": "SACHE DE MEL EXTRA",
+                    "price": 1,
+                    "type": 1
+                },
+                {
+                    "cloud_id": 11,
+                    "mgmt_id": "2514",
+                    "name": "LINHACA EXTRA",
+                    "price": 2.9,
+                    "type": 1
+                }
+            ]
+        },
+        {
+            "product_cloud_id": 94,
+            "mgmt_id": "2606",
+            "name": "AGUA PET 500ML C/G",
+            "image": "/bebidas-new/2606.jpg",
+            "description": "500 mL",
+            "price": 5,
+            "sides_limit": null,
+            "ingredients": [
+                {
+                    "cloud_id": 45,
+                    "mgmt_id": "2",
+                    "name": "LIMÃO RODELA",
+                    "price": 0,
+                    "type": 0
+                },
+                {
+                    "cloud_id": 48,
+                    "mgmt_id": "5",
+                    "name": "LIMÃO ESPREMIDO",
+                    "price": 0,
+                    "type": 0
+                },
+                {
+                    "cloud_id": 50,
+                    "mgmt_id": "7",
+                    "name": "AÇÚCAR",
+                    "price": 0,
+                    "type": 0
+                },
+                {
+                    "cloud_id": 49,
+                    "mgmt_id": "6",
+                    "name": "LARANJA RODELA",
+                    "price": 0,
+                    "type": 0
+                },
+                {
+                    "cloud_id": 44,
+                    "mgmt_id": "1",
+                    "name": "GELO",
+                    "price": 0,
+                    "type": 0
+                }
+            ]
+        }
+    ],
+    "ingredients": [],
+    "__v": 0
+}

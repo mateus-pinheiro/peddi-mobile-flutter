@@ -48,6 +48,7 @@ flutter:
   #  - images/a_dot_ham.jpeg
   assets:
       - mock/restaurant.json
+      - mock/featured.json
       - resources/images/help.png
       - resources/images/food.png
       - resources/images/waves.png
