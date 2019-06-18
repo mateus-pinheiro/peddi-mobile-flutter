@@ -58,32 +58,12 @@ class API {
     return mockId;
   }
 
-  Future<Response> askOrder(AskOrderBody order) async {
-    var jsonEncoded = json.encode(order.toJson());
-//    List<ResponseErrorSendProduct> response1;
-    try {
-      var response = await _client.put('$_apiUrl/orders/' + order.id,
-          headers: {"Content-Type": "application/json"}, body: jsonEncoded);
-
-      if (response.statusCode == 400) {
-        throw Exception(response);
-      }
-
-      return response;
-    } on Exception catch (e) {
-      return Future.error(e);
-    }
+  Future<dynamic> askOrder(AskOrderBody order) async {
+    return [];
   }
 
-  Future<Response> endOrder(String orderId) async {
-    var response = await _client.delete('$_apiUrl/orders/' + orderId,
-        headers: {"Content-Type": "application/json"});
-
-    if (response.statusCode == 200) {
-      return response;
-    }
-
-    return null;
+  Future<dynamic> endOrder(String orderId) async {
+    return [];
   }
 
   Future<ResponseFeaturedList> featured() async {
