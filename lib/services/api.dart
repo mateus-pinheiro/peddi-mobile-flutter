@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:peddi_tont_app/models/body/ask_order_body.dart';
@@ -24,31 +26,36 @@ class API {
   final http.Client _client = http.Client();
 
   Future<Restaurant> getRestaurant() async {
-    var response = await _client.get('$_apiUrl/restaurants/');
-    if (response.statusCode == 200) {
-      final Restaurant res = Restaurant.fromMap(json.decode(response.body));
-      return res;
+    try {
+      // load json file from root bundle instead of DefaultAssetBundle so that context doesn't
+      // have to be passed in.
+      final String _restaurantString = await rootBundle.loadString('mock/restaurant.json');
+      final Map<String, dynamic> _restaurantJson = json.decode(_restaurantString);
+      return Restaurant.fromMap(_restaurantJson);
+    } on Exception catch (e) {
+      return null;
     }
-    return null;
   }
 
   Future<ResponseOpenOrder> openOrder(Order order) async {
-    var jsonEncoded = json.encode(order.toJson());
-    try {
-      var request = await _client.post('$_apiUrl/orders/',
-          headers: {"Content-Type": "application/json"}, body: jsonEncoded);
+    // var jsonEncoded = json.encode(order.toJson());
+    // try {
+    //   var request = await _client.post('$_apiUrl/orders/',
+    //       headers: {"Content-Type": "application/json"}, body: jsonEncoded);
 
-      if (request.statusCode == 400) {
-        throw Exception(request);
-      }
+    //   if (request.statusCode == 400) {
+    //     throw Exception(request);
+    //   }
 
-      ResponseOpenOrder responseOpenOrder =
-          ResponseOpenOrder.fromMap(json.decode(request.body));
+    //   ResponseOpenOrder responseOpenOrder =
+    //       ResponseOpenOrder.fromMap(json.decode(request.body));
 
-      return responseOpenOrder;
-    } on Exception catch (e) {
-      return Future.error(e);
-    }
+    //   return responseOpenOrder;
+    // } on Exception catch (e) {
+    //   return Future.error(e);
+    // }
+    final ResponseOpenOrder mockId = ResponseOpenOrder.fromMap({'id': 'random id'});
+    return mockId;
   }
 
   Future<Response> askOrder(AskOrderBody order) async {
