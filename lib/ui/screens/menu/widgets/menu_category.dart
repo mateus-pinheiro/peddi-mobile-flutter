@@ -351,7 +351,7 @@ class _MenuCategoryState extends State<MenuCategory>
             category.name,
             style: FontStyles.menuCategories,
           )),
-          width: 180.0,
+          width: 200.0,
         ),
       ),
     );

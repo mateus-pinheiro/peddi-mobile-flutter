@@ -22,7 +22,7 @@ class AdvertisingWidget extends StatelessWidget {
           child: new CachedNetworkImage(
             placeholder: new Center(child: new CircularProgressIndicator()),
             imageUrl: getProductImage(product.image),
-            fit: BoxFit.contain,
+            fit: BoxFit.cover,
             fadeOutDuration: Duration(milliseconds: 50),
             errorWidget: new Container(
               decoration: new BoxDecoration(
