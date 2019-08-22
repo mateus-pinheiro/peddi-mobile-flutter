@@ -1,4 +1,5 @@
-barcode_scan=/Users/mateusfrancapinheiro/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/barcode_scan-0.0.8/
-path_provider=/Users/mateusfrancapinheiro/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider-0.4.1/
-shared_preferences=/Users/mateusfrancapinheiro/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences-0.4.3/
-simple_permissions=/Users/mateusfrancapinheiro/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/simple_permissions-0.1.9/
+barcode_scan=/Users/mateusfrancapinheiro/.pub-cache/hosted/pub.dartlang.org/barcode_scan-0.0.8/
+path_provider=/Users/mateusfrancapinheiro/.pub-cache/hosted/pub.dartlang.org/path_provider-0.5.0+1/
+shared_preferences=/Users/mateusfrancapinheiro/.pub-cache/hosted/pub.dartlang.org/shared_preferences-0.4.3/
+simple_permissions=/Users/mateusfrancapinheiro/.pub-cache/hosted/pub.dartlang.org/simple_permissions-0.1.9/
+sqflite=/Users/mateusfrancapinheiro/.pub-cache/hosted/pub.dartlang.org/sqflite-1.1.6+3/

@@ -10,7 +10,7 @@ dependencies:
   intl: "^0.15.6"
   simple_permissions: "^0.1.8"
   barcode_scan: ^0.0.7
-  cached_network_image: "^0.4.1"
+  cached_network_image: "^0.8.0"
   flutter_swiper : ^1.1.6
 
   flutter:

@@ -56,11 +56,11 @@ class MenuProduct extends StatelessWidget {
                       height: 250.0,
                       child: new CachedNetworkImage(
                         placeholder:
-                            new Center(child: new CircularProgressIndicator()),
+                            (context, loading) => new Center(child: new CircularProgressIndicator()),
                         imageUrl: getProductImage(product.image),
                         fit: BoxFit.contain,
                         fadeOutDuration: Duration(milliseconds: 50),
-                        errorWidget: new Container(
+                        errorWidget: (context, loading, t) =>new Container(
                           decoration: new BoxDecoration(
                               color: Colors.white,
 //                              border: Border.all(

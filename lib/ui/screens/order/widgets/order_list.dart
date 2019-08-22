@@ -189,7 +189,7 @@ class OrderListState extends State<OrderList> {
     return Padding(
       padding: const EdgeInsets.only(right: 8.0, left: 1.0),
       child: new Text(
-        ingredient.name + ' / ',
+        ingredient.name + ' - ' + CurrencyConverter.toBrazilianReal(ingredient.price) + ' / ',
         style: FontStyles.ingredientNameProduct,
       ),
     );

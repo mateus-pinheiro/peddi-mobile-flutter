@@ -117,9 +117,9 @@ class _ProductRecipeWidgetState extends State<ProductRecipeWidget> {
                           imageUrl: getProductImage(product.image),
                           fit: BoxFit.contain,
                           repeat: ImageRepeat.noRepeat,
-                          placeholder: new Center(
+                          placeholder: (context, loading) =>new Center(
                               child: new CircularProgressIndicator()),
-                          errorWidget: new Container(
+                          errorWidget: (context, loading, t) =>new Container(
                             decoration: new BoxDecoration(
                                 color: Colors.white,
                                 image: new DecorationImage(
