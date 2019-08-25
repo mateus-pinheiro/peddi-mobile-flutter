@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:peddi_tont_app/models/featured_list.dart';
 import 'package:peddi_tont_app/models/product.dart';
 import 'package:peddi_tont_app/services/external_images.dart';
 import 'package:peddi_tont_app/themes/app_colors.dart';
@@ -72,7 +71,7 @@ class AdvertisingWidget extends StatelessWidget {
             left: 320,
             top: 130,
             child: Text(
-              "só " + CurrencyConverter.toBrazilianReal(product.price),
+              "por " + CurrencyConverter.toBrazilianReal(product.price),
               style: FontStyles.advertisingProductPrice,
             )),
       ],
